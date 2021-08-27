@@ -10,9 +10,6 @@ source $XDG_CONFIG_HOME/nvim/plugins.vim
 " wiki
 source $XDG_CONFIG_HOME/nvim/vimwikiconfig.vim
 
-" external files
-source $XDG_CONFIG_HOME/nvim/exteralfiles.vim
-
 
 " c++
 au filetype cpp,c source $XDG_CONFIG_HOME/nvim/cocconfig.vim
