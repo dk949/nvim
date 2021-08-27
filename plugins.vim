@@ -1,0 +1,93 @@
+" My plugins
+" Space mode plugin
+source $XDG_CONFIG_HOME/nvim/spacemode.vim
+
+" Line count plugin
+source $XDG_CONFIG_HOME/nvim/linecount.vim
+
+" Hex editor plugin
+source $XDG_CONFIG_HOME/nvim/hexedit.vim
+
+" Man page viewing
+source $XDG_CONFIG_HOME/nvim/man.vim
+
+" ripgrep
+source $XDG_CONFIG_HOME/nvim/ripgrep.vim
+
+" terminal
+source $XDG_CONFIG_HOME/nvim/term.vim
+
+" Plugins loaded with the Vundle plugin manager
+" TODO: consider switching to Plug
+
+set nocompatible              " be iMproved,:se required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle/')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Vim powerline plugin
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" File explorer (NERDTree)
+Plugin 'preservim/nerdtree'
+
+" Comments (NERDComenter)
+Plugin 'preservim/nerdcommenter'
+
+" Vim surround (people say it's good)
+Plugin 'tpope/vim-surround'
+
+" The color scheme I like
+Plugin 'joshdick/onedark.vim'
+
+" Another color scheme
+Plugin 'dracula/vim'
+
+" Vim wiki
+Plugin 'vimwiki/vimwiki'
+
+" C++ support
+Plugin 'neoclide/coc.nvim'
+Plugin 'jackguo380/vim-lsp-cxx-highlight'
+Plugin 'vim-syntastic/syntastic'
+
+" linting
+Plugin 'dense-analysis/ale'
+
+" Haskell support
+Plugin 'neovimhaskell/haskell-vim'
+
+" jsx/tsx support
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+
+" python
+Plugin 'numirias/semshi'
+
+" highlight yank
+Plugin 'machakann/vim-highlightedyank'
+
+" rust
+Plugin 'rust-lang/rust.vim'
+
+" Lorem ipsum
+"Plugin 'loremipsum'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+let g:coc_start_at_startup = 0
+let g:ale_enabled = 0
+let g:ale_disable_lsp = 1
+
+let NERDTreeShowHidden=1
+
+
+" Colours and airline
+source $XDG_CONFIG_HOME/nvim/look.vim

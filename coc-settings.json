@@ -1,0 +1,64 @@
+{
+  "eslint.packageManager": "yarn",
+  "eslint.format.enable": true,
+  "tsserver.disableAutomaticTypeAcquisition": true,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "args": [
+        "--log-file=/tmp/ccls.log",
+        "-v=1"
+      ],
+      "filetypes": [
+        "c",
+        "cc",
+        "cpp",
+        "c++",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "client": {
+          "snippetSupport": true
+        },
+        "index": {
+          "onChange": true
+        },
+        "highlight": {
+          "lsRanges": true
+        }
+      }
+    },
+    "haskell": {
+      "command": "haskell-language-server-8.10.4",
+      "args": [
+        "--lsp"
+      ],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": [
+        "haskell",
+        "lhaskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {
+          "hlintOn": true,
+          "maxNumberOfProblems": 20,
+          "completionSnippetsOn": true
+        }
+      }
+    }
+  }
+}
