@@ -40,13 +40,10 @@ Plugin 'preservim/nerdtree'
 " Comments (NERDComenter)
 Plugin 'preservim/nerdcommenter'
 
-" Vim surround (people say it's good)
+" Vim surround
 Plugin 'tpope/vim-surround'
 
-" The color scheme I like
-Plugin 'joshdick/onedark.vim'
-
-" Another color scheme
+" color scheme
 Plugin 'dracula/vim'
 
 " Vim wiki
