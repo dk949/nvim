@@ -32,6 +32,10 @@ au filetype javascript,typescript,javascriptreact,typescriptreact source $XDG_CO
 au filetype json source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 au filetype json source $XDG_CONFIG_HOME/nvim/json.vim
 
+"xml
+au filetype xml source $XDG_CONFIG_HOME/nvim/cocconfig.vim
+au filetype xml source $XDG_CONFIG_HOME/nvim/xml.vim
+
 
 " python
 au filetype python source $XDG_CONFIG_HOME/nvim/python.vim
