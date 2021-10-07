@@ -188,3 +188,15 @@ nnoremap <C-A-h> :silent call ChangeWindowSize(1,'h')<CR>
 nnoremap <C-A-j> :silent call ChangeWindowSize(0,'j')<CR>
 nnoremap <C-A-k> :silent call ChangeWindowSize(0,'k')<CR>
 nnoremap <C-A-l> :silent call ChangeWindowSize(1,'l')<CR>
+
+
+function FuncNewF()
+    const l:ft = &filetype
+    vert new
+    let &filetype = l:ft
+endfunction
+
+" Split vetically with a new buffer
+command! New :vert new
+command! NewF call FuncNewF()
+nnoremap <C-n> :New<CR>
