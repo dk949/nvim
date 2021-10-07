@@ -1,26 +1,26 @@
- "split
- "term ghci %
- "call jobsend(4, ":!clear\n")
+ split
+ term ghci %
+ call jobsend(4, ":!clear\n")
  ""exec 'resize ' . string(&lines *  0.20)
- "resize 8
+ resize 8
 
- "au BufWrite * call GHCiRefresh()
+ au BufWrite * call GHCiRefresh()
 
- "vnoremap <leader>r :call RunInReplVisual()<CR>
- "const g:haskell_repl = 1
+ vnoremap <leader>r :call RunInReplVisual()<CR>
+ const g:haskell_repl = 1
 
- "function! GHCiRefresh()
-     "call jobsend(4, ":r\n")
-     "call jobsend(4, ":!clear\n")
- "endfunction
+ function! GHCiRefresh()
+     call jobsend(4, ":r\n")
+     call jobsend(4, ":!clear\n")
+ endfunction
 
 
- "function! RunInReplVisual() range
-     "let l:saved = @g
+ function! RunInReplVisual() range
+     let l:saved = @g
      "norm! gv"gy
-     "call jobsend(4, @g . "\n")
-     "let @g = l:saved
- "endfunction
+     call jobsend(4, @g . "\n")
+     let @g = l:saved
+ endfunction
 
 xmap <leader>mf <Plug>(coc-format)
 nmap <leader>mf <Plug>(coc-format)
