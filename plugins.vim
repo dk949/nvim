@@ -17,6 +17,12 @@ source $XDG_CONFIG_HOME/nvim/ripgrep.vim
 " terminal
 source $XDG_CONFIG_HOME/nvim/term.vim
 
+" PrintFile
+source $XDG_CONFIG_HOME/nvim/print_file.vim
+
+" Git
+source $XDG_CONFIG_HOME/nvim/git.vim
+
 " Plugins loaded with the Vundle plugin manager
 " TODO: consider switching to Plug
 
@@ -73,8 +79,8 @@ Plugin 'machakann/vim-highlightedyank'
 " rust
 Plugin 'rust-lang/rust.vim'
 
-" Lorem ipsum
-"Plugin 'loremipsum'
+" git blame
+Plugin 'zivyangll/git-blame.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -84,6 +90,8 @@ let g:ale_enabled = 0
 let g:ale_disable_lsp = 1
 
 let NERDTreeShowHidden=1
+
+nnoremap <Leader>mb :call gitblame#echo()<CR>
 
 
 " Colours and airline
