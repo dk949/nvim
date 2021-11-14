@@ -175,7 +175,6 @@ endfunction
 
 " FIXME
 function! MakeWikiLinkVisual() range
-    echo "I am being executed"
     let markers = [getpos("'>"), getpos("'<")]
     let saved = @0
     norm y`<v`>
