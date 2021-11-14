@@ -17,7 +17,7 @@ if !exists('g:cpp_cppcheck_options')
 endif
 
 if !exists('g:clang_tidy_options')
-    const g:clang_tidy_options = '-extra-arg=-Wno-unknown-warning-option'
+    const g:clang_tidy_options = '-extra-arg=-Wno-unknown-warning-option -checks=-clang-analyzer-security.insecureAPI.*'
 endif
 
 " add to the error format, so the quick fix window can be used. clang-tidy and cppcheck use the same format
