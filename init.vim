@@ -54,12 +54,9 @@ au filetype markdown source $XDG_CONFIG_HOME/nvim/md.vim
 
 " zig
 au filetype zig source $XDG_CONFIG_HOME/nvim/cocconfig.vim
-"au filetype zig source $XDG_CONFIG_HOME/nvim/zig.vim
 
 " roc
-autocmd BufRead,BufNewFile *.roc source $XDG_CONFIG_HOME/nvim/roc.vim
-
-
+au BufRead,BufNewFile *.roc source $XDG_CONFIG_HOME/nvim/roc.vim
 
 " TeX
 au filetype tex source $XDG_CONFIG_HOME/nvim/tex.vim
