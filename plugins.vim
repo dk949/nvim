@@ -82,6 +82,16 @@ Plugin 'rust-lang/rust.vim'
 " git blame
 Plugin 'zivyangll/git-blame.vim'
 
+" 6502 asm
+Plugin 'maxbane/vim-asm_ca65'
+
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" Zig
+Plugin 'ziglang/zig.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
