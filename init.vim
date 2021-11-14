@@ -33,7 +33,6 @@ au filetype json source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 au filetype json source $XDG_CONFIG_HOME/nvim/json.vim
 
 "xml
-au filetype xml source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 au filetype xml source $XDG_CONFIG_HOME/nvim/xml.vim
 
 
@@ -49,6 +48,16 @@ au filetype haskell source $XDG_CONFIG_HOME/nvim/aleconfig.vim
 " rust
 au filetype rust source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 au filetype rust source $XDG_CONFIG_HOME/nvim/rust.vim
+
+" markdown
+au filetype markdown source $XDG_CONFIG_HOME/nvim/md.vim
+
+" zig
+au filetype zig source $XDG_CONFIG_HOME/nvim/cocconfig.vim
+"au filetype zig source $XDG_CONFIG_HOME/nvim/zig.vim
+
+" roc
+autocmd BufRead,BufNewFile *.roc source $XDG_CONFIG_HOME/nvim/roc.vim
 
 
 
