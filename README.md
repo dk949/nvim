@@ -17,6 +17,7 @@ neovim config
   * [nodejs](https://nodejs.org/en/)
   * [npm](https://www.npmjs.com/)
   * everything that mentions '(coc)' as a dependency would also require these
+  * Make sure to also clone the [coc config](https://github.com/dk949/coc).
 * c++
   * [ccls](https://github.com/MaskRay/ccls)
   * [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
