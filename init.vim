@@ -10,6 +10,11 @@ source $XDG_CONFIG_HOME/nvim/plugins.vim
 " wiki
 source $XDG_CONFIG_HOME/nvim/vimwikiconfig.vim
 
+" Abbreviations
+source $XDG_CONFIG_HOME/nvim/abbriviations.vim
+
+" Telescope
+source $XDG_CONFIG_HOME/nvim/telescopeconfig.vim
 
 " c++
 au filetype cpp,c source $XDG_CONFIG_HOME/nvim/cocconfig.vim
@@ -17,6 +22,9 @@ au filetype cpp,c source $XDG_CONFIG_HOME/nvim/doxygen.vim
 au filetype cpp,c source $XDG_CONFIG_HOME/nvim/cpp_lint.vim
 au filetype cpp,c source $XDG_CONFIG_HOME/nvim/cpp.vim
 source $XDG_CONFIG_HOME/nvim/snippets.vim
+
+" d
+au filetype d source $XDG_CONFIG_HOME/nvim/d.vim
 
 
 " cmake

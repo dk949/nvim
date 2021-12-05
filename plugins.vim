@@ -60,6 +60,10 @@ Plugin 'neoclide/coc.nvim'
 Plugin 'jackguo380/vim-lsp-cxx-highlight'
 Plugin 'vim-syntastic/syntastic'
 
+" d
+Plugin 'SirVer/ultisnips'
+Plugin 'idanarye/vim-dutyl'
+
 " linting
 Plugin 'dense-analysis/ale'
 
@@ -69,6 +73,7 @@ Plugin 'neovimhaskell/haskell-vim'
 " jsx/tsx support
 Plugin 'leafgarland/typescript-vim'
 Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'eliba2/vim-node-inspect'
 
 " python
 Plugin 'numirias/semshi'
@@ -91,6 +96,16 @@ Plugin 'plasticboy/vim-markdown'
 
 " Zig
 Plugin 'ziglang/zig.vim'
+
+" purescript
+Plugin 'purescript-contrib/purescript-vim'
+
+" dhall
+Plugin 'vmchale/dhall-vim'
+
+" telescope
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'nvim-telescope/telescope.nvim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
