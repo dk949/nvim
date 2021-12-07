@@ -6,6 +6,7 @@ neovim config
 
 * clone **recursively** to `$XDG_CONFIG_HOME`
 * launch nvim
+* see [cheatsheet](cheatsheet.md) for key bindings
 
 ``` vim
 :PluginInstall
