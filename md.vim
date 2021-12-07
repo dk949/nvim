@@ -1,6 +1,6 @@
 command! Format :silent !formark -f % -o %
 
-nnoremap <leader>mf :Format<CR>:e<CR>
+nnoremap <buffer> <leader>mf :Format<CR>:e<CR>
 
 setlocal spell
 

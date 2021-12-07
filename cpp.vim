@@ -23,7 +23,7 @@ nnoremap <leader>; A;<esc>
 
 "Run the formatter
 command! Format :silent execute "!clang-format --style=file -i %"
-nnoremap <leader>mf :Format<CR>:e<CR>
+nnoremap <buffer> <leader>mf :Format<CR>:e<CR>
 
 
 " Find the next " ' or ] or } or ), step over it and go into insert mode
