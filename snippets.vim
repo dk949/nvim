@@ -14,17 +14,12 @@ function! Snippethpp()
 endfunction
 
 function! Snippetcpp()
-    :-1read $XDG_DATA_HOME/snippets/.cpp
-    :norm jA
-    :startinsert!
-endfunction
-
-function! Snippetc()
-    :-1read $XDG_DATA_HOME/snippets/.c
-    :norm jA
-    :startinsert!
+    let l:text = "int main() {\n    \n\n    return 0;\n}"
+    let l:save = @g
+    -1put =l:text
+    :2
 endfunction
 
 au BufNewFile *.h,*.hpp call Snippethpp()
 au BufNewFile main.cpp call Snippetcpp()
-au BufNewFile main.c call Snippetc()
+au BufNewFile main.c call  Snippetcpp()
