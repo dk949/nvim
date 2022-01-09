@@ -66,5 +66,8 @@ au filetype zig source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 " roc
 au BufRead,BufNewFile *.roc source $XDG_CONFIG_HOME/nvim/roc.vim
 
+" asm
+au BufRead,BufNewFile *.asm source $XDG_CONFIG_HOME/nvim/asm.vim
+
 " TeX
 au filetype tex source $XDG_CONFIG_HOME/nvim/tex.vim
