@@ -23,6 +23,9 @@ source $XDG_CONFIG_HOME/nvim/print_file.vim
 " Git
 source $XDG_CONFIG_HOME/nvim/git.vim
 
+" Maths
+source $XDG_CONFIG_HOME/nvim/maths.vim
+
 " Plugins loaded with the Vundle plugin manager
 " TODO: consider switching to Plug
 
@@ -116,8 +119,8 @@ let g:ale_disable_lsp = 1
 
 let NERDTreeShowHidden=1
 
-nnoremap <Leader>mb :call gitblame#echo()<CR>
-
+" git blame
+source $XDG_CONFIG_HOME/nvim/gitblame.vim
 
 " Colours and airline
 source $XDG_CONFIG_HOME/nvim/look.vim
