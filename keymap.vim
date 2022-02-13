@@ -15,7 +15,10 @@ vnoremap <C-C> "*y :let @+=@*<CR>
 
 
 " toggle NERDtree file browser
-map <leader>n :NERDTreeToggle<CR>
+map <leader>nn :NERDTreeToggle<CR>
+
+" show minimap
+map <leader>nm :MinimapToggle<CR>
 
 
 " clear the yank buffer
@@ -24,7 +27,7 @@ nnoremap <leader>, :let @/=""<CR>
 
 
 " Enter in normal mode does what enter in insert mode does
-nnoremap <CR> o<esc>
+"nnoremap <CR> o<esc>
 
 
 " Navigate windows with ctrl-h ctrl-j etc
@@ -153,7 +156,7 @@ cabbrev delview <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Delview' : 'delvie
 " quickfix stuff
 nnoremap <expr> j &buftype ==# 'quickfix' ? ":cnext\<CR>:wincmd p\<CR>" : 'j'
 nnoremap <expr> k &buftype ==# 'quickfix' ? ":cprevious\<CR>:wincmd p\<CR>" : 'k'
-nnoremap <expr> <CR> &buftype ==# 'quickfix' ? ":cc\<CR>" : "o\<ESC>"
+nnoremap <expr> <CR> &buftype ==# 'quickfix' ? ":cc\<CR>" : "\<CR>"
 
 
 " window size
@@ -200,3 +203,6 @@ endfunction
 command! New :vert new
 command! NewF call FuncNewF()
 nnoremap <C-n> :New<CR>
+
+" show current highlight group
+command! EchoHl echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
