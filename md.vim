@@ -1,6 +1,11 @@
 command! Format :silent !formark -f % -o %
 
+setlocal colorcolumn=+1
+highlight ColorColumn ctermbg=6
+setlocal textwidth=80
+
 nnoremap <buffer> <leader>mf :Format<CR>:e<CR>
+"nnoremap <buffer> <leader>mf mggg=G`g
 
 setlocal spell
 
