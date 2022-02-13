@@ -110,6 +110,9 @@ Plugin 'vmchale/dhall-vim'
 Plugin 'nvim-lua/plenary.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
 
+" minimap
+Plugin 'wfxr/minimap.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -118,6 +121,9 @@ let g:ale_enabled = 0
 let g:ale_disable_lsp = 1
 
 let NERDTreeShowHidden=1
+
+let g:minimap_git_colors = 1
+let g:minimap_width = 15
 
 " git blame
 source $XDG_CONFIG_HOME/nvim/gitblame.vim
