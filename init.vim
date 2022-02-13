@@ -43,6 +43,14 @@ au filetype json source $XDG_CONFIG_HOME/nvim/json.vim
 "xml
 au filetype xml source $XDG_CONFIG_HOME/nvim/xml.vim
 
+" html
+au filetype html source $XDG_CONFIG_HOME/nvim/cocconfig.vim
+au filetype html source $XDG_CONFIG_HOME/nvim/html.vim
+
+" css
+au filetype css source $XDG_CONFIG_HOME/nvim/cocconfig.vim
+au filetype css source $XDG_CONFIG_HOME/nvim/css.vim
+
 
 " python
 au filetype python source $XDG_CONFIG_HOME/nvim/python.vim
@@ -71,3 +79,7 @@ au BufRead,BufNewFile *.asm source $XDG_CONFIG_HOME/nvim/asm.vim
 
 " TeX
 au filetype tex source $XDG_CONFIG_HOME/nvim/tex.vim
+
+" go
+au filetype go source  $XDG_CONFIG_HOME/nvim/go.vim
+au filetype go source $XDG_CONFIG_HOME/nvim/cocconfig.vim
