@@ -113,6 +113,9 @@ Plugin 'nvim-telescope/telescope.nvim'
 " minimap
 Plugin 'wfxr/minimap.vim'
 
+" Fluent
+Plugin 'projectfluent/fluent.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
