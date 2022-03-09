@@ -83,3 +83,6 @@ au filetype tex source $XDG_CONFIG_HOME/nvim/tex.vim
 " go
 au filetype go source  $XDG_CONFIG_HOME/nvim/go.vim
 au filetype go source $XDG_CONFIG_HOME/nvim/cocconfig.vim
+
+" make
+au filetype make source  $XDG_CONFIG_HOME/nvim/make.vim
