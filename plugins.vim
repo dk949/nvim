@@ -116,6 +116,9 @@ Plugin 'wfxr/minimap.vim'
 " Fluent
 Plugin 'projectfluent/fluent.vim'
 
+"Scotch
+Plugin 'dk949/scotch.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
