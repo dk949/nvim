@@ -2,7 +2,17 @@
   "eslint.packageManager": "yarn",
   "eslint.format.enable": true,
   "tsserver.disableAutomaticTypeAcquisition": true,
+  "codeLens.enable": false,
   "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": [
+        "elm"
+      ],
+      "rootPatterns": [
+        "elm.json"
+      ]
+    },
     "ccls": {
       "command": "ccls",
       "args": [
