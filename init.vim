@@ -77,6 +77,9 @@ au BufRead,BufNewFile *.roc source $XDG_CONFIG_HOME/nvim/roc.vim
 " asm
 au BufRead,BufNewFile *.asm source $XDG_CONFIG_HOME/nvim/asm.vim
 
+" 6502 asm
+au BufRead,BufNewFile *.s65,*.h65 source $XDG_CONFIG_HOME/nvim/cc65.vim
+
 " TeX
 au filetype tex source $XDG_CONFIG_HOME/nvim/tex.vim
 
