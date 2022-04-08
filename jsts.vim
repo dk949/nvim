@@ -25,7 +25,7 @@ nnoremap <leader>; A;<esc>
 xmap <leader>mf <Plug>(coc-format)
 nmap <leader>mf <Plug>(coc-format)
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
