@@ -69,6 +69,7 @@ au filetype rust source $XDG_CONFIG_HOME/nvim/rust.vim
 au filetype markdown source $XDG_CONFIG_HOME/nvim/md.vim
 
 " zig
+au filetype elm source $XDG_CONFIG_HOME/nvim/zig.vim
 au filetype zig source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 
 " roc
