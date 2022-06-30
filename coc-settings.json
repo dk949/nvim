@@ -156,6 +156,12 @@
           "maxCompletions": 40
         }
       }
+    },
+    "zls": {
+      "command": "zls",
+      "filetypes": [
+        "zig"
+      ]
     }
   }
 }
