@@ -206,3 +206,9 @@ nnoremap <C-n> :New<CR>
 
 " show current highlight group
 command! EchoHl echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+
+
+" CTRL-L clears and redraws the scren.
+" default uses :redraw, which does not redraw the whole screen.
+" useful if scripts are running in the background and output text
+nnoremap <C-l> :mode<CR>
