@@ -25,6 +25,7 @@ source $XDG_CONFIG_HOME/nvim/snippets.vim
 
 " d
 au filetype d source $XDG_CONFIG_HOME/nvim/d.vim
+au filetype d source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 au BufRead,BufNewFile *.dd source $XDG_CONFIG_HOME/nvim/md.vim
 
 
