@@ -64,8 +64,10 @@ Plugin 'jackguo380/vim-lsp-cxx-highlight'
 Plugin 'vim-syntastic/syntastic'
 
 " d
-Plugin 'SirVer/ultisnips'
 Plugin 'idanarye/vim-dutyl'
+
+" peg
+Plugin 'dk949/pegged.vim'
 
 " linting
 Plugin 'dense-analysis/ale'
@@ -117,7 +119,7 @@ Plugin 'wfxr/minimap.vim'
 Plugin 'projectfluent/fluent.vim'
 
 "Scotch
-Plugin 'dk949/scotch.vim'
+"Plugin 'dk949/scotch.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
