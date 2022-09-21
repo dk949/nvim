@@ -211,4 +211,4 @@ command! EchoHl echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 " CTRL-L clears and redraws the scren.
 " default uses :redraw, which does not redraw the whole screen.
 " useful if scripts are running in the background and output text
-nnoremap <C-l> :mode<CR>
+"nnoremap <C-l> :mode<CR>
