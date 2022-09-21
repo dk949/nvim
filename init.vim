@@ -67,6 +67,10 @@ au filetype haskell source $XDG_CONFIG_HOME/nvim/aleconfig.vim
 au filetype rust source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 au filetype rust source $XDG_CONFIG_HOME/nvim/rust.vim
 
+" ruby
+au filetype ruby source $XDG_CONFIG_HOME/nvim/cocconfig.vim
+au filetype ruby source $XDG_CONFIG_HOME/nvim/ruby.vim
+
 " markdown
 au filetype markdown source $XDG_CONFIG_HOME/nvim/md.vim
 
