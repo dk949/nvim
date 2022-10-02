@@ -16,8 +16,12 @@ vnoremap <leader>r :call RunInReplVisual()<CR>
 
 function! GHCiRefresh()
     if exists("g:ghci_session_id")
-        call chansend(g:ghci_session_id, ":load " . expand('%') . "\n")
-        call chansend(g:ghci_session_id, ":!clear\n")
+        try
+            call chansend(g:ghci_session_id, ":load " . expand('%') . "\n")
+            call chansend(g:ghci_session_id, ":!clear\n")
+        catch
+            unlet g:ghci_session_id
+        endtry
     endif
 endfunction
 
