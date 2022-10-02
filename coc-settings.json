@@ -47,7 +47,7 @@
       }
     },
     "haskell": {
-      "command": "haskell-language-server-8.10.7",
+      "command": "haskell-language-server-9.0.2",
       "args": [
         "--lsp"
       ],
