@@ -26,7 +26,7 @@ function! s:_GitEditOld(...)
         const l:filename = a:2
     endif
 
-    exec 'silent read !git cat-file blob ' . l:ref . ':' . l:filename
+    exec 'silent -1 read !git cat-file blob ' . l:ref . ':' . l:filename
 endfunction
 
 command! -nargs=? GitEditOld :silent call s:_GitEditOld(<f-args>)
@@ -49,7 +49,7 @@ function! s:_GitDiffThis(...)
 
     const l:ft = &filetype
     exec 'vert diffsplit ' . tempname()
-    exec 'silent read !git cat-file blob ' . l:ref . ':' . l:filename
+    exec 'silent -1 read !git cat-file blob ' . l:ref . ':' . l:filename
     let &filetype = l:ft
 endfunction
 
