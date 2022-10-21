@@ -81,7 +81,7 @@ Plugin 'peitalin/vim-jsx-typescript'
 Plugin 'eliba2/vim-node-inspect'
 
 " python
-Plugin 'numirias/semshi'
+"Plugin 'numirias/semshi'
 
 " highlight yank
 Plugin 'machakann/vim-highlightedyank'
