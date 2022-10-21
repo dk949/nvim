@@ -75,6 +75,8 @@ set path+=**
 set splitbelow
 set splitright
 
+" Mouse
+set mouse=
 
 " if an error file has been created, delete it when it is no longer needed. FIXME: this is a little heavy handed
 "au BufUnload * :silent !rm -f errors.err
