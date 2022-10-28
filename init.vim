@@ -73,6 +73,7 @@ au filetype ruby source $XDG_CONFIG_HOME/nvim/ruby.vim
 
 " markdown
 au filetype markdown source $XDG_CONFIG_HOME/nvim/md.vim
+au filetype markdown source $XDG_CONFIG_HOME/nvim/cocconfig.vim
 
 " zig
 au filetype elm source $XDG_CONFIG_HOME/nvim/zig.vim
