@@ -86,6 +86,9 @@ Plugin 'eliba2/vim-node-inspect'
 " highlight yank
 Plugin 'machakann/vim-highlightedyank'
 
+" plant uml
+Plugin 'aklt/plantuml-syntax'
+
 " rust
 Plugin 'rust-lang/rust.vim'
 
