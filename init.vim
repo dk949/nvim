@@ -101,3 +101,6 @@ au filetype make source  $XDG_CONFIG_HOME/nvim/make.vim
 " elm
 au filetype elm source $XDG_CONFIG_HOME/nvim/elm.vim
 au filetype elm source $XDG_CONFIG_HOME/nvim/cocconfig.vim
+
+" pdf
+au filetype pdf source $XDG_CONFIG_HOME/nvim/pdf.vim
