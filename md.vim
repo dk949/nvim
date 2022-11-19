@@ -7,9 +7,14 @@ setlocal spell
 
 command! Format :silent !formark -f % -o %
 
-setlocal colorcolumn=+1
-highlight ColorColumn ctermbg=6
+setlocal wrap linebreak nolist
 setlocal textwidth=80
+
+nnoremap j gj
+nnoremap gj j
+
+nnoremap k gk
+nnoremap gk k
 
 nnoremap <buffer> <leader>mf :Format<CR>:e<CR>
 "nnoremap <buffer> <leader>mf mggg=G`g
