@@ -1,3 +1,21 @@
+
+function s:checkPlug()
+    if (!filereadable(stdpath("data") . "/site/autoload/plug.vim"))
+        echohl WarningMsg
+        echo "WARNING: plug.vim not found trying to download..."
+        echohl None
+        call system('curl -fLo ' \
+            . stdpath("data") . "/site/autoload/plug.vim " \
+            . '--create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+        if(v:shell_error)
+            echohl WarningMsg
+            echo "ERROR: plug.vim could not be downloaded"
+            echohl None
+            finish
+        endif
+    endif
+endfunction
+
 " My plugins
 " Space mode plugin
 source $XDG_CONFIG_HOME/nvim/spacemode.vim
@@ -29,103 +47,105 @@ source $XDG_CONFIG_HOME/nvim/maths.vim
 " Plugins loaded with the Vundle plugin manager
 " TODO: consider switching to Plug
 
-set nocompatible              " be iMproved,:se required
-filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle/')
+call s:checkPlug()
+
+call plug#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
 " Vim powerline plugin
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " File explorer (NERDTree)
-Plugin 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 
 " Comments (NERDComenter)
-Plugin 'preservim/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 
 " Vim surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " color scheme
-Plugin 'dracula/vim'
+Plug 'dracula/vim'
 
 " Vim wiki
-Plugin 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 
 " C++ support
-Plugin 'neoclide/coc.nvim'
-Plugin 'jackguo380/vim-lsp-cxx-highlight'
-Plugin 'vim-syntastic/syntastic'
+Plug 'neoclide/coc.nvim', {'tag': 'v0.0.82'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'vim-syntastic/syntastic'
 
 " d
-Plugin 'idanarye/vim-dutyl'
+Plug 'idanarye/vim-dutyl'
 
 " peg
-Plugin 'dk949/pegged.vim'
+Plug 'dk949/pegged.vim'
 
 " linting
-Plugin 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
 " Haskell support
-Plugin 'neovimhaskell/haskell-vim'
+Plug 'neovimhaskell/haskell-vim'
 
 " jsx/tsx support
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
-Plugin 'eliba2/vim-node-inspect'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'eliba2/vim-node-inspect'
 
 " python
-"Plugin 'numirias/semshi'
+" Plug 'numirias/semshi', { 'for': 'python' }
 
 " highlight yank
-Plugin 'machakann/vim-highlightedyank'
+Plug 'machakann/vim-highlightedyank'
 
 " plant uml
-Plugin 'aklt/plantuml-syntax'
+Plug 'aklt/plantuml-syntax'
 
 " rust
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " git blame
-Plugin 'zivyangll/git-blame.vim'
+Plug 'zivyangll/git-blame.vim'
 
 " 6502 asm
-Plugin 'maxbane/vim-asm_ca65'
+Plug 'maxbane/vim-asm_ca65'
 
 " Markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 " Zig
-Plugin 'ziglang/zig.vim'
+Plug 'ziglang/zig.vim'
 
 " purescript
-Plugin 'purescript-contrib/purescript-vim'
+Plug 'purescript-contrib/purescript-vim'
 
 " dhall
-Plugin 'vmchale/dhall-vim'
+Plug 'vmchale/dhall-vim'
 
 " telescope
-Plugin 'nvim-lua/plenary.nvim'
-Plugin 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " minimap
-Plugin 'wfxr/minimap.vim'
+Plug 'wfxr/minimap.vim'
 
 " Fluent
-Plugin 'projectfluent/fluent.vim'
+Plug 'projectfluent/fluent.vim'
+
+" indent highlighting
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+"asterisp
+Plug '~/code/vim/asterisp.vim/'
 
 "Scotch
-"Plugin 'dk949/scotch.vim'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+"Plug 'dk949/scotch.vim'
+call plug#end()
 
 let g:coc_start_at_startup = 0
 let g:ale_enabled = 0
