@@ -5,6 +5,7 @@ set spell
 
 setlocal colorcolumn=+1
 highlight ColorColumn ctermbg=6
+setlocal wrap linebreak nolist
 setlocal textwidth=80
 
 
