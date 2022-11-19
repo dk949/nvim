@@ -115,4 +115,4 @@ hi WebBrowser guifg=#FF5F87 ctermfg=204
 let g:indent_blankline_char_blankline = '┆'
 set listchars+=space:•
 "let g:indent_blankline_space_char_highlight_list = ['Error', 'Function']
-let g:indent_blankline_char_highlight_list = ['Error', 'Function']
+"let g:indent_blankline_char_highlight_list = ['Error', 'Function']
