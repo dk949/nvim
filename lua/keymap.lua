@@ -2,9 +2,7 @@ require("utils")
 local k = vim.keymap
 local function desc(msg) return {desc = msg, silent = true} end
 local function edesc(msg) return {desc = msg, silent = true, expr = true} end
-
--- Map the leader key to space
-vim.g.mapleader = " "
+local function rdesc(msg) return {desc = msg, silent = true, remap = true} end
 
 -- General fixes
 k.set('n', "G", "Gzz", desc"jump to line centers the screen on that line")
@@ -59,8 +57,7 @@ k.set('n', "<Leader>mc", ":set cursorline!<CR>", desc[[cursor highlighting]])
 
 -- Plugins
 
--- TODO: make this call the actual function, TODO: install nerd commenter
-k.set('n', "<leader>/", "<leader>c<space>", desc[[Comment out a line]])
+k.set({'n', 'v'}, "<leader>/", "<plug>NERDCommenterToggle", desc[[Comment out a line]])
 
 -- TODO: check if there is a function I can call instead, TODO: install NERTtree
 k.set('n', "<leader>nn", ":NERDTreeToggle<CR>", desc[[toggle NERDtree file browser]])
