@@ -1,4 +1,4 @@
-require("utils")
+require("misc.utils")
 local api = vim.api
 
 -- Turning on the filetype plugin

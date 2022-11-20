@@ -1,4 +1,4 @@
-require('utils')
+require('misc.utils')
 
 if not vim.fn.isdirectory(vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim') then
     warnPrint("WARNING: packer.nvim not found. Trying to download...")

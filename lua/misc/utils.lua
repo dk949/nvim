@@ -1,3 +1,5 @@
+-- Extended API
+
 -- Create and populate an autogroup
 function augroup(name, opts)
     --clear by default
@@ -12,7 +14,33 @@ function augroup(name, opts)
     end
 end
 
--- Return a callback to set vim options
+function wincmd(cmd)
+    vim.cmd("wincmd " .. cmd)
+end
+
+function fnOrVal(val)
+   if type(val) == 'function' then
+       return val()
+   else
+       return val
+   end
+end
+
+
+function switch(on)
+    return function(stmt)
+        if stmt[on] ~= nil then
+            return fnOrVal(stmt[on])
+        else
+            return sfnOrVal(tmt.__default)
+        end
+    end
+end
+
+
+
+-- Callback generation
+
 function setter(opts)
     return function()
         for opt, val in pairs(opts) do
@@ -20,6 +48,15 @@ function setter(opts)
         end
     end
 end
+
+function cmdCB(cmd)
+    return function()
+        return vim.cmd(cmd)
+    end
+end
+
+
+-- Printing
 
 function hlPrint(hl, ...)
     local arg={...}
