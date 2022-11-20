@@ -1,5 +1,6 @@
 -- Quick settings
 dk949 = {
+    leader = " ",
     tabstop = 4,
     mouse = "",
     arrows = false,

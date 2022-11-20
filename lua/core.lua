@@ -1,6 +1,9 @@
 require("utils")
 local api = vim.api
 
+-- Map the leader key to space
+vim.g.mapleader = dk949.leader
+
 -- Turning on the filetype plugin
 vim.cmd[[filetype plugin on]]
 vim.cmd[[filetype plugin indent on]]
