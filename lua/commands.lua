@@ -22,4 +22,10 @@ vim.cmd[[cabbrev delview <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Delview' 
 
 api.nvim_create_user_command("EchoHl", [[echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"]], {})
 
-api.nvim_create_user_command("Dict", function(cmd) print(dict(cmd.args)) end, {nargs=1})
+api.nvim_create_user_command("Dict", function(cmd) print(localPlugins.dict(cmd.args)) end, {nargs=1})
+
+api.nvim_create_user_command("GitDiffThis", function(cmd) localPlugins.git.editOld({diff = true, ref = cmd.fargs[1]}) end, {nargs='?'})
+
+-- command! -nargs=? GitDiffThis :silent call s:_GitDiffThis(<f-args>)
+-- cabbrev gd GitDiffThis
+

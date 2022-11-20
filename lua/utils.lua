@@ -26,6 +26,29 @@ function fnOrVal(val)
    end
 end
 
+function stripString(s)
+   return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+function openWindow(opts)
+    if opts == nil then opts = {} end
+    local vert = true
+    local splitFn = "split"
+    local listed = true
+    local scartch = true
+    if opts.vert ~= nil then vert = opts.vert end
+    if opts.splitFn ~= nil then splitFn = opts.splitFn end
+    if opts.listed ~= nil then listed = opts.listed end
+    if opts.scartch ~= nil then scartch = opts.scartch end
+    if vert then vert = "vert " else vert = "" end
+
+    vim.cmd(vert..splitFn)
+    local win = vim.api.nvim_get_current_win()
+    local buf = vim.api.nvim_create_buf(listed, scartch)
+    vim.api.nvim_win_set_buf(win, buf)
+    return win, buf
+end
+
 
 function switch(on)
     return function(stmt)
@@ -36,7 +59,6 @@ function switch(on)
         end
     end
 end
-
 
 
 -- Callback generation

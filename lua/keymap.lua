@@ -1,4 +1,4 @@
-require("misc.utils")
+require("utils")
 local k = vim.keymap
 local function desc(msg) return {desc = msg, silent = true} end
 local function edesc(msg) return {desc = msg, silent = true, expr = true} end
@@ -34,7 +34,7 @@ k.set('n', "k",    function() return (vim.bo.buftype == "quickfix") and ":cprevi
 k.set('n', "<CR>", function() return (vim.bo.buftype == "quickfix") and ":cc<CR>" or '<CR>'                 end , edesc[[enter selects quickfix]])
 
 for _, dir in ipairs({'h', 'j', 'k', 'l'}) do
-    k.set('n', "<C-A-"..dir..">", function() require('misc.winsize').changeWindowSize(dir) end, desc("Resize window in " .. dir .. "direction"))
+    k.set('n', "<C-A-"..dir..">", function() localPlugins.winsize.changeWindowSize(dir) end, desc("Resize window in " .. dir .. "direction"))
 end
 
 -- Disabled features
