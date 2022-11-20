@@ -64,3 +64,5 @@ k.set('n', "<leader>nn", ":NERDTreeToggle<CR>", desc[[toggle NERDtree file brows
 
 -- TODO: check if there is a function I can call instead, TODO: install minimap
 k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc[[toggle minimap]])
+
+k.set('n', '<Leader>gb', function() toggleGitBlameMode() end, desc[[toggle git blame mode]])

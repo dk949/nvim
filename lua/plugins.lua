@@ -16,10 +16,38 @@ end
 
 
 return require("packer").startup(function()
+    --Packer
     use "wbthomason/packer.nvim"
-    use 'navarasu/onedark.nvim'
-    use 'Mofiqul/dracula.nvim'
+
+    -- statusline
     use {'nvim-lualine/lualine.nvim', requires = { 'ryanoasis/vim-devicons', 'nvim-tree/nvim-web-devicons'}}
-    use 'preservim/nerdtree'
+
+    -- Themes
+    use 'Mofiqul/dracula.nvim'
+    use 'navarasu/onedark.nvim'
+
+    -- QoL
+    use 'machakann/vim-highlightedyank'
     use 'preservim/nerdcommenter'
+    use 'preservim/nerdtree'
+    use 'tpope/vim-surround'
+    use 'zivyangll/git-blame.vim'
+    use 'godlygeek/tabular'
+    use 'wfxr/minimap.vim'
+    -- TODO: use 'lukas-reineke/indent-blankline.nvim'
+
+    -- telescope
+    -- TODO: use 'nvim-lua/plenary.nvim'
+    -- TODO: use 'nvim-telescope/telescope.nvim'
+
+
+    -- Language support
+     use 'aklt/plantuml-syntax'
+     use 'maxbane/vim-asm_ca65'
+     use 'plasticboy/vim-markdown'
+
+
+
+
+    -- TODO: use 'vimwiki/vimwiki'
 end)
