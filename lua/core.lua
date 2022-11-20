@@ -31,8 +31,8 @@ augroup("NoTrailingSpacesGroup", {
 })
 
 augroup("RememberFileGroup", {
-    VimLeave = {callback = function() if dk949.nomkview then dk949.nomkview = false else vim.cmd[[mkview]]end end},
-    VimEnter = {command = [[silent! loadview]]}
+    [{"VimLeave", "BufLeave"}] = {callback = function() if dk949.nomkview then dk949.nomkview = false else vim.cmd[[silent! mkview]]end end},
+    [{"VimEnter", "BufEnter"}] = {command = [[silent! loadview]]}
 })
 
 -- setting tabsize
