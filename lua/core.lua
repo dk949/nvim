@@ -31,7 +31,7 @@ augroup("NoTrailingSpacesGroup", {
 })
 
 augroup("RememberFileGroup", {
-    VimLeave = {command = [[mkview]]},
+    VimLeave = {callback = function() if dk949.nomkview then dk949.nomkview = false else vim.cmd[[mkview]]end end},
     VimEnter = {command = [[silent! loadview]]}
 })
 
