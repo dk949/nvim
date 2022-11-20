@@ -5,3 +5,4 @@ dk949 = {
 }
 
 require('core')
+require('plugins')
