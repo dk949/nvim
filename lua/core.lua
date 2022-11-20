@@ -31,8 +31,8 @@ augroup("NoTrailingSpacesGroup", {
 })
 
 augroup("RememberFileGroup", {
-    BufWritePre = {command = [[mkview]]},
-    BufWinEnter = {command = [[silent! loadview]]}
+    VimLeave = {command = [[mkview]]},
+    VimEnter = {command = [[silent! loadview]]}
 })
 
 -- setting tabsize
