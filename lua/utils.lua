@@ -1,3 +1,4 @@
+-- Create and populate an autogroup
 function augroup(name, opts)
     --clear by default
     local clear = true
@@ -18,4 +19,21 @@ function setter(opts)
             vim.o[opt] = val
         end
     end
+end
+
+function hlPrint(hl, ...)
+    local arg={...}
+    local text = {}
+    for i,v in ipairs(arg) do
+        text[i] = ({tostring(v), hl})
+    end
+    vim.api.nvim_echo(text, true, {})
+end
+
+function warnPrint(...)
+    hlPrint("WarningMsg", ...)
+end
+
+function errPrint(...)
+    hlPrint("ErrorMsg", ...)
 end
