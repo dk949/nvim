@@ -66,3 +66,57 @@ k.set('n', "<leader>nn", ":NERDTreeToggle<CR>", desc[[toggle NERDtree file brows
 k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc[[toggle minimap]])
 
 k.set('n', '<Leader>gb', function() toggleGitBlameMode() end, desc[[toggle git blame mode]])
+
+
+
+local i = "insert"
+local n = "normal"
+
+-- telescope
+k.set('n', "<leader>f",    function() Ts("builtin")   end, desc[[]])
+k.set('n', "<leader>ftl",  function() Ts("reloader")  end, desc[[]])
+k.set('n', "<leader>ftp",  function() Ts("pickers", i)end, desc[[]])
+k.set('n', "<leader>ftr",  function() Ts("resume")    end, desc[[]])
+k.set('n', "<leader>ftup", function() Ts("planets")   end, desc[[]])
+
+-- Tags
+k.set('n', "<leader>ftac", function() Ts("current_buffer_tags", n) end , desc[[]])
+k.set('n', "<leader>ftas", function() Ts("tagstack", n)            end , desc[[]])
+k.set('n', "<leader>ftat", function() Ts("tags", n)                end , desc[[]])
+
+-- file
+k.set('n', "<leader>ff/" ,  function() Ts("current_buffer_fuzzy_find", i) end , desc[[]])
+k.set('n', "<leader>ffb" ,  function() Ts("buffers", n)                   end , desc[[]])
+k.set('n', "<leader>fff" ,  function() Ts("find_files", i)                end , desc[[]])
+k.set('n', "<leader>ffn" ,  function() Ts("file_browser", n)              end , desc[[]])
+k.set('n', "<leader>ffo" ,  function() Ts("oldfiles", n)                  end , desc[[]])
+k.set('n', "<leader>ffr" ,  function() Ts("live_grep", i)                 end , desc[[]])
+
+-- misc
+k.set('n', "<leader>fmj" ,  function() Ts("jumplist", n) end , desc[[]])
+k.set('n', "<leader>fml" ,  function() Ts("loclist", n)  end , desc[[]])
+k.set('n', "<leader>fmm" ,  function() Ts("marks", n)    end , desc[[]])
+k.set('n', "<leader>fmq" ,  function() Ts("quickfix", n) end , desc[[]])
+
+-- vim
+k.set('n', "<leader>fva" ,function() Ts("autocommands", n)    end , desc[[]])
+k.set('n', "<leader>fvch",function() Ts("command_history", n) end , desc[[]])
+k.set('n', "<leader>fvcl",function() Ts("colorscheme", n)     end , desc[[]])
+k.set('n', "<leader>fvcm",function() Ts("commands", n)        end , desc[[]])
+k.set('n', "<leader>fvf" ,function() Ts("filetypes", i)       end , desc[[]])
+k.set('n', "<leader>fvhi",function() Ts("highlights", n)      end , desc[[]])
+k.set('n', "<leader>fvhl",function() Ts("help_tags", i)       end , desc[[]])
+k.set('n', "<leader>fvk" ,function() Ts("keymaps", n)         end , desc[[]])
+k.set('n', "<leader>fvo" ,function() Ts("vim_options", n)     end , desc[[]])
+k.set('n', "<leader>fvr" ,function() Ts("registers", n)       end , desc[[]])
+k.set('n', "<leader>fvsh",function() Ts("search_history", n)  end , desc[[]])
+k.set('n', "<leader>fvss",function() Ts("spell_suggest", n)   end , desc[[]])
+
+
+-- Git
+k.set('n', "<leader>fgb" ,function() Ts("git_branches", n) end , desc[[]])
+k.set('n', "<leader>fgc" ,function() Ts("git_commits", n)  end , desc[[]])
+k.set('n', "<leader>fgf" ,function() Ts("git_files", n)    end , desc[[]])
+k.set('n', "<leader>fglb",function() Ts("git_bcommits", n) end , desc[[]])
+k.set('n', "<leader>fgs" ,function() Ts("git_stash", n)    end , desc[[]])
+k.set('n', "<leader>fgv" ,function() Ts("git_status", n)   end , desc[[]])

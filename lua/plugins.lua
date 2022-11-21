@@ -37,8 +37,8 @@ return require("packer").startup(function()
     use {'lukas-reineke/indent-blankline.nvim', ft = dk949.codeft} -- only load if in a code file
 
     -- telescope
-    -- TODO: use 'nvim-lua/plenary.nvim'
-    -- TODO: use 'nvim-telescope/telescope.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
 
 
     -- Language support
