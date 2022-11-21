@@ -1,8 +1,3 @@
-vim.g.indent_blankline_char_highlight_list = {
-    "ErrorMsg",
-    "WarningMsg",
-    "String",
-    "MoreMsg",
-    "Function",
-    "Error",
-}
+vim.opt.termguicolors = true
+
+vim.g.indent_blankline_char_list = {'|', '¦', '┆', '┊'}
