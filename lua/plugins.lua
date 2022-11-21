@@ -34,7 +34,7 @@ return require("packer").startup(function()
     use 'zivyangll/git-blame.vim'
     use 'godlygeek/tabular'
     use 'wfxr/minimap.vim'
-    -- TODO: use 'lukas-reineke/indent-blankline.nvim'
+    use {'lukas-reineke/indent-blankline.nvim', ft = dk949.codeft} -- only load if in a code file
 
     -- telescope
     -- TODO: use 'nvim-lua/plenary.nvim'
@@ -46,8 +46,10 @@ return require("packer").startup(function()
      use 'maxbane/vim-asm_ca65'
      use 'plasticboy/vim-markdown'
 
-
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 
     -- TODO: use 'vimwiki/vimwiki'
 end)
+
+
