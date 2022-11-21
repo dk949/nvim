@@ -19,15 +19,15 @@ function wincmd(cmd)
 end
 
 function fnOrVal(val)
-   if type(val) == 'function' then
-       return val()
-   else
-       return val
-   end
+    if type(val) == 'function' then
+        return val()
+    else
+        return val
+    end
 end
 
 function stripString(s)
-   return (s:gsub("^%s*(.-)%s*$", "%1"))
+    return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
 function openWindow(opts)

@@ -42,9 +42,9 @@ return require("packer").startup(function()
 
 
     -- Language support
-     use 'aklt/plantuml-syntax'
-     use 'maxbane/vim-asm_ca65'
-     use 'plasticboy/vim-markdown'
+    use 'aklt/plantuml-syntax'
+    use 'maxbane/vim-asm_ca65'
+    use 'plasticboy/vim-markdown'
 
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
