@@ -1,6 +1,8 @@
 require("utils")
 local k = vim.keymap
+local fn = vim.fn
 local function desc(msg) return {desc = msg, silent = true} end
+local function bdesc(msg) return {desc = msg, silent = true, buffer = true} end
 local function edesc(msg) return {desc = msg, silent = true, expr = true} end
 local function rdesc(msg) return {desc = msg, silent = true, remap = true} end
 
@@ -57,6 +59,12 @@ k.set('n', "<Leader>mc", ":set cursorline!<CR>", desc[[cursor highlighting]])
 
 k.set('n', "<Leader>mt", function() localPlugins.term.makeTerm() end, desc[[cursor highlighting]])
 
+k.set('n', "<leader>mi", function() vim.lsp.buf.hover() end, desc[[Display hover infomration]])
+
+k.set('n', "<leader>mf", function() localPlugins.format.callFmt(fn.bufnr()) end, desc[[Display hover infomration]])
+
+k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc[[Display hover infomration]])
+
 -- Plugins
 
 k.set({'n', 'v'}, "<leader>/", "<plug>NERDCommenterToggle", desc[[Comment out a line]])
@@ -75,50 +83,62 @@ local i = "insert"
 local n = "normal"
 
 -- telescope
-k.set('n', "<leader>f",    function() Ts("builtin")   end, desc[[]])
-k.set('n', "<leader>ftl",  function() Ts("reloader")  end, desc[[]])
-k.set('n', "<leader>ftp",  function() Ts("pickers", i)end, desc[[]])
-k.set('n', "<leader>ftr",  function() Ts("resume")    end, desc[[]])
-k.set('n', "<leader>ftup", function() Ts("planets")   end, desc[[]])
+k.set('n', "<leader>f",    function() TeleConfig("builtin")   end, desc[[]])
+k.set('n', "<leader>ftl",  function() TeleConfig("reloader")  end, desc[[]])
+k.set('n', "<leader>ftp",  function() TeleConfig("pickers", i)end, desc[[]])
+k.set('n', "<leader>ftr",  function() TeleConfig("resume")    end, desc[[]])
+k.set('n', "<leader>ftup", function() TeleConfig("planets")   end, desc[[]])
 
 -- Tags
-k.set('n', "<leader>ftac", function() Ts("current_buffer_tags", n) end , desc[[]])
-k.set('n', "<leader>ftas", function() Ts("tagstack", n)            end , desc[[]])
-k.set('n', "<leader>ftat", function() Ts("tags", n)                end , desc[[]])
+k.set('n', "<leader>ftac", function() TeleConfig("current_buffer_tags", n) end , desc[[]])
+k.set('n', "<leader>ftas", function() TeleConfig("tagstack", n)            end , desc[[]])
+k.set('n', "<leader>ftat", function() TeleConfig("tags", n)                end , desc[[]])
 
 -- file
-k.set('n', "<leader>ff/" ,  function() Ts("current_buffer_fuzzy_find", i) end , desc[[]])
-k.set('n', "<leader>ffb" ,  function() Ts("buffers", n)                   end , desc[[]])
-k.set('n', "<leader>fff" ,  function() Ts("find_files", i)                end , desc[[]])
-k.set('n', "<leader>ffn" ,  function() Ts("file_browser", n)              end , desc[[]])
-k.set('n', "<leader>ffo" ,  function() Ts("oldfiles", n)                  end , desc[[]])
-k.set('n', "<leader>ffr" ,  function() Ts("live_grep", i)                 end , desc[[]])
+k.set('n', "<leader>ff/" ,  function() TeleConfig("current_buffer_fuzzy_find", i) end , desc[[]])
+k.set('n', "<leader>ffb" ,  function() TeleConfig("buffers", n)                   end , desc[[]])
+k.set('n', "<leader>fff" ,  function() TeleConfig("find_files", i)                end , desc[[]])
+k.set('n', "<leader>ffn" ,  function() TeleConfig("file_browser", n)              end , desc[[]])
+k.set('n', "<leader>ffo" ,  function() TeleConfig("oldfiles", n)                  end , desc[[]])
+k.set('n', "<leader>ffr" ,  function() TeleConfig("live_grep", i)                 end , desc[[]])
 
 -- misc
-k.set('n', "<leader>fmj" ,  function() Ts("jumplist", n) end , desc[[]])
-k.set('n', "<leader>fml" ,  function() Ts("loclist", n)  end , desc[[]])
-k.set('n', "<leader>fmm" ,  function() Ts("marks", n)    end , desc[[]])
-k.set('n', "<leader>fmq" ,  function() Ts("quickfix", n) end , desc[[]])
+k.set('n', "<leader>fmj" ,  function() TeleConfig("jumplist", n) end , desc[[]])
+k.set('n', "<leader>fml" ,  function() TeleConfig("loclist", n)  end , desc[[]])
+k.set('n', "<leader>fmm" ,  function() TeleConfig("marks", n)    end , desc[[]])
+k.set('n', "<leader>fmq" ,  function() TeleConfig("quickfix", n) end , desc[[]])
+k.set('n', "<leader>fman",  function() TeleConfig("man_pages")   end , desc[[]])
 
 -- vim
-k.set('n', "<leader>fva" ,function() Ts("autocommands", n)    end , desc[[]])
-k.set('n', "<leader>fvch",function() Ts("command_history", n) end , desc[[]])
-k.set('n', "<leader>fvcl",function() Ts("colorscheme", n)     end , desc[[]])
-k.set('n', "<leader>fvcm",function() Ts("commands", n)        end , desc[[]])
-k.set('n', "<leader>fvf" ,function() Ts("filetypes", i)       end , desc[[]])
-k.set('n', "<leader>fvhi",function() Ts("highlights", n)      end , desc[[]])
-k.set('n', "<leader>fvhl",function() Ts("help_tags", i)       end , desc[[]])
-k.set('n', "<leader>fvk" ,function() Ts("keymaps", n)         end , desc[[]])
-k.set('n', "<leader>fvo" ,function() Ts("vim_options", n)     end , desc[[]])
-k.set('n', "<leader>fvr" ,function() Ts("registers", n)       end , desc[[]])
-k.set('n', "<leader>fvsh",function() Ts("search_history", n)  end , desc[[]])
-k.set('n', "<leader>fvss",function() Ts("spell_suggest", n)   end , desc[[]])
+k.set('n', "<leader>fva" ,function() TeleConfig("autocommands", n)    end , desc[[]])
+k.set('n', "<leader>fvch",function() TeleConfig("command_history", n) end , desc[[]])
+k.set('n', "<leader>fvcl",function() TeleConfig("colorscheme", n)     end , desc[[]])
+k.set('n', "<leader>fvcm",function() TeleConfig("commands", n)        end , desc[[]])
+k.set('n', "<leader>fvf" ,function() TeleConfig("filetypes", i)       end , desc[[]])
+k.set('n', "<leader>fvhi",function() TeleConfig("highlights", n)      end , desc[[]])
+k.set('n', "<leader>fvhl",function() TeleConfig("help_tags", i)       end , desc[[]])
+k.set('n', "<leader>fvk" ,function() TeleConfig("keymaps", n)         end , desc[[]])
+k.set('n', "<leader>fvo" ,function() TeleConfig("vim_options", n)     end , desc[[]])
+k.set('n', "<leader>fvr" ,function() TeleConfig("registers", n)       end , desc[[]])
+k.set('n', "<leader>fvsh",function() TeleConfig("search_history", n)  end , desc[[]])
+k.set('n', "<leader>fvss",function() TeleConfig("spell_suggest", n)   end , desc[[]])
 
 
 -- Git
-k.set('n', "<leader>fgb" ,function() Ts("git_branches", n) end , desc[[]])
-k.set('n', "<leader>fgc" ,function() Ts("git_commits", n)  end , desc[[]])
-k.set('n', "<leader>fgf" ,function() Ts("git_files", n)    end , desc[[]])
-k.set('n', "<leader>fglb",function() Ts("git_bcommits", n) end , desc[[]])
-k.set('n', "<leader>fgs" ,function() Ts("git_stash", n)    end , desc[[]])
-k.set('n', "<leader>fgv" ,function() Ts("git_status", n)   end , desc[[]])
+k.set('n', "<leader>fgb" ,function() TeleConfig("git_branches", n) end , desc[[]])
+k.set('n', "<leader>fgc" ,function() TeleConfig("git_commits", n)  end , desc[[]])
+k.set('n', "<leader>fgf" ,function() TeleConfig("git_files", n)    end , desc[[]])
+k.set('n', "<leader>fglb",function() TeleConfig("git_bcommits", n) end , desc[[]])
+k.set('n', "<leader>fgs" ,function() TeleConfig("git_stash", n)    end , desc[[]])
+k.set('n', "<leader>fgv" ,function() TeleConfig("git_status", n)   end , desc[[]])
+
+-- lsp
+k.set('n', "<leader>cgd",function() TeleConfig("lsp_definitions", n)               end , desc[[]])
+k.set('n', "<leader>ful3",function() TeleConfig("lsp_document_symbols", n)       end , desc[[]])
+k.set('n', "<leader>ful4",function() TeleConfig("lsp_dynamic_workspace_symbols", i) end , desc[[]])
+k.set('n', "<leader>cgr",function() TeleConfig("lsp_references", n)             end , desc[[]])
+k.set('n', "<leader>cd",function() TeleConfig("diagnostics", n)                end , desc[[]])
+
+-- nothing?
+k.set('n', "<leader>ful5",function() TeleConfig("lsp_implementations")           end , desc[[]])
+k.set('n', "<leader>ful8",function() TeleConfig("lsp_type_definitions")          end , desc[[]])
