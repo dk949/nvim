@@ -4,10 +4,12 @@ local function nop()end
 
 local function common()
     vim.opt_local.spell = true
-    vim.opt_local.colorcolumn="+1"
+    vim.opt_local.spelllang = "en_gb"
+    vim.opt_local.colorcolumn = "+1"
     vim.cmd[[highlight ColorColumn ctermbg=6]]
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true
+    vim.opt_local.list = false
     vim.opt_local.textwidth = 80
 
     vim.keymap.set('n', 'j', "gj", {silent = true, buffer = true})
@@ -20,6 +22,7 @@ end
 local individual = {
     markdown = function()end,
     tex = function() end,
+    vimwiki = function()end,
 }
 
 
