@@ -55,6 +55,8 @@ k.set('n', "<leader>ms", ":mksession!<CR>", desc[[Save the current session]])
 
 k.set('n', "<Leader>mc", ":set cursorline!<CR>", desc[[cursor highlighting]])
 
+k.set('n', "<Leader>mt", function() localPlugins.term.makeTerm() end, desc[[cursor highlighting]])
+
 -- Plugins
 
 k.set({'n', 'v'}, "<leader>/", "<plug>NERDCommenterToggle", desc[[Comment out a line]])
