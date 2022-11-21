@@ -14,6 +14,8 @@ dk949.codeft = {"ada", "asm", "asm68k", "asm_ca65", "asmh8300", "autohotkey", "a
 "racket", "raku", "ruby", "rust", "sass", "scala", "scheme", "sh", "simula", "sql", "svg",
 "swift", "tcl", "tcsh", "vhdl", "vim", "vue", "yacc", "yaml", "zsh"}
 
+dk949.noncodeft = {"markdown", "tex", "plaintex"}
+
 -- Turning on the filetype plugin
 vim.cmd[[filetype plugin on]]
 vim.cmd[[filetype plugin indent on]]

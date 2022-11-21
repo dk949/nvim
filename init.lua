@@ -9,5 +9,6 @@ dk949 = {
 
 require('core')
 require('plugins')
+require('noncode')
 require('keymap')
 require('commands')
