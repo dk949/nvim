@@ -27,3 +27,5 @@ api.nvim_create_user_command("Dict", function(cmd) print(localPlugins.dict(cmd.a
 api.nvim_create_user_command("GitDiffThis", function(cmd) localPlugins.git.editOld({diff = true, ref = cmd.fargs[1]}) end, {nargs='?'})
 vim.cmd[[cabbrev gd GitDiffThis]]
 
+vim.cmd[[cabbrev tb Tabularize /]]
+
