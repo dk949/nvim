@@ -12,7 +12,7 @@ dk949.codeft = {"ada", "asm", "asm68k", "asm_ca65", "asmh8300", "autohotkey", "a
 "julia", "lisp", "lua", "m4", "make", "masm", "meson", "modula2", "modula3", "nasm", "ninja",
 "objc", "objcpp", "ocaml", "octave", "pascal", "perl", "php", "prolog", "ps1", "python", "r",
 "racket", "raku", "ruby", "rust", "sass", "scala", "scheme", "sh", "simula", "sql", "svg",
-"swift", "tcl", "tcsh", "vhdl", "vim", "vue", "yacc", "yaml", "zsh"}
+"swift", "tcl", "tcsh", "vhdl", "vim", "vue", "yacc", "yaml", "zsh", "zig"}
 
 dk949.noncodeft = {"markdown", "tex", "plaintex", "vimwiki"}
 

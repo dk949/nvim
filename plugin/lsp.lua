@@ -18,6 +18,12 @@ function LSPConfigFn()
         on_attach = on_attach,
         capabilities = capabilities,
     }
+
+    lspconfig.zls.setup{
+        cmd = {"zls"},
+        filetypes = {"zig"}
+    }
+
     local luasnip = require 'luasnip'
 
     local cmp = require 'cmp'
@@ -60,11 +66,8 @@ function LSPConfigFn()
 
 
 
-
-
     -- Formatting setup
     localPlugins.format.addFmtAutocmd{
-
         name    = "CPPGroup",
         pattern = {"c", "cpp"},
         fnOrCMD = [[:silent execute "!clang-format --style=file -i %"]],
