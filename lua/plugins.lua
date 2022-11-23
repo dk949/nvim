@@ -54,7 +54,7 @@ return require("packer").startup(function()
     use 'maxbane/vim-asm_ca65'
     use {'plasticboy/vim-markdown', ft = "markdown" }
     use {'jackguo380/vim-lsp-cxx-highlight', ft={"c","cpp"}}
-    use {'ziglang/zig.vim'}
+    use {'ziglang/zig.vim', ft="zig"}
 
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
