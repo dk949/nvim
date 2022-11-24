@@ -59,7 +59,7 @@ return require("packer").startup(function()
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 
-    use {'vimwiki/vimwiki', ft = 'vimwiki'}
+    use {'vimwiki/vimwiki'}
 end)
 
 
