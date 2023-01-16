@@ -1,81 +1,81 @@
-require("utils")
 local api = vim.api
 -- Map the leader key to space
 vim.g.mapleader = dk949.leader
 
--- Which files are considered code
-dk949.codeft = { "ada", "asm", "asm68k", "asm_ca65", "asmh8300", "autohotkey", "automake", "awk", "b", "basic",
-    "c", "chaiscript", "clean", "clojure", "cmake", "cobol", "cpp", "cs", "csh", "css", "cuda", "d",
-    "dart", "django", "dockerfile", "dosbatch", "dosini", "doxygen", "eiffel", "elixir", "elm",
-    "erlang", "fasm", "forth", "fortran", "freebasic", "gdscript", "gdshader", "go", "groovy",
-    "haml", "haskell", "html", "j", "java", "javascript", "javascriptreact", "json", "jsonc",
-    "julia", "lisp", "lua", "m4", "make", "masm", "meson", "modula2", "modula3", "nasm", "ninja",
-    "objc", "objcpp", "ocaml", "octave", "pascal", "perl", "php", "prolog", "ps1", "python", "r",
-    "racket", "raku", "ruby", "rust", "sass", "scala", "scheme", "sh", "simula", "sql", "svg",
-    "swift", "tcl", "tcsh", "vhdl", "vim", "vue", "yacc", "yaml", "zsh", "zig" }
-
-dk949.noncodeft = { "markdown", "tex", "plaintex", "vimwiki" }
-
--- Turning on the filetype plugin
 vim.cmd [[filetype plugin on]]
 vim.cmd [[filetype plugin indent on]]
 
+vim.cmd [[set relativenumber number]]
+
 -- Hybrid numbering in normal mode and normal numbering in insert mode
-local relNum = setter { relativenumber = true, number = true }
-local noRelNum = setter { relativenumber = false, number = true }
-augroup("NumberGroup", {
-    InsertLeave = { callback = relNum },
-    InsertEnter = { callback = setter { relativenumber = false } },
+vim.api.nvim_create_autocmd("InsertLeave", {
+    pattern = "*",
+    command = "set relativenumber number",
 })
-relNum()
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+    pattern = "*",
+    command = "set norelativenumber",
+})
+
 
 --  Terminal stuff
-augroup("TerminalGroup", {
-    TermOpen = { callback = setter { relativenumber = false, number = false } },
-    [{ "BufWinEnter", "WinEnter" }] = { pattern = "term://*", command = "startinsert" }
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "*",
+    command = "set norelativenumber nonumber",
 })
--- vim.opt.formatoptions:remove({'c','r','o', 't'})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+    pattern = "term://*",
+    command = "startinsert",
+})
+
 -- Remove unnecessary auto formatting
-augroup("FormatOptsGroup", {
-    BufEnter = { callback = function()
-        vim.opt.formatoptions:remove('c')
-        vim.opt.formatoptions:remove('r')
-        vim.opt.formatoptions:remove('o')
-        vim.opt.formatoptions:remove('t')
-    end
-    }
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+--     pattern = "*",
+--     command = dk949.formatoptions or
+--         [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]],
+-- })
 
--- No whitespace at the ned of lines
-augroup("NoTrailingSpacesGroup", {
-    BufWritePre = { command = [[%s/\s\+$//e]] },
-})
 
-augroup("RememberFileGroup", {
-    BufWritePre = { callback = function() if dk949.nomkview then dk949.nomkview = false else vim.cmd [[silent! mkview]] end end },
-    BufEnter = { command = [[silent! loadview]] }
-})
 
 -- setting tabsize
-vim.opt.tabstop = dk949.tabstop
-vim.opt.shiftwidth = dk949.tabstop
-vim.opt.softtabstop = dk949.tabstop
-vim.opt.expandtab = true
+vim.cmd([[set tabstop=]] .. dk949.tabstop)
+vim.cmd([[set shiftwidth=]] .. dk949.tabstop)
+vim.cmd([[set softtabstop=]] .. dk949.tabstop)
+vim.cmd [[set expandtab]]
+
+-- rememebr file
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    command = [[mkview]],
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*",
+    command = [[silent! loadview]],
+})
+
 
 -- When searching with only lowercase letters, case will be ignored. Not ignored with capitals.
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.cmd [[set ignorecase]]
+vim.cmd [[set smartcase]]
 
--- Incremental search and no highlighting
-vim.opt.incsearch = true
-vim.opt.hlsearch = false
+
+-- Incremental search
+vim.cmd [[set incsearch]]
+
+
+-- Search is not highlighted
+vim.cmd [[set nohlsearch]]
+
 
 -- Search through subdirectories recursively
-vim.opt.path:append("**")
+vim.cmd [[set path+=**]]
 
 -- Spilts act as expected
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+vim.cmd [[set splitbelow]]
+vim.cmd [[set splitright]]
 
 -- Mouse
-vim.opt.mouse = dk949.mouse
+vim.cmd([[set mouse=]] .. dk949.mouse)
