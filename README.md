@@ -18,5 +18,5 @@ A few programs still need to be installed manually for some things to work:
     * For formatting c and c++
 * [fourmolu](https://github.com/fourmolu/fourmolu)
     * For formatting haskell
-* (dfmt)(https://github.com/dlang-community/dfmt)
+* [dfmt](https://github.com/dlang-community/dfmt)
     * For formatting d
