@@ -22,10 +22,40 @@ vim.cmd[[cabbrev delview <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Delview' 
 
 api.nvim_create_user_command("EchoHl", [[echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"]], {})
 
-api.nvim_create_user_command("Dict", function(cmd) print(localPlugins.dict(cmd.args)) end, {nargs=1})
+local function dict(word)
+    local out = fn.system([[curl -s dict://dict.org/d:]]..word..[[ | awk '!/[0-9]/' | sed 's/\r//g']])
+    assert(vim.v.shell_error == 0, "Could not submit request to dict.org")
+    return out
+end
+api.nvim_create_user_command("Dict", function(cmd) print(dict(cmd.args)) end, {nargs=1})
 
-api.nvim_create_user_command("GitDiffThis", function(cmd) localPlugins.git.editOld({diff = true, ref = cmd.fargs[1]}) end, {nargs='?'})
-vim.cmd[[cabbrev gd GitDiffThis]]
+api.nvim_create_user_command("GitAddPatch",
+    function(cmd)
+        local gitsigns = require('gitsigns')
+
+        gitsigns.preview_hunk_inline()
+        vim.defer_fn(
+            function()
+                vim.ui.select(
+                    { 'y', 'n' },
+                    {
+                        prompt = 'Stage this hunk?:',
+                        format_item = function(item) return item end,
+                    },
+                    -- FIXME: add range<S-Del>
+                    function(choice) if choice == 'y' then gitsigns.stage_hunk() end end
+                )
+            end,
+            0.01
+        )
+    end,
+    {nargs=0}
+)
+
+vim.cmd[[cabbrev gd rightbelow Gitsigns diffthis]]
+vim.cmd[[cabbrev gb Gitsigns toggle_current_line_blame]]
+vim.cmd[[cabbrev gap GitAddPatch]]
 
 vim.cmd[[cabbrev tb Tabularize /]]
 
+vim.cmd[[cabbrev topen Trouble]]
