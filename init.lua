@@ -8,7 +8,6 @@ dk949 = {
 }
 
 require('core')
-require('plugins')
-require('file_templates')
 require('keymap')
 require('commands')
+require('plugins')
