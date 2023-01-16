@@ -1,5 +1,5 @@
 -- Quick settings
-dk949 = {
+_G.dk949 = {
     leader = " ",
     tabstop = 4,
     mouse = "",
