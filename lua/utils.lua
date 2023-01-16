@@ -1,24 +1,11 @@
 -- Extended API
+local M = {}
 
--- Create and populate an autogroup
-function augroup(name, opts)
-    --clear by default
-    local clear = true
-    if opts.clear then clear = opts.clear end
-
-    grp = vim.api.nvim_create_augroup(name, { clear = clear })
-    opts.clear = nil
-    for k,v in pairs(opts) do
-        v.group = grp
-        vim.api.nvim_create_autocmd(k, v)
-    end
-end
-
-function wincmd(cmd)
+function M.wincmd(cmd)
     vim.cmd("wincmd " .. cmd)
 end
 
-function fnOrVal(val)
+function M.fnOrVal(val)
     if type(val) == 'function' then
         return val()
     else
@@ -26,11 +13,11 @@ function fnOrVal(val)
     end
 end
 
-function stripString(s)
+function M.stripString(s)
     return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
-function openWindow(opts)
+function M.openWindow(opts)
     if opts == nil then opts = {} end
     local vert = true
     local splitFn = "split"
@@ -42,15 +29,14 @@ function openWindow(opts)
     if opts.scartch ~= nil then scartch = opts.scartch end
     if vert then vert = "vert " else vert = "" end
 
-    vim.cmd(vert..splitFn)
+    vim.cmd(vert .. splitFn)
     local win = vim.api.nvim_get_current_win()
     local buf = vim.api.nvim_create_buf(listed, scartch)
     vim.api.nvim_win_set_buf(win, buf)
     return win, buf
 end
 
-
-function switch(on)
+function M.switch(on)
     return function(stmt)
         if stmt[on] ~= nil then
             return fnOrVal(stmt[on])
@@ -60,10 +46,10 @@ function switch(on)
     end
 end
 
-
 -- Callback generation
 
-function setter(opts)
+-- TODO
+function M.setter(opts)
     return function()
         for opt, val in pairs(opts) do
             vim.o[opt] = val
@@ -71,28 +57,48 @@ function setter(opts)
     end
 end
 
-function cmdCB(cmd)
+function M.cmdCB(cmd)
     return function()
         return vim.cmd(cmd)
     end
 end
 
+local setups = {}
+--- create an lsp setup function
+---@param name string|number name or ID of the server (has to be usnique
+---@param fn function function which sets up the server. Will be ran once
+---@return function
+function M.lspSetupCreate(name, fn)
+    return function()
+        if not setups[name] then
+            fn()
+            vim.cmd [[:LspStart]]
+            setups[name] = true
+        end
+    end
+end
 
 -- Printing
 
-function hlPrint(hl, ...)
-    local arg={...}
+function M.hlPrint(hl, ...)
+    local arg = { ... }
     local text = {}
-    for i,v in ipairs(arg) do
-        text[i] = ({tostring(v), hl})
+    for i, v in ipairs(arg) do
+        text[i] = ({ tostring(v), hl })
     end
     vim.api.nvim_echo(text, true, {})
 end
 
-function warnPrint(...)
-    hlPrint("WarningMsg", ...)
+function M.warnPrint(...)
+    M.hlPrint("WarningMsg", ...)
 end
 
-function errPrint(...)
-    hlPrint("ErrorMsg", ...)
+function M.errPrint(...)
+    M.hlPrint("ErrorMsg", ...)
 end
+
+function M.makeLocalRequire(mod1)
+    return function(mod2) return require(mod1 .. '.' .. mod2) end
+end
+
+return M
