@@ -1,13 +1,10 @@
-require("utils")
+-- TODO: updated descriptions
 local k = vim.keymap
-local fn = vim.fn
 local function desc(msg) return { desc = msg, silent = true } end
-
-local function bdesc(msg) return { desc = msg, silent = true, buffer = true } end
 
 local function edesc(msg) return { desc = msg, silent = true, expr = true } end
 
-local function rdesc(msg) return { desc = msg, silent = true, remap = true } end
+local utils = require("utils")
 
 -- General fixes
 k.set('n', "G", "Gzz", desc "jump to line centers the screen on that line")
@@ -41,7 +38,7 @@ k.set('n', "<CR>", function() return (vim.bo.buftype == "quickfix") and ":cc<CR>
     edesc [[enter selects quickfix]])
 
 for _, dir in ipairs({ 'h', 'j', 'k', 'l' }) do
-    k.set('n', "<C-A-" .. dir .. ">", function() localPlugins.winsize.changeWindowSize(dir) end,
+    k.set('n', "<C-A-" .. dir .. ">", function() utils.winsize.changeWindowSize(dir) end,
         desc("Resize window in " .. dir .. "direction"))
 end
 
@@ -67,29 +64,28 @@ k.set('n', "<leader>ms", ":mksession!<CR>", desc [[Save the current session]])
 
 k.set('n', "<Leader>mc", ":set cursorline!<CR>", desc [[cursor highlighting]])
 
-k.set('n', "<Leader>mt", function() localPlugins.term.makeTerm() end, desc [[cursor highlighting]])
+k.set('n', "<Leader>mt", function() utils.term.make() end, desc [[cursor highlighting]])
 
 k.set('n', "<leader>mi", function() vim.lsp.buf.hover() end, desc [[Display hover infomration]])
 
-k.set('n', "<leader>mf", function() localPlugins.format.callFmt(fn.bufnr()) end, desc [[Display hover infomration]])
+k.set('n', "<leader>mf", function() if dk949.fmtFn then dk949.fmtFn() end end, desc [[Format current file]])
 
 k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc [[Display hover infomration]])
 
 -- Plugins
 
-k.set({ 'n', 'v' }, "<leader>/", "<plug>NERDCommenterToggle", desc [[Comment out a line]])
+k.set('n', "<leader>nn", ":NvimTreeFindFileToggle<CR>", desc [[toggle Tree file browser]])
 
--- TODO: install NERTtree
-k.set('n', "<leader>nn", ":NERDTreeToggle<CR>", desc [[toggle NERDtree file browser]])
-
--- TODO: install minimap
 k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc [[toggle minimap]])
 
 k.set('n', '<Leader>ntt', function() require('todotxt-nvim').toggle_task_pane() end, desc [[toggle todo.txt]])
 
 k.set('n', '<Leader>ntn', function() require('todotxt-nvim').capture() end, desc [[add new todo]])
 
-k.set('n', '<Leader>gb', function() toggleGitBlameMode() end, desc [[toggle git blame mode]])
+k.set('n', '<Leader>gb', ":Gitsigns blame_line<CR>", desc [[Show git blame for current line]])
+k.set('n', '<Leader>gv', ":Gitsigns preview_hunk_inline<CR>", desc [[Preview hunk under cursor]])
+k.set('n', ']]', ":Gitsigns next_hunk<CR>", desc [[go to next hunk]])
+k.set('n', '[[', ":Gitsigns prev_hunk<CR>", desc [[go to next hunk]])
 
 local i = "insert"
 local n = "normal"
@@ -145,10 +141,8 @@ k.set('n', "<leader>fgs", function() TeleConfig("git_stash", n) end, desc [[]])
 k.set('n', "<leader>fgv", function() TeleConfig("git_status", n) end, desc [[]])
 
 -- lsp
-k.set('n', "<leader>cgd", function() TeleConfig("lsp_definitions", n) end, desc [[]])
 k.set('n', "<leader>ful3", function() TeleConfig("lsp_document_symbols", n) end, desc [[]])
 k.set('n', "<leader>ful4", function() TeleConfig("lsp_dynamic_workspace_symbols", i) end, desc [[]])
-k.set('n', "<leader>cgr", function() TeleConfig("lsp_references", n) end, desc [[]])
 k.set('n', "<leader>cd", function() TeleConfig("diagnostics", n) end, desc [[]])
 
 -- nothing?
