@@ -1,13 +1,6 @@
-require("utils")
-
-local ccls_setup = false
-return function()
-    if not dk949.lsp_loaded then return end
-
-    if not ccls_setup then
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        local lspconfig = require 'lspconfig'
-
+return require("utils").lspSetupCreate("cpp",
+    function(capabilities, on_attach)
+        local lspconfig = require("lspconfig")
         lspconfig.ccls.setup {
             cmd = { "ccls", "--log-file=/tmp/ccls.log", "-v=1" },
             filetypes = { "c", "cc", "cpp", "c++", "objc", "objcpp" },
@@ -18,12 +11,8 @@ return function()
                 index = { onChange = true },
                 highlight = { lsRanges = true }
             },
-            on_attach = nil,
+            on_attach = on_attach,
             capabilities = capabilities,
         }
-        ccls_setup = true
     end
-
-    require("code.common")()
-    localPlugins.format.addFmt([[:silent execute "!clang-format --style=file -i %"]], vim.fn.bufnr())
-end
+)
