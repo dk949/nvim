@@ -3,6 +3,6 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
         vim.opt.termguicolors = true
-        vim.g.indent_blankline_char_list = {'|', '¦', '┆', '┊'}
+        vim.g.indent_blankline_char_list = { '|', '¦', '┆', '┊' }
     end
 }

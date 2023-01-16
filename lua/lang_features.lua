@@ -51,7 +51,7 @@ local function _setup(lang)
     })
 
     -- formatting
-    dk949.fmtFn = feat.fmt[lang] or function() print("noop") end
+    dk949.fmtFn = feat.fmt[lang] or function() end
 end
 
 function M.setup()

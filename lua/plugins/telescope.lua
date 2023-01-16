@@ -1,16 +1,18 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 function TeleConfig(str, mode)
-    return require('telescope.builtin')[str](require('telescope.themes').get_ivy({dir_icon = '❯', initial_mode = mode, sections = {"1","2","3"}}))
+    return require('telescope.builtin')[str](
+        require('telescope.themes').get_ivy({ dir_icon = '❯', initial_mode = mode, sections = { "1", "2", "3" } })
+    )
 end
 
 return {
     "nvim-telescope/telescope.nvim",
-    config = function ()
+    config = function()
         require('telescope').setup {
             defaults = {
                 prompt_prefix = "❯ ",
                 selection_caret = "-> ",
-                initial_mode = n,
+                initial_mode = 'n',
                 scroll_strategy = "limit",
                 border = {},
                 -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -32,8 +34,12 @@ return {
                         ["ZZ"] = "close",
                     },
                 },
+            },
+            pickers = {
+                find_files = {
+                    find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
+                },
             }
         }
     end
 }
-

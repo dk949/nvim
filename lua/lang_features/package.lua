@@ -102,7 +102,7 @@ end)()
 
 M.colorcolumn = combine(shell, config, programming)
 
-M.trailingWS = combine(shell, config, programming)
+M.trailingWS = combine(shell, config, programming, git, text)
 
 M.signcolumn = combine(shell, config, programming)
 addLangs(M.signcolumn)

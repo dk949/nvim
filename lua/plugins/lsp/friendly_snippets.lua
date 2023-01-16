@@ -1,5 +1,5 @@
 -- https://github.com/rafamadriz/friendly-snippets
-return  {
+return {
     "rafamadriz/friendly-snippets",
-    after = {"snip"},
+    after = { "snip" },
 }

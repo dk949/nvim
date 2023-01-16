@@ -1,7 +1,7 @@
 -- https://github.com/machakann/vim-highlightedyank
 return {
     "machakann/vim-highlightedyank",
-    config =  function()
+    config = function()
         vim.g.highlightedyank_highlight_duration = 1000
     end
 }
