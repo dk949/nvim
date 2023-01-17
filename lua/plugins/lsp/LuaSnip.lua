@@ -3,6 +3,5 @@
 -- Snippets plugin
 return {
     "L3MON4D3/LuaSnip",
-    as = "snip",
-    -- ft= "lua"
+    as = "snip"
 }
