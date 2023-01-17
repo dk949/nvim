@@ -15,12 +15,14 @@ M.allLangs = {}
 
 
 local function addLangs(feat)
-    for k, v in ipairs(feat) do
-        if type(k) == "string" then
-            M.allLangs[k] = true
-        else
-            M.allLangs[v] = true
-        end
+    local get = {}
+    if vim.tbl_islist(feat) then
+        get = vim.tbl_values
+    else
+        get = vim.tbl_keys
+    end
+    for _, l in ipairs(get(feat)) do
+        M.allLangs[l] = true
     end
 end
 
@@ -99,10 +101,13 @@ M.formatoptions = (function()
 
     return out
 end)()
+addLangs(M.formatoptions)
 
 M.colorcolumn = combine(shell, config, programming)
+addLangs(M.colorcolumn)
 
 M.trailingWS = combine(shell, config, programming, git, text)
+addLangs(M.trailingWS)
 
 M.signcolumn = combine(shell, config, programming)
 addLangs(M.signcolumn)
