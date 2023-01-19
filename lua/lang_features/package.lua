@@ -63,12 +63,16 @@ M.indent_blankline = combine(shell, config, programming)
 M.treesitter = uncombine(
     combine(
         { "comment" }, shell, config, programming, text
-    ), "cs", "fstab", "i3config", "j", "javascriptreact", "kconfig", "ld",
-    "ldapconf", "lex", "lisp", "m4", "modconf", "mysql", "nasm", "nginx",
-    "octave", "pamconf", "plantuml", "prolog", "ps1", "raku", "samba", "sass",
-    "sed", "sh", "simula", "svg", "swayconfig", "systemd", "tasm", "tcl",
-    "tcsh", "terminfo", "texinfo", "typescriptreact", "viminfo", "xf86conf",
-    "xml", "yacc", "zsh")
+    ), "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp", "autodoc", "automake", "b",
+    "basic", "bib", "cabal", "chaiscript", "cobol", "conf", "config", "cs", "csh",
+    "eiffel", "eruby", "fasm", "forth", "freebasic", "fstab", "godoc", "groff",
+    "groovy", "i3config", "j", "javascriptreact", "kconfig", "ld", "ldapconf", "lex",
+    "lhaskell", "lisp", "m4", "modconf", "mysql", "nasm", "nginx", "octave", "pamconf",
+    "plaintex", "plantuml", "prolog", "ps1", "raku", "rtf", "samba", "sass", "sed", "sh",
+    "simula", "svg", "swayconfig", "systemd", "tasm", "tcl", "tcsh", "terminfo", "tex",
+    "texinfo", "text", "typescriptreact", "viminfo", "vimwiki",
+    "vimwiki_markdown_custom", "xf86conf", "xml", "yacc", "zsh")
+
 -- note treesitter does not addLangs because it has no effect in autocmd
 
 M.spell = combine(text, git)
