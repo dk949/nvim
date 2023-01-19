@@ -2,7 +2,16 @@ local M = {}
 local utils = require("utils")
 
 local localRequire = utils.makeLocalRequire "lang_features"
-local function combine(...) return vim.tbl_extend("keep", ...) end
+local function combine(...)
+    local out = {}
+    for _, tbl in ipairs({ ... }) do
+        for _, value in ipairs(tbl) do
+            table.insert(out, value)
+        end
+    end
+
+    return out
+end
 
 local function uncombine(tbl, ...)
     local args = { ... }
