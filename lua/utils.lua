@@ -141,4 +141,35 @@ function M.term.make()
     vim.cmd [[startinsert]]
 end
 
+---
+---@param cmd string|List
+---@param opts { runner: "bang"|"system", silent: nil|boolean }|nil
+---@return number,string|nil
+function M.shRun(cmd, opts)
+    if opts == nil then opts = {} end
+    if opts.runner == nil then opts.runner = "bang" end
+    local runnerFn = nil
+    if opts.runner == "bang" then
+        local runner = ""
+        if opts.silent then runner = "silent " end
+        runner = runner .. "execute \"!"
+        if type(cmd) == "string" then
+            runner = runner .. cmd
+        elseif type(cmd) == "table" then
+            runner = runner .. table.concat(cmd, " ")
+        end
+        runner = runner .. '"'
+        runnerFn = function() vim.cmd(runner) end
+    elseif opts.runner == "system" then
+        runnerFn = function() return vim.fn.system(cmd) end
+    end
+
+    local res = runnerFn()
+    if opts.silent then
+        return vim.v.shell_error
+    else
+        return vim.v.shell_error, res
+    end
+end
+
 return M
