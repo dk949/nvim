@@ -63,7 +63,9 @@ M.indent_blankline = combine(shell, config, programming)
 M.treesitter = uncombine(
     combine(
         { "comment" }, shell, config, programming, text
-    ), "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp", "autodoc", "automake", "b",
+    ),
+    -- Unuspported
+    "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp", "autodoc", "automake", "b",
     "basic", "bib", "cabal", "chaiscript", "cobol", "conf", "config", "cs", "csh",
     "eiffel", "eruby", "fasm", "forth", "freebasic", "fstab", "godoc", "groff",
     "groovy", "i3config", "j", "javascriptreact", "kconfig", "ld", "ldapconf", "lex",
@@ -71,7 +73,9 @@ M.treesitter = uncombine(
     "plaintex", "plantuml", "prolog", "ps1", "raku", "rtf", "samba", "sass", "sed", "sh",
     "simula", "svg", "swayconfig", "systemd", "tasm", "tcl", "tcsh", "terminfo", "tex",
     "texinfo", "text", "typescriptreact", "viminfo", "vimwiki",
-    "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh", "markdown")
+    "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh",
+    -- Supported but manually disabled
+    "markdown", "haskell")
 
 -- note treesitter does not addLangs because it has no effect in autocmd
 
