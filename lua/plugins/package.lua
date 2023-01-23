@@ -43,6 +43,7 @@ return require("packer").startup(function()
     localUse "markdown"
     localUse "zig"
     localUse "rust"
+    localUse "haskell"
 
     localUse "treesitter"
 
