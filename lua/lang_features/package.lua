@@ -143,10 +143,12 @@ end
 addLangs(M.lspconfig)
 
 local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
+local mggg = function() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
 M.fmt = {
     lua = function() vim.lsp.buf.format(); vim.cmd [[:w]] end,
     haskell = function() fmtRun [[fourmolu -i %]] end,
     cpp = function() fmtRun [[clang-format --style=file -i %]] end,
+    css = mggg,
     c = function() fmtRun [[clang-format --style=file -i %]] end,
     d = function() fmtRun [[dfmt -i %]] end,
     cmake = function() fmtRun [[cmake-format -i %]] end,
