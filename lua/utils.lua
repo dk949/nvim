@@ -38,9 +38,9 @@ end
 function M.switch(on)
     return function(stmt)
         if stmt[on] ~= nil then
-            return fnOrVal(stmt[on])
+            return M.fnOrVal(stmt[on])
         else
-            return sfnOrVal(tmt.__default)
+            return M.fnOrVal(stmt.__default)
         end
     end
 end
