@@ -20,3 +20,5 @@ A few programs still need to be installed manually for some things to work:
     * For formatting haskell
 * [dfmt](https://github.com/dlang-community/dfmt)
     * For formatting d
+* [cmake-format](https://github.com/cheshirekow/cmake_format)
+    * For formatting cmake
