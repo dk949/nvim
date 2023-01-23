@@ -125,13 +125,20 @@ addLangs(M.trailingWS)
 M.signcolumn = combine(shell, config, programming)
 addLangs(M.signcolumn)
 
-M.lspconfig = {
+local lspSetups = {
     c       = localRequire "cpp",
     cpp     = localRequire "cpp",
     d       = localRequire "d",
     haskell = localRequire "haskell",
     lua     = localRequire "lua",
+    asm     = localRequire "asm",
 }
+M.lspservers = {}
+M.lspconfig = {}
+for lang, lsp in pairs(lspSetups) do
+    M.lspconfig[lang] = lsp.server
+    table.insert(M.lspservers, lsp.masonInstall)
+end
 addLangs(M.lspconfig)
 
 M.fmt = {
