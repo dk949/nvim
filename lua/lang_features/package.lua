@@ -133,6 +133,7 @@ local lspSetups = {
     haskell = localRequire "haskell",
     lua     = localRequire "lua",
     rust    = localRequire "rust",
+    zig    = localRequire "zig",
 }
 M.lspservers = {}
 M.lspconfig = {}
