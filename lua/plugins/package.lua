@@ -42,6 +42,7 @@ return require("packer").startup(function()
     localUse "asm_ca65"
     localUse "markdown"
     localUse "zig"
+    localUse "rust"
 
     localUse "treesitter"
 

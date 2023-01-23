@@ -132,6 +132,7 @@ local lspSetups = {
     d       = localRequire "d",
     haskell = localRequire "haskell",
     lua     = localRequire "lua",
+    rust     = localRequire "rust",
 }
 M.lspservers = {}
 M.lspconfig = {}
@@ -149,6 +150,7 @@ M.fmt = {
     c = function() fmtRun [[clang-format --style=file -i %]] end,
     d = function() fmtRun [[dfmt -i %]] end,
     cmake = function() fmtRun [[cmake-format -i %]] end,
+    rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
 }
 addLangs(M.fmt)
 
