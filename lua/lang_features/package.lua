@@ -71,7 +71,7 @@ M.treesitter = uncombine(
     "plaintex", "plantuml", "prolog", "ps1", "raku", "rtf", "samba", "sass", "sed", "sh",
     "simula", "svg", "swayconfig", "systemd", "tasm", "tcl", "tcsh", "terminfo", "tex",
     "texinfo", "text", "typescriptreact", "viminfo", "vimwiki",
-    "vimwiki_markdown_custom", "xf86conf", "xml", "yacc", "zsh")
+    "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh", "markdown")
 
 -- note treesitter does not addLangs because it has no effect in autocmd
 
@@ -132,7 +132,7 @@ local lspSetups = {
     d       = localRequire "d",
     haskell = localRequire "haskell",
     lua     = localRequire "lua",
-    rust     = localRequire "rust",
+    rust    = localRequire "rust",
 }
 M.lspservers = {}
 M.lspconfig = {}
