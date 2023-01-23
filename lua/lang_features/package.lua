@@ -126,12 +126,12 @@ M.signcolumn = combine(shell, config, programming)
 addLangs(M.signcolumn)
 
 local lspSetups = {
+    asm     = localRequire "asm",
     c       = localRequire "cpp",
     cpp     = localRequire "cpp",
     d       = localRequire "d",
     haskell = localRequire "haskell",
     lua     = localRequire "lua",
-    asm     = localRequire "asm",
 }
 M.lspservers = {}
 M.lspconfig = {}
@@ -141,12 +141,14 @@ for lang, lsp in pairs(lspSetups) do
 end
 addLangs(M.lspconfig)
 
+local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
 M.fmt = {
     lua = function() vim.lsp.buf.format(); vim.cmd [[:w]] end,
-    haskell = function() vim.cmd [[:silent execute "!fourmolu -i %"]] end,
-    cpp = function() vim.cmd [[:silent execute "!clang-format --style=file -i %"]] end,
-    c = function() vim.cmd [[:silent execute "!clang-format --style=file -i %"]] end,
-    d = function() vim.cmd [[:silent execute "!dfmt -i %"]] end,
+    haskell = function() fmtRun [[fourmolu -i %]] end,
+    cpp = function() fmtRun [[clang-format --style=file -i %]] end,
+    c = function() fmtRun [[clang-format --style=file -i %]] end,
+    d = function() fmtRun [[dfmt -i %]] end,
+    cmake = function() fmtRun [[cmake-format -i %]] end,
 }
 addLangs(M.fmt)
 
