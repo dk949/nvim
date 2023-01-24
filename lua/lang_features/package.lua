@@ -163,6 +163,7 @@ M.fmt = {
     cmake = function() fmtRun [[cmake-format -i %]] end,
     rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
     json = function() vim.cmd [[silent execute "%!jq ."]] end,
+    xml = function() vim.cmd [[silent execute "%!xmllint --format -"]] end,
 }
 addLangs(M.fmt)
 
