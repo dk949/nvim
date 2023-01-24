@@ -1,5 +1,4 @@
 local api = vim.api
-local fn = vim.fn
 
 api.nvim_create_user_command("W", "w", {})
 api.nvim_create_user_command("E", "e", {})
@@ -64,3 +63,21 @@ vim.cmd [[cabbrev gap GitAddPatch]]
 vim.cmd [[cabbrev tb Tabularize /]]
 
 vim.cmd [[cabbrev topen Trouble]]
+
+local function printFile(mode)
+    local name = vim.fn.expand("%:" .. mode)
+    local pos = vim.fn.getpos('.')
+    api.nvim_buf_set_text(0, pos[2] - 1, pos[3] - 1, pos[2] - 1, pos[3] - 1, { name })
+end
+
+-- :p		expand to full path
+api.nvim_create_user_command("PrintFileFullName", function() printFile('p') end, { nargs = 0 })
+
+-- :t		tail (last path component only)
+api.nvim_create_user_command("PrintFileName", function() printFile('t') end, { nargs = 0 })
+
+-- :h		head (last path component removed)
+api.nvim_create_user_command("PrintFileDirAbs", function() printFile('p:h') end, { nargs = 0 })
+
+-- :h		head (last path component removed)
+api.nvim_create_user_command("PrintFileDirRel", function() printFile('h') end, { nargs = 0 })
