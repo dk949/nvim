@@ -22,3 +22,11 @@ A few programs still need to be installed manually for some things to work:
     * For formatting d
 * [cmake-format](https://github.com/cheshirekow/cmake_format)
     * For formatting cmake
+* [pdftotext](https://www.xpdfreader.com/pdftotext-man.html)
+    * For reading pdf files
+* [jq](https://stedolan.github.io/jq/)
+    * For formatting json
+* [xmllint](https://xmllint.com/)
+    * For formatting xml
+* [pyright](https://pypi.org/project/autopep8/)
+    * For formatting python
