@@ -52,6 +52,7 @@ return require("packer").startup(function()
     localUse "dutyl"
 
     localUse "todotxt"
+    localUse "pdf"
 
     use { '~/code/vim/asterisp.vim' }
 
