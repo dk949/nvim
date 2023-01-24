@@ -19,7 +19,7 @@ Listed in alphabetical order (roughly)
     * [X] `hls`
     * [ ] `html`
     * [ ] `purescriptls`
-    * [ ] `pyright`
+    * [X] `pyright`
     * [ ] `ruby_ls`
     * [X] `rust_analyzer`
     * [X] `serve-d`
@@ -84,8 +84,8 @@ Listed in alphabetical order (roughly)
     * [X] `PrintFileName`
     * [X] `PrintFileDirAbs`
     * [X] `PrintFileDirRel`
-* [ ] Python
-    * [ ] Formatting
+* [X] Python
+    * [X] Formatting
 * [ ] `ripgrep`
     * Replaced by Telescope
 * [ ] `roc`
