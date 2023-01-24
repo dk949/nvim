@@ -154,17 +154,17 @@ addLangs(M.lspconfig)
 local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
 local mggg = function() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
 M.fmt = {
-    lua = function() vim.lsp.buf.format(); vim.cmd [[:w]] end,
-    haskell = function() fmtRun [[fourmolu -i %]] end,
+    c = function() fmtRun [[clang-format --style=file -i %]] end,
+    cmake = function() fmtRun [[cmake-format -i %]] end,
     cpp = function() fmtRun [[clang-format --style=file -i %]] end,
     css = mggg,
-    make = mggg,
-    c = function() fmtRun [[clang-format --style=file -i %]] end,
     d = function() fmtRun [[dfmt -i %]] end,
-    python = function() fmtRun [[autopep8 -i %]] end,
-    cmake = function() fmtRun [[cmake-format -i %]] end,
-    rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
+    haskell = function() fmtRun [[fourmolu -i %]] end,
     json = function() vim.cmd [[silent execute "%!jq ."]] end,
+    lua = function() vim.lsp.buf.format(); vim.cmd [[:w]] end,
+    make = mggg,
+    python = function() fmtRun [[autopep8 -i %]] end,
+    rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
     xml = function() vim.cmd [[silent execute "%!xmllint --format -"]] end,
 }
 addLangs(M.fmt)
