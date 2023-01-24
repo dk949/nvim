@@ -38,6 +38,13 @@ local function _setup(lang)
     end
 
     vim.cmd([[set signcolumn=]] .. (vim.tbl_contains(feat.signcolumn, lang) and "yes" or "no"))
+    if vim.tbl_contains(feat.logicalLines, lang) then
+        vim.keymap.set({ 'v', 'n', 'o' }, "j", "gj", { silent = true, buffer = true })
+        vim.keymap.set({ 'v', 'n', 'o' }, "gj", "j", { silent = true, buffer = true })
+        vim.keymap.set({ 'v', 'n', 'o' }, "k", "gk", { silent = true, buffer = true })
+        vim.keymap.set({ 'v', 'n', 'o' }, "gk", "k", { silent = true, buffer = true })
+    end
+
 
     -- lsp
     vim.api.nvim_create_autocmd("BufEnter", {

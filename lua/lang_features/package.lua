@@ -129,6 +129,9 @@ addLangs(M.trailingWS)
 M.signcolumn = combine(shell, config, programming)
 addLangs(M.signcolumn)
 
+M.logicalLines = combine(git, text)
+addLangs(M.logicalLines)
+
 local lspSetups = {
     asm     = localRequire "asm",
     c       = localRequire "cpp",
