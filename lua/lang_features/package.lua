@@ -154,6 +154,7 @@ M.fmt = {
     haskell = function() fmtRun [[fourmolu -i %]] end,
     cpp = function() fmtRun [[clang-format --style=file -i %]] end,
     css = mggg,
+    make = mggg,
     c = function() fmtRun [[clang-format --style=file -i %]] end,
     d = function() fmtRun [[dfmt -i %]] end,
     cmake = function() fmtRun [[cmake-format -i %]] end,
