@@ -139,6 +139,7 @@ local lspSetups = {
     d       = localRequire "d",
     haskell = localRequire "haskell",
     lua     = localRequire "lua",
+    python  = localRequire "python",
     rust    = localRequire "rust",
     zig     = localRequire "zig",
 }
@@ -160,6 +161,7 @@ M.fmt = {
     make = mggg,
     c = function() fmtRun [[clang-format --style=file -i %]] end,
     d = function() fmtRun [[dfmt -i %]] end,
+    python = function() fmtRun [[autopep8 -i %]] end,
     cmake = function() fmtRun [[cmake-format -i %]] end,
     rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
     json = function() vim.cmd [[silent execute "%!jq ."]] end,
