@@ -4,6 +4,7 @@ api.nvim_create_user_command("W", "w", {})
 api.nvim_create_user_command("E", "e", {})
 
 local function deleteView()
+    local fn = vim.fn
     ---@diagnostic disable-next-line: param-type-mismatch; bufname can accept specific strings.
     local path = fn.fnamemodify(fn.bufname('%'), ':p')
     path = fn.substitute(path, '=', '==', 'g')
@@ -26,6 +27,7 @@ api.nvim_create_user_command("EchoHl",
 )
 
 local function dict(word)
+    local fn = vim.fn
     local out = fn.system([[curl -s dict://dict.org/d:]] .. word .. [[ | awk '!/[0-9]/' | sed 's/\r//g']])
     assert(vim.v.shell_error == 0, "Could not submit request to dict.org")
     return out
