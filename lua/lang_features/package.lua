@@ -138,16 +138,18 @@ M.logicalLines = combine(git, text)
 addLangs(M.logicalLines)
 
 local lspSetups = {
-    asm     = localRequire "asm",
-    c       = localRequire "cpp",
-    cpp     = localRequire "cpp",
-    d       = localRequire "d",
-    haskell = localRequire "haskell",
-    html  = localRequire "html",
-    lua     = localRequire "lua",
-    python  = localRequire "python",
-    rust    = localRequire "rust",
-    zig     = localRequire "zig",
+    asm        = localRequire "asm",
+    c          = localRequire "cpp",
+    cpp        = localRequire "cpp",
+    d          = localRequire "d",
+    haskell    = localRequire "haskell",
+    html       = localRequire "html",
+    javascript = localRequire "jsts",
+    lua        = localRequire "lua",
+    python     = localRequire "python",
+    rust       = localRequire "rust",
+    typescript = localRequire "jsts",
+    zig        = localRequire "zig",
 }
 M.lspservers = {}
 M.lspconfig = {}
@@ -155,10 +157,12 @@ for lang, lsp in pairs(lspSetups) do
     M.lspconfig[lang] = lsp.server
     table.insert(M.lspservers, lsp.masonInstall)
 end
+M.lspservers = vim.tbl_flatten(M.lspservers)
 addLangs(M.lspconfig)
 
 local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
 local mggg = function() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
+local lspFmt = function() vim.lsp.buf.format(); vim.cmd [[:w]] end
 M.fmt = {
     c = function() fmtRun [[clang-format --style=file -i %]] end,
     cmake = function() fmtRun [[cmake-format -i %]] end,
@@ -167,8 +171,10 @@ M.fmt = {
     d = function() fmtRun [[dfmt -i %]] end,
     haskell = function() fmtRun [[fourmolu -i %]] end,
     json = function() vim.cmd [[silent execute "%!jq ."]] end,
-    lua = function() vim.lsp.buf.format(); vim.cmd [[:w]] end,
-    html = function() vim.lsp.buf.format(); vim.cmd [[:w]] end,
+    js = lspFmt,
+    ts = lspFmt,
+    lua = lspFmt,
+    html = lspFmt,
     make = mggg,
     python = function() fmtRun [[autopep8 -i %]] end,
     rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
