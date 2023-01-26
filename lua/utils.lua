@@ -68,9 +68,9 @@ local setups = {}
 ---@param fn function function which sets up the server. Will be ran once
 ---@return function
 function M.lspSetupCreate(name, fn)
-    return function()
+    return function(capabilities, on_attach)
         if not setups[name] then
-            fn()
+            fn(capabilities, on_attach)
             vim.cmd [[:LspStart]]
             setups[name] = true
         end
