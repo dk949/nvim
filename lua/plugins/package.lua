@@ -44,6 +44,7 @@ return require("packer").startup(function()
     localUse "zig"
     localUse "rust"
     localUse "haskell"
+    localUse "emmet"
 
     localUse "treesitter"
 
