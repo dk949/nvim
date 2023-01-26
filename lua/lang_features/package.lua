@@ -94,6 +94,11 @@ M.wrap = (function()
 end)()
 addLangs(M.wrap)
 
+M.tab = {
+    markdown = 2,
+    html = 2,
+}
+
 M.formatoptions = (function()
     local out = {}
 

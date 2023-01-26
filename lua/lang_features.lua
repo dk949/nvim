@@ -20,6 +20,12 @@ local function _setup(lang)
         end
     end
 
+    if feat.tab[lang] ~= nil then
+        vim.opt.tabstop = feat.tab[lang]
+        vim.opt.shiftwidth = feat.tab[lang]
+        vim.opt.softtabstop = feat.tab[lang]
+    end
+
     if feat.formatoptions[lang] ~= nil then
         vim.cmd([[set formatoptions=]] .. feat.formatoptions[lang])
     end
