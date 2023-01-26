@@ -17,7 +17,7 @@ Listed in alphabetical order (roughly)
     * [ ] `eslint`
     * [ ] `gopls`
     * [X] `hls`
-    * [ ] `html`
+    * [X] `html`
     * [ ] `purescriptls`
     * [X] `pyright`
     * [ ] `ruby_ls`
@@ -52,8 +52,8 @@ Listed in alphabetical order (roughly)
 * [ ] Hexedit
     * [ ] use `xxd` to edit binary files
     * [ ] Decode selected regions as ascii or decimals
-* [ ] HTML
-    * [ ] Formatting
+* [X] HTML
+    * [X] Formatting
 * [X] JSON
     * [X] Formatting
 * [ ] Javascript/Typescript
