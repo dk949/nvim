@@ -12,7 +12,8 @@ Listed in alphabetical order (roughly)
     * [ ] `GetManVisual` function
 * [ ] LSP
     * [X] `ccls`
-    * [ ] `cssls` (+ tailwindcss)
+    * [X] `cssls`
+    * [ ] `tailwindcss`
     * [ ] `elmLS`
     * [ ] `eslint`
     * [ ] `gopls`
