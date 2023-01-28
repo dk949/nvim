@@ -2,6 +2,26 @@ local M = {}
 local utils = require("utils")
 
 local localRequire = utils.makeLocalRequire "lang_features"
+
+local function combineLSPs(...)
+    local args = { ... }
+    local lspConfigs = {}
+    local lspNames = {}
+    for _, lsp in ipairs(args) do
+        local loaded = localRequire(lsp)
+        table.insert(lspConfigs, loaded.server)
+        table.insert(lspNames, loaded.masonInstall)
+    end
+    return {
+        server = function(capabilities, on_attach)
+            for _, lsp in ipairs(lspConfigs) do
+                lsp(capabilities, on_attach)
+            end
+        end,
+        masonInstall = lspNames,
+    }
+end
+
 local function combine(...)
     local out = {}
     for _, tbl in ipairs({ ... }) do
@@ -138,23 +158,23 @@ M.logicalLines = combine(git, text)
 addLangs(M.logicalLines)
 
 local lspSetups = {
-    asm             = localRequire "asm",
-    c               = localRequire "cpp",
-    cpp             = localRequire "cpp",
-    css             = localRequire "css",
-    d               = localRequire "d",
-    haskell         = localRequire "haskell",
-    html            = localRequire "html",
-    javascript      = localRequire "jsts",
-    javascriptreact = localRequire "jsts",
-    less            = localRequire "css",
-    lua             = localRequire "lua",
-    python          = localRequire "python",
-    rust            = localRequire "rust",
-    scss            = localRequire "css",
-    typescript      = localRequire "jsts",
-    typescriptreact = localRequire "jsts",
-    zig             = localRequire "zig",
+    asm             = combineLSPs "asm_lsp",
+    c               = combineLSPs "ccls",
+    cpp             = combineLSPs "ccls",
+    css             = combineLSPs "cssls",
+    d               = combineLSPs "serve_d",
+    haskell         = combineLSPs "hls",
+    html            = combineLSPs "html",
+    javascript      = combineLSPs("eslint", "tsserver"),
+    javascriptreact = combineLSPs("eslint", "tsserver"),
+    less            = combineLSPs "cssls",
+    lua             = combineLSPs "sumneko_lua",
+    python          = combineLSPs "pyright",
+    rust            = combineLSPs "rust_analyzer",
+    scss            = combineLSPs "cssls",
+    typescript      = combineLSPs("eslint", "tsserver"),
+    typescriptreact = combineLSPs("eslint", "tsserver"),
+    zig             = combineLSPs "zls",
 }
 M.lspservers = {}
 M.lspconfig = {}

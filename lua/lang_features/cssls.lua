@@ -1,12 +1,12 @@
 return {
-    server = require("utils").lspSetupCreate("lua",
+    server = require("utils").lspSetupCreate("cssls",
         function(capabilities, on_attach)
-            require("lspconfig").sumneko_lua.setup {
+            require("lspconfig").cssls.setup {
                 capabilities = capabilities,
                 on_attach = on_attach,
                 completion = { callSnippet = "Replace" }
             }
         end
     ),
-    masonInstall = "sumneko_lua"
+    masonInstall = "cssls"
 }

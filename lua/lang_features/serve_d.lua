@@ -1,5 +1,5 @@
 return {
-    server = require("utils").lspSetupCreate("d",
+    server = require("utils").lspSetupCreate("serve_d",
         function(capabilities, on_attach)
             local lspconfig = require("lspconfig")
             lspconfig.serve_d.setup {

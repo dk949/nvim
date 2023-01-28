@@ -1,5 +1,5 @@
 return {
-    server = require("utils").lspSetupCreate("cpp",
+    server = require("utils").lspSetupCreate("ccls",
         function(capabilities, on_attach)
             local lspconfig = require("lspconfig")
             lspconfig.ccls.setup {

@@ -1,5 +1,5 @@
 return {
-    server = require("utils").lspSetupCreate("rust",
+    server = require("utils").lspSetupCreate("rust_analyzer",
         function(capabilities, on_attach)
             require("lspconfig").rust_analyzer.setup {
                 capabilities = capabilities,

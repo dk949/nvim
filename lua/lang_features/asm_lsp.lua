@@ -10,5 +10,5 @@ return {
             }
         end
     ),
-    masonInstall = "asm_lsp"
+    masonInstall = nil,
 }

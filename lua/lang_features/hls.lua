@@ -1,5 +1,5 @@
 return {
-    server = require("utils").lspSetupCreate("haskell",
+    server = require("utils").lspSetupCreate("hls",
         function(capabilities, on_attach)
             local lspconfig = require("lspconfig")
             local newCap = { "codeLens" }
