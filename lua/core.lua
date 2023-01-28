@@ -7,6 +7,8 @@ vim.cmd [[filetype plugin indent on]]
 
 vim.cmd [[set relativenumber number]]
 
+vim.cmd [[set wildignorecase]]
+
 -- Hybrid numbering in normal mode and normal numbering in insert mode
 vim.api.nvim_create_autocmd("InsertLeave", {
     pattern = "*",
