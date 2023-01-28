@@ -111,7 +111,6 @@ k.set('n', "<leader>ftat", function() TeleConfig("tags", n) end, desc [[]])
 k.set('n', "<leader>ff/", function() TeleConfig("current_buffer_fuzzy_find", i) end, desc [[]])
 k.set('n', "<leader>ffb", function() TeleConfig("buffers", n) end, desc [[]])
 k.set('n', "<leader>fff", function() TeleConfig("find_files", i) end, desc [[]])
-k.set('n', "<leader>ffn", function() TeleConfig("file_browser", n) end, desc [[]])
 k.set('n', "<leader>ffo", function() TeleConfig("oldfiles", n) end, desc [[]])
 k.set('n', "<leader>ffr", function() TeleConfig("live_grep", i) end, desc [[]])
 
