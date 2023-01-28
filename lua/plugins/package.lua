@@ -45,6 +45,8 @@ return require("packer").startup(function()
     localUse "rust"
     localUse "haskell"
     localUse "emmet"
+    localUse "jsx_typescript"
+    localUse "typescript"
 
     localUse "treesitter"
 
