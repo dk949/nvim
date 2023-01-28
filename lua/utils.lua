@@ -26,6 +26,7 @@ function M.openWindow(opts)
     if opts.splitFn ~= nil then splitFn = opts.splitFn end
     if opts.listed ~= nil then listed = opts.listed end
     if opts.scartch ~= nil then scartch = opts.scartch end
+    ---@diagnostic disable-next-line: cast-local-type
     if vert then vert = "vert " else vert = "" end
 
     vim.cmd(vert .. splitFn)
@@ -170,6 +171,19 @@ function M.shRun(cmd, opts)
     else
         return vim.v.shell_error, res
     end
+end
+
+--- Set color fot a highlight group
+---@param group string
+---@param params {ctermfg:number|string, ctermbg:number|string, cterm:string, guifg:string, guibg:string, guisp:string, gui:string}
+function M.hi(group, params)
+    assert(type(params) == "table", "Expected a table got " .. type(params))
+    local arg = ""
+    for key, value in pairs(params) do
+        arg = arg .. " " .. tostring(key) .. '=' .. tostring(value)
+    end
+
+    vim.cmd("hi " .. group .. arg)
 end
 
 return M
