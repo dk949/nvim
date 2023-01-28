@@ -10,26 +10,10 @@ Listed in alphabetical order (roughly)
 * [ ] Cmake
     * [X] Formatting
     * [ ] `GetManVisual` function
-* [ ] LSP
-    * [X] `ccls`
-    * [X] `cssls`
-    * [ ] `tailwindcss`
-    * [ ] `elmLS`
-    * [ ] `eslint`
-    * [ ] `gopls`
-    * [X] `hls`
-    * [X] `html`
-    * [ ] `purescriptls`
-    * [X] `pyright`
-    * [ ] `ruby_ls`
-    * [X] `rust_analyzer`
-    * [X] `serve-d`
-    * [ ] `tsserver`
-    * [X] `zls`
 * [ ] C++
-    * [ ] Various outdated shortcuts which will probably not be ported
     * [ ] Linting setup
     * [X] Formatting
+    * [ ] Various outdated shortcuts which will probably not be ported
 * [X] CSS
     * [X] Formatting
 * [X] D
@@ -61,12 +45,13 @@ Listed in alphabetical order (roughly)
     * [ ] Formatting (LSP powered)
     * [ ] Some way to set tabstop based on project(?)
 * [ ] Line count
-    * [ ] No longer in use
-* [ ] Look
+    * No longer in use
+* [X] Look
     * [X] powerline/tabline: covered by lualine
     * [X] Theme covered by `onedark`
-    * [ ] Semshi custom colors, will port if using semshi (which is unlikely)
-    * [ ] JSX custom colors
+    * [X] JSX custom colors
+    * [ ] Semshi custom colors
+      * will port if using semshi (which is unlikely)
 * [X] Make
     * [X] Formatting
 * [X] Man
@@ -87,7 +72,7 @@ Listed in alphabetical order (roughly)
     * [X] `PrintFileDirRel`
 * [X] Python
     * [X] Formatting
-* [ ] `ripgrep`
+* [X] `ripgrep`
     * Replaced by Telescope
 * [ ] `roc`
     * Need to check if there is vim support
@@ -130,9 +115,10 @@ Listed in alphabetical order (roughly)
     * [ ] `ale`
         * See `ale`
     * [X] `haskell-vim`
-    * [ ] `typescript-vim`
-    * [ ] `vim-jsx-typescript`
+    * [X] `typescript-vim`
+    * [X] `vim-jsx-typescript`
     * [ ] `vim-node-inspect1`
+      * Not needed
     * [X] `vim-highlightedyank`
     * [X] `plantuml-syntax`
     * [X] `rust.vim`
@@ -148,6 +134,22 @@ Listed in alphabetical order (roughly)
     * [X] `telescope.nvim`
     * [X] `minimap.vim`
     * [ ] `fluent`
+* [ ] LSP
+    * [X] `ccls`
+    * [X] `cssls`
+    * [ ] `tailwindcss`
+    * [ ] `elmLS`
+    * [ ] `eslint`
+    * [ ] `gopls`
+    * [X] `hls`
+    * [X] `html`
+    * [ ] `purescriptls`
+    * [X] `pyright`
+    * [ ] `ruby_ls`
+    * [X] `rust_analyzer`
+    * [X] `serve-d`
+    * [ ] `tsserver`
+    * [X] `zls`
 
 ## Planned fixes and features
 
