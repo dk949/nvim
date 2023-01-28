@@ -1,15 +1,14 @@
 return {
-    server = require("utils").lspSetupCreate("asm",
+    server = require("utils").lspSetupCreate("asm_lsp",
         function(capabilities, on_attach)
             local lspconfig = require("lspconfig")
-            lspconfig.ccls.setup {
+            lspconfig.ccls.asm_lsp {
                 cmd = { "asm-lsp" },
-                filetypes = { "asm", "s", "S" },
-                root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".ccls", "compile_commands.json"),
+                filetypes = { "asm", "s", "S", "nasm" },
                 on_attach = on_attach,
                 capabilities = capabilities,
             }
         end
     ),
-    masonInstall = nil
+    masonInstall = "asm_lsp"
 }
