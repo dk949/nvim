@@ -161,19 +161,19 @@ local lspSetups = {
     asm             = combineLSPs "asm_lsp",
     c               = combineLSPs "ccls",
     cpp             = combineLSPs "ccls",
-    css             = combineLSPs "cssls",
+    css             = combineLSPs("cssls", "tailwindcss"),
     d               = combineLSPs "serve_d",
     haskell         = combineLSPs "hls",
     html            = combineLSPs "html",
-    javascript      = combineLSPs("eslint", "tsserver"),
-    javascriptreact = combineLSPs("eslint", "tsserver"),
-    less            = combineLSPs "cssls",
+    javascript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
+    javascriptreact = combineLSPs("eslint", "tsserver", "tailwindcss"),
+    less            = combineLSPs("cssls", "tailwindcss"),
     lua             = combineLSPs "sumneko_lua",
     python          = combineLSPs "pyright",
     rust            = combineLSPs "rust_analyzer",
-    scss            = combineLSPs "cssls",
-    typescript      = combineLSPs("eslint", "tsserver"),
-    typescriptreact = combineLSPs("eslint", "tsserver"),
+    scss            = combineLSPs("cssls", "tailwindcss"),
+    typescript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
+    typescriptreact = combineLSPs("eslint", "tsserver", "tailwindcss"),
     zig             = combineLSPs "zls",
 }
 M.lspservers = {}
@@ -182,7 +182,7 @@ for lang, lsp in pairs(lspSetups) do
     M.lspconfig[lang] = lsp.server
     table.insert(M.lspservers, lsp.masonInstall)
 end
-M.lspservers = vim.tbl_flatten(M.lspservers)
+M.lspservers = utils.unique(vim.tbl_flatten(M.lspservers))
 addLangs(M.lspconfig)
 
 local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
