@@ -186,4 +186,16 @@ function M.hi(group, params)
     vim.cmd("hi " .. group .. arg)
 end
 
+---
+---@param tbl List
+---@return List
+function M.unique(tbl)
+    assert(vim.tbl_islist(tbl))
+    local vals = {}
+    for _, value in ipairs(tbl) do
+        vals[value] = true
+    end
+    return vim.tbl_keys(vals)
+end
+
 return M
