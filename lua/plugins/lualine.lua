@@ -36,6 +36,24 @@ return {
         local tabs        = { 'tabs' } -- shows currently available tabs
         ---@diagnostic disable-next-line: unused-local
         local windows     = { 'windows' } -- shows currently available windows
+        local function getWords()
+            if not (
+                vim.bo.filetype == "md"
+                    or vim.bo.filetype == "txt"
+                    or vim.bo.filetype == "markdown"
+                    or vim.bo.filetype == "vimwiki"
+                ) then
+                return ""
+            end
+
+            local words = vim.fn.wordcount().words
+            local visWords = vim.fn.wordcount().visual_words
+            if visWords ~= nil then
+                return tostring(visWords) .. "w"
+            else
+                return tostring(words) .. "w"
+            end
+        end
 
         require('lualine').setup {
             options           = {
@@ -59,7 +77,7 @@ return {
                 lualine_b = { branch, diff, diagnostics },
                 lualine_c = { filename },
                 lualine_x = { encoding, fileformat, filetype },
-                lualine_y = { progress },
+                lualine_y = { getWords, progress, },
                 lualine_z = { location }
             },
             inactive_sections = {
