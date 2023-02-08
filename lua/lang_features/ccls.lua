@@ -4,7 +4,7 @@ return {
             local lspconfig = require("lspconfig")
             lspconfig.ccls.setup {
                 cmd = { "ccls", "--log-file=/tmp/ccls.log", "-v=1" },
-                filetypes = { "c", "cc", "cpp", "c++", "objc", "objcpp" },
+                filetypes = { "c", "cc", "cpp", "c++", "cu", "objc", "objcpp" },
                 root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".ccls", "compile_commands.json"),
                 init_options = {
                     cache = { directory = "/tmp/ccls" },
