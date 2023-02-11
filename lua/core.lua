@@ -20,27 +20,6 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     command = "set norelativenumber",
 })
 
-
---  Terminal stuff
-vim.api.nvim_create_autocmd("TermOpen", {
-    pattern = "*",
-    command = "set norelativenumber nonumber",
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
-    pattern = "term://*",
-    command = "startinsert",
-})
-
--- Remove unnecessary auto formatting
--- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
---     pattern = "*",
---     command = dk949.formatoptions or
---         [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]],
--- })
-
-
-
 -- setting tabsize
 vim.cmd([[set tabstop=]] .. dk949.tabstop)
 vim.cmd([[set shiftwidth=]] .. dk949.tabstop)

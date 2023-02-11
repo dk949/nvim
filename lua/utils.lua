@@ -128,20 +128,6 @@ function M.winsize.changeWindowSize(letter)
     winChange[1](winChange[2], dk949.winSzInc)
 end
 
-M.term = {}
-
-function M.term.make()
-    local w = vim.api.nvim_win_get_width(0)
-    local h = vim.api.nvim_win_get_height(0)
-    if (w <= h * 2) then -- correcting for character aspet ratio
-        vim.cmd [[split]]
-    else
-        vim.cmd [[vert split]]
-    end
-    vim.cmd [[term]]
-    vim.cmd [[startinsert]]
-end
-
 ---
 ---@param cmd string|List
 ---@param opts { runner: "bang"|"system", silent: nil|boolean }|nil

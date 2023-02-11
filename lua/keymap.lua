@@ -21,6 +21,9 @@ k.set('t', "<C-[><C-[>", [[<C-\><C-n>]], desc [[Double escape to get to normal m
 
 k.set('n', "<C-l>", ":mode<CR>", desc [[redraw the screen on ctrl-l]])
 
+k.set('n', "ZZ", function() require("termutils").smartClose() end,
+    desc [[If last buffer was a terminal, erturn to that terminal]])
+
 k.set({ 'n', 'i' }, "<A-l>", "gt", desc [[alt-l for next tab]])
 k.set({ 'n', 'i' }, "<A-h>", "gT", desc [[alt-h for prev tab]])
 
@@ -64,7 +67,7 @@ k.set('n', "<leader>ms", ":mksession!<CR>", desc [[Save the current session]])
 
 k.set('n', "<Leader>mc", ":set cursorline!<CR>", desc [[cursor highlighting]])
 
-k.set('n', "<Leader>mt", function() utils.term.make() end, desc [[cursor highlighting]])
+k.set('n', "<Leader>mt", function() require("termutils").startTerminal() end, desc [[cursor highlighting]])
 
 k.set('n', "<leader>mi", function() vim.lsp.buf.hover() end, desc [[Display hover infomration]])
 
