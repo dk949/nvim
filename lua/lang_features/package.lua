@@ -158,7 +158,6 @@ M.logicalLines = combine(git, text)
 addLangs(M.logicalLines)
 
 local lspSetups = {
-    asm             = combineLSPs "asm_lsp",
     c               = combineLSPs "ccls",
     cpp             = combineLSPs "ccls",
     cuda            = combineLSPs "ccls",
