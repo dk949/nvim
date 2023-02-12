@@ -6,6 +6,7 @@ return {
         "nvim-tree/nvim-web-devicons"
     },
     config = function()
+        local navic       = require("nvim-navic")
         local branch      = { 'branch' }
         local buffers     = {
             'buffers',
@@ -56,13 +57,9 @@ return {
         end
 
         require('lualine').setup {
-            options           = {
+            options = {
                 icons_enabled        = true,
                 theme                = 'auto',
-                disabled_filetypes   = {
-                    statusline = {},
-                    winbar     = {},
-                },
                 ignore_focus         = {},
                 always_divide_middle = true,
                 globalstatus         = false,
@@ -72,7 +69,7 @@ return {
                     winbar     = 1000,
                 }
             },
-            sections          = {
+            sections = {
                 lualine_a = { mode },
                 lualine_b = { branch, diff, diagnostics },
                 lualine_c = { filename },
@@ -88,12 +85,17 @@ return {
                 lualine_y = {},
                 lualine_z = {}
             },
-            tabline           = {
+            tabline = {
                 lualine_a = { buffers },
+                lualine_b = {
+                    {
+                        navic.get_location,
+                        cond = navic.is_available,
+                    },
+                },
                 lualine_z = { tabs }
             },
-            inactive_winbar   = {},
-            extensions        = {}
+            extensions = {}
         }
     end
 }

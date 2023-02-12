@@ -58,7 +58,8 @@ local function _setup(lang)
         callback = function()
             if feat.lspconfig[lang] ~= nil then
                 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-                feat.lspconfig[lang](capabilities, nil)
+                local on_attach = require("nvim-navic").attach
+                feat.lspconfig[lang](capabilities, on_attach)
             end
         end
     })
