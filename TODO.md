@@ -6,7 +6,7 @@ Listed in alphabetical order (roughly)
 
 * [X] ALE
 * [X] detect `*.asm` as nasm files
-* [ ] cc65 support
+* [X] cc65 support
 * [ ] Cmake
     * [X] Formatting
     * [ ] `GetManVisual` function
