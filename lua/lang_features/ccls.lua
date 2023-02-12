@@ -14,6 +14,7 @@ return {
                 },
                 on_attach = on_attach,
                 capabilities = capabilities,
+                completion = { callSnippet = "Replace" },
             }
         end
     ),

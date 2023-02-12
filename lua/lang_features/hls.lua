@@ -12,6 +12,7 @@ return {
                 filetypes = { 'haskell', 'lhaskell', 'cabal' },
                 capabilities = capabilities,
                 on_attach = on_attach,
+                completion = { callSnippet = "Replace" },
                 settings = {
                     single_file_support = true,
                     hlintOn = true,

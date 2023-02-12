@@ -5,9 +5,7 @@ return {
                 capabilities = capabilities,
                 on_attach = on_attach,
                 completion = { callSnippet = "Replace" },
-                settings = {
-                    codeLens = { enable = true },
-                },
+                settings = { codeLens = { enable = true }, },
             }
         end
     ),

@@ -8,6 +8,7 @@ return {
                 root_dir = lspconfig.util.root_pattern("dub.json", "dub.sdl", "*.d"),
                 on_attach = on_attach,
                 capabilities = capabilities,
+                completion = { callSnippet = "Replace" },
             }
         end
     ),
