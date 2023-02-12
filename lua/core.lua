@@ -5,9 +5,9 @@ vim.g.mapleader = dk949.leader
 vim.cmd [[filetype plugin on]]
 vim.cmd [[filetype plugin indent on]]
 
-vim.cmd [[set relativenumber number]]
-
-vim.cmd [[set wildignorecase]]
+vim.opt.showmode       = true
+vim.opt.number         = true
+vim.opt.relativenumber = true
 
 -- Hybrid numbering in normal mode and normal numbering in insert mode
 vim.api.nvim_create_autocmd("InsertLeave", {
@@ -21,10 +21,10 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 })
 
 -- setting tabsize
-vim.cmd([[set tabstop=]] .. dk949.tabstop)
-vim.cmd([[set shiftwidth=]] .. dk949.tabstop)
-vim.cmd([[set softtabstop=]] .. dk949.tabstop)
-vim.cmd [[set expandtab]]
+vim.opt.tabstop = dk949.tabstop
+vim.opt.shiftwidth = dk949.tabstop
+vim.opt.softtabstop = dk949.tabstop
+vim.opt.expandtab = true
 
 -- rememebr file
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -38,25 +38,25 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 
--- When searching with only lowercase letters, case will be ignored. Not ignored with capitals.
-vim.cmd [[set ignorecase]]
-vim.cmd [[set smartcase]]
+vim.opt.wildignorecase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 
 -- Incremental search
-vim.cmd [[set incsearch]]
+vim.opt.incsearch = true
 
 
 -- Search is not highlighted
-vim.cmd [[set nohlsearch]]
+vim.opt.hlsearch = false
 
 
 -- Search through subdirectories recursively
-vim.cmd [[set path+=**]]
+vim.opt.path:append("**")
 
 -- Spilts act as expected
-vim.cmd [[set splitbelow]]
-vim.cmd [[set splitright]]
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 -- Mouse
-vim.cmd([[set mouse=]] .. dk949.mouse)
+vim.opt.mouse = dk949.mouse
