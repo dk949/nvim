@@ -27,6 +27,8 @@ return require("packer").startup(function()
     localUse "tabular"
     localUse "minimap"
     localUse "indent_blankline"
+    localUse "termutils"
+    localUse "emmet"
 
     -- telescope
     localUse "plenary"
@@ -35,7 +37,11 @@ return require("packer").startup(function()
     -- Lsp
     localRequire "lsp" ()
 
-    -- misc
+    -- Treesitter
+    localUse "treesitter"
+
+    -- ALE
+    localUse "ale"
 
     -- Language support
     localUse "plantuml"
@@ -45,20 +51,14 @@ return require("packer").startup(function()
     localUse "rust"
     localUse "llvm"
     localUse "haskell"
-    localUse "emmet"
     localUse "jsx_typescript"
     localUse "typescript"
-
-    localUse "treesitter"
-
-    localUse "vimwiki"
-
     localUse "dutyl"
-
     localUse "todotxt"
     localUse "pdf"
-    localUse "termutils"
-
     use { '~/code/vim/asterisp.vim' }
+
+    -- Misc
+    localUse "vimwiki"
 
 end)
