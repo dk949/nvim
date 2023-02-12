@@ -4,7 +4,7 @@
 
 Listed in alphabetical order (roughly)
 
-* [ ] ALE
+* [X] ALE
 * [X] detect `*.asm` as nasm files
 * [ ] cc65 support
 * [ ] Cmake
