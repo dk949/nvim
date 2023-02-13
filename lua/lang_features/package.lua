@@ -160,6 +160,7 @@ addLangs(M.logicalLines)
 local lspSetups = {
     c               = combineLSPs "ccls",
     cpp             = combineLSPs "ccls",
+    cmake           = combineLSPs "cmake",
     cuda            = combineLSPs "ccls",
     css             = combineLSPs("cssls", "tailwindcss"),
     d               = combineLSPs "serve_d",
