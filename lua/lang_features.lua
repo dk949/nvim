@@ -51,15 +51,28 @@ local function _setup(lang)
         vim.keymap.set({ 'v', 'n', 'o' }, "gk", "k", { silent = true, buffer = true })
     end
 
+    local capabilities = nil
+    local on_attach = nil
+    local function cap_on_attach()
+        if capabilities == nil then
+            capabilities = require("cmp_nvim_lsp").default_capabilities()
+        end
+        if on_attach == nil then
+            on_attach = function(client, bufnr)
+                if client.server_capabilities.documentSymbolProvider then
+                    require("nvim-navic").attach(client, bufnr)
+                end
+            end
+        end
+    end
 
     -- lsp
     vim.api.nvim_create_autocmd("BufEnter", {
         pattern = "*",
         callback = function()
             if feat.lspconfig[lang] ~= nil then
-                local capabilities = require("cmp_nvim_lsp").default_capabilities()
-                local on_attach = require("nvim-navic").attach
-                feat.lspconfig[lang](capabilities, on_attach)
+                local cap, on_a = cap_on_attach()
+                feat.lspconfig[lang](cap, on_a)
             end
         end
     })
