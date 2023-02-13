@@ -7,9 +7,8 @@ Listed in alphabetical order (roughly)
 * [X] ALE
 * [X] detect `*.asm` as nasm files
 * [X] cc65 support
-* [ ] Cmake
+* [X] Cmake
     * [X] Formatting
-    * [ ] `GetManVisual` function
 * [ ] C++
     * [ ] Linting setup
     * [X] Formatting
@@ -137,9 +136,9 @@ Listed in alphabetical order (roughly)
 * [ ] LSP
     * [X] `ccls`
     * [X] `cssls`
-    * [ ] `tailwindcss`
+    * [X] `tailwindcss`
     * [ ] `elmLS`
-    * [ ] `eslint`
+    * [X] `eslint`
     * [ ] `gopls`
     * [X] `hls`
     * [X] `html`
@@ -148,7 +147,7 @@ Listed in alphabetical order (roughly)
     * [ ] `ruby_ls`
     * [X] `rust_analyzer`
     * [X] `serve-d`
-    * [ ] `tsserver`
+    * [X] `tsserver`
     * [X] `zls`
 
 ## Planned fixes and features
