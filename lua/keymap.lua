@@ -99,11 +99,11 @@ local i = "insert"
 local n = "normal"
 
 -- telescope
-k.set('n', "<leader>f", function() TeleConfig("builtin") end, desc [[]])
-k.set('n', "<leader>ftl", function() TeleConfig("reloader") end, desc [[]])
+k.set('n', "<leader>f", function() TeleConfig("builtin", n) end, desc [[]])
+k.set('n', "<leader>ftl", function() TeleConfig("reloader", n) end, desc [[]])
 k.set('n', "<leader>ftp", function() TeleConfig("pickers", i) end, desc [[]])
-k.set('n', "<leader>ftr", function() TeleConfig("resume") end, desc [[]])
-k.set('n', "<leader>ftup", function() TeleConfig("planets") end, desc [[]])
+k.set('n', "<leader>ftr", function() TeleConfig("resume", n) end, desc [[]])
+k.set('n', "<leader>ftup", function() TeleConfig("planets", n) end, desc [[]])
 
 -- Tags
 k.set('n', "<leader>ftac", function() TeleConfig("current_buffer_tags", n) end, desc [[]])
