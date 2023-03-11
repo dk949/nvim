@@ -5,7 +5,7 @@ vim.g.mapleader = dk949.leader
 vim.cmd [[filetype plugin on]]
 vim.cmd [[filetype plugin indent on]]
 
-vim.opt.showmode       = true
+vim.opt.showmode       = false
 vim.opt.number         = true
 vim.opt.relativenumber = true
 
