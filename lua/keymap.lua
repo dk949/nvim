@@ -82,6 +82,8 @@ k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, de
 
 -- Plugins
 
+k.set('n', "<leader>mg", ":Goyo<CR>", desc [[toggle Tree file browser]])
+
 k.set('n', "<leader>nn", ":NvimTreeFindFileToggle<CR>", desc [[toggle Tree file browser]])
 
 k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc [[toggle minimap]])

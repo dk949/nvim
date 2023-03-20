@@ -4,6 +4,24 @@ local lsps = {}
 local feat = require("lang_features.package")
 local function _setup(lang)
 
+    if vim.tbl_contains(feat.goyo_mode, lang) then
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "GoyoLeave",
+            callback = function()
+                require('lualine').hide({ unhide = true })
+            end,
+            nested = true,
+        })
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "GoyoEnter",
+            callback = function()
+                require("lualine").hide();
+                vim.cmd[[set tabline=]]
+            end,
+            nested = true,
+        })
+    end
+
     if vim.tbl_contains(feat.spell, lang) then
         vim.cmd [[set spell]]
     end

@@ -77,6 +77,8 @@ local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
     "gitolite", "gitrebase", "gitsendemail" }
 
 
+M.goyo_mode = { "tex", "plaintex", "markdown" }
+
 M.indent_blankline = combine(shell, config, programming)
 -- note indent_blankline does not addLangs because it has no effect in autocmd
 
@@ -169,7 +171,7 @@ local lspSetups = {
     javascript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
     javascriptreact = combineLSPs("eslint", "tsserver", "tailwindcss"),
     less            = combineLSPs("cssls", "tailwindcss"),
-    lua             = combineLSPs "sumneko_lua",
+    lua             = combineLSPs "lua_ls",
     python          = combineLSPs "pyright",
     rust            = combineLSPs "rust_analyzer",
     scss            = combineLSPs("cssls", "tailwindcss"),
