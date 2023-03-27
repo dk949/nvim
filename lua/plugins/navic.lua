@@ -1,7 +1,6 @@
 -- https://github.com/SmiteshP/nvim-navic
 return {
-    -- "SmiteshP/nvim-navic",
-    "~/code/vim/nvim-navic",
+    "SmiteshP/nvim-navic",
     config = function()
         require("nvim-navic").setup {
             icons = {
