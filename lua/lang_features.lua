@@ -16,7 +16,7 @@ local function _setup(lang)
             pattern = "GoyoEnter",
             callback = function()
                 require("lualine").hide();
-                vim.cmd[[set tabline=]]
+                vim.cmd [[set tabline=]]
             end,
             nested = true,
         })
@@ -67,6 +67,16 @@ local function _setup(lang)
         vim.keymap.set({ 'v', 'n', 'o' }, "gj", "j", { silent = true, buffer = true })
         vim.keymap.set({ 'v', 'n', 'o' }, "k", "gk", { silent = true, buffer = true })
         vim.keymap.set({ 'v', 'n', 'o' }, "gk", "k", { silent = true, buffer = true })
+
+        vim.keymap.set({ 'v', 'n', 'o' }, "0", "g0", { silent = true, buffer = true })
+        vim.keymap.set({ 'v', 'n', 'o' }, "$", "g$", { silent = true, buffer = true })
+        vim.keymap.set({ 'v', 'n', 'o' }, "g0", "0", { silent = true, buffer = true })
+        vim.keymap.set({ 'v', 'n', 'o' }, "g$", "$", { silent = true, buffer = true })
+
+        vim.keymap.set('n', "A", "g$a", { silent = true, buffer = true })
+        vim.keymap.set('n', "gA", "A", { silent = true, buffer = true })
+        vim.keymap.set('n', "I", "g0i", { silent = true, buffer = true })
+        vim.keymap.set('n', "gI", "I", { silent = true, buffer = true })
     end
 
     local capabilities = nil
