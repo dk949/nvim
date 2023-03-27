@@ -96,43 +96,24 @@ Listed in alphabetical order (roughly)
     * [X] Formatting
 
 * [ ] Plugins
-    * [X] Powerline/theme
-        * See `look`
-    * [X] `Nerdtree`
-        * Replaced by `Tree.nvim`
-    * [X] `Netdcommenter`
-        * Replaced by `Comment`
     * [X] `vim-surround`
     * [X] `vimwiki`
-    * [X] `coc`
-        * Replaced by lspconfig
     * [X] `vim-lsp-cxx-highlight`
-    * [ ] `syntastic_cpp` - Discontinued, will not be ported (unless someone forks it)
     * [X] `dutyl`
-    * [ ] `pegged.vim`
-        * Will be installed if I ever need it again
-    * [ ] `ale`
-        * See `ale`
+    * [X] `ale`
     * [X] `haskell-vim`
     * [X] `typescript-vim`
     * [X] `vim-jsx-typescript`
-    * [ ] `vim-node-inspect1`
-      * Not needed
     * [X] `vim-highlightedyank`
     * [X] `plantuml-syntax`
     * [X] `rust.vim`
-    * [X] `git-blame.vim`
-        * Replaced by `Gitsigns`
-    * [ ] `vim-asm_ca65`
+    * [X] `vim-asm_ca65`
     * [X] `tabular`
     * [X] `vim-markdown`
     * [X] `zig`
-    * [ ] `purescript-vim`
-    * [ ] `dhall-vim`
     * [X] `plenary.nvim`
     * [X] `telescope.nvim`
     * [X] `minimap.vim`
-    * [ ] `fluent`
 * [ ] LSP
     * [X] `ccls`
     * [X] `cssls`
