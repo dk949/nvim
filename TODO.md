@@ -118,12 +118,11 @@ Listed in alphabetical order (roughly)
     * [X] `ccls`
     * [X] `cssls`
     * [X] `tailwindcss`
-    * [ ] `elmLS`
+    * [X] `elmLS`
     * [X] `eslint`
     * [ ] `gopls`
     * [X] `hls`
     * [X] `html`
-    * [ ] `purescriptls`
     * [X] `pyright`
     * [ ] `ruby_ls`
     * [X] `rust_analyzer`
