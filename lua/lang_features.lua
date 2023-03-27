@@ -92,6 +92,7 @@ local function _setup(lang)
                 end
             end
         end
+        return capabilities, on_attach
     end
 
     -- lsp
