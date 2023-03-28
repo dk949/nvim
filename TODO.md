@@ -40,11 +40,8 @@ Listed in alphabetical order (roughly)
     * [X] Formatting
 * [X] JSON
     * [X] Formatting
-* [ ] Javascript/Typescript
-    * [ ] Formatting (LSP powered)
-    * [ ] Some way to set tabstop based on project(?)
-* [ ] Line count
-    * No longer in use
+* [X] Javascript/Typescript
+    * [X] Formatting (LSP powered)
 * [X] Look
     * [X] powerline/tabline: covered by lualine
     * [X] Theme covered by `onedark`
@@ -55,11 +52,7 @@ Listed in alphabetical order (roughly)
     * [X] Formatting
 * [X] Man
     * Covered by `<C-k>`
-* [ ] Maths
-    * [ ] Replace visual selection with the result of the calculation
-        * Note: It never worked in the first place
-* [ ] Markdown
-    * [ ] Formatting
+* [X] Markdown
     * [X] Logical line movement
     * [X] Spelling
 * [X] PDF
@@ -110,7 +103,7 @@ Listed in alphabetical order (roughly)
     * [X] `plenary.nvim`
     * [X] `telescope.nvim`
     * [X] `minimap.vim`
-* [ ] LSP
+* [X] LSP
     * [X] `ccls`
     * [X] `cssls`
     * [X] `tailwindcss`
@@ -120,7 +113,6 @@ Listed in alphabetical order (roughly)
     * [X] `hls`
     * [X] `html`
     * [X] `pyright`
-    * [ ] `ruby_ls`
     * [X] `rust_analyzer`
     * [X] `serve-d`
     * [X] `tsserver`
