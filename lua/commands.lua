@@ -83,3 +83,14 @@ api.nvim_create_user_command("PrintFileDirAbs", function() printFile('p:h') end,
 
 -- :h		head (last path component removed)
 api.nvim_create_user_command("PrintFileDirRel", function() printFile('h') end, { nargs = 0 })
+
+-- hexedit
+api.nvim_create_user_command("HexOn",
+    [[%!xxd]]
+    , {}
+)
+
+api.nvim_create_user_command("HexOff",
+    [[%!xxd -r ]]
+    , {}
+)
