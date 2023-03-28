@@ -73,29 +73,25 @@ Listed in alphabetical order (roughly)
     * [X] Formatting
 * [X] `ripgrep`
     * Replaced by Telescope
-* [ ] `roc`
-    * Need to check if there is vim support
 * [ ] ruby
     * [ ] Formatting
 * [X] rust
     * [X] Formatting
 * [X] snippets
     * Replaced by the `file_templates` system
-* [ ] `spacemode`
-    * was not being used
 * [X] `telescopeconfig`
 * [X] term
-* [ ] tex
+* [X] tex
     * [X] Logical line movement
     * [X] Spelling
-    * [ ] Auto compilation
+    * [X] Auto compilation
 * [X] `vimwikiconfig`
 * [X] xml
     * [X] Formatting
 * [X] Zig
     * [X] Formatting
 
-* [ ] Plugins
+* [X] Plugins
     * [X] `vim-surround`
     * [X] `vimwiki`
     * [X] `vim-lsp-cxx-highlight`
@@ -120,7 +116,7 @@ Listed in alphabetical order (roughly)
     * [X] `tailwindcss`
     * [X] `elmLS`
     * [X] `eslint`
-    * [ ] `gopls`
+    * [X] `gopls`
     * [X] `hls`
     * [X] `html`
     * [X] `pyright`

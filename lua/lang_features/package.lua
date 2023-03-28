@@ -167,6 +167,7 @@ local lspSetups = {
     cuda            = combineLSPs "ccls",
     d               = combineLSPs "serve_d",
     elm             = combineLSPs "elmls",
+    go              = combineLSPs "gopls",
     haskell         = combineLSPs "hls",
     html            = combineLSPs "html",
     javascript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
