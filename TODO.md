@@ -9,10 +9,8 @@ Listed in alphabetical order (roughly)
 * [X] cc65 support
 * [X] Cmake
     * [X] Formatting
-* [ ] C++
-    * [ ] Linting setup
+* [X] C++
     * [X] Formatting
-    * [ ] Various outdated shortcuts which will probably not be ported
 * [X] CSS
     * [X] Formatting
 * [X] D
@@ -28,14 +26,13 @@ Listed in alphabetical order (roughly)
         by `Gitsigns`
 * [X] Git Blame
     * See above
-* [ ] Go
-    * [ ] Formatting
+* [X] Go
+    * [X] Formatting
 * [ ] Haskell
     * [X] Formatting
     * [ ] REPL (See below)
-* [ ] Hexedit
-    * [ ] use `xxd` to edit binary files
-    * [ ] Decode selected regions as ascii or decimals
+* [X] Hexedit
+    * [X] use `xxd` to edit binary files
 * [X] HTML
     * [X] Formatting
 * [X] JSON
@@ -46,8 +43,6 @@ Listed in alphabetical order (roughly)
     * [X] powerline/tabline: covered by lualine
     * [X] Theme covered by `onedark`
     * [X] JSX custom colors
-    * [ ] Semshi custom colors
-      * will port if using semshi (which is unlikely)
 * [X] Make
     * [X] Formatting
 * [X] Man
@@ -66,8 +61,6 @@ Listed in alphabetical order (roughly)
     * [X] Formatting
 * [X] `ripgrep`
     * Replaced by Telescope
-* [ ] ruby
-    * [ ] Formatting
 * [X] rust
     * [X] Formatting
 * [X] snippets
