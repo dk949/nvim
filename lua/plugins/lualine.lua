@@ -6,7 +6,8 @@ return {
         "nvim-tree/nvim-web-devicons"
     },
     config = function()
-        local navic       = require("nvim-navic")
+        local navic_ok, navic = pcall(require, "nvim-navic")
+
         local branch      = { 'branch' }
         local buffers     = {
             'buffers',
@@ -90,10 +91,10 @@ return {
                 lualine_b = {
                     {
                         function()
-                            return navic.get_location()
+                            return navic_ok and navic.get_location()
                         end,
                         cond = function()
-                            return navic.is_available()
+                            return navic_ok and navic.is_available()
                         end,
                     },
                 },
