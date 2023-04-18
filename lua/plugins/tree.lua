@@ -2,8 +2,26 @@
 return {
     "nvim-tree/nvim-tree.lua",
     config = function()
+        -----------------------------------------------------
+        local function on_attach(bufnr)
+            local api = require('nvim-tree.api')
+
+            local function opts(desc)
+                return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+            end
+
+            api.config.mappings.default_on_attach(bufnr)
+
+            vim.keymap.set('n', 'o', api.node.run.system, opts('Run System'))
+            vim.keymap.set('n', '<space>mi', api.node.show_info_popup, opts('Info'))
+            vim.keymap.set('n', '/', api.live_filter.start, opts('Filter'))
+            vim.keymap.set('n', '<space>/', api.live_filter.clear, opts('Clean Filter'))
+        end
+
+        -----------------------------------------------------
         require("nvim-tree").setup {
             -- changed
+            on_attach = on_attach,
             sort_by = "case_sensitive",
             hijack_unnamed_buffer_when_opening = true,
             hijack_cursor = true,
@@ -12,15 +30,7 @@ return {
             remove_keymaps = { "s", "<C-k>", "f", "F" },
             view = {
                 centralize_selection = true,
-                width = 35,
-                mappings = {
-                    list = {
-                        { key = "o", action = "system_open" },
-                        { key = "<space>mi", action = "toggle_file_info" },
-                        { key = "/", action = "live_filter" },
-                        { key = "<space>/", action = "clear_live_filter" },
-                    },
-                },
+                width = 35
             },
             renderer = {
                 highlight_git = true,
