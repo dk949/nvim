@@ -14,10 +14,10 @@ return {
             -- italic, bold, underline, none
             -- or any combination e.g. 'italic,bold'
             code_style = {
-                comments = 'none',
-                keywords = 'none',
+                comments  = 'none',
+                keywords  = 'none',
                 functions = 'none',
-                strings = 'none',
+                strings   = 'none',
                 variables = 'none'
             },
 

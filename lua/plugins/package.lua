@@ -15,7 +15,6 @@ return require("packer").startup(function()
     localUse "navic"
 
     -- Themes
-    localUse "dracula"
     localUse "onedark"
 
     -- QoL
