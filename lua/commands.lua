@@ -1,4 +1,5 @@
 local api = vim.api
+local utils = require("utils")
 
 api.nvim_create_user_command("W", "w", {})
 api.nvim_create_user_command("E", "e", {})
@@ -85,12 +86,27 @@ api.nvim_create_user_command("PrintFileDirAbs", function() printFile('p:h') end,
 api.nvim_create_user_command("PrintFileDirRel", function() printFile('h') end, { nargs = 0 })
 
 -- hexedit
+local hex_count = 0
 api.nvim_create_user_command("HexOn",
-    [[%!xxd]]
+    function()
+        local w = vim.api.nvim_win_get_width(0)
+        if w >= 124 then
+            vim.cmd [[%!xxd -c 32]]
+            hex_count = 32
+        elseif w >= 68 then
+            vim.cmd [[%!xxd -c 16]]
+            hex_count = 16
+        else
+            vim.cmd [[%!xxd -c 8]]
+            hex_count = 8
+        end
+    end
     , {}
 )
 
 api.nvim_create_user_command("HexOff",
-    [[%!xxd -r ]]
+    function()
+        vim.cmd([[%!xxd -r -c ]] .. tostring(hex_count))
+    end
     , {}
 )
