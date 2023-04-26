@@ -53,7 +53,6 @@ return require("packer").startup(function()
     localUse "pdf"
     localUse "plantuml"
     localUse "rust"
-    localUse "todotxt"
     localUse "typescript"
     localUse "zig"
     use { '~/code/vim/asterisp.vim' }
