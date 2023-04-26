@@ -44,18 +44,18 @@ return require("packer").startup(function()
     localUse "ale"
 
     -- Language support
-    localUse "plantuml"
     localUse "asm_ca65"
-    localUse "markdown"
-    localUse "zig"
-    localUse "rust"
-    localUse "llvm"
+    localUse "dutyl"
     localUse "haskell"
     localUse "jsx_typescript"
-    localUse "typescript"
-    localUse "dutyl"
-    localUse "todotxt"
+    localUse "llvm"
+    localUse "markdown"
     localUse "pdf"
+    localUse "plantuml"
+    localUse "rust"
+    localUse "todotxt"
+    localUse "typescript"
+    localUse "zig"
     use { '~/code/vim/asterisp.vim' }
 
     -- Misc
