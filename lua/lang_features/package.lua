@@ -59,7 +59,7 @@ local shell = { "csh", "bash", "sh", "tcsh", "zsh" }
 local config = { "cabal", "conf", "config", "css", "html", "i3config", "json",
     "jsonc", "kconfig", "ld", "ldapconf", "meson", "modconf", "mysql", "nginx",
     "pamconf", "fstab", "samba", "sass", "sql", "svg", "swayconfig", "systemd",
-    "diff", "terminfo", "texinfo", "toml", "viminfo", "xf86conf", "yaml" }
+    "diff", "terminfo", "texinfo", "toml", "viminfo", "xf86conf", "yaml", "todotxt" }
 local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "automake", "awk", "b", "basic", "c", "chaiscript", "clojure", "cmake",
     "cobol", "cpp", "cs", "cuda", "d", "dart", "eiffel", "elixir", "elm",
@@ -72,15 +72,19 @@ local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "vue", "yacc", "zig" }
 local text = { "autodoc", "bib", "godoc", "groff", "lhaskell", "markdown",
     "plaintex", "rst", "rtf", "tex", "text", "vimwiki",
-    "vimwiki_markdown_custom", "todotxt" }
+    "vimwiki_markdown_custom" }
 local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
     "gitolite", "gitrebase", "gitsendemail" }
 
+addLangs(shell)
+addLangs(config)
+addLangs(programming)
+addLangs(text)
+addLangs(git)
 
 M.goyo_mode = { "tex", "plaintex", "markdown" }
 
 M.indent_blankline = combine(shell, config, programming)
--- note indent_blankline does not addLangs because it has no effect in autocmd
 
 M.treesitter = uncombine(
     combine(
@@ -99,10 +103,8 @@ M.treesitter = uncombine(
     -- Supported but manually disabled
     "markdown", "haskell")
 
--- note treesitter does not addLangs because it has no effect in autocmd
 
-M.spell = combine(text, git)
-addLangs(M.spell)
+M.spell = combine(text, git, { "todotxt" })
 
 M.wrap = (function()
     local out = {}
@@ -114,7 +116,6 @@ M.wrap = (function()
     end
     return out
 end)()
-addLangs(M.wrap)
 
 M.tab = {
     markdown = 2,
@@ -145,19 +146,14 @@ M.formatoptions = (function()
 
     return out
 end)()
-addLangs(M.formatoptions)
 
 M.colorcolumn = combine(shell, config, programming)
-addLangs(M.colorcolumn)
 
 M.trailingWS = combine(shell, config, programming, git, text)
-addLangs(M.trailingWS)
 
 M.signcolumn = combine(shell, config, programming)
-addLangs(M.signcolumn)
 
 M.logicalLines = combine(git, text)
-addLangs(M.logicalLines)
 
 local lspSetups = {
     c               = combineLSPs "ccls",
@@ -188,7 +184,6 @@ for lang, lsp in pairs(lspSetups) do
     table.insert(M.lspservers, lsp.masonInstall)
 end
 M.lspservers = utils.unique(vim.tbl_flatten(M.lspservers))
-addLangs(M.lspconfig)
 
 local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
 local mggg = function() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
@@ -213,6 +208,5 @@ M.fmt = {
     rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
     xml = function() vim.cmd [[silent execute "%!xmllint --format -"]] end,
 }
-addLangs(M.fmt)
 
 return M
