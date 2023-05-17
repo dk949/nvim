@@ -75,7 +75,16 @@ k.set('n', "<leader>mf", function() if dk949.fmtFn then dk949.fmtFn() end end, d
 
 k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc [[Display hover infomration]])
 k.set('n', "<A-cr>", function() vim.lsp.buf.code_action() end, desc [[Display hover infomration]])
-k.set('n', "<leader>ccl", function() local c = vim.lsp.codelens; c.display(); c.refresh(); c.run(); c.refresh() end,
+k.set('n', "<leader>ccl", function()
+    local c = vim.lsp.codelens;
+    if c == nil then return print("codelens is nil") end
+    local lenses = c.get()
+    if vim.tbl_isempty(lenses) then return print("No codelenses found") end
+    c.display();
+    c.refresh();
+    c.run();
+    c.refresh()
+end,
     desc [[]])
 k.set('n', "<leader>cgr", function() vim.cmd [[Trouble lsp_references]] end, desc [[]])
 k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, desc [[]])
@@ -87,8 +96,6 @@ k.set('n', "<leader>mg", ":Goyo<CR>", desc [[toggle Tree file browser]])
 k.set('n', "<leader>nn", ":NvimTreeFindFileToggle<CR>", desc [[toggle Tree file browser]])
 
 k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc [[toggle minimap]])
-
-k.set('n', '<Leader>ntt', function() require('todotxt-nvim').toggle_task_pane() end, desc [[toggle todo.txt]])
 
 k.set('n', '<Leader>ntn', function() require('todotxt-nvim').capture() end, desc [[add new todo]])
 
