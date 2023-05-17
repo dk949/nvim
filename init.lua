@@ -7,6 +7,9 @@ _G.dk949 = {
     winSzInc = 5,
 }
 
+local simple = require('simple')
+if simple.isRoot() then return simple.source() end
+
 require('core')
 require('keymap')
 require('commands')
