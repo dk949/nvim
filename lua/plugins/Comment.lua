@@ -14,7 +14,7 @@ return {
             ---LHS of operator-pending mappings in NORMAL and VISUAL mode
             opleader = {
                 ---Block-comment keymap
-                block = '<space>/',
+                line = '<space>/',
             },
             ---LHS of extra mappings
             extra = {
