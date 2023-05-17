@@ -64,5 +64,5 @@ return {
             }
         end
     ),
-    masonInstall = "hls"
+    masonInstall = nil
 }
