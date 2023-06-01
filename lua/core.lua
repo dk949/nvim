@@ -37,7 +37,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
-    command = [[silent! loadview]],
+    callback = function()
+        if not vim.g.file_line_fired then
+            vim.cmd [[silent! loadview]]
+        end
+    end
 })
 
 

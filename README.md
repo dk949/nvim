@@ -32,3 +32,14 @@ A few programs still need to be installed manually for some things to work:
     * For formatting python
 * [nvr](https://github.com/mhinz/neovim-remote)
   * To correctly open files from the nvim terminal
+
+
+## License
+
+The file `plugin/file_line.vim` is licensed under GPLv3, see file for detail.
+
+All other code in this repository is licensed under The Unlicense, see LICENSE
+file.
+
+All automatically installed plugins are licensed under their respective
+licenses.

@@ -1,5 +1,3 @@
-local fn = vim.fn
-local fs = vim.fs
 local utils = require("utils")
 local localRequire = utils.makeLocalRequire [[plugins]]
 local localUse = function(plug) return require("packer").use(localRequire(plug)) end
