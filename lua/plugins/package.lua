@@ -29,6 +29,7 @@ return require("packer").startup(function()
     localUse "termutils"
     localUse "emmet"
     localUse "goyo"
+    localUse "dispatch"
 
     -- telescope
     localUse "plenary"
