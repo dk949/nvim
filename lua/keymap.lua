@@ -17,8 +17,10 @@ k.set('n', "V", "v$", desc [[V to select until the end of the line]])
 
 k.set('n', "Y", "y$", desc [[Y to yank until the end of the line]])
 
-k.set('t', "<C-[><C-[>", [[<C-\><C-n>]], desc [[Double escape to get to normal mode in terminal mode]])
+k.set('n', "gf", ":silent call File_line_goto_file_line(expand('<cWORD>')) | doautocmd InsertLeave<CR>", desc[[use file:line:col instead of <cfile>]])
 
+k.set('t', "<C-[><C-[>", [[<C-\><C-n>:doautocmd User TermUtilsLeave<CR>]],
+    desc [[Double escape to get to normal mode in terminal mode]])
 
 k.set('n', "ZZ", function() require("termutils").smartClose() end,
     desc [[If last buffer was a terminal, erturn to that terminal]])

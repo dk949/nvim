@@ -1,4 +1,6 @@
 local api = vim.api
+local utils = require("utils")
+local termutils = require("termutils")
 -- Map the leader key to space
 vim.g.mapleader = dk949.leader
 
@@ -44,6 +46,33 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
 })
 
+
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+    pattern = "term://*",
+    callback = function()
+        if vim.b.term_mode == nil then vim.b.term_mode = "t" end
+
+        utils.switch(vim.b.term_mode) {
+            n = function() end,
+            t = function() vim.cmd [[:startinsert]] end,
+            __default = function(m) error("Unexpected mode: ", m) end,
+        }
+    end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "TermUtilsLeave",
+    callback = function()
+        vim.b.term_mode = 'n'
+    end,
+})
+
+vim.api.nvim_create_autocmd("TermEnter", {
+    pattern = "*",
+    callback = function()
+        vim.b.term_mode = 't'
+    end,
+})
 
 vim.opt.wildignorecase = true
 vim.opt.ignorecase = true
