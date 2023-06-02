@@ -42,7 +42,7 @@ function! File_line_goto_file_line(...)
 
   if filereadable(fname)
     let bufnr = bufnr('%')
-    execute 'keepalt edit' fnameescape(fname)
+    execute 'edit' fnameescape(fname)
     " execute 'bdelete' bufnr
 
     execute line
