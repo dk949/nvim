@@ -19,7 +19,6 @@ k.set('n', "Y", "y$", desc [[Y to yank until the end of the line]])
 
 k.set('t', "<C-[><C-[>", [[<C-\><C-n>]], desc [[Double escape to get to normal mode in terminal mode]])
 
-k.set('n', "<C-l>", ":mode<CR>", desc [[redraw the screen on ctrl-l]])
 
 k.set('n', "ZZ", function() require("termutils").smartClose() end,
     desc [[If last buffer was a terminal, erturn to that terminal]])
@@ -32,6 +31,8 @@ for _, dir in ipairs { 'h', 'j', 'k', 'l' } do
         desc("use ctrl-" .. dir .. " to move between windows in insert and terminal modes"))
     k.set('n', "<C-" .. dir .. ">", "<C-w>" .. dir, desc("use ctrl-" .. dir .. " to move between windows in normal mode"))
 end
+
+k.set('t', "<C-l>", [[<space>clear<CR>]], desc [[clear terminal screen]])
 
 k.set('n', "j", function() return (vim.bo.buftype == "quickfix") and ":cnext<CR>:wincmd p<CR>" or 'j' end,
     edesc [[j moves to next quickfix]])
