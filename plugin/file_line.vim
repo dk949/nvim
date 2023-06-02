@@ -14,11 +14,11 @@ let g:file_line_fallback_column0 = v:false
 
 augroup file_line
   autocmd!
-  autocmd! BufNewFile * nested call s:goto_file_line()
-  autocmd! BufRead    * nested call s:goto_file_line()
+  autocmd! BufNewFile * nested call File_line_goto_file_line()
+  autocmd! BufRead    * nested call File_line_goto_file_line()
 augroup END
 
-function! s:goto_file_line(...)
+function! File_line_goto_file_line(...)
   let file_line_col = a:0 > 0 ? a:1 : bufname('%')
   if filereadable(file_line_col) || file_line_col ==# ''
     return file_line_col
@@ -43,7 +43,7 @@ function! s:goto_file_line(...)
   if filereadable(fname)
     let bufnr = bufnr('%')
     execute 'keepalt edit' fnameescape(fname)
-    execute 'bdelete' bufnr
+    " execute 'bdelete' bufnr
 
     execute line
     execute 'normal!' col
@@ -55,9 +55,8 @@ function! s:goto_file_line(...)
       call s:crosshair_flash(g:file_line_crosshairs_number, g:file_line_crosshairs_duration)
     endif
 
-    let g:file_line_fired = v:true
   endif
-
+  let g:file_line_fired = v:true
   return fname
 endfunction
 
