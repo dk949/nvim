@@ -4,9 +4,9 @@ function M.wincmd(cmd)
     vim.cmd("wincmd " .. cmd)
 end
 
-function M.fnOrVal(val)
+function M.fnOrVal(val, ...)
     if type(val) == 'function' then
-        return val()
+        return val(...)
     else
         return val
     end
@@ -39,9 +39,18 @@ end
 function M.switch(on)
     return function(stmt)
         if stmt[on] ~= nil then
-            return M.fnOrVal(stmt[on])
+            return M.fnOrVal(stmt[on], on)
         else
-            return M.fnOrVal(stmt.__default)
+            for k, v in pairs(stmt) do
+                if type(k) == "table" and vim.tbl_islist(k) then
+                    for _, option in ipairs(k) do
+                        if option == on then
+                            return M.fnOrVal(v, option)
+                        end
+                    end
+                end
+            end
+            return M.fnOrVal(stmt.__default, on)
         end
     end
 end
