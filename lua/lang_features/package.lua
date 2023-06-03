@@ -188,7 +188,9 @@ M.lspservers = utils.unique(vim.tbl_flatten(M.lspservers))
 
 local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
 local mggg = function() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
-local lspFmt = function() vim.lsp.buf.format(); vim.cmd [[:w]] end
+local lspFmt = function()
+    vim.lsp.buf.format(); vim.cmd [[:w]]
+end
 M.fmt = {
     c = function() fmtRun [[clang-format --style=file -i %]] end,
     cmake = function() fmtRun [[cmake-format -i %]] end,
@@ -206,8 +208,11 @@ M.fmt = {
     html = lspFmt,
     make = mggg,
     python = function() fmtRun [[autopep8 -i %]] end,
-    rust = function() vim.cmd [[RustFmt]]; vim.cmd [[:w]] end,
+    rust = function()
+        vim.cmd [[RustFmt]]; vim.cmd [[:w]]
+    end,
     xml = function() vim.cmd [[silent execute "%!xmllint --format -"]] end,
+    zig = function() fmtRun [[zig fmt %]] end,
 }
 
 return M
