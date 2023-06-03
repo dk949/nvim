@@ -12,7 +12,7 @@ vim.opt.number         = true
 vim.opt.relativenumber = true
 
 -- Hybrid numbering in normal mode and normal numbering in insert mode
-local line_number_grp = vim.api.nvim_create_augroup("line_numbers", { clear = true })
+local line_number_grp  = vim.api.nvim_create_augroup("line_numbers", { clear = true })
 vim.api.nvim_create_autocmd("InsertLeave", {
     pattern = "*",
     command = "set relativenumber number",
@@ -71,6 +71,13 @@ vim.api.nvim_create_autocmd("TermEnter", {
     pattern = "*",
     callback = function()
         vim.b.term_mode = 't'
+    end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "*",
+    callback = function()
+        vim.cmd [[:startinsert]]
     end,
 })
 
