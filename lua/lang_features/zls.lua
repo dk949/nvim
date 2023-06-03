@@ -1,1 +1,1 @@
-return require("utils").makeDefaultLspCounfig("zls")
+return require("utils").makeDefaultLspCounfig("zls", { install = false })
