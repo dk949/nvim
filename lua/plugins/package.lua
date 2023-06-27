@@ -54,6 +54,7 @@ return require("packer").startup(function()
     localUse "rust"
     localUse "typescript"
     localUse "zig"
+    localUse "glsl"
     use { '~/code/vim/asterisp.vim' }
 
     -- Misc
