@@ -67,6 +67,8 @@ vim.cmd [[cabbrev tb Tabularize /]]
 
 vim.cmd [[cabbrev topen Trouble]]
 
+vim.cmd [[cabbrev mak Make!]]
+
 local function printFile(mode)
     local name = vim.fn.expand("%:" .. mode)
     local pos = vim.fn.getpos('.')
