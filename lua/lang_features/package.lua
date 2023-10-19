@@ -101,7 +101,7 @@ M.treesitter = uncombine(
     "texinfo", "text", "typescriptreact", "viminfo", "vimwiki",
     "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh",
     -- Supported but manually disabled
-    "markdown", "haskell")
+    "markdown", "haskell", "bash")
 
 
 M.spell = combine(text, git, { "todotxt" })
@@ -164,6 +164,7 @@ local lspSetups = {
     cuda            = combineLSPs "ccls",
     d               = combineLSPs "serve_d",
     elm             = combineLSPs "elmls",
+    fortran         = combineLSPs "fortls",
     go              = combineLSPs "gopls",
     haskell         = combineLSPs "hls",
     html            = combineLSPs "html",
@@ -195,22 +196,23 @@ M.fmt = {
     c = function() fmtRun [[clang-format --style=file -i %]] end,
     cmake = function() fmtRun [[cmake-format -i %]] end,
     cpp = function() fmtRun [[clang-format --style=file -i %]] end,
-    cuda = function() fmtRun [[clang-format --style=file -i %]] end,
     css = mggg,
+    cuda = function() fmtRun [[clang-format --style=file -i %]] end,
     d = function() fmtRun [[dfmt -i %]] end,
+    fortran = lspFmt,
     haskell = function() fmtRun [[fourmolu -i %]] end,
-    json = function() vim.cmd [[silent execute "%!jq ."]] end,
+    html = lspFmt,
     javascript = lspFmt,
     javascriptreact = lspFmt,
-    typescript = lspFmt,
-    typescriptreact = lspFmt,
+    json = function() vim.cmd [[silent execute "%!jq ."]] end,
     lua = lspFmt,
-    html = lspFmt,
     make = mggg,
     python = function() fmtRun [[autopep8 -i %]] end,
     rust = function()
         vim.cmd [[RustFmt]]; vim.cmd [[:w]]
     end,
+    typescript = lspFmt,
+    typescriptreact = lspFmt,
     xml = function() vim.cmd [[silent execute "%!xmllint --format -"]] end,
     zig = function() fmtRun [[zig fmt %]] end,
 }
