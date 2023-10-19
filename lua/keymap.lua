@@ -17,6 +17,10 @@ k.set('n', "V", "v$", desc [[V to select until the end of the line]])
 
 k.set('n', "Y", "y$", desc [[Y to yank until the end of the line]])
 
+
+k.set('n', "<A-y>", "zl", desc[[use alt-y to scroll right]])
+k.set('n', "<A-e>", "zh", desc[[use alt-e to scroll left]])
+
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",
     callback = function()
