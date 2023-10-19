@@ -3,3 +3,8 @@ bundle/*
 spell
 .luarc.json
 plugin/*.html
+
+
+# Don't think I can make these public :(
+syntax/csl.vim
+ftdetect/csl.vim
