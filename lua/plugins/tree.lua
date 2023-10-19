@@ -27,7 +27,7 @@ return {
             hijack_cursor = true,
             hijack_netrw = true,
             modified = { enable = true },
-            remove_keymaps = { "s", "<C-k>", "f", "F" },
+            -- remove_keymaps = { "s", "<C-k>", "f", "F" },
             view = {
                 centralize_selection = true,
                 width = 35
@@ -46,7 +46,7 @@ return {
             },
             actions = {
                 use_system_clipboard = false,
-                open_file = { quit_on_open = true },
+                open_file = { quit_on_open = false },
             },
             tab = { sync = { open = true, close = true } },
         }
