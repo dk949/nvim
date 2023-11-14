@@ -52,6 +52,7 @@ vim.g.vimwiki_list                      = { {
     auto_generate_tags        = 1,
     exclude_files             = {},
 } }
+vim.g.vimwiki_rx_todo = [[\C\<\%(NOTE\|TODO\|DONE\|STARTED\|FIXME\|FIXED\|XXX\)\>]]
 
 return {
     "vimwiki/vimwiki",
