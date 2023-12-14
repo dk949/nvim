@@ -29,7 +29,6 @@ return {
             highlights = {
                 SpellBad  = { fg = '$red', fmt = 'underdouble' },
                 SpellCap  = { fg = '$cyan' },
-                SpellRare = { fg = 'Magenta' },
                 SpellLocal= { fg = "$orange", fmt = 'underline' },
             }, -- Override highlight groups
 
