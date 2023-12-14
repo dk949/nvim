@@ -24,6 +24,7 @@ local function _setup(lang)
 
     if vim.tbl_contains(feat.spell, lang) then
         vim.cmd [[set spell]]
+        vim.cmd [[set spelllang=en_gb]]
     end
 
     if feat.wrap[lang] ~= nil then

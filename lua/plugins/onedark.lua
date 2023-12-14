@@ -26,7 +26,12 @@ return {
             },
 
             colors = {}, -- Override default colors
-            highlights = {}, -- Override highlight groups
+            highlights = {
+                SpellBad  = { fg = '$red', fmt = 'underdouble' },
+                SpellCap  = { fg = '$cyan' },
+                SpellRare = { fg = 'Magenta' },
+                SpellLocal= { fg = "$orange", fmt = 'underline' },
+            }, -- Override highlight groups
 
             diagnostics = {
                 darker = true, -- darker colors for diagnostic
