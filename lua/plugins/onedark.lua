@@ -10,6 +10,9 @@ return {
             ending_tildes = false,
             cmp_itemkind_reverse = true,
 
+            toggle_style_key = "<leader>o",
+            toggle_style_list = { 'dark', 'light' },
+
 
             -- italic, bold, underline, none
             -- or any combination e.g. 'italic,bold'
@@ -27,14 +30,14 @@ return {
 
             colors = {}, -- Override default colors
             highlights = {
-                SpellBad  = { fg = '$red', fmt = 'underdouble' },
-                SpellCap  = { fg = '$cyan' },
-                SpellLocal= { fg = "$orange", fmt = 'underline' },
+                SpellBad   = { fg = '$red', fmt = 'underdouble' },
+                SpellCap   = { fg = '$cyan' },
+                SpellLocal = { fg = "$orange", fmt = 'underline' },
             }, -- Override highlight groups
 
             diagnostics = {
-                darker = true, -- darker colors for diagnostic
-                undercurl = true, -- use undercurl instead of underline for diagnostics
+                darker = true,     -- darker colors for diagnostic
+                undercurl = true,  -- use undercurl instead of underline for diagnostics
                 background = true, -- use background color for virtual text
             },
         }
