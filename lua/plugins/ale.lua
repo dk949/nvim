@@ -3,5 +3,6 @@ vim.g.ale_virtualtext_cursor = false -- it's distracting in combination with the
 vim.g.ale_linters_explicit = true -- Only run linters named in ale_linters settings.
 vim.g.ale_linters = {
     sh = { 'shellcheck' },
+    cpp = { 'clangtidy' },
 }
 return { "dense-analysis/ale" }
