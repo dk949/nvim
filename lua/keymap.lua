@@ -18,8 +18,8 @@ k.set('n', "V", "v$", desc [[V to select until the end of the line]])
 k.set('n', "Y", "y$", desc [[Y to yank until the end of the line]])
 
 
-k.set('n', "<A-y>", "zl", desc[[use alt-y to scroll right]])
-k.set('n', "<A-e>", "zh", desc[[use alt-e to scroll left]])
+k.set('n', "<A-y>", "zl", desc [[use alt-y to scroll right]])
+k.set('n', "<A-e>", "zh", desc [[use alt-e to scroll left]])
 
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",
@@ -62,7 +62,8 @@ end
 -- Disabled features
 
 if not dk949.arrows then
-    for _, arr in ipairs({ "up", "down", "left", "right" }) do k.set({ 'n', 'i', 'v' }, "<" .. arr .. ">", "<nop>",
+    for _, arr in ipairs({ "up", "down", "left", "right" }) do
+        k.set({ 'n', 'i', 'v' }, "<" .. arr .. ">", "<nop>",
             desc("dispable " .. arr .. " arrow"))
     end
 end
