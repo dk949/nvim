@@ -114,8 +114,6 @@ k.set('n', "<leader>nn", ":NvimTreeFindFileToggle<CR>", desc [[toggle Tree file 
 
 k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc [[toggle minimap]])
 
-k.set('n', '<Leader>ntn', function() require('todotxt-nvim').capture() end, desc [[add new todo]])
-
 k.set('n', '<Leader>gb', ":Gitsigns blame_line<CR>", desc [[Show git blame for current line]])
 k.set('n', '<Leader>gv', ":Gitsigns preview_hunk_inline<CR>", desc [[Preview hunk under cursor]])
 k.set('n', ']]', ":Gitsigns next_hunk<CR>", desc [[go to next hunk]])
