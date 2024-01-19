@@ -88,21 +88,19 @@ k.set('n', "<leader>mi", function() vim.lsp.buf.hover() end, desc [[Display hove
 
 k.set('n', "<leader>mf", function() if dk949.fmtFn then dk949.fmtFn() end end, desc [[Format current file]])
 
-k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc [[Display hover infomration]])
-k.set('n', "<A-cr>", function() vim.lsp.buf.code_action() end, desc [[Display hover infomration]])
+k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc [[Rename symbol]])
+k.set('n', "<A-cr>", function() vim.lsp.buf.code_action() end, desc [[Code action]])
 k.set('n', "<leader>ccl", function()
-    local c = vim.lsp.codelens;
-    if c == nil then return print("codelens is nil") end
-    local lenses = c.get()
-    if vim.tbl_isempty(lenses) then return print("No codelenses found") end
-    c.display();
-    c.refresh();
-    c.run();
-    c.refresh()
-end,
-    desc [[]])
-k.set('n', "<leader>cgr", function() vim.cmd [[Trouble lsp_references]] end, desc [[]])
-k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, desc [[]])
+        local c = vim.lsp.codelens;
+        if c == nil then return print("codelens is nil") end
+        local lenses = c.get()
+        if vim.tbl_isempty(lenses) then return print("No codelenses found") end
+        c.display();
+        c.refresh();
+        c.run();
+        c.refresh()
+    end,
+    desc [[Code lense]])
 
 -- Plugins
 
