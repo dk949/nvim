@@ -101,6 +101,10 @@ k.set('n', "<leader>ccl", function()
         c.refresh()
     end,
     desc [[Code lense]])
+k.set('n', "<leader>cj", function() vim.diagnostic.goto_next() end, desc [[Go to next diagnistic]])
+k.set('n', "<leader>ck", function() vim.diagnostic.goto_prev() end, desc [[Go to next previous]])
+k.set('n', "<leader>ci", function() vim.diagnostic.open_float() end, desc [[Open diagnistic in a float]])
+k.set('n', "<leader>ca", ":ALEToggle<CR>", desc [[Toggle ALE]])
 
 -- Plugins
 
