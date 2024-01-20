@@ -112,3 +112,27 @@ api.nvim_create_user_command("HexOff",
     end
     , {}
 )
+
+local function runGit(...)
+    local args = { "git", ... }
+    return function() vim.fn.jobstart(args, {}) end
+end
+
+local function runGitWithEditor(...)
+    local args = { "git", ... }
+    return function()
+        require('termutils').addCurrentWin()
+        vim.fn.jobstart(args, {
+            env = { GIT_EDITOR = 'nvr --remote-wait-silent --servername ' .. vim.v.servername },
+            on_exit = function() require('termutils').removeCurrentWin() end,
+        })
+    end
+end
+
+api.nvim_create_user_command("GitCommit", runGitWithEditor("commit", "-v"), {})
+api.nvim_create_user_command("GitCommitAmmend", runGitWithEditor("commit", "--amend", "-v"), {})
+api.nvim_create_user_command("GitCommitAmmendNoEdit", runGit("commit", "--amend", "-v", "--no-edit"), {})
+
+vim.cmd [[cabbrev gcm GitCommit]]
+vim.cmd [[cabbrev gca GitCommitAmmend]]
+vim.cmd [[cabbrev gcan GitCommitAmmendNoEdit]]
