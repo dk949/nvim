@@ -105,6 +105,8 @@ k.set('n', "<leader>cj", function() vim.diagnostic.goto_next() end, desc [[Go to
 k.set('n', "<leader>ck", function() vim.diagnostic.goto_prev() end, desc [[Go to next previous]])
 k.set('n', "<leader>ci", function() vim.diagnostic.open_float() end, desc [[Open diagnistic in a float]])
 k.set('n', "<leader>ca", ":ALEToggle<CR>", desc [[Toggle ALE]])
+k.set('n', "<leader>cgr", function() vim.cmd [[Trouble lsp_references]] end, desc [[Go to reference]])
+k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, desc [[Go to definition]])
 
 -- Plugins
 
