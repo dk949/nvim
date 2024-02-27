@@ -192,24 +192,40 @@ for lang, lsp in pairs(lspSetups) do
 end
 M.lspservers = utils.unique(vim.tbl_flatten(M.lspservers))
 
-local fmtRun = function(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
-local mggg = function() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
-local lspFmt = function()
-    vim.lsp.buf.format(); vim.cmd [[:w]]
+local function fmtRun(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
+local function mggg() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
+local function lspFmt()
+    vim.lsp.buf.format()
+    vim.cmd [[:w]]
+end
+local function clang_format()
+    fmtRun [[clang-format --fallback-style=Google --style=file -i %]]
+end
+local function json_fmt()
+    local pos = vim.fn.getpos('.')
+    vim.cmd [[silent execute "%!jq ."]]
+    if vim.v.shell_error ~= 0 then
+        local err = vim.fn.getline('.')
+        vim.cmd [[u]]
+        utils.warnPrint("Could not format: " .. err)
+    else
+        vim.cmd [[w]]
+    end
+    vim.fn.setpos('.', pos)
 end
 M.fmt = {
-    c = function() fmtRun [[clang-format --style=file -i %]] end,
+    c = clang_format,
     cmake = function() fmtRun [[cmake-format -i %]] end,
-    cpp = function() fmtRun [[clang-format --style=file -i %]] end,
+    cpp = clang_format,
     css = mggg,
-    cuda = function() fmtRun [[clang-format --style=file -i %]] end,
+    cuda = clang_format,
     d = function() fmtRun [[dfmt -i %]] end,
     fortran = lspFmt,
     haskell = function() fmtRun [[fourmolu -i %]] end,
     html = lspFmt,
     javascript = lspFmt,
     javascriptreact = lspFmt,
-    json = function() vim.cmd [[silent execute "%!jq ."]] end,
+    json = json_fmt,
     lua = lspFmt,
     make = mggg,
     python = function() fmtRun [[autopep8 -i %]] end,
