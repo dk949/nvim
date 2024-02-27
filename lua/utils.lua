@@ -115,7 +115,9 @@ function M.makeDefaultLspCounfig(servername, opts)
             function()
                 if opts.install == nil or opts.install == true then
                     return servername
-                else return nil end
+                else
+                    return nil
+                end
             end)()
     }
 end
@@ -191,6 +193,8 @@ function M.shRun(cmd, opts)
         runnerFn = function() vim.cmd(runner) end
     elseif opts.runner == "system" then
         runnerFn = function() return vim.fn.system(cmd) end
+    else
+        error("Expected runner to be one of 'bang' or 'system'")
     end
 
     local res = runnerFn()
