@@ -11,7 +11,7 @@ return {
             cmp_itemkind_reverse = true,
 
             toggle_style_key = "<leader>o",
-            toggle_style_list = { 'dark', 'light' },
+            toggle_style_list = { 'light', 'dark' },
 
 
             -- italic, bold, underline, none
