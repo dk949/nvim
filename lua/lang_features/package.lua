@@ -44,7 +44,7 @@ M.allLangs = {}
 
 
 local function addLangs(feat)
-    local get = {}
+    local get = nil
     if vim.tbl_islist(feat) then
         get = vim.tbl_values
     else
