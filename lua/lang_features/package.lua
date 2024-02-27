@@ -119,8 +119,8 @@ end)()
 
 M.tab = {
     markdown = { len = 2, expand = true },
-    html = { len = 2, expand = true },
-    make = { len = 4, expand = false },
+    html     = { len = 2, expand = true },
+    make     = { len = 4, expand = false },
 }
 
 M.formatoptions = (function()
