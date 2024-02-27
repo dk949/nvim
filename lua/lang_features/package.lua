@@ -56,23 +56,23 @@ local function addLangs(feat)
 end
 
 local shell = { "csh", "bash", "sh", "tcsh", "zsh" }
-local config = { "cabal", "conf", "config", "css", "html", "i3config", "json",
-    "jsonc", "kconfig", "ld", "ldapconf", "meson", "modconf", "mysql", "nginx",
-    "pamconf", "fstab", "samba", "sass", "sql", "svg", "swayconfig", "systemd",
-    "diff", "terminfo", "texinfo", "toml", "viminfo", "xf86conf", "yaml", "todotxt" }
+local config = { "bib", "cabal", "conf", "config", "css", "diff", "fstab",
+    "html", "i3config", "json", "jsonc", "kconfig", "ld", "ldapconf", "meson",
+    "modconf", "mysql", "nginx", "pamconf", "samba", "sass", "sql", "svg",
+    "swayconfig", "systemd", "terminfo", "texinfo", "text", "todotxt", "toml",
+    "viminfo", "xf86conf", "yaml" }
 local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "automake", "awk", "b", "basic", "c", "chaiscript", "clojure", "cmake",
     "cobol", "cpp", "cs", "cuda", "d", "dart", "eiffel", "elixir", "elm",
     "erlang", "eruby", "fasm", "forth", "fortran", "freebasic", "go", "groovy",
     "haskell", "j", "java", "javascript", "javascriptreact", "julia", "kotlin",
-    "lex", "lisp", "lua", "m4", "make", "nasm", "ninja", "nix", "ocaml", "octave",
-    "pascal", "perl", "php", "plantuml", "prolog", "ps1", "python", "r",
-    "racket", "raku", "ruby", "rust", "scala", "scheme", "scss", "sed",
+    "lex", "lisp", "lua", "m4", "make", "nasm", "ninja", "nix", "ocaml",
+    "octave", "pascal", "perl", "php", "plantuml", "prolog", "ps1", "python",
+    "r", "racket", "raku", "ruby", "rust", "scala", "scheme", "scss", "sed",
     "simula", "swift", "tasm", "tcl", "typescript", "typescriptreact", "vim",
     "vue", "yacc", "zig" }
-local text = { "autodoc", "bib", "godoc", "groff", "lhaskell", "markdown",
-    "plaintex", "rst", "rtf", "tex", "text", "vimwiki",
-    "vimwiki_markdown_custom" }
+local text = { "autodoc", "godoc", "groff", "lhaskell", "markdown", "plaintex",
+    "rst", "rtf", "tex", "vimwiki", "vimwiki_markdown_custom" }
 local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
     "gitolite", "gitrebase", "gitsendemail" }
 
@@ -104,7 +104,7 @@ M.treesitter = uncombine(
     "markdown", "haskell", "bash")
 
 
-M.spell = combine(text, git, { "todotxt" })
+M.spell = combine(text, git, { "bib", "todotxt", "text" })
 
 M.wrap = (function()
     local out = {}
