@@ -141,8 +141,12 @@ M.formatoptions = (function()
     --      1   Don't break a line after a one-letter word.  It's broken before it
     --          instead (if possible).
     --      j   Where it makes sense, remove a comment leader when joining lines.
+    --      a   Automatic formatting of paragraphs.  Every time text is inserted or
+    --          deleted the paragraph will be reformatted.  See |auto-format|.
+    --          When the 'c' flag is present this only happens for recognized
+    --          comments.
 
-    for _, lang in ipairs(text) do out[lang] = "tn1" end
+    for _, lang in ipairs(text) do out[lang] = "atn1" end
     for _, lang in ipairs(combine(shell, config, programming)) do out[lang] = "lqj" end
 
     return out
