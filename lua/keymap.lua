@@ -86,7 +86,13 @@ k.set('n', "<Leader>mt", function() require("termutils").startTerminal() end, de
 
 k.set('n', "<leader>mi", function() vim.lsp.buf.hover() end, desc [[Display hover infomration]])
 
-k.set('n', "<leader>mf", function() if dk949.fmtFn then dk949.fmtFn() end end, desc [[Format current file]])
+k.set('n', "<leader>mf",
+    function()
+        if dk949.fmtFn and dk949.fmtFn[vim.fn.bufnr()] then
+            dk949.fmtFn[vim.fn.bufnr()]()
+        end
+    end,
+    desc [[Format current file]])
 
 k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc [[Rename symbol]])
 k.set('n', "<A-cr>", function() vim.lsp.buf.code_action() end, desc [[Code action]])
