@@ -2,7 +2,7 @@ local api = vim.api
 local utils = require("utils")
 
 api.nvim_create_user_command("W", "w", {})
-api.nvim_create_user_command("E", "e", {})
+api.nvim_create_user_command("E", "e <args>", { complete = "file", nargs = 1 })
 
 local function deleteView()
     local fn = vim.fn
