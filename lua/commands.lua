@@ -19,8 +19,7 @@ end
 
 api.nvim_create_user_command("Delview", function() deleteView() end, {})
 
--- Lower-case user commands: http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
-vim.cmd [[cabbrev delview <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Delview' : 'delview')<CR>]]
+utils.addAbrev("delview", "Delview")
 
 api.nvim_create_user_command("EchoHl",
     [[echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"]]
@@ -59,15 +58,15 @@ api.nvim_create_user_command("GitAddPatch",
     { nargs = 0 }
 )
 
-vim.cmd [[cabbrev gd rightbelow Gitsigns diffthis]]
-vim.cmd [[cabbrev gb Gitsigns toggle_current_line_blame]]
-vim.cmd [[cabbrev gap GitAddPatch]]
+utils.addAbrev("gd", "rightbelow Gitsigns diffthis")
+utils.addAbrev("gb", "Gitsigns toggle_current_line_blame")
+utils.addAbrev("gap", "GitAddPatch")
 
-vim.cmd [[cabbrev tb Tabularize /]]
+utils.addAbrev("tb", "Tabularize /")
 
-vim.cmd [[cabbrev topen Trouble]]
+utils.addAbrev("topen", "Trouble")
 
-vim.cmd [[cabbrev mak Make!]]
+utils.addAbrev("mak", "Make!")
 
 local function printFile(mode)
     local name = vim.fn.expand("%:" .. mode)
@@ -133,6 +132,7 @@ api.nvim_create_user_command("GitCommit", runGitWithEditor("commit", "-v"), {})
 api.nvim_create_user_command("GitCommitAmmend", runGitWithEditor("commit", "--amend", "-v"), {})
 api.nvim_create_user_command("GitCommitAmmendNoEdit", runGit("commit", "--amend", "-v", "--no-edit"), {})
 
-vim.cmd [[cabbrev gcm GitCommit]]
-vim.cmd [[cabbrev gca GitCommitAmmend]]
-vim.cmd [[cabbrev gcan GitCommitAmmendNoEdit]]
+utils.addAbrev("gcm", "GitCommit")
+utils.addAbrev("gca", "GitCommitAmmend")
+utils.addAbrev("gcan", "GitCommitAmmendNoEdit")
+
