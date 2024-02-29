@@ -133,7 +133,16 @@ local function runGitWithEditor(...)
     end
 end
 
-api.nvim_create_user_command("GitCommit", runGitWithEditor("commit", "-v"), {})
+local function gitCommit(opts)
+    if opts.args == "" then
+        runGitWithEditor("commit", "-v")()
+    else
+        runGit("commit", "-m", opts.args)()
+    end
+end
+
+-- api.nvim_create_user_command("GitCommit", runGitWithEditor("commit", "-v"), { nargs = 1 })
+api.nvim_create_user_command("GitCommit", gitCommit, { nargs = '?' })
 api.nvim_create_user_command("GitCommitAmmend", runGitWithEditor("commit", "--amend", "-v"), {})
 api.nvim_create_user_command("GitCommitAmmendNoEdit", runGit("commit", "--amend", "-v", "--no-edit"), {})
 
