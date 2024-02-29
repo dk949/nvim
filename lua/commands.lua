@@ -114,7 +114,12 @@ api.nvim_create_user_command("HexOff",
 
 local function runGit(...)
     local args = { "git", ... }
-    return function() vim.fn.jobstart(args, {}) end
+    return function()
+        -- For some reason this does not work if the table is empty
+        -- I think it gets interpreted as a list and passed to a vim function
+        -- expecting a dictionary.
+        vim.fn.jobstart(args, { on_exit = function() end })
+    end
 end
 
 local function runGitWithEditor(...)
@@ -135,4 +140,3 @@ api.nvim_create_user_command("GitCommitAmmendNoEdit", runGit("commit", "--amend"
 utils.addAbrev("gcm", "GitCommit")
 utils.addAbrev("gca", "GitCommitAmmend")
 utils.addAbrev("gcan", "GitCommitAmmendNoEdit")
-
