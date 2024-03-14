@@ -230,4 +230,15 @@ function M.unique(tbl)
     return vim.tbl_keys(vals)
 end
 
+---Add an abbreviated command such that it does not get replaced in other contexts
+---http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+---@param new string
+---@param old string
+function M.addAbrev(new, old)
+    vim.cmd(
+        "cabbrev " .. new .. " <c-r>" ..
+        "=(getcmdtype()==':' && getcmdpos()==1 ? '" .. old .. "' : '" .. new .. "')<CR>"
+    )
+end
+
 return M
