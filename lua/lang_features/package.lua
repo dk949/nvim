@@ -205,7 +205,7 @@ local function json_fmt()
     local pos = vim.fn.getpos('.')
     vim.cmd [[silent execute "%!jq ."]]
     if vim.v.shell_error ~= 0 then
-        local err = vim.fn.getline('.')
+        local err = table.concat(vim.fn.getline('^', '$'), '\n')
         vim.cmd [[u]]
         utils.warnPrint("Could not format: " .. err)
     else
