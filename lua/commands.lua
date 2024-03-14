@@ -111,14 +111,22 @@ api.nvim_create_user_command("HexOff",
     end
     , {}
 )
+local function reportGit(code, kind, err)
+    if code == 0 then
+        print(kind .. " successful")
+        return
+    end
+    utils.errPrint(kind .. " failed: " .. err)
+end
 
 local function runGit(...)
     local args = { "git", ... }
     return function()
-        -- For some reason this does not work if the table is empty
-        -- I think it gets interpreted as a list and passed to a vim function
-        -- expecting a dictionary.
-        vim.fn.jobstart(args, { on_exit = function() end })
+        local gitErrors = ""
+        vim.fn.jobstart(args, {
+            on_stderr = function(err) gitErrors = gitErrors .. err end,
+            on_exit = function(arg) reportGit(arg[2], args[1] .. " " .. args[2], gitErrors) end
+        })
     end
 end
 
@@ -126,9 +134,14 @@ local function runGitWithEditor(...)
     local args = { "git", ... }
     return function()
         require('termutils').addCurrentWin()
+        local gitErrors = ""
         vim.fn.jobstart(args, {
             env = { GIT_EDITOR = 'nvr --remote-wait-silent --servername ' .. vim.v.servername },
-            on_exit = function() require('termutils').removeCurrentWin() end,
+            on_stderr = function(err) gitErrors = gitErrors .. err end,
+            on_exit = function()
+                reportGit(arg[2], args[1] .. " " .. args[2], gitErrors)
+                require('termutils').removeCurrentWin()
+            end,
         })
     end
 end
