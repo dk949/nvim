@@ -28,6 +28,8 @@ return require("packer").startup(function()
     localUse "emmet"
     localUse "goyo"
     localUse "dispatch"
+    localUse "icon_picker"
+    localUse "dressing"
 
     -- telescope
     localUse "plenary"
