@@ -1,8 +1,11 @@
 -- https://github.com/nvim-telescope/telescope.nvim
+
+local function teleTheme(mode)
+    return require('telescope.themes').get_ivy({ dir_icon = '❯', initial_mode = mode, sections = { "1", "2", "3" } })
+end
+
 function TeleConfig(str, mode)
-    return require('telescope.builtin')[str](
-        require('telescope.themes').get_ivy({ dir_icon = '❯', initial_mode = mode, sections = { "1", "2", "3" } })
-    )
+    return require('telescope.builtin')[str](teleTheme(mode))
 end
 
 return {
