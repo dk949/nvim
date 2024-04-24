@@ -129,8 +129,8 @@ k.set('n', '<Leader>gb', ":Gitsigns blame_line<CR>", desc [[Show git blame for c
 k.set('n', '<Leader>gv', ":Gitsigns preview_hunk_inline<CR>", desc [[Preview hunk under cursor]])
 k.set('n', '<Leader>gu', ":Gitsigns undo_stage_hunk<CR>", desc [[Undo last hunk stage]])
 k.set('n', '<Leader>gd', ":Gitsigns toggle_deleted<CR>", desc [[Toggle deleted lines]])
-k.set('n', ']]', ":Gitsigns next_hunk<CR>", desc [[go to next hunk]])
-k.set('n', '[[', ":Gitsigns prev_hunk<CR>", desc [[go to next hunk]])
+k.set('n', '<leader>gj', ":Gitsigns next_hunk<CR>", desc [[go to next hunk]])
+k.set('n', '<leader>gk', ":Gitsigns prev_hunk<CR>", desc [[go to previous hunk]])
 
 local i = "insert"
 local n = "normal"
