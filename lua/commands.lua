@@ -133,16 +133,17 @@ end
 local function runGitWithEditor(...)
     local args = { "git", ... }
     return function()
-        require('termutils').addCurrentWin()
-        local gitErrors = ""
-        vim.fn.jobstart(args, {
-            env = { GIT_EDITOR = 'nvr --remote-wait-silent --servername ' .. vim.v.servername },
-            on_stderr = function(err) gitErrors = gitErrors .. err end,
-            on_exit = function()
-                reportGit(arg[2], args[1] .. " " .. args[2], gitErrors)
-                require('termutils').removeCurrentWin()
-            end,
-        })
+        utils.errPrint("Cannot use `runGitWithEditor` until nvim gains support for --remote-wait")
+        -- require('termutils').addCurrentWin()
+        -- local gitErrors = ""
+        -- vim.fn.jobstart(args, {
+        --     env = { GIT_EDITOR = 'nvr --remote-wait-silent --servername ' .. vim.v.servername },
+        --     on_stderr = function(err) gitErrors = gitErrors .. err end,
+        --     on_exit = function()
+        --         reportGit(arg[2], args[1] .. " " .. args[2], gitErrors)
+        --         require('termutils').removeCurrentWin()
+        --     end,
+        -- })
     end
 end
 
