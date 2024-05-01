@@ -30,9 +30,6 @@ A few programs still need to be installed manually for some things to work:
     * For formatting xml
 * [autopep8](https://pypi.org/project/autopep8/)
     * For formatting python
-* [nvr](https://github.com/mhinz/neovim-remote)
-  * To correctly open files from the nvim terminal
-
 
 ## License
 
