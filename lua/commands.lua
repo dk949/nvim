@@ -42,6 +42,7 @@ api.nvim_create_user_command("GitAddPatch",
         gitsigns.preview_hunk_inline()
         vim.defer_fn(
             function()
+                vim.cmd [[mkview]]
                 vim.ui.select(
                     { 'y', 'n' },
                     {

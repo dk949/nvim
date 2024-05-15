@@ -94,7 +94,10 @@ k.set('n', "<leader>mf",
     end,
     desc [[Format current file]])
 
-k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc [[Rename symbol]])
+k.set('n', "<leader>crn", function()
+    vim.cmd [[mkview]]
+    vim.lsp.buf.rename()
+end, desc [[Rename symbol]])
 k.set('n', "<A-cr>", function() vim.lsp.buf.code_action() end, desc [[Code action]])
 k.set('n', "<leader>ccl", function()
         local c = vim.lsp.codelens;
