@@ -215,7 +215,18 @@ end
 M.lspservers = utils.unique(vim.tbl_flatten(M.lspservers))
 
 local function fmtRun(cmd) return utils.shRun(cmd, { runner = "bang", silent = true }) end
-local function mggg() vim.api.nvim_feedkeys([[mggg=G`g]], "", true) end
+local function gg()
+    local pos = vim.fn.getpos('.')
+    vim.api.nvim_feedkeys([[gg=G]], "x", true)
+    vim.cmd [[w]]
+    vim.fn.setpos('.', pos)
+end
+local function gggqG()
+    local pos = vim.fn.getpos('.')
+    vim.api.nvim_feedkeys([[gggqG]], "x", true)
+    vim.cmd [[w]]
+    print(vim.fn.setpos('.', pos))
+end
 local function lspFmt()
     vim.lsp.buf.format()
     vim.cmd [[:w]]
@@ -239,7 +250,7 @@ M.fmt = {
     c = clang_format,
     cmake = function() fmtRun [[cmake-format -i %]] end,
     cpp = clang_format,
-    css = mggg,
+    css = gggqG,
     cuda = clang_format,
     d = function() fmtRun [[dfmt -i %]] end,
     fortran = lspFmt,
@@ -249,7 +260,7 @@ M.fmt = {
     javascriptreact = lspFmt,
     json = json_fmt,
     lua = lspFmt,
-    make = mggg,
+    make = gg,
     python = function() fmtRun [[autopep8 -i %]] end,
     rust = function()
         vim.cmd [[RustFmt]]; vim.cmd [[:w]]
