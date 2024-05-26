@@ -81,6 +81,15 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end,
 })
 
+vim.api.nvim_create_autocmd("VimEnter", {
+    pattern = "*",
+    callback = function()
+        if vim.fn.argc(-1) == 0 then
+            require('telescope.builtin').oldfiles()
+        end
+    end
+})
+
 vim.opt.wildignorecase = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
