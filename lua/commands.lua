@@ -164,3 +164,20 @@ api.nvim_create_user_command("GitCommitAmmendNoEdit", runGit("commit", "--amend"
 utils.addAbrev("gcm", "GitCommit")
 utils.addAbrev("gca", "GitCommitAmmend")
 utils.addAbrev("gcan", "GitCommitAmmendNoEdit")
+
+
+api.nvim_create_user_command("UserFriendly", function(args)
+    if args.bang then
+        vim.opt.mouse = ""
+        vim.keymap.set({ 'n', 'v', 'i' }, "<left>", "<nop>", { silent = true })
+        vim.keymap.set({ 'n', 'v', 'i' }, "<right>", "<nop>", { silent = true })
+        vim.keymap.set({ 'n', 'v', 'i' }, "<up>", "<nop>", { silent = true })
+        vim.keymap.set({ 'n', 'v', 'i' }, "<down>", "<nop>", { silent = true })
+    else
+        vim.opt.mouse = "a"
+        vim.keymap.set({ 'n', 'v', 'i' }, "<left>", "h", { silent = true })
+        vim.keymap.set({ 'n', 'v', 'i' }, "<right>", "l", { silent = true })
+        vim.keymap.set({ 'n', 'v', 'i' }, "<up>", "k", { silent = true })
+        vim.keymap.set({ 'n', 'v', 'i' }, "<down>", "j", { silent = true })
+    end
+end, { bang = true })
