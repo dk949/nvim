@@ -173,7 +173,7 @@ function M.winsize.changeWindowSize(letter)
 end
 
 ---
----@param cmd string|List
+---@param cmd string|string[]
 ---@param opts { runner: "bang"|"system", silent: nil|boolean }|nil
 ---@return number,string|nil
 function M.shRun(cmd, opts)
@@ -219,8 +219,8 @@ function M.hi(group, params)
 end
 
 ---
----@param tbl List
----@return List
+---@param tbl any[]
+---@return any[]
 function M.unique(tbl)
     assert(vim.tbl_islist(tbl))
     local vals = {}
