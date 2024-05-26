@@ -15,13 +15,22 @@ vim.opt.relativenumber = true
 local line_number_grp  = vim.api.nvim_create_augroup("line_numbers", { clear = true })
 vim.api.nvim_create_autocmd("InsertLeave", {
     pattern = "*",
-    command = "set relativenumber number",
+    callback = function()
+        if vim.opt_local.number:get() then
+            vim.opt_local.relativenumber = true
+            vim.opt_local.number = true
+        end
+    end,
     group = line_number_grp
 })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
     pattern = "*",
-    command = "set norelativenumber",
+    callback = function()
+        if vim.opt_local.number:get() then
+            vim.opt_local.relativenumber = false
+        end
+    end,
     group = line_number_grp
 })
 
