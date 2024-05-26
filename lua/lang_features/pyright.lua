@@ -1,1 +1,1 @@
-return require("utils").makeDefaultLspCounfig("pyright")
+return require("utils").makeDefaultLspCounfig("pyright", { install = false })
