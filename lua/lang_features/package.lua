@@ -71,7 +71,7 @@ local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "r", "racket", "raku", "ruby", "rust", "scala", "scheme", "scss", "sed",
     "simula", "swift", "tasm", "tcl", "typescript", "typescriptreact", "vim",
     "vue", "yacc", "zig" }
-local text = { "autodoc", "godoc", "groff", "lhaskell", "markdown", "plaintex",
+local text = { "astro", "autodoc", "godoc", "groff", "lhaskell", "markdown", "plaintex",
     "rst", "rtf", "tex", "vimwiki", "vimwiki_markdown_custom" }
 local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
     "gitolite", "gitrebase", "gitsendemail" }
@@ -183,6 +183,7 @@ M.signcolumn = combine(shell, config, programming)
 M.logicalLines = combine(git, text)
 
 local lspSetups = {
+    astro           = combineLSPs("astro", "tailwindcss"),
     c               = combineLSPs "ccls",
     cmake           = combineLSPs "cmake",
     cpp             = combineLSPs "ccls",
@@ -247,6 +248,7 @@ local function json_fmt()
     vim.fn.setpos('.', pos)
 end
 M.fmt = {
+    astro = lspFmt,
     c = clang_format,
     cmake = function() fmtRun [[cmake-format -i %]] end,
     cpp = clang_format,
