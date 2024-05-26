@@ -7,11 +7,11 @@ return {
             defaults = {
                 prompt_prefix = "❯ ",
                 selection_caret = "-> ",
-                initial_mode = 'n',
+                initial_mode = 'normal',
                 scroll_strategy = "limit",
                 border = {},
-                -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-                borderchars = { '━', '┃', '━', '┃', '┏', '┓', '┛', '┗' },
+                borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+                -- borderchars = { '━', '┃', '━', '┃', '┏', '┓', '┛', '┗' },
                 -- borderchars = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
                 find_files = {
                     theme = "dropdown"
