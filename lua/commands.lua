@@ -36,12 +36,14 @@ end
 api.nvim_create_user_command("Dict", function(cmd) print(dict(cmd.args)) end, { nargs = 1 })
 
 api.nvim_create_user_command("GitAddPatch",
-    function(_)
+    function(opts)
         local gitsigns = require('gitsigns')
 
         gitsigns.preview_hunk_inline()
         vim.defer_fn(
             function()
+                local range = nil
+                if opts.range ~= 0 then range = { opts.line1, opts.line2 } end
                 vim.cmd [[mkview]]
                 vim.ui.select(
                     { 'y', 'n' },
@@ -49,19 +51,18 @@ api.nvim_create_user_command("GitAddPatch",
                         prompt = 'Stage this hunk?:',
                         format_item = function(item) return item end,
                     },
-                    -- FIXME: add range<S-Del>
-                    function(choice) if choice == 'y' then gitsigns.stage_hunk() end end
+                    function(choice) if choice == 'y' then gitsigns.stage_hunk(range) end end
                 )
             end,
             0.01
         )
     end,
-    { nargs = 0 }
+    { nargs = 0, range = true }
 )
 
 utils.addAbrev("gd", "rightbelow Gitsigns diffthis")
 utils.addAbrev("gb", "Gitsigns toggle_current_line_blame")
-utils.addAbrev("gap", "GitAddPatch")
+utils.addAbrev("gap", "GitAddPatch", { range2 = true })
 
 utils.addAbrev("tb", "Tabularize /")
 
