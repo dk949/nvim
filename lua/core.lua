@@ -32,12 +32,16 @@ vim.opt.softtabstop = dk949.tabstop
 vim.opt.expandtab = true
 
 -- rememebr file
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave", "InsertLeave" }, {
     pattern = "*",
-    command = [[mkview]],
+    callback = function()
+        if vim.fn.bufname() ~= "" then
+            vim.cmd [[mkview]]
+        end
+    end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufEnter" }, {
     pattern = "*",
     callback = function()
         if not vim.g.file_line_fired then
