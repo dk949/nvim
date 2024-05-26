@@ -6,6 +6,17 @@ local function edesc(msg) return { desc = msg, silent = true, expr = true } end
 
 local utils = require("utils")
 
+
+local function teleTheme(mode)
+    return require('telescope.themes').get_ivy({ dir_icon = '❯', initial_mode = mode, sections = { "1", "2", "3" } })
+end
+
+local function teleConfig(str, mode)
+    return require('telescope.builtin')[str](teleTheme(mode))
+end
+
+
+
 -- General fixes
 k.set('n', "G", "Gzz", desc "jump to line centers the screen on that line")
 
@@ -139,59 +150,59 @@ local i = "insert"
 local n = "normal"
 
 -- telescope
-k.set('n', "<leader>f", function() TeleConfig("builtin", n) end, desc [[]])
-k.set('n', "<leader>ftl", function() TeleConfig("reloader", n) end, desc [[]])
-k.set('n', "<leader>ftp", function() TeleConfig("pickers", i) end, desc [[]])
-k.set('n', "<leader>ftr", function() TeleConfig("resume", n) end, desc [[]])
-k.set('n', "<leader>ftup", function() TeleConfig("planets", n) end, desc [[]])
+k.set('n', "<leader>f", function() teleConfig("builtin", n) end, desc [[]])
+k.set('n', "<leader>ftl", function() teleConfig("reloader", n) end, desc [[]])
+k.set('n', "<leader>ftp", function() teleConfig("pickers", i) end, desc [[]])
+k.set('n', "<leader>ftr", function() teleConfig("resume", n) end, desc [[]])
+k.set('n', "<leader>ftup", function() teleConfig("planets", n) end, desc [[]])
 
 -- Tags
-k.set('n', "<leader>ftac", function() TeleConfig("current_buffer_tags", n) end, desc [[]])
-k.set('n', "<leader>ftas", function() TeleConfig("tagstack", n) end, desc [[]])
-k.set('n', "<leader>ftat", function() TeleConfig("tags", n) end, desc [[]])
+k.set('n', "<leader>ftac", function() teleConfig("current_buffer_tags", n) end, desc [[]])
+k.set('n', "<leader>ftas", function() teleConfig("tagstack", n) end, desc [[]])
+k.set('n', "<leader>ftat", function() teleConfig("tags", n) end, desc [[]])
 
 -- file
-k.set('n', "<leader>ff/", function() TeleConfig("current_buffer_fuzzy_find", i) end, desc [[]])
-k.set('n', "<leader>ffb", function() TeleConfig("buffers", n) end, desc [[]])
-k.set('n', "<leader>fff", function() TeleConfig("find_files", i) end, desc [[]])
-k.set('n', "<leader>ffo", function() TeleConfig("oldfiles", n) end, desc [[]])
-k.set('n', "<leader>ffr", function() TeleConfig("live_grep", i) end, desc [[]])
+k.set('n', "<leader>ff/", function() teleConfig("current_buffer_fuzzy_find", i) end, desc [[]])
+k.set('n', "<leader>ffb", function() teleConfig("buffers", n) end, desc [[]])
+k.set('n', "<leader>fff", function() teleConfig("find_files", i) end, desc [[]])
+k.set('n', "<leader>ffo", function() teleConfig("oldfiles", n) end, desc [[]])
+k.set('n', "<leader>ffr", function() teleConfig("live_grep", i) end, desc [[]])
 
 -- misc
-k.set('n', "<leader>fmj", function() TeleConfig("jumplist", n) end, desc [[]])
-k.set('n', "<leader>fml", function() TeleConfig("loclist", n) end, desc [[]])
-k.set('n', "<leader>fmm", function() TeleConfig("marks", n) end, desc [[]])
-k.set('n', "<leader>fmq", function() TeleConfig("quickfix", n) end, desc [[]])
-k.set('n', "<leader>fman", function() TeleConfig("man_pages") end, desc [[]])
+k.set('n', "<leader>fmj", function() teleConfig("jumplist", n) end, desc [[]])
+k.set('n', "<leader>fml", function() teleConfig("loclist", n) end, desc [[]])
+k.set('n', "<leader>fmm", function() teleConfig("marks", n) end, desc [[]])
+k.set('n', "<leader>fmq", function() teleConfig("quickfix", n) end, desc [[]])
+k.set('n', "<leader>fman", function() teleConfig("man_pages", i) end, desc [[]])
 
 -- vim
-k.set('n', "<leader>fva", function() TeleConfig("autocommands", n) end, desc [[]])
-k.set('n', "<leader>fvch", function() TeleConfig("command_history", n) end, desc [[]])
-k.set('n', "<leader>fvcl", function() TeleConfig("colorscheme", n) end, desc [[]])
-k.set('n', "<leader>fvcm", function() TeleConfig("commands", n) end, desc [[]])
-k.set('n', "<leader>fvf", function() TeleConfig("filetypes", i) end, desc [[]])
-k.set('n', "<leader>fvhi", function() TeleConfig("highlights", n) end, desc [[]])
-k.set('n', "<leader>fvhl", function() TeleConfig("help_tags", i) end, desc [[]])
-k.set('n', "<leader>fvk", function() TeleConfig("keymaps", n) end, desc [[]])
-k.set('n', "<leader>fvo", function() TeleConfig("vim_options", n) end, desc [[]])
-k.set('n', "<leader>fvr", function() TeleConfig("registers", n) end, desc [[]])
-k.set('n', "<leader>fvsh", function() TeleConfig("search_history", n) end, desc [[]])
-k.set('n', "<leader>fvss", function() TeleConfig("spell_suggest", n) end, desc [[]])
+k.set('n', "<leader>fva", function() teleConfig("autocommands", n) end, desc [[]])
+k.set('n', "<leader>fvch", function() teleConfig("command_history", n) end, desc [[]])
+k.set('n', "<leader>fvcl", function() teleConfig("colorscheme", n) end, desc [[]])
+k.set('n', "<leader>fvcm", function() teleConfig("commands", n) end, desc [[]])
+k.set('n', "<leader>fvf", function() teleConfig("filetypes", i) end, desc [[]])
+k.set('n', "<leader>fvhi", function() teleConfig("highlights", n) end, desc [[]])
+k.set('n', "<leader>fvhl", function() teleConfig("help_tags", i) end, desc [[]])
+k.set('n', "<leader>fvk", function() teleConfig("keymaps", n) end, desc [[]])
+k.set('n', "<leader>fvo", function() teleConfig("vim_options", n) end, desc [[]])
+k.set('n', "<leader>fvr", function() teleConfig("registers", n) end, desc [[]])
+k.set('n', "<leader>fvsh", function() teleConfig("search_history", n) end, desc [[]])
+k.set('n', "z=", function() teleConfig("spell_suggest", i) end, desc [[]])
 
 
 -- Git
-k.set('n', "<leader>fgb", function() TeleConfig("git_branches", n) end, desc [[]])
-k.set('n', "<leader>fgc", function() TeleConfig("git_commits", n) end, desc [[]])
-k.set('n', "<leader>fgf", function() TeleConfig("git_files", n) end, desc [[]])
-k.set('n', "<leader>fglb", function() TeleConfig("git_bcommits", n) end, desc [[]])
-k.set('n', "<leader>fgs", function() TeleConfig("git_stash", n) end, desc [[]])
-k.set('n', "<leader>fgv", function() TeleConfig("git_status", n) end, desc [[]])
+k.set('n', "<leader>fgb", function() teleConfig("git_branches", n) end, desc [[]])
+k.set('n', "<leader>fgc", function() teleConfig("git_commits", n) end, desc [[]])
+k.set('n', "<leader>fgf", function() teleConfig("git_files", n) end, desc [[]])
+k.set('n', "<leader>fglb", function() teleConfig("git_bcommits", n) end, desc [[]])
+k.set('n', "<leader>fgs", function() teleConfig("git_stash", n) end, desc [[]])
+k.set('n', "<leader>fgv", function() teleConfig("git_status", n) end, desc [[]])
 
 -- lsp
-k.set('n', "<leader>ful3", function() TeleConfig("lsp_document_symbols", n) end, desc [[]])
-k.set('n', "<leader>ful4", function() TeleConfig("lsp_dynamic_workspace_symbols", i) end, desc [[]])
-k.set('n', "<leader>cd", function() TeleConfig("diagnostics", n) end, desc [[]])
+k.set('n', "<leader>ful3", function() teleConfig("lsp_document_symbols", n) end, desc [[]])
+k.set('n', "<leader>ful4", function() teleConfig("lsp_dynamic_workspace_symbols", i) end, desc [[]])
+k.set('n', "<leader>cd", function() teleConfig("diagnostics", n) end, desc [[]])
 
 -- nothing?
-k.set('n', "<leader>ful5", function() TeleConfig("lsp_implementations") end, desc [[]])
-k.set('n', "<leader>ful8", function() TeleConfig("lsp_type_definitions") end, desc [[]])
+k.set('n', "<leader>ful5", function() teleConfig("lsp_implementations") end, desc [[]])
+k.set('n', "<leader>ful8", function() teleConfig("lsp_type_definitions") end, desc [[]])
