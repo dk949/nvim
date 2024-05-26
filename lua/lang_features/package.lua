@@ -263,7 +263,7 @@ M.fmt = {
     json = json_fmt,
     lua = lspFmt,
     make = gg,
-    python = function() fmtRun [[autopep8 -i %]] end,
+    python = function() fmtRun [[black %]] end,
     rust = function()
         vim.cmd [[RustFmt]]; vim.cmd [[:w]]
     end,
