@@ -61,7 +61,7 @@ local config = { "bib", "cabal", "conf", "config", "css", "diff", "fstab",
     "modconf", "mysql", "nginx", "pamconf", "samba", "sass", "sql", "svg",
     "swayconfig", "systemd", "terminfo", "texinfo", "text", "todotxt", "toml",
     "viminfo", "xf86conf", "yaml" }
-local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
+local programming = { "astro", "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "automake", "awk", "b", "basic", "c", "chaiscript", "clojure", "cmake",
     "cobol", "cpp", "cs", "cuda", "d", "dart", "eiffel", "elixir", "elm",
     "erlang", "eruby", "fasm", "forth", "fortran", "freebasic", "go", "groovy",
@@ -71,7 +71,7 @@ local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "r", "racket", "raku", "ruby", "rust", "scala", "scheme", "scss", "sed",
     "simula", "swift", "tasm", "tcl", "typescript", "typescriptreact", "vim",
     "vue", "yacc", "zig" }
-local text = { "astro", "autodoc", "godoc", "groff", "lhaskell", "markdown", "plaintex",
+local text = { "autodoc", "godoc", "groff", "lhaskell", "markdown", "plaintex",
     "rst", "rtf", "tex", "vimwiki", "vimwiki_markdown_custom" }
 local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
     "gitolite", "gitrebase", "gitsendemail" }
