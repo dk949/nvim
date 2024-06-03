@@ -252,4 +252,12 @@ function M.addAbrev(new, old, opts)
     )
 end
 
+---@param lower number
+---@param val number
+---@param upper number
+---@return number
+function M.clamp(lower, val, upper)
+    return math.max(lower, math.min(upper, val))
+end
+
 return M
