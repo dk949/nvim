@@ -28,7 +28,7 @@ A few programs still need to be installed manually for some things to work:
     * For formatting json
 * [xmllint](https://xmllint.com/)
     * For formatting xml
-* [autopep8](https://pypi.org/project/autopep8/)
+* [black](https://github.com/psf/black)
     * For formatting python
 
 ## License
