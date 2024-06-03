@@ -45,7 +45,11 @@ vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave", "InsertLeave" }, {
     pattern = "*",
     callback = function()
         if vim.fn.bufname() ~= "" then
-            vim.cmd [[mkview]]
+            if dk949.nomkview then
+                dk949.nomkview = false
+            else
+                vim.cmd [[mkview]]
+            end
         end
     end,
 })
