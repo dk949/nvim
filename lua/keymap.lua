@@ -8,7 +8,11 @@ local utils = require("utils")
 
 
 local function teleTheme(mode)
-    return require('telescope.themes').get_ivy({ dir_icon = '❯', initial_mode = mode, sections = { "1", "2", "3" } })
+    if vim.g.neovide then
+        return { dir_icon = '❯', initial_mode = mode, sections = { "1", "2", "3" } }
+    else
+        return require('telescope.themes').get_ivy({ dir_icon = '❯', initial_mode = mode, sections = { "1", "2", "3" } })
+    end
 end
 
 local function teleConfig(str, mode)

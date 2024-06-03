@@ -12,6 +12,7 @@ if simple.isRoot() then return simple.source() end
 
 require('core')
 require('keymap')
+require('neovide')
 require('commands')
 require('plugins')
 require('lang_features').setup()
