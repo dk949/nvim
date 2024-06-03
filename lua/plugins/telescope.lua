@@ -3,8 +3,10 @@
 return {
     "nvim-telescope/telescope.nvim",
     config = function()
+        local blend
         require('telescope').setup {
             defaults = {
+                winblend = vim.opt_local.winblend:get(),
                 prompt_prefix = "❯ ",
                 selection_caret = "-> ",
                 initial_mode = 'normal',
