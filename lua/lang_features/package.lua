@@ -109,7 +109,7 @@ M.spell = combine(text, git, { "bib", "todotxt", "text" })
 M.wrap = (function()
     local out = {}
     for _, lang in ipairs(text) do
-        out[lang] = { "wrap", "linebreak", "nolist", { textwidth = 80 } }
+        out[lang] = { "wrap", "linebreak", "nolist", "smoothscroll", { textwidth = 80 } }
     end
     for _, lang in ipairs(combine(shell, config, programming)) do
         out[lang] = { "nowrap", { textwidth = 110 } }
