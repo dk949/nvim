@@ -101,7 +101,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     callback = function()
-        if vim.fn.argc(-1) == 0 then
+        if vim.fn.argc(-1) == 0 and vim.bo.buftype ~= "terminal" then
             require('telescope.builtin').oldfiles()
         end
     end
