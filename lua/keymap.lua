@@ -131,7 +131,7 @@ k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, de
 -- Plugins
 
 k.set('n', "<leader>:", "<cmd>IconPickerNormal<cr>", desc [[Pick an icon in normal mode]])
-k.set('i', "<C-x>:", "<cmd>IconPickerInsert<cr>", desc [[Pick an icon in insert mode]])
+k.set('i', "<C-x>;", "<cmd>IconPickerInsert<cr>", desc [[Pick an icon in insert mode]])
 
 k.set('n', "<leader>mg", ":Goyo<CR>", desc [[toggle Tree file browser]])
 
