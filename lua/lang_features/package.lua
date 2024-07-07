@@ -95,17 +95,18 @@ M.treesitter = uncombine(
         { "comment" }, shell, config, programming, text
     ),
     -- Unuspported
-    "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp", "autodoc", "automake", "b", "d",
-    "basic", "bib", "cabal", "chaiscript", "cobol", "conf", "config", "cs", "csh",
-    "eiffel", "eruby", "fasm", "forth", "freebasic", "fstab", "godoc", "groff",
-    "groovy", "i3config", "j", "javascriptreact", "kconfig", "ld", "ldapconf", "lex",
-    "lhaskell", "lisp", "m4", "modconf", "mysql", "nasm", "nginx", "octave", "pamconf",
-    "plaintex", "plantuml", "prolog", "ps1", "raku", "rtf", "samba", "sass", "sed", "sh",
-    "simula", "svg", "swayconfig", "systemd", "tasm", "tcl", "tcsh", "terminfo", "tex",
-    "texinfo", "text", "typescriptreact", "viminfo", "vimwiki",
-    "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh",
+    "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp", "autodoc", "automake",
+    "b", "basic", "bib", "cabal", "chaiscript", "cobol", "conf", "config",
+    "cs", "csh", "d", "eiffel", "eruby", "fasm", "forth", "freebasic", "fstab",
+    "godoc", "groff", "groovy", "i3config", "j", "javascriptreact", "kconfig",
+    "ld", "ldapconf", "less", "lex", "lhaskell", "lisp", "m4", "modconf",
+    "mysql", "nasm", "nginx", "octave", "pamconf", "plaintex", "plantuml",
+    "prolog", "ps1", "qml", "raku", "rtf", "samba", "sass", "sed", "sh",
+    "simula", "stylus", "svg", "swayconfig", "systemd", "tasm", "tcl", "tcsh",
+    "terminfo", "tex", "texinfo", "text", "typescriptreact", "viminfo",
+    "vimwiki", "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh",
     -- Supported but manually disabled
-    "markdown", "haskell", "bash")
+    "haskell", "bash")
 
 
 M.spell = combine(text, git, { "bib", "todotxt", "text" })
