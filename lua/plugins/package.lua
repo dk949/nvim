@@ -63,6 +63,4 @@ return require("packer").startup(function()
     use { '~/code/vim/asterisp.vim' }
     localUse "obsidian"
 
-    -- Misc
-    localUse "vimwiki"
 end)
