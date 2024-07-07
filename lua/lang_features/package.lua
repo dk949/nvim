@@ -239,10 +239,10 @@ local function lspFmt()
     vim.lsp.buf.format()
     vim.cmd [[:w]]
 end
-local function clang_format()
+local function clangFormat()
     fmtRun [[clang-format --fallback-style=Google --style=file -i %]]
 end
-local function json_fmt()
+local function jsonFmt()
     local pos = vim.fn.getpos('.')
     vim.cmd [[silent execute "%!jq ."]]
     if vim.v.shell_error ~= 0 then
@@ -257,11 +257,11 @@ end
 local function xmlFmt() vim.cmd [[silent execute "%!xmllint --pretty 2 --format -"]] end
 M.fmt = {
     astro = lspFmt,
-    c = clang_format,
+    c = clangFormat,
     cmake = function() fmtRun [[cmake-format -i %]] end,
-    cpp = clang_format,
+    cpp = clangFormat,
     css = gggqG,
-    cuda = clang_format,
+    cuda = clangFormat,
     d = function() fmtRun [[dfmt -i %]] end,
     elixir = lspFmt,
     fortran = lspFmt,
@@ -269,7 +269,7 @@ M.fmt = {
     html = lspFmt,
     javascript = lspFmt,
     javascriptreact = lspFmt,
-    json = json_fmt,
+    json = jsonFmt,
     lua = lspFmt,
     make = gg,
     python = function() fmtRun [[black %]] end,
