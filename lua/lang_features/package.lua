@@ -187,7 +187,7 @@ M.signcolumn = combine(shell, config, programming)
 M.logicalLines = combine(git, text)
 
 local lspSetups = {
-    astro           = combineLSPs("astro", "tailwindcss"),
+    astro           = combineLSPs("eslint", "astro", "tailwindcss"),
     c               = combineLSPs "ccls",
     cmake           = combineLSPs "cmake",
     cpp             = combineLSPs "ccls",
