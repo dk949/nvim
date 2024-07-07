@@ -31,6 +31,7 @@ return require("packer").startup(function()
     localUse "icon_picker"
     localUse "dressing"
     localUse "color"
+    localUse "bullets"
 
     -- telescope
     localUse "plenary"
@@ -51,7 +52,6 @@ return require("packer").startup(function()
     localUse "haskell"
     localUse "jsx_typescript"
     localUse "llvm"
-    localUse "markdown"
     localUse "pdf"
     localUse "plantuml"
     localUse "rust"
