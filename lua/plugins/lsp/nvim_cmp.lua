@@ -61,5 +61,6 @@ return {
         for lang, _ in pairs(require("lang_features").feat.lspconfig) do
             cmp.setup.filetype(lang, conf)
         end
+        cmp.setup.filetype("markdown", conf)
     end
 }
