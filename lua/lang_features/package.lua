@@ -58,19 +58,19 @@ end
 local shell = { "csh", "bash", "sh", "tcsh", "zsh" }
 local config = { "bib", "cabal", "conf", "config", "css", "diff", "fstab",
     "html", "i3config", "json", "jsonc", "kconfig", "ld", "ldapconf", "meson",
-    "modconf", "mysql", "nginx", "pamconf", "samba", "sass", "sql", "svg",
+    "modconf", "mysql", "nginx", "pamconf", "samba", "sql", "svg",
     "swayconfig", "systemd", "terminfo", "texinfo", "text", "todotxt", "toml",
     "viminfo", "xf86conf", "yaml" }
-local programming = { "astro", "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
-    "automake", "awk", "b", "basic", "c", "chaiscript", "clojure", "cmake",
-    "cobol", "cpp", "cs", "cuda", "d", "dart", "eiffel", "elixir", "elm",
-    "erlang", "eruby", "fasm", "forth", "fortran", "freebasic", "go", "groovy",
-    "haskell", "j", "java", "javascript", "javascriptreact", "julia", "kotlin",
-    "lex", "lisp", "lua", "m4", "make", "nasm", "ninja", "nix", "ocaml",
-    "octave", "pascal", "perl", "php", "plantuml", "prolog", "ps1", "python",
-    "r", "racket", "raku", "ruby", "rust", "scala", "scheme", "scss", "sed",
-    "simula", "swift", "tasm", "tcl", "typescript", "typescriptreact", "vim",
-    "vue", "yacc", "zig" }
+local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
+    "astro", "automake", "awk", "b", "basic", "c", "chaiscript", "clojure",
+    "cmake", "cobol", "cpp", "cs", "cuda", "d", "dart", "eiffel", "elixir",
+    "elm", "erlang", "eruby", "fasm", "forth", "fortran", "freebasic", "go",
+    "groovy", "haskell", "j", "java", "javascript", "javascriptreact", "julia",
+    "kotlin", "less", "lex", "lisp", "lua", "m4", "make", "nasm", "ninja",
+    "nix", "ocaml", "octave", "pascal", "perl", "php", "plantuml", "prolog",
+    "ps1", "python", "qml", "r", "racket", "raku", "ruby", "rust", "sass",
+    "scala", "scheme", "scss", "sed", "simula", "stylus", "swift", "tasm",
+    "tcl", "typescript", "typescriptreact", "vim", "vue", "yacc", "zig", }
 local text = { "autodoc", "godoc", "groff", "lhaskell", "markdown", "plaintex",
     "rst", "rtf", "tex", "vimwiki", "vimwiki_markdown_custom" }
 local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
@@ -83,6 +83,10 @@ addLangs(text)
 addLangs(git)
 
 M.goyo_mode = { "tex", "plaintex", "markdown" }
+
+M.color_on = { "css", "elm", "html", "javascript", "javascriptreact", "less",
+    "php", "qml", "sass", "scss", "stylus", "svg", "typescript",
+    "typescriptreact", "json" }
 
 M.indent_blankline = combine(shell, config, programming)
 
@@ -202,6 +206,7 @@ local lspSetups = {
     nix             = combineLSPs "nil_ls",
     python          = combineLSPs "pyright",
     rust            = combineLSPs "rust_analyzer",
+    sass            = combineLSPs("cssls", "tailwindcss"),
     scss            = combineLSPs("cssls", "tailwindcss"),
     typescript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
     typescriptreact = combineLSPs("eslint", "tsserver", "tailwindcss"),
