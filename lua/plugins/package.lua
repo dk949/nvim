@@ -30,6 +30,7 @@ return require("packer").startup(function()
     localUse "dispatch"
     localUse "icon_picker"
     localUse "dressing"
+    localUse "color"
 
     -- telescope
     localUse "plenary"
