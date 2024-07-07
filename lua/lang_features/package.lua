@@ -254,6 +254,7 @@ local function json_fmt()
     end
     vim.fn.setpos('.', pos)
 end
+local function xmlFmt() vim.cmd [[silent execute "%!xmllint --pretty 2 --format -"]] end
 M.fmt = {
     astro = lspFmt,
     c = clang_format,
@@ -275,9 +276,10 @@ M.fmt = {
     rust = function()
         vim.cmd [[RustFmt]]; vim.cmd [[:w]]
     end,
+    svg = xmlFmt,
     typescript = lspFmt,
     typescriptreact = lspFmt,
-    xml = function() vim.cmd [[silent execute "%!xmllint --format -"]] end,
+    xml = xmlFmt,
     zig = function() fmtRun [[zig fmt %]] end,
 }
 
