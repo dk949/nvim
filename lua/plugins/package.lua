@@ -61,6 +61,7 @@ return require("packer").startup(function()
     localUse "pegged"
     localUse "lark"
     use { '~/code/vim/asterisp.vim' }
+    localUse "obsidian"
 
     -- Misc
     localUse "vimwiki"

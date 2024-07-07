@@ -5,6 +5,7 @@ _G.dk949 = {
     mouse = "",
     arrows = false,
     winSzInc = 5,
+    obsidian_worspaces = { { name = "wiki", path = "~/Uni/wiki" } },
 }
 
 local simple = require('simple')
