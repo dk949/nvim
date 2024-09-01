@@ -46,6 +46,9 @@ return require("packer").startup(function()
     -- ALE
     localUse "ale"
 
+    -- debugging
+    localUse "vimspector"
+
     -- Language support
     localUse "asm_ca65"
     localUse "dutyl"
@@ -60,6 +63,9 @@ return require("packer").startup(function()
     localUse "pegged"
     localUse "lark"
     use { '~/code/vim/asterisp.vim' }
+    use { '~/code/python/scotch/tools/vim/scot/' }
     localUse "obsidian"
+    use { '~/code/vim/mdx.nvim/' }
+    localUse "repl"
 
 end)
