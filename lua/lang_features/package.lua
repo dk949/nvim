@@ -174,7 +174,7 @@ M.formatoptions = (function()
 
 
     for _, lang in ipairs(text) do out[lang] = "tcr/qn1jl" end
-    for _, lang in ipairs(combine(shell, config, programming)) do out[lang] = "lqj" end
+    for _, lang in ipairs(combine(shell, config, programming)) do out[lang] = "lqjrc" end
 
     return out
 end)()
