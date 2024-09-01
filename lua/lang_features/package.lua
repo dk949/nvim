@@ -204,6 +204,8 @@ local lspSetups = {
     mail            = combineLSPs "html",
     javascript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
     javascriptreact = combineLSPs("eslint", "tsserver", "tailwindcss"),
+    json            = combineLSPs "jsonls",
+    jsonc           = combineLSPs "jsonls",
     less            = combineLSPs("cssls", "tailwindcss"),
     lua             = combineLSPs "lua_ls",
     nix             = combineLSPs "nil_ls",
@@ -243,19 +245,16 @@ end
 local function clangFormat()
     fmtRun [[clang-format --fallback-style=Google --style=file -i %]]
 end
-local function jsonFmt()
-    local pos = vim.fn.getpos('.')
-    vim.cmd [[silent execute "%!jq ."]]
-    if vim.v.shell_error ~= 0 then
-        local err = table.concat(vim.fn.getline('^', '$'), '\n')
-        vim.cmd [[u]]
-        utils.warnPrint("Could not format: " .. err)
-    else
-        vim.cmd [[w]]
-    end
-    vim.fn.setpos('.', pos)
-end
 local function xmlFmt() vim.cmd [[silent execute "%!xmllint --pretty 2 --format -"]] end
+
+local function htmlFmt()
+    local rc = vim.fs.find({ ".prettierrc", ".prettierrc.json" }, { upward = true, type = "file" });
+    if rc[1] == nil then
+        return lspFmt()
+    else
+        return fmtRun [[bunx prettier % -w]]
+    end
+end
 M.fmt = {
     astro = lspFmt,
     c = clangFormat,
@@ -271,7 +270,8 @@ M.fmt = {
     mail = htmlFmt,
     javascript = lspFmt,
     javascriptreact = lspFmt,
-    json = jsonFmt,
+    json = lspFmt,
+    jsonc = lspFmt,
     lua = lspFmt,
     make = gg,
     python = function() fmtRun [[black %]] end,
