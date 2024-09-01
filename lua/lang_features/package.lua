@@ -109,7 +109,7 @@ M.treesitter = uncombine(
     "haskell", "bash")
 
 
-M.spell = combine(text, git, { "bib", "todotxt", "text" })
+M.spell = combine(text, uncombine(git, "gitignore"), { "bib", "todotxt", "text" })
 
 M.wrap = (function()
     local out = {}
