@@ -172,7 +172,7 @@ function M.winsize.changeWindowSize(letter)
     winChange[1](winChange[2], dk949.winSzInc)
 end
 
----
+--- run a shell command
 ---@param cmd string|string[]
 ---@param opts { runner: "bang"|"system", silent: nil|boolean }|nil
 ---@return number,string|nil
@@ -258,6 +258,14 @@ end
 ---@return number
 function M.clamp(lower, val, upper)
     return math.max(lower, math.min(upper, val))
+end
+
+function M.startsWith(str, start)
+    return str:sub(1, #start) == start
+end
+
+function M.endsWith(str, ending)
+    return ending == "" or str:sub(- #ending) == ending
 end
 
 return M
