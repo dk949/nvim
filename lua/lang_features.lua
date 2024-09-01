@@ -104,6 +104,7 @@ local function _setup(lang)
         pattern = "*",
         callback = function()
             if feat.lspconfig[lang] ~= nil then
+                require "lang_features.snippets" (lang);
                 local cap, on_a = cap_on_attach()
                 feat.lspconfig[lang](cap, on_a)
             end
