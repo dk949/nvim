@@ -3,6 +3,7 @@ local k = vim.keymap
 local function desc(msg) return { desc = msg, silent = true } end
 
 local function edesc(msg) return { desc = msg, silent = true, expr = true } end
+local function ldesc(msg) return { desc = msg, silent = true, buffer = true } end
 
 local utils = require("utils")
 
