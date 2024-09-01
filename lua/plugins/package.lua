@@ -56,7 +56,6 @@ return require("packer").startup(function()
     localUse "plantuml"
     localUse "rust"
     localUse "typescript"
-    localUse "zig"
     localUse "glsl"
     localUse "pegged"
     localUse "lark"
