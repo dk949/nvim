@@ -210,3 +210,8 @@ k.set('n', "<leader>cd", function() teleConfig("diagnostics", n) end, desc [[]])
 -- nothing?
 k.set('n', "<leader>ful5", function() teleConfig("lsp_implementations") end, desc [[]])
 k.set('n', "<leader>ful8", function() teleConfig("lsp_type_definitions") end, desc [[]])
+
+-- vimspector
+k.set('n', "<leader>f6", "<Plug>VimspectorDisassemble", desc [[Disassemble debugged program]])
+k.set('n', "<leader>md", "<Plug>VimspectorBalloonEval", desc [[Evaluate statement]])
+k.set('v', "<leader>md", "<Plug>VimspectorBalloonEval", desc [[Evaluate statement]])
