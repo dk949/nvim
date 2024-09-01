@@ -104,7 +104,7 @@ M.treesitter = uncombine(
     "prolog", "ps1", "qml", "raku", "rtf", "samba", "sass", "sed", "sh",
     "simula", "stylus", "svg", "swayconfig", "systemd", "tasm", "tcl", "tcsh",
     "terminfo", "tex", "texinfo", "text", "typescriptreact", "viminfo",
-    "vimwiki", "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh",
+    "vimwiki", "vimwiki_markdown_custom", "xf86conf", "yacc", "zsh", "mdx",
     -- Supported but manually disabled
     "haskell", "bash")
 
