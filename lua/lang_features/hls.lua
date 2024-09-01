@@ -18,7 +18,6 @@ return {
                     hlintOn = true,
                     completionSnippetsOn = true,
                     checkParents = "CheckOnSaveAndClose",
-                    formattingProvider = "sakjfhkds",
                     diagnosticsOnChange = true,
                     liquidOn = true, --TODO
                     plugin = {
