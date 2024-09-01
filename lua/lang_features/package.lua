@@ -71,8 +71,8 @@ local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "ps1", "python", "qml", "r", "racket", "raku", "ruby", "rust", "sass",
     "scala", "scheme", "scss", "sed", "simula", "stylus", "swift", "tasm",
     "tcl", "typescript", "typescriptreact", "vim", "vue", "yacc", "zig", }
-local text = { "autodoc", "godoc", "groff", "lhaskell", "markdown", "plaintex",
-    "rst", "rtf", "tex", "vimwiki", "vimwiki_markdown_custom" }
+local text = { "autodoc", "godoc", "groff", "lhaskell", "mail", "markdown",
+    "mdx", "plaintex", "rst", "rtf", "tex", "vimwiki", "vimwiki_markdown_custom", }
 local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
     "gitolite", "gitrebase", "gitsendemail" }
 
@@ -99,7 +99,7 @@ M.treesitter = uncombine(
     "b", "basic", "bib", "cabal", "chaiscript", "cobol", "conf", "config",
     "cs", "csh", "d", "eiffel", "eruby", "fasm", "forth", "freebasic", "fstab",
     "godoc", "groff", "groovy", "i3config", "j", "javascriptreact", "kconfig",
-    "ld", "ldapconf", "less", "lex", "lhaskell", "lisp", "m4", "modconf",
+    "ld", "ldapconf", "less", "lex", "lhaskell", "lisp", "m4", "mail", "modconf",
     "mysql", "nasm", "nginx", "octave", "pamconf", "plaintex", "plantuml",
     "prolog", "ps1", "qml", "raku", "rtf", "samba", "sass", "sed", "sh",
     "simula", "stylus", "svg", "swayconfig", "systemd", "tasm", "tcl", "tcsh",
@@ -201,6 +201,7 @@ local lspSetups = {
     go              = combineLSPs "gopls",
     haskell         = combineLSPs "hls",
     html            = combineLSPs("html", "tailwindcss"),
+    mail            = combineLSPs "html",
     javascript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
     javascriptreact = combineLSPs("eslint", "tsserver", "tailwindcss"),
     less            = combineLSPs("cssls", "tailwindcss"),
@@ -267,6 +268,7 @@ M.fmt = {
     fortran = lspFmt,
     haskell = function() fmtRun [[fourmolu -i %]] end,
     html = lspFmt,
+    mail = htmlFmt,
     javascript = lspFmt,
     javascriptreact = lspFmt,
     json = jsonFmt,
