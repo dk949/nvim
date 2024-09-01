@@ -1,4 +1,5 @@
 vim.g.zig_fmt_parse_errors = false
+vim.g.zig_fmt_autosave = 0
 
 vim.api.nvim_create_autocmd("LspAttach", {
     pattern = "*",
