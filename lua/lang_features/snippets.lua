@@ -68,6 +68,25 @@ return function(lang)
                 }),
             })
         end,
+        python = function()
+            ls.add_snippets("python", {
+                s({ trig = "struct", desc = "create a dataclass" }, {
+                    t({ [[@dataclass]],
+                        [[class ]] }),
+                    i(1, "ClassName"),
+                    t({ ":", "    " }),
+                    i(2, "pass"),
+                }),
+                s({ trig = "structf", desc = "create a frozen dataclass" }, {
+                    t({ [[@dataclass(frozen=True)]],
+                        [[class ]] }),
+                    i(1, "ClassName"),
+                    t({ ":", "    " }),
+                    i(2, "pass"),
+                })
+
+            })
+        end,
         zig = function()
             ls.add_snippets("zig", {
                 s({ trig = "panic", desc = "Add a debug panic statement" }, {
