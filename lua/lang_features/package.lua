@@ -69,8 +69,8 @@ local programming = { "asm", "asm68k", "asm_ca65", "asmh8300", "asterisp",
     "kotlin", "less", "lex", "lisp", "lua", "m4", "make", "nasm", "ninja",
     "nix", "ocaml", "octave", "pascal", "perl", "php", "plantuml", "prolog",
     "ps1", "python", "qml", "r", "racket", "raku", "ruby", "rust", "sass",
-    "scala", "scheme", "scss", "sed", "simula", "stylus", "swift", "tasm",
-    "tcl", "typescript", "typescriptreact", "vim", "vue", "yacc", "zig", }
+    "scala", "scheme", "scss", "sed", "simula", "stylus", "swift", "tablegen",
+    "tasm", "tcl", "typescript", "typescriptreact", "vim", "vue", "yacc", "zig" }
 local text = { "autodoc", "godoc", "groff", "lhaskell", "mail", "markdown",
     "mdx", "plaintex", "rst", "rtf", "tex", "vimwiki", "vimwiki_markdown_custom", }
 local git = { "git", "gitattributes", "gitcommit", "gitconfig", "gitignore",
