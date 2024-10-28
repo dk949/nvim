@@ -189,11 +189,11 @@ M.logicalLines = combine(git, text)
 
 local lspSetups = {
     astro           = combineLSPs("eslint", "astro", "tailwindcss"),
-    c               = combineLSPs "ccls",
+    c               = combineLSPs "clangd",
     cmake           = combineLSPs "cmake",
-    cpp             = combineLSPs "ccls",
+    cpp             = combineLSPs "clangd",
     css             = combineLSPs("cssls", "tailwindcss"),
-    cuda            = combineLSPs "ccls",
+    cuda            = combineLSPs "clangd",
     d               = combineLSPs "serve_d",
     elixir          = combineLSPs "elixirls",
     elm             = combineLSPs "elmls",
