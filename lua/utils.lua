@@ -252,6 +252,12 @@ function M.addAbrev(new, old, opts)
     )
 end
 
+--- Get the number of selected lines
+---@return number
+function M.selectionSize()
+    return vim.fn.line("'>") - vim.fn.line("'<") + 1
+end
+
 ---@param lower number
 ---@param val number
 ---@param upper number
