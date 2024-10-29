@@ -139,6 +139,7 @@ k.set('n', "<leader>ci", function() vim.diagnostic.open_float() end, desc [[Open
 k.set('n', "<leader>ca", ":ALEToggle<CR>", desc [[Toggle ALE]])
 k.set('n', "<leader>cgr", function() vim.cmd [[Trouble lsp_references]] end, desc [[Go to reference]])
 k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, desc [[Go to definition]])
+k.set('n', "<leader>ch", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, desc [[Toggle inlay hints]])
 
 -- Plugins
 
