@@ -97,7 +97,7 @@ end
 function M.makeDefaultLspCounfig(servername, opts)
     if opts == nil then opts = {} end
     return {
-        server = require("utils").lspSetupCreate(servername,
+        server = M.lspSetupCreate(servername,
             function(capabilities, on_attach)
                 local lspconfig = require("lspconfig")
                 local setup = {
