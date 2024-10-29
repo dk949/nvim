@@ -75,6 +75,13 @@ for _, dir in ipairs({ 'h', 'j', 'k', 'l' }) do
         desc("Resize window in " .. dir .. "direction"))
 end
 
+
+k.set('n', "<A-j>", "<CMD>m +1<CR>", desc [[move line down]])
+k.set('n', "<A-k>", "<CMD>m -2<CR>", desc [[move line up]])
+
+k.set('v', "<A-j>", ":m '>+1<CR>gv", desc [[move lines down]])
+k.set('v', "<A-k>", ":m '<-2<CR>gv", desc [[move lines up]])
+
 -- Disabled features
 
 if not dk949.arrows then
