@@ -92,7 +92,7 @@ end
 --- make default lsp configuration
 --- "good enough" for most applications
 ---@param servername string name of the server
----@param opts? {settings?:table,filetypes?:table|string,root_dir?:table,install?:boolean} optional options for the lsp
+---@param opts? {settings?:table,init_options?:table,filetypes?:table|string,root_dir?:table,install?:boolean} optional options for the lsp
 ---@return table?
 function M.makeDefaultLspCounfig(servername, opts)
     if opts == nil then opts = {} end
@@ -106,6 +106,7 @@ function M.makeDefaultLspCounfig(servername, opts)
                     completion = { callSnippet = "Replace" }
                 }
                 if opts.settings then setup.settings = opts.settings end
+                if opts.init_options then setup.init_options = opts.init_options end
                 if opts.filetypes then setup.filetypes = opts.filetypes end
                 if opts.root_dir then setup.root_dir = lspconfig.util.root_pattern(unpack(opts.root_dir)) end
                 lspconfig[servername].setup(setup)
