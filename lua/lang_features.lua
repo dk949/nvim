@@ -94,6 +94,7 @@ local function _setup(lang)
                 if client.server_capabilities.documentSymbolProvider then
                     require("nvim-navic").attach(client, bufnr)
                 end
+                vim.lsp.inlay_hint.enable()
             end
         end
         return capabilities, on_attach
