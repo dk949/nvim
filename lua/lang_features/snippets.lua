@@ -42,25 +42,26 @@ return function(lang)
             ls.filetype_extend("cpp", { "cppdoc" })
             ls.add_snippets("cpp", {
                 s({ trig = "incchr", desc = "include `std::chrono`, add namespace alias and literals" }, {
+                s({ trig = "#incchr", desc = "include `std::chrono`, add namespace alias and literals" }, {
                     t({
                         [[#include <chrono>]],
                         [[namespace chr = std::chrono;]],
                         [[using namespace std::chrono_literals;]],
                     })
                 }),
-                s({ trig = "incstr", desc = "include `std::string` and add literals" }, {
+                s({ trig = "#incstr", desc = "include `std::string` and add literals" }, {
                     t({
                         [[#include <string>]],
                         [[using namespace std::string_literals;]],
                     })
                 }),
-                s({ trig = "incstrv", desc = "include `std::string_view`and add literals" }, {
+                s({ trig = "#incstrv", desc = "include `std::string_view`and add literals" }, {
                     t({
                         [[#include <string_view>]],
                         [[using namespace std::string_view_literals;]],
                     })
                 }),
-                s({ trig = "incfs", desc = "include `std::filesystem` and add namespace alias" }, {
+                s({ trig = "#incfs", desc = "include `std::filesystem` and add namespace alias" }, {
                     t({
                         [[#include <filesystem>]],
                         [[namespace fs = std::filesystem;]],
