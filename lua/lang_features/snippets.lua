@@ -41,7 +41,13 @@ return function(lang)
         cpp = function()
             ls.filetype_extend("cpp", { "cppdoc" })
             ls.add_snippets("cpp", {
-                s({ trig = "incchr", desc = "include `std::chrono`, add namespace alias and literals" }, {
+                s({ trig = "#incrng", desc = "include `std::chrono`, add namespace alias and literals" }, {
+                    t({
+                        [[#include <ranges>]],
+                        [[namespace rng = std::ranges;]],
+                        [[namespace vws = std::views;]],
+                    })
+                }),
                 s({ trig = "#incchr", desc = "include `std::chrono`, add namespace alias and literals" }, {
                     t({
                         [[#include <chrono>]],
