@@ -73,6 +73,10 @@ return function(lang)
                         [[namespace fs = std::filesystem;]],
                     })
                 }),
+                s({ trig = "cfmt", desc = "clang format pragma" }, {
+                    t("// clang-format "),
+                    i(1, "off"),
+                }),
             })
         end,
         python = function()
