@@ -127,7 +127,7 @@ local function runGit(...)
         local gitErrors = ""
         vim.fn.jobstart(args, {
             on_stderr = function(err) gitErrors = gitErrors .. err end,
-            on_exit = function(arg) reportGit(arg[2], args[1] .. " " .. args[2], gitErrors) end
+            on_exit = function(job_id, exit_code) reportGit(exit_code, job_id .. " " .. args[2], gitErrors) end
         })
     end
 end
