@@ -16,4 +16,4 @@
 
 vim.g.vimspector_enable_mappings = 'HUMAN'
 vim.g.vimspector_enable_winbar = true
-return { "puremourning/vimspector", ft = { "c", "cpp" } }
+return { "puremourning/vimspector", ft = { "c", "cpp", "python" } }
