@@ -79,6 +79,20 @@ return function(lang)
                 }),
             })
         end,
+        go = function()
+            ls.add_snippets("go", {
+                s({ trig = "iferr", desc = "if err != nil" }, {
+                    t "if ", i(1, "err"), t { " != nil {", "" },
+                    d(2, function(args)
+                            return sn(nil, { t "\t", i(1, "return " .. args[1][1]) })
+                        end,
+                        { 1 }
+                    ),
+                    t { "", "}" },
+                }),
+
+            })
+        end,
         python = function()
             ls.add_snippets("python", {
                 s({ trig = "struct", desc = "create a dataclass" }, {
