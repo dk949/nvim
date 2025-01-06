@@ -265,6 +265,7 @@ M.fmt = {
     d = function() fmtRun [[dfmt -i %]] end,
     elixir = lspFmt,
     fortran = lspFmt,
+    go = lspFmt,
     haskell = function() fmtRun [[fourmolu -i %]] end,
     html = htmlFmt,
     mail = htmlFmt,
