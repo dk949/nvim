@@ -1,4 +1,4 @@
-return require("utils").makeDefaultLspCounfig("tsserver", {
+return require("utils").makeDefaultLspCounfig("ts_ls", {
     -- settings = {
     init_options = {
         preferences = {
