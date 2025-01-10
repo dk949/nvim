@@ -66,6 +66,7 @@ return require("packer").startup(function()
     use { '~/code/python/scotch/tools/vim/scot/' }
     localUse "obsidian"
     use { '~/code/vim/mdx.nvim/' }
+    localUse "serve_d_utils"
     localUse "repl"
 
 end)
