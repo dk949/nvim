@@ -4,23 +4,6 @@ local utils = require("utils")
 api.nvim_create_user_command("W", "w", {})
 api.nvim_create_user_command("E", "e <args>", { complete = "file", nargs = 1 })
 
-local function deleteView()
-    local fn = vim.fn
-    ---@diagnostic disable-next-line: param-type-mismatch; bufname can accept specific strings.
-    local path = fn.fnamemodify(fn.bufname('%'), ':p')
-    path = fn.substitute(path, '=', '==', 'g')
-    if vim.env.HOME then path = fn.substitute(path, '^' .. vim.env.HOME, '~', '') end
-    path = fn.substitute(path, '/', '=+', 'g') .. '='
-    path = vim.o.viewdir .. "/" .. path
-    fn.delete(path)
-    print("Deleted ", path)
-    dk949.nomkview = true
-end
-
-api.nvim_create_user_command("Delview", function() deleteView() end, {})
-
-utils.addAbrev("delview", "Delview")
-
 api.nvim_create_user_command("EchoHl",
     [[echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"]]
     , {}
@@ -44,7 +27,6 @@ api.nvim_create_user_command("GitAddPatch",
             function()
                 local range = nil
                 if opts.range ~= 0 then range = { opts.line1, opts.line2 } end
-                vim.cmd [[mkview]]
                 vim.ui.select(
                     { 'y', 'n' },
                     {

@@ -40,28 +40,7 @@ vim.opt.shiftwidth = dk949.tabstop
 vim.opt.softtabstop = dk949.tabstop
 vim.opt.expandtab = true
 
--- rememebr file
-vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave", "InsertLeave" }, {
-    pattern = "*",
-    callback = function()
-        if vim.fn.bufname() ~= "" then
-            if dk949.nomkview then
-                dk949.nomkview = false
-            else
-                vim.cmd [[mkview]]
-            end
-        end
-    end,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufEnter" }, {
-    pattern = "*",
-    callback = function()
-        if not vim.g.file_line_fired then
-            vim.cmd [[silent! loadview]]
-        end
-    end
-})
+require "restore" {}.installHandler()
 
 
 vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {

@@ -1,5 +1,6 @@
 -- Quick settings
 _G.dk949 = {
+    load_start = vim.fn.reltime(),
     leader = " ",
     tabstop = 4,
     mouse = "",
