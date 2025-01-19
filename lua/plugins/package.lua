@@ -69,5 +69,6 @@ return require("packer").startup(function()
     localUse "serve_d_utils"
     localUse "restore"
     localUse "repl"
+    localUse "copilot"
 
 end)

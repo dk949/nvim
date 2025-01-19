@@ -3,6 +3,7 @@ local k = vim.keymap
 local function desc(msg) return { desc = msg, silent = true } end
 
 local function edesc(msg) return { desc = msg, silent = true, expr = true } end
+local function redesc(msg) return { desc = msg, silent = true, expr = true,replace_keycodes = false } end
 local function ldesc(msg) return { desc = msg, silent = true, buffer = true } end
 
 local utils = require("utils")
@@ -155,6 +156,9 @@ k.set('n', '<Leader>gu', ":Gitsigns undo_stage_hunk<CR>", desc [[Undo last hunk 
 k.set('n', '<Leader>gd', ":Gitsigns toggle_deleted<CR>", desc [[Toggle deleted lines]])
 k.set('n', '<leader>j', ":Gitsigns next_hunk<CR>", desc [[go to next hunk]])
 k.set('n', '<leader>k', ":Gitsigns prev_hunk<CR>", desc [[go to previous hunk]])
+
+vim.keymap.set('i', '<C-Space>', 'copilot#Accept("")', redesc [[Accept copilot suggestion]])
+vim.keymap.set('i', '<C-M-Space>', '<Plug>(copilot-dismiss)', desc [[Dismiss copilot suggestion]])
 
 local i = "insert"
 local n = "normal"

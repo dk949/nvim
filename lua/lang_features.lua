@@ -118,10 +118,16 @@ local function _setup(lang)
 end
 
 function M.setup()
+    local g = vim.api.nvim_create_augroup("lang_features_group", { clear = true })
     for lang, _ in pairs(feat.allLangs) do
         vim.api.nvim_create_autocmd("FileType", {
+            group = g,
             pattern = lang,
             callback = function() _setup(lang) end,
+        })
+        vim.api.nvim_create_autocmd("VimEnter", {
+            group = g,
+            command = "Copilot disable",
         })
     end
 end
