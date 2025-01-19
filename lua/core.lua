@@ -40,7 +40,11 @@ vim.opt.shiftwidth = dk949.tabstop
 vim.opt.softtabstop = dk949.tabstop
 vim.opt.expandtab = true
 
-require "restore-cursor" {}.installHandler()
+require "restore-cursor" {
+    ignore = {
+        filetype_patterns = { "^help$" },
+    }
+}.installHandler()
 
 
 vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
