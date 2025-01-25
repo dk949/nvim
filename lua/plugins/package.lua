@@ -67,7 +67,7 @@ return require("packer").startup(function()
     localUse "obsidian"
     use { '~/code/vim/mdx.nvim/' }
     localUse "serve_d_utils"
-    localUse "restore"
+    localUse "remember-where"
     localUse "repl"
     localUse "copilot"
 
