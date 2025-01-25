@@ -50,8 +50,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
 k.set('t', "<C-[><C-[>", [[<C-\><C-n>:doautocmd User TermUtilsLeave<CR>]],
     desc [[Double escape to get to normal mode in terminal mode]])
 
-k.set('n', "ZZ", function() require("termutils").smartClose() end,
-    desc [[If last buffer was a terminal, erturn to that terminal]])
+k.set('n', "ZZ", function()
+    if vim.bo.ft == "oil" then
+        vim.cmd[[norm! ZZ]]
+    else
+        require("termutils").smartClose()
+    end
+end, desc [[If last buffer was a terminal, return to that terminal]])
 
 k.set({ 'n', 'i' }, "<A-l>", "gt", desc [[alt-l for next tab]])
 k.set({ 'n', 'i' }, "<A-h>", "gT", desc [[alt-h for prev tab]])
@@ -147,7 +152,7 @@ k.set('i', "<C-x>;", "<cmd>IconPickerInsert<cr>", desc [[Pick an icon in insert 
 
 k.set('n', "<leader>mg", ":Goyo<CR>", desc [[toggle Goyo]])
 
-k.set('n', "<leader>nn", ":NvimTreeFindFileToggle<CR>", desc [[toggle Tree file browser]])
+k.set('n', "<leader>nn", "<CMD>Oil --float<CR>", desc [[toggle file browser]])
 
 k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc [[toggle minimap]])
 

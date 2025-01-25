@@ -18,7 +18,7 @@ return require("packer").startup(function()
     -- QoL
     localUse "highlightedyank"
     localUse "Comment"
-    localUse "tree"
+    localUse "oil"
     localUse "surround"
     localUse "gitsigns"
     localUse "tabular"
