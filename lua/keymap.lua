@@ -3,7 +3,7 @@ local k = vim.keymap
 local function desc(msg) return { desc = msg, silent = true } end
 
 local function edesc(msg) return { desc = msg, silent = true, expr = true } end
-local function redesc(msg) return { desc = msg, silent = true, expr = true,replace_keycodes = false } end
+local function redesc(msg) return { desc = msg, silent = true, expr = true, replace_keycodes = false } end
 local function ldesc(msg) return { desc = msg, silent = true, buffer = true } end
 
 local utils = require("utils")
@@ -137,14 +137,15 @@ k.set('n', "<leader>ci", function() vim.diagnostic.open_float() end, desc [[Open
 k.set('n', "<leader>ca", ":ALEToggle<CR>", desc [[Toggle ALE]])
 k.set('n', "<leader>cgr", function() vim.cmd [[Trouble lsp_references]] end, desc [[Go to reference]])
 k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, desc [[Go to definition]])
-k.set('n', "<leader>ch", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, desc [[Toggle inlay hints]])
+k.set('n', "<leader>ch", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+    desc [[Toggle inlay hints]])
 
 -- Plugins
 
 k.set('n', "<leader>:", "<cmd>IconPickerNormal<cr>", desc [[Pick an icon in normal mode]])
 k.set('i', "<C-x>;", "<cmd>IconPickerInsert<cr>", desc [[Pick an icon in insert mode]])
 
-k.set('n', "<leader>mg", ":Goyo<CR>", desc [[toggle Tree file browser]])
+k.set('n', "<leader>mg", ":Goyo<CR>", desc [[toggle Goyo]])
 
 k.set('n', "<leader>nn", ":NvimTreeFindFileToggle<CR>", desc [[toggle Tree file browser]])
 
