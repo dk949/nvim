@@ -279,6 +279,7 @@ M.fmt = {
     rust = function()
         vim.cmd [[RustFmt]]; vim.cmd [[:w]]
     end,
+    scss = lspFmt,
     svg = xmlFmt,
     typescript = lspFmt,
     typescriptreact = lspFmt,
