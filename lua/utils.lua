@@ -360,4 +360,17 @@ function M.algo.removeCopyIf(tab, fn)
     M.algo.removeIf(copy, fn)
     return copy
 end
+
+---Run vim.schedule `times` times
+---@param fn function
+---@param times integer
+function M.scheduleR(fn, times)
+    assert(times >= 0)
+    if times == 0 then
+        fn()
+    else
+        vim.schedule(function() M.scheduleR(fn, times - 1) end)
+    end
+end
+
 return M
