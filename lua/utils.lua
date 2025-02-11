@@ -285,4 +285,79 @@ function M.parseGitStatus(status)
     end
     return res
 end
+
+M.algo = {}
+
+
+---Find the index of a value in a list-like table
+---@generic T
+---@param tab T[]
+---@param val T
+---@return integer
+function M.algo.find(tab, val)
+    assert(vim.tbl_islist(tab), "find is for list-like tables only")
+    for index, value in ipairs(tab) do
+        if value == val then return index end
+    end
+    return 0
+end
+
+---Find the index of a value in a list-like table
+---@generic T
+---@param tab T[]
+---@param fn fun(value: T, index: integer): boolean
+---@return integer
+function M.algo.findIf(tab, fn)
+    assert(vim.tbl_islist(tab), "findIf is for list-like tables only")
+    for index, value in ipairs(tab) do
+        if fn(value, index) then return index end
+    end
+    return 0
+end
+
+---Remove a matching value from a list-like table
+---@generic T
+---@param tab T[]
+---@param val T
+function M.algo.remove(tab, val)
+    assert(vim.tbl_islist(tab), "remove is for list-like tables only")
+    local index = M.algo.find(tab, val)
+    if index > 0 then
+        table.remove(tab, index)
+    end
+end
+
+---Remove a value from a list-like table. Returns a new table
+---@generic T
+---@param tab T[]
+---@param val T
+---@return T[]
+function M.algo.removeCopy(tab, val)
+    local copy = vim.deepcopy(tab)
+    M.algo.remove(copy, val)
+    return copy
+end
+
+---Remove a value from a list-like table
+---@generic T
+---@param tab T[]
+---@param fn fun(value: T, index: integer): boolean
+function M.algo.removeIf(tab, fn)
+    assert(vim.tbl_islist(tab), "removeIf is for list-like tables only")
+    local index = M.algo.findIf(tab, fn)
+    if index > 0 then
+        table.remove(tab, index)
+    end
+end
+
+---Remove a value from a list-like table. Returns a new table
+---@generic T
+---@param tab T[]
+---@param fn fun(value: T, index: integer): boolean
+---@return T[]
+function M.algo.removeCopyIf(tab, fn)
+    local copy = vim.deepcopy(tab)
+    M.algo.removeIf(copy, fn)
+    return copy
+end
 return M
