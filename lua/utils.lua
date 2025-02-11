@@ -275,4 +275,14 @@ function M.endsWith(str, ending)
     return ending == "" or str:sub(- #ending) == ending
 end
 
+---@param status string
+---@return {status: [string, string], file: string}[]
+function M.parseGitStatus(status)
+    local res = {}
+    for line in status:gmatch("[^\r\n]+") do
+        local x, y, file = line:match("^(.)(.) (.+)$")
+        table.insert(res, { status = { x, y }, file = file })
+    end
+    return res
+end
 return M
