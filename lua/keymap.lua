@@ -231,3 +231,4 @@ k.set('n', "<leader>ful8", function() teleConfig("lsp_type_definitions") end, de
 k.set('n', "<leader>f6", "<Plug>VimspectorDisassemble", desc [[Disassemble debugged program]])
 k.set('n', "<leader>md", "<Plug>VimspectorBalloonEval", desc [[Evaluate statement]])
 k.set('v', "<leader>md", "<Plug>VimspectorBalloonEval", desc [[Evaluate statement]])
+k.set('n', "<leader>db", "<Plug>VimspectorBreakpoints", desc [[Open break point window]])
