@@ -34,7 +34,7 @@ return {
             keymaps = {
                 ["g?"] = { "actions.show_help", mode = "n" },
                 ["<CR>"] = "actions.select",
-                ["<C-v>"] = { "actions.select", opts = { vertical = true } },
+                ["<leader>v"] = { "actions.select", opts = { vertical = true } },
                 ["<C-s>"] = { "actions.select", opts = { horizontal = true } },
                 ["<C-t>"] = { "actions.select", opts = { tab = true } },
                 ["<C-p>"] = "actions.preview",
@@ -48,6 +48,7 @@ return {
                 ["g."] = { "actions.toggle_hidden", mode = "n" },
                 ["g\\"] = { "actions.toggle_trash", mode = "n" },
                 ["gt"] = { "actions.open_terminal" },
+                ["<leader>nc"] = function() vim.cmd [[silent lua require "plugins.oil_col_picker" ()]] end
             },
             -- Set to false to disable all of the above keymaps
             use_default_keymaps = false,
