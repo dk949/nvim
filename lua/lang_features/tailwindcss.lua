@@ -15,7 +15,7 @@ return require("utils").makeDefaultLspCounfig("tailwindcss", {
             },
             -- includeLanguages = { haskell = "html" },
             experimental = {
-                classRegex = { "class_ \"([^\"]*)" },
+                classRegex = { "class_ \"([^\"]*)", [[className\s*=\s*["'`]([^"'`]*)]] },
             },
         }
     }
