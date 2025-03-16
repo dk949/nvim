@@ -50,13 +50,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
 k.set('t', "<C-[><C-[>", [[<C-\><C-n>:doautocmd User TermUtilsLeave<CR>]],
     desc [[Double escape to get to normal mode in terminal mode]])
 
-k.set('n', "ZZ", function()
-    if vim.bo.ft == "oil" then
-        vim.cmd[[norm! ZZ]]
-    else
-        require("termutils").smartClose()
-    end
-end, desc [[If last buffer was a terminal, return to that terminal]])
+-- k.set('n', "ZZ", function()
+--     if vim.bo.ft == "oil" then
+--         vim.cmd[[norm! ZZ]]
+--     else
+--         require("termutils").smartClose()
+--     end
+-- end, desc [[If last buffer was a terminal, return to that terminal]])
 
 k.set({ 'n', 'i' }, "<A-l>", "gt", desc [[alt-l for next tab]])
 k.set({ 'n', 'i' }, "<A-h>", "gT", desc [[alt-h for prev tab]])
@@ -111,7 +111,7 @@ k.set('n', "<leader>ms", ":mksession!<CR>", desc [[Save the current session]])
 
 k.set('n', "<Leader>mc", ":set cursorline!<CR>", desc [[cursor highlighting]])
 
-k.set('n', "<Leader>mt", function() require("termutils").startTerminal() end, desc [[cursor highlighting]])
+k.set('n', "<Leader>mt", function() require("termutils").startTerminal() end, desc [[start the terminal]])
 
 k.set('n', "<leader>mi", function() vim.lsp.buf.hover() end, desc [[Display hover infomration]])
 

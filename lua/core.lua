@@ -1,6 +1,5 @@
 local api = vim.api
 local utils = require("utils")
-local termutils = require("termutils")
 -- Map the leader key to space
 vim.g.mapleader = dk949.leader
 

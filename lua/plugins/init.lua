@@ -32,6 +32,7 @@ return require("packer").startup(function()
     localUse "dressing"
     localUse "color"
     localUse "bullets"
+    localUse "flatten"
 
     -- telescope
     localUse "plenary"
