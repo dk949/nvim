@@ -136,11 +136,47 @@ return function(lang)
                 }),
                 s({ trig = "gpa", desc = "Create a general purpose allocator" }, {
                     t({
-                        "var gpa = std.heap.GeneralPurposeAllocator(.{}){};",
+                        "var gpa = std.heap.DebugAllocator(.{}).init;",
                         "const alloc = gpa.allocator();",
                         "defer _ = gpa.deinit();",
                     })
-
+                }),
+                s({ trig = "DefA", desc = "Create a general purpose allocator" }, {
+                    t({
+                        [[const DefAlloc =]],
+                        [[    switch (@import("builtin").mode) {]],
+                        [[        .Debug, .ReleaseSafe => struct {]],
+                        [[            var gpa: std.heap.DebugAllocator(.{}) = .init;]],
+                        [[            pub fn allocator() std.mem.Allocator {]],
+                        [[                return gpa.allocator();]],
+                        [[            }]],
+                        [[            pub fn deinit() std.heap.Check {]],
+                        [[                return gpa.deinit();]],
+                        [[            }]],
+                        [[        },]],
+                        [[        .ReleaseFast, .ReleaseSmall => struct {]],
+                        [[            pub fn allocator() std.mem.Allocator {]],
+                        [[                return std.heap.smp_allocator;]],
+                        [[            }]],
+                        [[            pub fn deinit() std.heap.Check {]],
+                        [[                return .ok;]],
+                        [[            }]],
+                        [[        },]],
+                        [[    };]],
+                    })
+                }),
+                s({ trig = "def_a", desc = "Create a general purpose allocator" }, {
+                    t({
+                        "const alloc = DefAlloc.allocator();",
+                        "defer _ = DefAlloc.deinit();",
+                    })
+                }),
+                s({ trig = "arena", desc = "Create an arena allocator" }, {
+                    t({
+                        "var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);",
+                        "const alloc = arena.allocator();",
+                        "defer arena.deinit();",
+                    })
                 })
             })
         end
