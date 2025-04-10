@@ -42,7 +42,7 @@ function M.switch(on)
             return M.fnOrVal(stmt[on], on)
         else
             for k, v in pairs(stmt) do
-                if type(k) == "table" and vim.tbl_islist(k) then
+                if type(k) == "table" and vim.islist(k) then
                     for _, option in ipairs(k) do
                         if option == on then
                             return M.fnOrVal(v, option)
@@ -223,7 +223,7 @@ end
 ---@param tbl any[]
 ---@return any[]
 function M.unique(tbl)
-    assert(vim.tbl_islist(tbl))
+    assert(vim.islist(tbl))
     local vals = {}
     for _, value in ipairs(tbl) do
         vals[value] = true
@@ -295,7 +295,7 @@ M.algo = {}
 ---@param val T
 ---@return integer
 function M.algo.find(tab, val)
-    assert(vim.tbl_islist(tab), "find is for list-like tables only")
+    assert(vim.islist(tab), "find is for list-like tables only")
     for index, value in ipairs(tab) do
         if value == val then return index end
     end
@@ -308,7 +308,7 @@ end
 ---@param fn fun(value: T, index: integer): boolean
 ---@return integer
 function M.algo.findIf(tab, fn)
-    assert(vim.tbl_islist(tab), "findIf is for list-like tables only")
+    assert(vim.islist(tab), "findIf is for list-like tables only")
     for index, value in ipairs(tab) do
         if fn(value, index) then return index end
     end
@@ -320,7 +320,7 @@ end
 ---@param tab T[]
 ---@param val T
 function M.algo.remove(tab, val)
-    assert(vim.tbl_islist(tab), "remove is for list-like tables only")
+    assert(vim.islist(tab), "remove is for list-like tables only")
     local index = M.algo.find(tab, val)
     if index > 0 then
         table.remove(tab, index)
@@ -343,7 +343,7 @@ end
 ---@param tab T[]
 ---@param fn fun(value: T, index: integer): boolean
 function M.algo.removeIf(tab, fn)
-    assert(vim.tbl_islist(tab), "removeIf is for list-like tables only")
+    assert(vim.islist(tab), "removeIf is for list-like tables only")
     local index = M.algo.findIf(tab, fn)
     if index > 0 then
         table.remove(tab, index)
