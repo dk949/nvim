@@ -57,7 +57,7 @@ end
 
 local shell = { "csh", "bash", "sh", "tcsh", "zsh" }
 local config = { "bib", "cabal", "conf", "config", "css", "diff", "fstab",
-    "html", "i3config", "json", "jsonc", "kconfig", "ld", "ldapconf", "meson",
+    "html", "templ", "i3config", "json", "jsonc", "kconfig", "ld", "ldapconf", "meson",
     "modconf", "mysql", "nginx", "pamconf", "samba", "sql", "svg",
     "swayconfig", "systemd", "terminfo", "texinfo", "text", "todotxt", "toml",
     "viminfo", "xf86conf", "yaml" }
@@ -84,7 +84,7 @@ addLangs(git)
 
 M.goyo_mode = { "tex", "plaintex", "markdown" }
 
-M.color_on = { "css", "elm", "html", "javascript", "javascriptreact", "less",
+M.color_on = { "css", "elm", "html", "templ", "javascript", "javascriptreact", "less",
     "php", "qml", "sass", "scss", "stylus", "svg", "typescript",
     "typescriptreact", "json" }
 
@@ -201,6 +201,7 @@ local lspSetups = {
     go              = combineLSPs "gopls",
     haskell         = combineLSPs("hls", "tailwindcss"),
     html            = combineLSPs("html", "tailwindcss"),
+    templ           = combineLSPs("html", "htmx", "tailwindcss", "templ"),
     mail            = combineLSPs "html",
     javascript      = combineLSPs("eslint", "tsserver", "tailwindcss"),
     javascriptreact = combineLSPs("eslint", "tsserver", "tailwindcss"),
@@ -242,6 +243,13 @@ local function lspFmt()
     vim.lsp.buf.format()
     vim.cmd [[:w]]
 end
+local function lspFilt(name)
+    return function ()
+        vim.lsp.buf.format({
+              filter = function(client) return client.name == name end
+        })
+    end
+end
 local function clangFormat()
     fmtRun [[clang-format --fallback-style=Google --style=file -i %]]
 end
@@ -268,6 +276,7 @@ M.fmt = {
     go = lspFmt,
     haskell = function() fmtRun [[fourmolu -i %]] end,
     html = htmlFmt,
+    templ = lspFilt("templ"),
     mail = htmlFmt,
     javascript = lspFmt,
     javascriptreact = lspFmt,
