@@ -92,6 +92,10 @@ vim.opt.hlsearch = false
 -- Search through subdirectories recursively
 vim.opt.path:append("**")
 
+-- mouse/scrolling
+vim.opt.mousescroll = "ver:1,hor:0"
+vim.opt.smoothscroll = true
+
 -- Spilts act as expected
 vim.opt.splitbelow = true
 vim.opt.splitright = true

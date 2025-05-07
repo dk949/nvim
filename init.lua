@@ -3,7 +3,6 @@ _G.dk949 = {
     load_start = vim.fn.reltime(),
     leader = " ",
     tabstop = 4,
-    mouse = "",
     arrows = false,
     winSzInc = 5,
     obsidian_worspaces = { { name = "wiki", path = "~/Uni/wiki" } },

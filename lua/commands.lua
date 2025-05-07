@@ -165,18 +165,7 @@ api.nvim_create_user_command("UserFriendly", function(args)
     end
 end, { bang = true })
 
-api.nvim_create_user_command("DebugStart",
-    function()
-        vim.opt.mouse = "a"
-        vim.api.nvim_create_autocmd("User", {
-            pattern = "VimspectorDebugEnded",
-            callback = function() vim.opt.mouse = "" end,
-            once = true,
-        })
-        vim.fn['vimspector#Continue']()
-    end
-
-    , {})
+api.nvim_create_user_command("DebugStart", function() vim.fn['vimspector#Continue']() end, {})
 api.nvim_create_user_command("DebugCheatSheet", function()
     print([[
 F5          ->    When debugging, continue. Otherwise start debugging.
