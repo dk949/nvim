@@ -54,7 +54,6 @@ return require("packer").startup(function()
     localUse "asm_ca65"
     localUse "dutyl"
     localUse "haskell"
-    localUse "jsx_typescript"
     localUse "llvm"
     localUse "pdf"
     localUse "plantuml"
