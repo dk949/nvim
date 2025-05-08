@@ -32,6 +32,7 @@ return { {
 
             colors = {}, -- Override default colors
             highlights = {
+                Title = { bg = '$bg1'},
                 SpellBad   = { fg = '$red', fmt = 'underdouble' },
                 SpellCap   = { fg = '$cyan' },
                 SpellLocal = { fg = "$orange", fmt = 'underline' },
