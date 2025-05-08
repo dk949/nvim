@@ -1,6 +1,8 @@
 -- https://github.com/"navarasu/onedark.nvim"
-return {
+return { {
     "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
     config = function()
         require('onedark').setup {
             -- Main options --
@@ -43,4 +45,4 @@ return {
         }
         require('onedark').load()
     end
-}
+} }

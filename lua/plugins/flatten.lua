@@ -1,8 +1,7 @@
 -- https://github.com/willothy/flatten.nvim
 
-return {
+-- TODO(dk949): setup git commit integration
+return { {
     "willothy/flatten.nvim",
-    config = function()
-        require "flatten".setup {}
-    end
-}
+    opts = {},
+} }

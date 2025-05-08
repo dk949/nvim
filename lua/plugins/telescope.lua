@@ -1,10 +1,10 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 
 return {
-    "nvim-telescope/telescope.nvim",
-    config = function()
-        local blend
-        require('telescope').setup {
+    { "nvim-lua/plenary.nvim" },
+    {
+        "nvim-telescope/telescope.nvim",
+        opts = {
             defaults = {
                 winblend = vim.opt_local.winblend:get(),
                 prompt_prefix = "❯ ",
@@ -38,5 +38,5 @@ return {
                 },
             }
         }
-    end
+    }
 }

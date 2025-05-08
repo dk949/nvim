@@ -39,9 +39,6 @@ vim.opt.shiftwidth = dk949.tabstop
 vim.opt.softtabstop = dk949.tabstop
 vim.opt.expandtab = true
 
-require "remember-where" {}.installHandler()
-
-
 vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
     pattern = "term://*",
     callback = function()

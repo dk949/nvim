@@ -14,6 +14,11 @@
 -- F11         ->    Step Into
 -- F12         ->    Step out of current function scope
 
-vim.g.vimspector_enable_mappings = 'HUMAN'
-vim.g.vimspector_enable_winbar = true
-return { "puremourning/vimspector", ft = { "c", "cpp", "python" } }
+return { {
+    "puremourning/vimspector",
+    init = function()
+        vim.g.vimspector_enable_mappings = 'HUMAN'
+        vim.g.vimspector_enable_winbar = true
+    end,
+    ft = { "c", "cpp", "python" }
+} }

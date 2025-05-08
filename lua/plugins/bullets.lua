@@ -1,7 +1,6 @@
 -- https://github.com/bullets-vim/bullets.vim
 
-vim.g.bullets_enabled_file_types = { 'markdown', 'mdx' }
-return {
+return { {
     "bullets-vim/bullets.vim",
-    -- ft = { "markdown" },
-}
+    ft = { "markdown" },
+} }

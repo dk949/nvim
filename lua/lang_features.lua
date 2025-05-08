@@ -87,6 +87,7 @@ local function _setup(lang)
         pattern = "*",
         callback = function()
             if feat.lspconfig[lang] ~= nil then
+                vim.opt.signcolumn = "yes"
                 require "lang_features.snippets" (lang);
                 local cap, on_a = cap_on_attach()
                 feat.lspconfig[lang](cap, on_a)
@@ -106,10 +107,6 @@ function M.setup()
             group = g,
             pattern = lang,
             callback = function() _setup(lang) end,
-        })
-        vim.api.nvim_create_autocmd("VimEnter", {
-            group = g,
-            command = "Copilot disable",
         })
     end
 end

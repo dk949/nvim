@@ -1,7 +1,8 @@
 -- https://github.com/lukas-reineke/indent-blankline.nvim
-return {
+return { {
     "lukas-reineke/indent-blankline.nvim",
-    config = function()
-        require("ibl").setup { scope = { enabled = true } }
-    end,
-}
+    main = "ibl",
+    opts = {
+        scope = { enabled = true }
+    }
+} }

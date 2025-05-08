@@ -1,5 +1,5 @@
 -- https://github.com/ap/vim-css-color.git,
-return {
+return { {
     "ap/vim-css-color",
     ft = require("lang_features").feat.color_on,
     config = function()
@@ -11,4 +11,4 @@ return {
             end
         end, { bang = true })
     end
-}
+} }

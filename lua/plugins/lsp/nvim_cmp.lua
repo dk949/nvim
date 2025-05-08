@@ -1,16 +1,8 @@
 -- https://github.com/hrsh7th/nvim-cmp
 
 
--- Autocompletion plugin
-return {
+return { {
     "hrsh7th/nvim-cmp",
-    as = "cmp",
-    after = {
-        "snip",
-        "cmp-lsp",
-        "cmp-snip",
-        "cmp-buffer",
-    },
     config = function()
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
@@ -64,4 +56,4 @@ return {
         end
         cmp.setup.filetype("markdown", conf)
     end
-}
+} }
