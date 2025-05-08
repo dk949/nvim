@@ -82,8 +82,6 @@ addLangs(programming)
 addLangs(text)
 addLangs(git)
 
-M.goyo_mode = { "tex", "plaintex", "markdown" }
-
 M.color_on = { "css", "elm", "html", "templ", "javascript", "javascriptreact", "less",
     "php", "qml", "sass", "scss", "stylus", "svg", "typescript",
     "typescriptreact", "json" }
