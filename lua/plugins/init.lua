@@ -66,7 +66,6 @@ return require("packer").startup(function()
     use { '~/code/vim/asterisp.vim' }
     use { '~/code/python/scotch/tools/vim/scot/' }
     localUse "obsidian"
-    localUse "file_line"
     localUse "serve_d_utils"
     localUse "remember-where"
     localUse "repl"
