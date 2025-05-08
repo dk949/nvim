@@ -83,7 +83,6 @@ function M.lspSetupCreate(name, fn)
     return function(capabilities, on_attach)
         if not setups[name] then
             fn(capabilities, on_attach)
-            vim.cmd [[:LspStart]]
             setups[name] = true
         end
     end
