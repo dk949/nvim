@@ -34,18 +34,17 @@ k.set('n', "V", "v$", desc [[V to select until the end of the line]])
 
 k.set('n', "Y", "y$", desc [[Y to yank until the end of the line]])
 
+k.set({ 'n' }, "gf", function()
+        local path = vim.fn.expand("<cfile>")
+        if vim.o.buftype ~= "terminal" then
+            path = vim.fs.joinpath(vim.fn.expand("%:p:h"), path)
+        end
+        vim.cmd.e(path)
+    end,
+    desc [[Open or create file under cursor]])
 
 k.set('n', "<A-y>", "zl", desc [[use alt-y to scroll right]])
 k.set('n', "<A-e>", "zh", desc [[use alt-e to scroll left]])
-
-vim.api.nvim_create_autocmd("TermOpen", {
-    pattern = "*",
-    callback = function()
-        k.set('n', "gf",
-            ":silent call File_line_goto_file_line(expand('<cWORD>')) | doautocmd InsertLeave<CR>",
-            desc [[use file:line:col instead of <cfile>]])
-    end
-})
 
 k.set('t', "<C-[><C-[>", [[<C-\><C-n>:doautocmd User TermUtilsLeave<CR>]],
     desc [[Double escape to get to normal mode in terminal mode]])

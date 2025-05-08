@@ -92,6 +92,9 @@ vim.opt.hlsearch = false
 -- Search through subdirectories recursively
 vim.opt.path:append("**")
 
+-- Include ':' when expanding <cfile>
+vim.opt.isfname:append(":")
+
 -- mouse/scrolling
 vim.opt.mousescroll = "ver:1,hor:0"
 vim.opt.smoothscroll = true
