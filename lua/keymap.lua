@@ -36,7 +36,7 @@ k.set('n', "Y", "y$", desc [[Y to yank until the end of the line]])
 
 k.set({ 'n' }, "gf", function()
         local path = vim.fn.expand("<cfile>")
-        if vim.o.buftype ~= "terminal" then
+        if vim.o.buftype ~= "terminal" and not vim.fn.isabsolutepath(path) then
             path = vim.fs.joinpath(vim.fn.expand("%:p:h"), path)
         end
         vim.cmd.e(path)
