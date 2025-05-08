@@ -2,6 +2,7 @@
 return {
     { "ryanoasis/vim-devicons" },
     { "nvim-tree/nvim-web-devicons", opts = {} },
+    { import = "plugins.lsp.navic"},
     {
         "nvim-lualine/lualine.nvim",
         config = function()

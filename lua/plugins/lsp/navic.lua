@@ -1,6 +1,9 @@
 -- https://github.com/SmiteshP/nvim-navic
+
+local ft = vim.tbl_keys(require("lang_features").feat.lspconfig)
 return { {
     "SmiteshP/nvim-navic",
+    ft = ft,
     opts = {
         icons = {
             File          = ' ',
