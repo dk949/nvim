@@ -1,6 +1,6 @@
--- https://github.com/dk949/pdf.vim
+-- https://github.com/dk949/serve-d-utils
 
 return {
     "dk949/serve-d-utils",
-    -- ft = { "d" },
+    ft = { "d" },
 }
