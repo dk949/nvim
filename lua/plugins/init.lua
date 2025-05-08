@@ -31,10 +31,12 @@ return require("packer").startup(function()
     localUse "color"
     localUse "bullets"
     localUse "flatten"
+    localUse "file_line"
 
     -- telescope
     localUse "plenary"
     localUse "telescope"
+    localUse "telescope_oil_columns"
 
     -- Lsp
     localRequire "lsp" ()

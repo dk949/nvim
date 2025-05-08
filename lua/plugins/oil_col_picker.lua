@@ -5,7 +5,7 @@ local finders      = require "telescope.finders"
 local oil          = require "oil"
 local oil_conf     = require "oil.config"
 local pickers      = require "telescope.pickers"
-local utils        = require "utils"
+
 ---Get the name of a column spec
 ---@param spec oil.ColumnSpec
 ---@return string
@@ -60,7 +60,7 @@ return function(col_spec, opts)
             return {
                 value = line,
                 display = display,
-                ordinal = utils.algo.findIf(col_spec, function(v) return vim.deep_equal(v, line) end),
+                ordinal = vim.iter(col_spec):find( function(v) return vim.deep_equal(v, line) end),
             }
         end,
     })

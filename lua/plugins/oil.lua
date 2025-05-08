@@ -48,7 +48,7 @@ return {
                 ["g."] = { "actions.toggle_hidden", mode = "n" },
                 ["g\\"] = { "actions.toggle_trash", mode = "n" },
                 ["gt"] = { "actions.open_terminal" },
-                ["<leader>nc"] = function() vim.cmd [[silent lua require "plugins.oil_col_picker" ()]] end
+                ["<leader>nc"] = function() require "telescope-oil-columns".pick() end
             },
             -- Set to false to disable all of the above keymaps
             use_default_keymaps = false,
