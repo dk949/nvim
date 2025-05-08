@@ -103,7 +103,6 @@ k.set('n', "<leader>b", ":e#<CR>", desc [[leader-b to go to preavious file]])
 
 k.set('n', "<leader>s", ":update<CR>", desc [[leader-s to update file]])
 
-k.set('n', "<leader>t", ":tabedit ", desc [[Open file in a new tab]])
 
 -- Namespaced leader
 k.set('n', "<leader>ms", ":mksession!<CR>", desc [[Save the current session]])
@@ -121,6 +120,14 @@ k.set('n', "<leader>mf",
         end
     end,
     desc [[Format current file]])
+
+k.set('n', "<leader>tt",
+    function()
+        local comment = vim.o.commentstring:format("TODO(dk949):")
+        vim.cmd.norm { "i" .. comment .. " ", bang = true }
+        vim.cmd.startinsert { bang = true }
+    end,
+    desc [[Insert a todo comment]])
 
 k.set('n', "<leader>crn", function() vim.lsp.buf.rename() end, desc [[Rename symbol]])
 k.set('n', "<A-cr>", function() vim.lsp.buf.code_action() end, desc [[Code action]])
