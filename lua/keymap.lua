@@ -156,11 +156,7 @@ k.set('n', "<leader>ch", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_
 k.set('n', "<leader>:", "<cmd>IconPickerNormal<cr>", desc [[Pick an icon in normal mode]])
 k.set('i', "<C-x>;", "<cmd>IconPickerInsert<cr>", desc [[Pick an icon in insert mode]])
 
-k.set('n', "<leader>mg", ":Goyo<CR>", desc [[toggle Goyo]])
-
 k.set('n', "<leader>nn", "<CMD>Oil --float<CR>", desc [[toggle file browser]])
-
-k.set('n', "<leader>nm", ":MinimapToggle<CR>", desc [[toggle minimap]])
 
 k.set('n', '<Leader>gb', ":Gitsigns blame_line<CR>", desc [[Show git blame for current line]])
 k.set('n', '<Leader>gv', ":Gitsigns preview_hunk_inline<CR>", desc [[Preview hunk under cursor]])
