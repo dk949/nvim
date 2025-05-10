@@ -142,12 +142,12 @@ k.set('n', "<leader>ccl", function()
         c.refresh()
     end,
     desc [[Code lense]])
-k.set('n', "<leader>cj", function() vim.diagnostic.goto_next() end, desc [[Go to next diagnistic]])
-k.set('n', "<leader>ck", function() vim.diagnostic.goto_prev() end, desc [[Go to next previous]])
+k.set('n', "<leader>cj", function() vim.diagnostic.jump { count = 1, float = true } end, desc [[Go to next diagnistic]])
+k.set('n', "<leader>ck", function() vim.diagnostic.jump { count = -1, float = true } end, desc [[Go to next previous]])
 k.set('n', "<leader>ci", function() vim.diagnostic.open_float() end, desc [[Open diagnistic in a float]])
 k.set('n', "<leader>ca", ":ALEToggle<CR>", desc [[Toggle ALE]])
-k.set('n', "<leader>cgr", function() vim.cmd [[Trouble lsp_references]] end, desc [[Go to reference]])
-k.set('n', "<leader>cgd", function() vim.cmd [[Trouble lsp_definitions]] end, desc [[Go to definition]])
+k.set('n', "<leader>cgr", function() vim.lsp.buf.references() end, desc [[Go to reference]])
+k.set('n', "<leader>cgd", function() vim.lsp.buf.definition() end, desc [[Go to definition]])
 k.set('n', "<leader>ch", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
     desc [[Toggle inlay hints]])
 
