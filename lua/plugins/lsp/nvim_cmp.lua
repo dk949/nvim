@@ -1,8 +1,10 @@
 -- https://github.com/hrsh7th/nvim-cmp
 
-
+local ft = vim.tbl_keys(require("lang_features").feat.lspconfig)
+table.insert(ft, "lua")
 return { {
     "hrsh7th/nvim-cmp",
+    ft = ft,
     config = function()
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
