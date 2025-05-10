@@ -2,6 +2,7 @@ local api = vim.api
 local utils = require("utils")
 -- Map the leader key to space
 vim.g.mapleader = dk949.leader
+vim.g.maplocalleader = dk949.leader
 
 vim.cmd [[filetype plugin on]]
 vim.cmd [[filetype plugin indent on]]
