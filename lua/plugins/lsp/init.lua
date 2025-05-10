@@ -1,6 +1,9 @@
+local ft = vim.tbl_keys(require("lang_features").feat.lspconfig)
+table.insert(ft, "lua")
 return {
     {
         "L3MON4D3/LuaSnip",
+        ft = ft,
         dependencies = {
             "rafamadriz/friendly-snippets",
             config = function()
@@ -8,14 +11,15 @@ return {
             end,
         }
     },
-    "hrsh7th/cmp-nvim-lsp",
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    'neovim/nvim-lspconfig',
-    { "williamboman/mason.nvim",      opts = {} },
+    { "hrsh7th/cmp-nvim-lsp",     ft = ft },
+    { "saadparwaiz1/cmp_luasnip", ft = ft },
+    { "hrsh7th/cmp-buffer",       ft = ft },
+    { "hrsh7th/cmp-path",         ft = ft },
+    { 'neovim/nvim-lspconfig',    ft = ft },
+    { "williamboman/mason.nvim",  ft = ft, opts = {} },
     {
         "williamboman/mason-lspconfig.nvim",
+        ft = ft,
         opts = {
             ensure_installed = require("lang_features").feat.lspservers,
         }
@@ -31,5 +35,5 @@ return {
             },
         },
     },
-    { import = "plugins.lsp.nvim_cmp" }
+    { import = "plugins.lsp.nvim_cmp", ft = ft }
 }
