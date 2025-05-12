@@ -1,20 +1,4 @@
--- Quick settings
-_G.dk949 = {
-    load_start = vim.fn.reltime(),
-    leader = " ",
-    tabstop = 4,
-    arrows = false,
-    winSzInc = 5,
-    obsidian_worspaces = { { name = "wiki", path = "~/Uni/wiki" } },
-}
-
-local simple = require('simple')
-if simple.isRoot() then return simple.source() end
-
-require('core')
-require('keymap')
-require('neovide')
-require('commands')
-require('lazy_config')
-require('lang_features').setup()
-require('file_templates')
+require("config.ensure_lazy")
+require("config.options")
+require("config.lazy")
+require("config.theme")

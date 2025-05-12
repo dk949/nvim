@@ -1,0 +1,47 @@
+local kut = require "config.keymap.utils"
+local lsput = require "utils.lsp"
+local winsize = require "utils.winsize" (5)
+local M = {}
+
+M.global_mappings = kut.newMapGroup()
+    :map('n', "G", "Gzz", "Jump to line centers the screen on that line")
+    :map('v', "<C-C>", [["*y :let @+=@*<CR>]], "ctrl-c to copy to clipboard")
+    :map('n', "vv", "V", "vv to select whole line")
+    :map('n', "V", "v$", "V to select until the end of the line")
+    :map('n', "<A-y>", "zl", "Use alt-y to scroll right")
+    :map('n', "<A-e>", "zh", "Use alt-e to scroll left")
+    :map('t', "<C-[><C-[>", [[<C-\><C-n>:doautocmd User TermUtilsLeave<CR>]], "Double esc for normal mode in terminal")
+    :map({ 'n', 'i' }, "<A-l>", "gt", "alt-l for next tab")
+    :map({ 'n', 'i' }, "<A-h>", "gT", "alt-h for prev tab")
+    :map({ 'i', 't' }, "<C-h>", [[<C-\><C-N><C-w>h]], "Use ctrl-h to switch windows in insert and terminal modes")
+    :map({ 'i', 't' }, "<C-j>", [[<C-\><C-N><C-w>j]], "Use ctrl-j to switch windows in insert and terminal modes")
+    :map({ 'i', 't' }, "<C-k>", [[<C-\><C-N><C-w>k]], "Use ctrl-k to switch windows in insert and terminal modes")
+    :map('i', "<C-l>", [[<C-\><C-N><C-w>l]], "use ctrl-l to switch windows in insert mode")
+    :map('n', "<C-h>", "<C-w>h", "Use ctrl-h to switch windows in normal mode")
+    :map('n', "<C-j>", "<C-w>j", "Use ctrl-j to switch windows in normal mode")
+    :map('n', "<C-k>", "<C-w>k", "Use ctrl-k to switch windows in normal mode")
+    :map('n', "<C-l>", "<C-w>l", "Use ctrl-l to switch windows in normal mode")
+    :map('t', "<C-l>", "<space>clear<CR>", "Clear terminal screen")
+    :map('n', "<C-A-h>", function() winsize.changeWindowSize("h") end, "Resize window to the right")
+    :map('n', "<C-A-j>", function() winsize.changeWindowSize("j") end, "Resize window down")
+    :map('n', "<C-A-k>", function() winsize.changeWindowSize("k") end, "Resize window up")
+    :map('n', "<C-A-l>", function() winsize.changeWindowSize("l") end, "Resize window left")
+    :map('n', "<A-j>", "<CMD>m +1<CR>", "Move line down")
+    :map('n', "<A-k>", "<CMD>m -2<CR>", "Move line up")
+    :map('v', "<A-j>", ":m '>+1<CR>gv", "Move lines down")
+    :map('v', "<A-k>", ":m '<-2<CR>gv", "Move lines up")
+    :map({ 'n', 'i', 'v' }, "<up>", "<nop>",    "Dispable up arrow")
+    :map({ 'n', 'i', 'v' }, "<down>", "<nop>",  "Dispable down arrow")
+    :map({ 'n', 'i', 'v' }, "<left>", "<nop>",  "Dispable left arrow")
+    :map({ 'n', 'i', 'v' }, "<right>", "<nop>", "Dispable right arrow")
+    :map('n', "<leader>b", "<C-^>", "Leader-b to go to preavious file")
+    :map('n', "<leader>tt", kut.todo("dk949"), "Insert a todo comment")
+    :map('n', "<Leader>mt", "<CMD>split<Bar>term<CR>", "Start the terminal")
+    :map('n', "<leader>mc", "<CMD>set cursorline!<CR>", "Highlight current line")
+    :pummap("<C-m>", {"<C-x><C-o>", "<C-y>"}, "Use ctrl-m to trigger omnifunc")
+
+
+M.lsp_mappings = kut.newMapGroup()
+    :map('n', "<leader>ch", function() lsput.toggleInlay() end, "Toggle inlay hints")
+
+return M

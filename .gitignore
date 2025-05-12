@@ -1,8 +1,5 @@
-bundle/*
-!bundle/Vundle.vim/
 spell
-.luarc.json
-plugin/*.html
+startuptime.log
 
 
 # Don't think I can make these public :(
