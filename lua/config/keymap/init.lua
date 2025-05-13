@@ -3,7 +3,7 @@ local lsput = require "utils.lsp"
 local winsize = require "utils.winsize" (5)
 local M = {}
 
-M.global_mappings = kut.newMapGroup()
+M.global = kut.newMapGroup()
     :map('n', "G", "Gzz", "Jump to line centers the screen on that line")
     :map('v', "<C-C>", [["*y :let @+=@*<CR>]], "ctrl-c to copy to clipboard")
     :map('n', "vv", "V", "vv to select whole line")
@@ -42,7 +42,7 @@ M.global_mappings = kut.newMapGroup()
     :pummap("<CR>", "<C-y>", "Use enter to select completion")
 
 
-M.lsp_mappings = kut.newMapGroup()
+M.lsp = kut.newMapGroup()
     :map('n', "<leader>ch", function() lsput.toggleInlay() end, "Toggle inlay hints")
 
 return M

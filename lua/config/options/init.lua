@@ -1,3 +1,4 @@
+local keymap = require("config.keymap")
 vim.g.mapleader      = " "
 vim.g.maplocalleader = " "
 
@@ -13,5 +14,5 @@ require("config.options.search")
 require("config.options.mouse")
 require("config.options.diag")
 require("config.options.complete")
-require("config.keymap").global_mappings:defaultApply()
-require("config.keymap").lsp_mappings:defaultApplyOn("LspAttach")
+keymap.global:defaultApply()
+keymap.lsp:defaultApplyOn("LspAttach")
