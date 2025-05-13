@@ -23,6 +23,18 @@ function M.fnOrVal(val, ...)
     end
 end
 
+---@generic Arg, Ret
+---@param val table<Arg, Ret>|fun(arg:Arg):Ret
+---@param arg Arg
+---@return Ret
+function M.fnOrTable(val, arg)
+    if type(val) == "function" then
+        return val(arg)
+    else
+        return val[arg]
+    end
+end
+
 ---@param on any
 ---@return fun(_:table):any
 function M.switch(on)
