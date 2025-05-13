@@ -1,7 +1,7 @@
 # TODO
 
-- [ ] LSP
-    - [ ] Simplify mason installation logic
+- [X] LSP
+    - [X] Simplify mason installation logic
 - [ ] Plugins
   - [ ] termutils?
 - [ ] Diagnostics

@@ -44,4 +44,12 @@ function M.switch(on)
     end
 end
 
+
+function M.ftplugin(fn)
+    local ftp_name = "ftp_" .. vim.bo.filetype
+    if vim.b[ftp_name] then return end
+    fn()
+    vim.b[ftp_name] = true
+end
+
 return M
