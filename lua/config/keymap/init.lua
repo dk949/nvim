@@ -45,4 +45,7 @@ M.global = kut.newMapGroup()
 M.lsp = kut.newMapGroup()
     :map('n', "<leader>ch", function() lsput.toggleInlay() end, "Toggle inlay hints")
 
+M.color = kut.newMapGroup()
+    :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")
+
 return M
