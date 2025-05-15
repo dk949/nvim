@@ -38,6 +38,7 @@ M.global = kut.newMapGroup()
     :map('n', "<leader>tt", kut.todo("dk949"), "Insert a todo comment")
     :map('n', "<Leader>mt", "<CMD>split<Bar>term<CR>", "Start the terminal")
     :map('n', "<leader>mc", "<CMD>set cursorline!<CR>", "Highlight current line")
+    :map('n', "<leader>nn", "<CMD>Oil --float<CR>", "Open Oil window")
     :pummap("<C-n>", { "<C-x><C-o>", "<C-n>" }, "Use ctrl-n to trigger omnifunc")
     :pummap("<CR>", "<C-y>", "Use enter to select completion")
 
@@ -49,12 +50,6 @@ M.color = kut.newMapGroup()
     :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")
 
 
--- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
--- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
--- Additionally, if it is a string that matches "actions.<name>",
--- it will use the mapping at require("oil.actions").<name>
--- Set to `false` to remove a keymap
--- See :help oil-actions for a list of all available actions
 M.oil = kut.newMapGroup()
     :gmap("", "<leader>v", "actions.select", { vertical = true }, "vselect")
     :gmap("", "<C-s>", "actions.select", { horizontal = true}, "hselect")
