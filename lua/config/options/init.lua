@@ -6,6 +6,8 @@ vim.opt.showmode     = false
 vim.opt.splitbelow   = true
 vim.opt.splitright   = true
 vim.opt.foldenable   = false
+vim.opt.spelllang = 'en_gb'
+vim.opt_local.spell = true;
 
 require("config.options.line_numbers")
 require("config.options.tabs")
