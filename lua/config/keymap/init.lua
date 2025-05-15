@@ -48,4 +48,20 @@ M.lsp = kut.newMapGroup()
 M.color = kut.newMapGroup()
     :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")
 
+
+-- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
+-- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
+-- Additionally, if it is a string that matches "actions.<name>",
+-- it will use the mapping at require("oil.actions").<name>
+-- Set to `false` to remove a keymap
+-- See :help oil-actions for a list of all available actions
+M.oil = kut.newMapGroup()
+    :gmap("", "<leader>v", "actions.select", { vertical = true }, "vselect")
+    :gmap("", "<C-s>", "actions.select", { horizontal = true}, "hselect")
+    :gmap("", "<M-l>", "actions.refresh", nil, "refresh")
+    :gmap("n", "<BS>", "actions.parent", nil, "parent")
+    :gmap("n", "~", "actions.cd", nil, "cd")
+    :gmap("", "gt", "actions.open_terminal", nil, "term")
+    :gmap("", "<leader>nc", function() require "telescope-oil-columns".pick() end, nil, "cols")
+
 return M

@@ -23,6 +23,13 @@ local log = require("utils.log")
 ---A `MappingGroup` cannot  have two mappings with the same name (raises a warning).
 ---When `name` is not specified, a combination of `mode` and `lhs` is used.
 ---@field map fun(self, mode: string|string[], lhs: string, rhs: Rhs, opts: (string|table)?, name: string?): MappingGroup
+---General version of `map`.
+---
+---This is identical to `map`, except it doesn't automatically set the `opts`
+---to be suitable for use with `vim.keymap.set`. This way `opts` can be used
+---for any plugin specific options.
+---`opts` has to be a `table` or `nil`
+---@field gmap fun(self, mode: string|string[], lhs: string, rhs: Rhs, opts: table?, name: string?): MappingGroup
 ---Creates a mapping for when the popup menu is active.
 ---This acts as an insert mode mapping with `expr` setting
 ---If popup menu is not visible, `lhs` is used directly, if it is `rhs` is used
@@ -32,17 +39,21 @@ local log = require("utils.log")
 ---needs to change both when the menu is visible and when it is not.
 ---@field pummap fun(self, lhs:string, rhs: Rhs|[Rhs, Rhs], opts: (string|table)?, name: string?): MappingGroup
 ---Creates a mapping with a missing `rhs`
----When creating this type of mapping `name` is required and `desc` has to be a
----`sring`, not a `table`.
+---When creating this type of mapping `name` is required.
 ---
 ---This is intended for mappings where only `lhs` is known at the time when the
 ---mapping is defined. The mapping has to be accessed by name through one of
 ---the `*[Aa]pply*` functions (see below).
----@field partial fun(self, mode: string|string[], lhs: string, name: string, desc: string?): MappingGroup
+---NOTE: `opts` can be used to store additional (e.g. plugin specific) information.
+---@field partial fun(self, mode: string|string[], lhs: string, name: string, opts: (string|table)?): MappingGroup
 ---Calls `fn` for every mapping.
 ---This is intended as a low level API where the calee determines how to handle
 ---the `name` and any missing `rhs`s.
 ---@field apply fun(self, fn: fun(name: string, m: Mapping)):nil
+---Just like `apply`, but collects the results of `fn` for each mapping in a table.
+---If `fn` returns two values, the first is used as the key and second as the value,
+---otherwise value is just inserted in the table.
+---@field transform fun(self, fn: fun(name: string, m: Mapping):any,(any?)):table
 ---Calls `vim.keymap.set` with each mapping.
 ---Optionally, a `with` `table` or `function` can be provided which maps a
 ---`name` to an `Rhs`.
@@ -70,6 +81,7 @@ end
 function M.newMapGroup()
     local map_group = { {} }
     ---@cast map_group MappingGroup
+
     function map_group:map(mode, lhs, rhs, opts, name)
         if type(opts) == "string" then
             opts = { desc = opts }
@@ -78,6 +90,9 @@ function M.newMapGroup()
         end
 
         if opts.silent == nil then opts.silent = false end
+        return self:gmap(mode, lhs, rhs, opts, name)
+    end
+    function map_group:gmap(mode, lhs, rhs, opts, name)
         if not name then name = makeName(mode, lhs) end
         if self[1][name] then log.warn("Key binding " .. name " already exists") end
         self[1][name] = {
@@ -89,9 +104,9 @@ function M.newMapGroup()
         return self
     end
 
-    function map_group.partial(self, mode, lhs, name, desc)
+    function map_group.partial(self, mode, lhs, name, opts)
         ---@diagnostic disable-next-line: param-type-mismatch -- this is fine
-        return self:map(mode, lhs, nil, desc, name)
+        return self:map(mode, lhs, nil, opts, name)
     end
 
     function map_group:pummap(lhs, rhs, opts, name)
@@ -117,6 +132,19 @@ function M.newMapGroup()
 
     function map_group:apply(fn)
         for name, p in pairs(self[1]) do fn(name, p) end
+    end
+
+    function map_group:transform(fn)
+        local out = {}
+        for name, p in pairs(self[1]) do
+            local k, v = fn(name, p)
+            if v ~= nil then
+                out[k] = v
+            else
+                table.insert(out, k)
+            end
+        end
+        return out
     end
 
     function map_group:defaultApply(with)
