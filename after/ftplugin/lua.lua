@@ -1,9 +1,12 @@
-local utils = require "utils"
-local lsp_utils = require "utils.lsp"
-utils.ftplugin(function()
-    vim.opt_local.signcolumn = "yes"
-    lsp_utils.enableLsp({
-        config = "lua_ls",
-        mason = "lua-language-server",
-    })
-end)
+require "utils".ftplugin(
+    {
+        signcolumn = "yes",
+        formatoptions = require "config.format".prog,
+    },
+    function()
+        require "utils.lsp".enableLsp({
+            config = "lua_ls",
+            mason = "lua-language-server",
+        })
+    end
+)

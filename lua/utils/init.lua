@@ -57,11 +57,19 @@ function M.switch(on)
 end
 
 
-function M.ftplugin(fn)
+---Helper function for use in after/ftplugin files
+---@param setlocal table<string, any>
+---@param fn (fun():nil)|nil
+function M.ftplugin(setlocal, fn)
     local ftp_name = "ftp_" .. vim.bo.filetype
     if vim.b[ftp_name] then return end
-    fn()
+    for option, value in pairs(setlocal) do
+        vim.opt_local[option] = value
+        vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | setlocal " .. option .. '<'
+    end
+    if fn then fn() end
     vim.b[ftp_name] = true
+    vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | unlet b:" .. ftp_name
 end
 
 return M
