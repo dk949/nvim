@@ -46,6 +46,8 @@ local log = require("utils.log")
 ---the `*[Aa]pply*` functions (see below).
 ---NOTE: `opts` can be used to store additional (e.g. plugin specific) information.
 ---@field partial fun(self, mode: string|string[], lhs: string, name: string, opts: (string|table)?): MappingGroup
+---unmaps a key binding
+---@field unmap fun(self, mode: string|string[], lhs: string): MappingGroup
 ---Calls `fn` for every mapping.
 ---This is intended as a low level API where the calee determines how to handle
 ---the `name` and any missing `rhs`s.
@@ -92,6 +94,7 @@ function M.newMapGroup()
         if opts.silent == nil then opts.silent = false end
         return self:gmap(mode, lhs, rhs, opts, name)
     end
+
     function map_group:gmap(mode, lhs, rhs, opts, name)
         if not name then name = makeName(mode, lhs) end
         if self[1][name] then log.warn("Key binding " .. name " already exists") end
@@ -130,6 +133,11 @@ function M.newMapGroup()
         return self
     end
 
+    function map_group:unmap(mode, lhs)
+        ---@diagnostic disable-next-line: param-type-mismatch -- this is also fine
+        return self:gmap(mode, lhs, nil, { __unmap = true })
+    end
+
     function map_group:apply(fn)
         for name, p in pairs(self[1]) do fn(name, p) end
     end
@@ -151,11 +159,19 @@ function M.newMapGroup()
         if with then
             for name, p in pairs(self[1]) do
                 local rhs = utils.fnOrTable(with, name) or p.rhs
-                if rhs then vim.keymap.set(p.mode, p.lhs, rhs, p.opts) end
+                if rhs then
+                    vim.keymap.set(p.mode, p.lhs, rhs, p.opts)
+                elseif p.opts.__unmap then
+                    vim.keymap.del(p.mode, p.lhs)
+                end
             end
         else
             for _, p in pairs(self[1]) do
-                if p.rhs then vim.keymap.set(p.mode, p.lhs, p.rhs, p.opts) end
+                if p.rhs then
+                    vim.keymap.set(p.mode, p.lhs, p.rhs, p.opts)
+                elseif p.opts.__unmap then
+                    vim.keymap.del(p.mode, p.lhs)
+                end
             end
         end
     end
