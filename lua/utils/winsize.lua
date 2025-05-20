@@ -27,5 +27,6 @@ return function(winSzInc)
         }
         winChange[1](winChange[2], winSzInc)
     end
+
     return winsize
 end

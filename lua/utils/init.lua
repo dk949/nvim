@@ -73,7 +73,6 @@ function M.switch(on)
     end
 end
 
-
 ---Helper function for use in after/ftplugin files
 ---@param setlocal table<string, any>
 ---@param fn (fun():nil)|nil

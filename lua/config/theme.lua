@@ -30,7 +30,9 @@ keymap.color:defaultApply { colortoggle = function()
 end }
 
 -- vim.cmd [[highlight ColorColumn ctermbg=11 guibg=#3c73c3]]
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = vim.api.nvim_get_hl(0, {name = "Function", create=false, link=false}).fg })
+vim.api.nvim_set_hl(0, "ColorColumn", {
+    bg = vim.api.nvim_get_hl(0, { name = "Function", create = false, link = false }).fg
+})
 
 vim.opt.fillchars:append({ eob = " " })
 vim.opt.guicursor =
