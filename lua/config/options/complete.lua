@@ -1,7 +1,7 @@
 local utils = require("utils")
 vim.opt.completeopt:remove("menu")
 vim.opt.completeopt:append("menuone")
-vim.opt.completeopt:append("noselect")
+vim.opt.completeopt:append("noinsert")
 utils.withAugroup("completions", function(grp)
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
