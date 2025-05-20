@@ -24,12 +24,14 @@ end
 
 vim.cmd.colorscheme(colorschemes[current])
 
-vim.opt.fillchars:append({ eob = " " })
 keymap.color:defaultApply { colortoggle = function()
     current = invert(current)
     vim.cmd.colorscheme(colorschemes[current])
 end }
 
+-- vim.cmd [[highlight ColorColumn ctermbg=11 guibg=#3c73c3]]
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = vim.api.nvim_get_hl(0, {name = "Function", create=false, link=false}).fg })
 
+vim.opt.fillchars:append({ eob = " " })
 vim.opt.guicursor =
 "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,t:block-blinkon500-blinkoff500-TermCursor"
