@@ -185,4 +185,10 @@ function M.todo(name)
     end
 end
 
+function M.formatFile()
+    utils.withWin(function()
+        vim.cmd "keepjumps norm! gggqG"
+    end)
+end
+
 return M
