@@ -13,6 +13,23 @@ function M.withAugroup(name, fn, opts)
     return grp
 end
 
+---Restores cursor position after any movement
+---**Caller must handle jumplist**
+---@param fn fun():nil
+function M.withCursor(fn)
+    local old = vim.fn.getcurpos()
+    fn()
+    vim.fn.setpos('.', old)
+end
+
+---Like `withCursor`, but also preserves window position
+---@param fn fun():nil
+function M.withWin(fn)
+    local old = vim.fn.winsaveview()
+    fn()
+    vim.fn.winrestview(old)
+end
+
 ---@param val any
 ---@return any
 function M.fnOrVal(val, ...)
