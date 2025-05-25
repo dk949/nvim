@@ -5,5 +5,5 @@
 - [ ] Plugins
   - [ ] termutils?
 - [ ] Diagnostics
-- [ ] Formatting
+- [X] Formatting
 - [ ] Language specific settings
