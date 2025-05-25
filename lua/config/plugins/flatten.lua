@@ -1,0 +1,5 @@
+return {
+    window = {
+        open = "alternate"
+    }
+}

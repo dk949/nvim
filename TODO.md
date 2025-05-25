@@ -7,3 +7,6 @@
 - [ ] Diagnostics
 - [X] Formatting
 - [ ] Language specific settings
+- [ ] Commands
+    - [ ] Git
+    - [ ] Rest
