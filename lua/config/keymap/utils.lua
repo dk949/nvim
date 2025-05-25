@@ -4,7 +4,7 @@ local log = require("utils.log")
 
 ---@alias Rhs string|function
 
----@alias With (table<string,Rhs>)|(fun(name:string):Rhs?)
+---@alias With (table<string,Rhs>)|(fun(name:string, rhs:Rhs):Rhs?)
 
 ---@class Mapping
 ---@field mode string|string[]
@@ -58,17 +58,21 @@ local log = require("utils.log")
 ---@field transform fun(self, fn: fun(name: string, m: Mapping):any,(any?)):table
 ---Calls `vim.keymap.set` with each mapping.
 ---Optionally, a `with` `table` or `function` can be provided which maps a
----`name` to an `Rhs`.
+---`name` (and if function previous `rhs`) to an `Rhs`.
 ---
 ---If `with` is not `nil`, it takes priority over the stored `rhs`. If `name`
 ---is not in the table or function returns `nil`, the stored `rhs` is used.
 ---
 ---If `rhs` is nil (stored or provided by `with`) the keymap is not set and no
 ---warning is given.
----@field defaultApply fun(self, with: With?):nil
+---If `bufnr` is not `nil`, for each mapping which does not supply its own `buffer` in its `opts`, the
+---`bufferr` will be set to `bufnr`.
+---@field defaultApply fun(self, with: With?, bufnr: integer?):nil
 ---Same as `defaultApply`, but is only set when `event` (or one of `event`s if table) is fired.
 ---`pattern` is used as the pattern in the autocmd.
----@field defaultApplyOn fun(self, event:string|string[], pattern:(string|string[])?, with: With?):nil
+---If `bufnr` is not `nil`, for each mapping which does not supply its own `buffer` in its `opts`, the
+---`bufferr` will be set to `bufnr`.
+---@field defaultApplyOn fun(self, event:string|string[], pattern:(string|string[])?, with: With?, bufnr:integer?):nil
 
 
 ---@param mode string|string[]
@@ -155,34 +159,27 @@ function M.newMapGroup()
         return out
     end
 
-    function map_group:defaultApply(with)
-        if with then
-            for name, p in pairs(self[1]) do
-                local rhs = utils.fnOrTable(with, name) or p.rhs
-                if rhs then
-                    vim.keymap.set(p.mode, p.lhs, rhs, p.opts)
-                elseif p.opts.__unmap then
-                    vim.keymap.del(p.mode, p.lhs)
-                end
-            end
-        else
-            for _, p in pairs(self[1]) do
-                if p.rhs then
-                    vim.keymap.set(p.mode, p.lhs, p.rhs, p.opts)
-                elseif p.opts.__unmap then
-                    vim.keymap.del(p.mode, p.lhs)
-                end
+    function map_group:defaultApply(with, bufnr)
+        for name, p in pairs(self[1]) do
+            if not p.opts then p.opts = {} end
+            if bufnr then p.opts.buffer = bufnr end
+            local rhs = p.rhs
+            if with then rhs = utils.fnOrTable(with, name, rhs) or rhs end
+            if rhs then
+                vim.keymap.set(p.mode, p.lhs, rhs, p.opts)
+            elseif  p.opts.__unmap then
+                vim.keymap.del(p.mode, p.lhs)
             end
         end
     end
 
-    function map_group:defaultApplyOn(event, pattern, with)
+    function map_group:defaultApplyOn(event, pattern, with, bufnr)
         local event_name = event
         if type(event) == "table" then event_name = vim.iter(event):join("_") end
         utils.withAugroup("keymap_apply_on_" .. event_name, function(grp)
             vim.api.nvim_create_autocmd(event, {
                 pattern = pattern,
-                callback = function() self:defaultApply(with) end,
+                callback = function() self:defaultApply(with, bufnr) end,
                 group = grp,
             })
         end)

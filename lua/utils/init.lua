@@ -40,15 +40,15 @@ function M.fnOrVal(val, ...)
     end
 end
 
----@generic Arg, Ret
----@param val table<Arg, Ret>|fun(arg:Arg):Ret
----@param arg Arg
+---@generic Args, Ret
+---@param val table<Args, Ret>|fun(arg:Args):Ret
+---@param ... Args
 ---@return Ret
-function M.fnOrTable(val, arg)
+function M.fnOrTable(val, ...)
     if type(val) == "function" then
-        return val(arg)
+        return val(...)
     else
-        return val[arg]
+        return val[...]
     end
 end
 

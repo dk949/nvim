@@ -50,7 +50,6 @@ M.lsp = kut.newMapGroup()
 M.color = kut.newMapGroup()
     :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")
 
-
 M.oil = kut.newMapGroup()
     :gmap("", "<leader>v", "actions.select", { vertical = true }, "vselect")
     :gmap("", "<C-s>", "actions.select", { horizontal = true }, "hselect")
@@ -59,5 +58,14 @@ M.oil = kut.newMapGroup()
     :gmap("n", "~", "actions.cd", nil, "cd")
     :gmap("", "gt", "actions.open_terminal", nil, "term")
     :gmap("", "<leader>nc", function() require "telescope-oil-columns".pick() end, nil, "cols")
+
+M.gitsigns = kut.newMapGroup()
+    :map('n', "<Leader>gb", function(gs) gs.blame_line() end, "Show git blame for current line")
+    :map('n', "<Leader>gv", function(gs) gs.preview_hunk_inline() end, "Preview hunk under cursor")
+    :map('n', "<Leader>gu", function(gs) gs.undo_stage_hunk() end, "Undo last hunk stage")
+    :map('n', "<leader>gj", function(gs) gs.nav_hunk("last") end, "go to last hunk")
+    :map('n', "<leader>gk", function(gs) gs.nav_hunk("first") end, "go to first hunk")
+    :map('n', "<leader>j", function(gs) gs.nav_hunk("next") end, "go to next hunk")
+    :map('n', "<leader>k", function(gs) gs.nav_hunk("prev") end, "go to previous hunk")
 
 return M
