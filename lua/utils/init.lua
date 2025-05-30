@@ -88,4 +88,39 @@ function M.ftplugin(setlocal, fn)
     vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | unlet b:" .. ftp_name
 end
 
+local shell_chars = '[|&;<>%(%)%$%`\\%*%?%[%]%{%}%~ \t\n"\']'
+
+---Formats a shell command from list for *printing*
+---**NOT TO BE USED AS ACTUAL SHELL INPUT**
+---**USE `shellConcat` INSTEAD**
+---@param cmd string[]
+---@return string
+function M.shellPrintFmt(cmd)
+    assert(vim.islist(cmd))
+    return vim.iter(cmd)
+        :map(function(arg)
+            if arg ~= "" and arg:find(shell_chars) == nil then
+                return arg
+            else
+                return vim.fn.shellescape(arg)
+            end
+        end)
+        :join(' ')
+
+end
+
+---Concatenate `cmd` such that it is safe to use as shell input
+---Not very pretty, but functional
+---Use `shellPrintFmt` for "pretty"
+---@param cmd string[]
+---@param opts {special: boolean}
+---@return string
+function M.shellConcat(cmd, opts)
+    local special = nil
+    if opts and opts.special then special = true end
+    return vim.iter(cmd)
+        :map(function(c) return vim.fn.shellescape(c, special) end)
+        :join(' ')
+end
+
 return M
