@@ -101,7 +101,7 @@ function M.newMapGroup()
 
     function map_group:gmap(mode, lhs, rhs, opts, name)
         if not name then name = makeName(mode, lhs) end
-        if self[1][name] then log.warn("Key binding " .. name " already exists") end
+        if self[1][name] then log.warn("Key binding ", name, " already exists") end
         self[1][name] = {
             mode = mode,
             lhs  = lhs,
