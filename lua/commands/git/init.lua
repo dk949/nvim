@@ -1,4 +1,5 @@
 local git = require("commands.git.utils")
+local cut = require("commands.utils")
 local ui = require("utils.ui")
 local command = vim.api.nvim_create_user_command
 local gs = require("gitsigns")
@@ -24,8 +25,21 @@ command("GitAddPatch",
 
 command("GitCommit", function(opts)
     if opts.args == "" then
-        git.git({"commit"}, {interactive = true})
+        git.git({"commit", "-v"}, {interactive = true})
     else
         git.git({"commit", "-m", opts.args}, {interactive = false})
     end
 end, { nargs = '*' })
+
+command("GitCommitAmmend", function ()
+    git.git({"commit", "--amend", "-v"}, {interactive = true})
+end, {nargs = 0})
+
+command("GitCommitAmmendNoEdit", function ()
+    git.git({"commit", "--amend", "--no-edit"}, {interactive = false})
+end, {nargs = 0})
+
+cut.addAbrev("gap", "GitAddPatch", { range2 = true })
+cut.addAbrev("gcm", "GitCommit")
+cut.addAbrev("gca", "GitCommitAmmend")
+cut.addAbrev("gcan", "GitCommitAmmendNoEdit")
