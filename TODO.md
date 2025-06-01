@@ -3,10 +3,13 @@
 - [X] LSP
     - [X] Simplify mason installation logic
 - [ ] Plugins
-  - [ ] termutils?
+  - [-] termutils?
+  - [ ] vimspector
 - [ ] Diagnostics
 - [X] Formatting
 - [ ] Language specific settings
 - [ ] Commands
-    - [ ] Git
+    - [X] Git
+    - [ ] Dict
     - [ ] Rest
+    - [ ] HexEdit
