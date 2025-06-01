@@ -6,7 +6,8 @@ vim.opt.splitbelow   = true
 vim.opt.splitright   = true
 vim.opt.foldenable   = false
 vim.opt.spelllang    = 'en_gb'
-vim.opt_local.spell  = true;
+vim.opt_local.spell  = true
+vim.opt.diffopt:append("vertical")
 
 require("config.options.line_numbers")
 require("config.options.tabs")
