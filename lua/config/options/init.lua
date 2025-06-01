@@ -11,7 +11,6 @@ vim.opt.diffopt:append("vertical")
 
 require("config.options.line_numbers")
 require("config.options.tabs")
-require("config.options.terminal")
 require("config.options.search")
 require("config.options.mouse")
 require("config.options.diag")
