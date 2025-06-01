@@ -1,6 +1,2 @@
-require("config.ensure_lazy")
-require("config.options")
-require("config.lazy")
-require("config.misc")
-require("config.theme")
+require("config")
 require("commands")
