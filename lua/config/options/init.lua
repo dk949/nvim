@@ -6,8 +6,10 @@ vim.opt.splitbelow   = true
 vim.opt.splitright   = true
 vim.opt.foldenable   = false
 vim.opt.spelllang    = 'en_gb'
-vim.opt_local.spell  = true
+vim.opt.spell        = true
 vim.opt.diffopt:append("vertical")
+-- When reading in file with :r, don't set read file as alt
+vim.opt.cpoptions:remove('a')
 
 require("config.options.line_numbers")
 require("config.options.tabs")
