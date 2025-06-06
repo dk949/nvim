@@ -5,7 +5,6 @@ local M = {}
 ---@param cmd string|string[]
 ---@param opts {relsize: number?}?
 function M.runInTerm(cmd, opts)
-    require("flatten").config.window.open = "current"
     if not opts then opts = {} end
     if not opts.relsize then opts.relsize = 0.75 end
     local buf = vim.api.nvim_create_buf(false, true)
