@@ -1,0 +1,8 @@
+#ifndef %SAN_NO_SRC_DIR_CAP%%SAN_FILE_CAP%
+#define %SAN_NO_SRC_DIR_CAP%%SAN_FILE_CAP%
+
+
+%CURSOR%
+
+
+#endif // %SAN_NO_SRC_DIR_CAP%%SAN_FILE_CAP%

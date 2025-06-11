@@ -1,5 +1,14 @@
 local M = {}
 
+---Binary string
+---@param s string
+---@return integer
+function M.b(s) return tonumber(s, 2) end
+
+---Octal string
+---@param s string
+---@return integer
+function M.o(s) return tonumber(s, 8) end
 
 ---@param name string
 ---@param fn fun(grp: integer): nil
@@ -106,7 +115,6 @@ function M.shellPrintFmt(cmd)
             end
         end)
         :join(' ')
-
 end
 
 ---Concatenate `cmd` such that it is safe to use as shell input

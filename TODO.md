@@ -13,3 +13,4 @@
     - [ ] Dict
     - [ ] Rest
     - [ ] HexEdit
+- [X] Templates
