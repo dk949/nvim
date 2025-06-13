@@ -3,9 +3,66 @@
 - [X] LSP
     - [X] Simplify mason installation logic
 - [ ] Plugins
-  - [-] termutils?
-  - [ ] vimspector
+  - [ ] <https://github.com/bullets-vim/bullets.vim>
+  - [ ] <https://github.com/dense-analysis/ale>
+  - [ ] <https://github.com/dk949/file_line.nvim>
+  - [ ] <https://github.com/dk949/remember-where>
+  - [ ] <https://github.com/dk949/telescope-oil-columns>
+  - [ ] <https://github.com/epwalsh/obsidian.nvim>
+  - [ ] <https://github.com/lukas-reineke/indent-blankline.nvim>
+  - [ ] <https://github.com/mattn/emmet-vim>
+  - [ ] <https://github.com/nvim-lua/plenary.nvim>
+  - [ ] <https://github.com/nvim-lualine/lualine.nvim>
+  - [ ] <https://github.com/nvim-telescope/telescope.nvim>
+  - [ ] <https://github.com/nvim-tree/nvim-web-devicons>
+  - [ ] <https://github.com/nvim-treesitter/nvim-treesitter>
+  - [ ] <https://github.com/puremourning/vimspector>
+  - [ ] <https://github.com/ryanoasis/vim-devicons>
+  - [ ] <https://github.com/tpope/vim-dispatch>
+  - [X] <https://github.com/godlygeek/tabular>
+  - [X] <https://github.com/lewis6991/gitsigns.nvim>
+  - [X] <https://github.com/stevearc/oil.nvim>
+  - [X] <https://github.com/tpope/vim-surround>
+  - [X] <https://github.com/willothy/flatten.nvim>
+  - [-] <https://github.com/dk949/termutils.nvim>
+    - Maybe not needed?
+  - [-] <https://github.com/machakann/vim-highlightedyank>
+    - replaced by native functionality
+  - [-] <https://github.com/numToStr/Comment.nvim>
+    - replaced by native functionality
+  - [-] <https://github.com/stevearc/dressing.nvim>
+    - deprecated
+  - [-] <https://github.com/ziontee113/icon-picker.nvim>
+    - replaced by terminal functionality
+  - [?] <https://github.com/ap/vim-css-color>
+    - There's got to be some better alternatives?
+  - [?] <https://github.com/navarasu/onedark.nvim>
+    - replaced by native functionality (maybe)
+  - [ ] languages
+    - [ ] <https://github.com/aklt/plantuml-syntax>
+    - [ ] <https://github.com/dk949/asterisp.vim>
+    - [ ] <https://github.com/dk949/pdf.vim>
+    - [ ] <https://github.com/dk949/pegged.vim>
+    - [ ] <https://github.com/dk949/serve-d-utils>
+    - [ ] <https://github.com/idanarye/vim-dutyl>
+    - [ ] <https://github.com/lark-parser/vim-lark-syntax>
+    - [ ] <https://github.com/neovimhaskell/haskell-vim>
+    - [ ] <https://github.com/rhysd/vim-llvm>
+    - [ ] <https://github.com/rust-lang/rust.vim>
+    - [ ] <https://github.com/tikhomirov/vim-glsl>
+  - [ ] lsp
+    - [ ] <https://github.com/L3MON4D3/LuaSnip>
+    - [ ] <https://github.com/folke/lazydev.nvim>
+    - [ ] <https://github.com/hrsh7th/cmp-buffer>
+    - [ ] <https://github.com/hrsh7th/cmp-nvim-lsp>
+    - [ ] <https://github.com/hrsh7th/cmp-path>
+    - [ ] <https://github.com/hrsh7th/nvim-cmp>
+    - [ ] <https://github.com/neovim/nvim-lspconfig>
+    - [ ] <https://github.com/saadparwaiz1/cmp_luasnip>
+    - [ ] <https://github.com/williamboman/mason-lspconfig.nvim>
+    - [ ] <https://github.com/williamboman/mason.nvim>
 - [ ] Diagnostics
+- [ ] File type lists
 - [X] Formatting
 - [ ] Language specific settings
 - [ ] Commands
