@@ -127,3 +127,9 @@ vim.diagnostic.config {
 }
 
 vim.opt.diffopt:append("vertical")
+
+require("editorconfig").properties.spelling_languages = function(bufnr, val)
+    error("here")
+    vim.wo[vim.fn.bufwinnr(bufnr)].spell = true
+    vim.bo[bufnr].spelllang = val:lower():gsub("-", "_")
+end
