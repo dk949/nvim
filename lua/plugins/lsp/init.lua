@@ -15,13 +15,15 @@ return {
     { "saadparwaiz1/cmp_luasnip", ft = ft },
     { "hrsh7th/cmp-buffer",       ft = ft },
     { "hrsh7th/cmp-path",         ft = ft },
-    { 'neovim/nvim-lspconfig',    ft = ft },
-    { "williamboman/mason.nvim",  ft = ft, opts = {} },
+    { 'neovim/nvim-lspconfig',    lazy=false, },
+    { "williamboman/mason.nvim",  ft = ft, opts = {
+            ensure_installed = require("lang_features").feat.lspservers,
+    } },
     {
         "williamboman/mason-lspconfig.nvim",
         ft = ft,
         opts = {
-            ensure_installed = require("lang_features").feat.lspservers,
+            -- ensure_installed = require("lang_features").feat.lspservers,
         }
     },
     {
