@@ -125,3 +125,5 @@ vim.diagnostic.config {
         },
     }
 }
+
+vim.opt.diffopt:append("vertical")
