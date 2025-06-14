@@ -179,7 +179,7 @@ end)()
 
 M.colorcolumn = combine(shell, config, programming)
 
-M.trailingWS = combine(shell, config, programming, git, text)
+M.trailingWS = uncombine(combine(shell, config, programming, git, text), "tex")
 
 M.signcolumn = combine(shell, config, programming)
 
