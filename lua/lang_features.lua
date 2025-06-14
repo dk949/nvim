@@ -5,7 +5,9 @@ local feat = require("lang_features.package")
 local function _setup(lang)
     if vim.tbl_contains(feat.spell, lang) then
         vim.opt_local.spell = true;
-        vim.opt_local.spelllang = 'en_gb'
+        if not vim.opt_local.spelllang then -- Avoid overriding setting if spelling already enabled
+            vim.opt_local.spelllang = 'en_gb'
+        end
     end
 
     -- TODO(dk949): fix global set here
