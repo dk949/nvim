@@ -28,14 +28,14 @@ local tweakTable = {
 
 local function tweaks()
     tweakTable[current]()
-    local normal = vim.api.nvim_get_hl(0, { name = "Normal", create = false, link = false })
+    local comment = vim.api.nvim_get_hl(0, { name = "Comment", create = false, link = false })
     local normal_float = vim.api.nvim_get_hl(0, { name = "NormalFloat", create = false, link = false })
     local function_ = vim.api.nvim_get_hl(0, { name = "Function", create = false, link = false })
     vim.api.nvim_set_hl(0, "FloatBorder", normal_float)
     normal_float.bold = true
     vim.api.nvim_set_hl(0, "FloatTitle", normal_float)
     vim.api.nvim_set_hl(0, "ColorColumn", { bg = function_.fg })
-    vim.api.nvim_set_hl(0, "NonText", normal)
+    vim.api.nvim_set_hl(0, "NonText", comment)
 end
 
 utils.withAugroup("color", function(grp)
