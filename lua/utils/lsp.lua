@@ -1,4 +1,5 @@
 local utils = require("utils")
+local lazy = require("lazy")
 local M = {}
 local lsp = vim.lsp
 
@@ -11,8 +12,7 @@ function M.enableLsp(name)
     utils.withAugroup("lsp_enable", function(grp)
             vim.api.nvim_create_autocmd("VimEnter", {
                 callback = function()
-                    _ = require("lspconfig")
-                    _ = require("mason")
+                    lazy.load({ plugins = {"nvim-lspconfig", "mason.nvim", "LuaSnip"} })
                     vim.cmd [[doautocmd FileType]]
                     if name.mason then
                         local reg = require("mason-registry")
