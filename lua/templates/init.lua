@@ -13,9 +13,7 @@ local PATTERNS = {
         local this_dir = vim.fs.basename(vim.fn.getcwd())
         local file_dir = vim.fn.expand("%:h")
         local dir = "./" .. vim.fs.normalize(vim.fs.joinpath(this_dir, file_dir)) .. "/"
-        print("dir = ", dir)
         local out = dir:gsub("/src/", "/"):sub(3)
-        print("out = ", out)
         return out
     end,
 }
