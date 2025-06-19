@@ -12,6 +12,7 @@ return {
     -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
     skip_confirm_for_simple_edits = true,
     keymaps = maps,
+    use_default_keymaps = false,
     view_options = {
         -- Show files and directories that start with "."
         show_hidden = true,
