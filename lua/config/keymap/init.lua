@@ -72,4 +72,20 @@ M.gitsigns = kut.newMapGroup()
     :map('n', "<leader>j", function(gs) gs.nav_hunk("next") end, "go to next hunk")
     :map('n', "<leader>k", function(gs) gs.nav_hunk("prev") end, "go to previous hunk")
 
+M.telescope_builtin = kut.newMapGroup()
+    :map('n', "<leader>f", kut.teleConfig("builtin", 'n'), "List of telescope pickers")
+    :map('n', "<leader>ff/", kut.teleConfig("current_buffer_fuzzy_find", 'i'), "Telescope find in file")
+    :map('n', "<leader>ffr", kut.teleConfig("live_grep", 'i'), "Telescope search in all files")
+    :map('n', "<leader>ffb", kut.teleConfig("buffers", 'n'), "Telescope list buffers")
+    :map('n', "<leader>fff", kut.teleConfig("find_files", 'i'), "Telescope find file")
+    :map('n', "<leader>fgv", kut.teleConfig("git_status", 'n'), "Telescope find file")
+
+
+M.telescope = kut.newMapGroup()
+    :gmap({ "i", "n" }, "<c-b>", "preview_scrolling_down")
+    :gmap({ "i", "n" }, "<c-f>", "preview_scrolling_up")
+    :gmap("n", "v", "file_vsplit")
+    :gmap("n", "t", "file_tab")
+    :gmap("n", "ZZ", "close")
+
 return M

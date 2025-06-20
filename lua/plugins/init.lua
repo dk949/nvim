@@ -6,5 +6,6 @@ return {
     { "godlygeek/tabular",                   lazy = true,  cmd = "Tabularize" },
     { "tpope/vim-surround",                  lazy = false, },
     { "lukas-reineke/indent-blankline.nvim", lazy = true,  opts = require("config.plugins.indent_blankline"), main = "ibl" },
+    { "nvim-telescope/telescope.nvim",       lazy = true,  opts = require("config.plugins.telescope"),        cmd = "Telescope" },
     { import = "plugins.lsp" },
 }

@@ -204,4 +204,27 @@ function M.formatFile()
     end)
 end
 
+local function teleTheme(mode)
+    return require('telescope.themes')
+        .get_ivy({
+            initial_mode = mode,
+            sections = { "1", "2", "3" }
+        })
+end
+
+---Spawn telescope `module` with initial `mode`
+---@param module string
+---@param mode string
+---@return fun()
+function M.teleConfig(module, mode)
+    if mode == 'n' then
+        mode = "normal"
+    else
+        mode = "insert"
+    end
+    return function()
+        return require("telescope.builtin")[module](teleTheme(mode))
+    end
+end
+
 return M
