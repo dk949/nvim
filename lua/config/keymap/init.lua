@@ -40,8 +40,6 @@ M.global = kut.newMapGroup()
     :map('n', "<leader>mc", "<CMD>set cursorline!<CR>", "Highlight current line")
     :map('n', "<leader>nn", "<CMD>Oil --float<CR>", "Open Oil window")
     :map('n', "gqg", kut.formatFile, "format the whole file with standard formatting")
-    :pummap("<C-n>", { "<C-x><C-o>", "<C-n>" }, "Use ctrl-n to trigger omnifunc")
-    :pummap("<CR>", "<C-y>", "Use enter to select completion")
 
 
 M.lsp = kut.newMapGroup()
