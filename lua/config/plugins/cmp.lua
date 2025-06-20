@@ -7,14 +7,14 @@ return function()
         mapping = {
             ["<C-n>"] = function()
                 if cmp.visible() then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
                 else
                     cmp.complete()
                 end
             end,
             ["<C-p>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
-                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
                 else
                     fallback()
                 end
