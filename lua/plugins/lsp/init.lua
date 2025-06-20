@@ -18,4 +18,5 @@ return {
             "saadparwaiz1/cmp_luasnip",
         }
     },
+    { "folke/lazydev.nvim", ft = "lua", opts = require("config.plugins.lazydev").opts, cond = require("config.plugins.lazydev").cond }
 }
