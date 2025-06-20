@@ -7,5 +7,6 @@ return {
     { "tpope/vim-surround",                  lazy = false, },
     { "lukas-reineke/indent-blankline.nvim", lazy = true,  opts = require("config.plugins.indent_blankline"), main = "ibl" },
     { "nvim-telescope/telescope.nvim",       lazy = true,  opts = require("config.plugins.telescope"),        cmd = "Telescope" },
+    { "dk949/telescope-oil-columns",         lazy = true },
     { import = "plugins.lsp" },
 }

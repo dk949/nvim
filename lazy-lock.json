@@ -14,6 +14,7 @@
   "oil.nvim": { "branch": "master", "commit": "08c2bce8b00fd780fb7999dbffdf7cd174e896fb" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "tabular": { "branch": "master", "commit": "12437cd1b53488e24936ec4b091c9324cafee311" },
+  "telescope-oil-columns": { "branch": "trunk", "commit": "8c3402cd01f3ee0cfe7cb810c66593715d43a25d" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
 }
