@@ -1,6 +1,6 @@
 local kut = require "config.keymap.utils"
 local lsput = require "utils.lsp"
-local winsize = require "utils.winsize" (5)
+local winsize = require "config.keymap.winsize" (5)
 local M = {}
 
 M.global = kut.newMapGroup()
@@ -22,10 +22,10 @@ M.global = kut.newMapGroup()
     :map('n', "<C-k>", "<C-w>k", "Use ctrl-k to switch windows in normal mode")
     :map('n', "<C-l>", "<C-w>l", "Use ctrl-l to switch windows in normal mode")
     :map('t', "<C-l>", "<space>clear<CR>", "Clear terminal screen")
-    :map('n', "<C-A-h>", function() winsize.changeWindowSize("h") end, "Resize window to the right")
-    :map('n', "<C-A-j>", function() winsize.changeWindowSize("j") end, "Resize window down")
-    :map('n', "<C-A-k>", function() winsize.changeWindowSize("k") end, "Resize window up")
-    :map('n', "<C-A-l>", function() winsize.changeWindowSize("l") end, "Resize window left")
+    :map('n', "<C-A-h>", winsize.changeWindowSize("h"), "Resize window to the right")
+    :map('n', "<C-A-j>", winsize.changeWindowSize("j"), "Resize window down")
+    :map('n', "<C-A-k>", winsize.changeWindowSize("k"), "Resize window up")
+    :map('n', "<C-A-l>", winsize.changeWindowSize("l"), "Resize window left")
     :map('n', "<A-j>", "<CMD>m +1<CR>", "Move line down")
     :map('n', "<A-k>", "<CMD>m -2<CR>", "Move line up")
     :map('v', "<A-j>", ":m '>+1<CR>gv", "Move lines down")
@@ -43,7 +43,8 @@ M.global = kut.newMapGroup()
 
 
 M.lsp = kut.newMapGroup()
-    :map('n', "<leader>ch", function() lsput.toggleInlay() end, "Toggle inlay hints")
+    :map('n', "<leader>ch", lsput.toggleInlay(), "Toggle inlay hints")
+    :map('n', "grd", kut.teleConfig("diagnostics", 'n'), "Telescope diagnostics")
 
 M.color = kut.newMapGroup()
     :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")

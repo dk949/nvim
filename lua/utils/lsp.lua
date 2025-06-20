@@ -50,7 +50,9 @@ function M.enableLsp(name)
 end
 
 function M.toggleInlay()
-    lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled())
+    return function()
+        lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled())
+    end
 end
 
 return M
