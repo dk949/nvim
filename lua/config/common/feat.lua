@@ -12,4 +12,9 @@ M["@trailingWS"] = function(yes)
     return require "config.common.ws".setup()
 end
 
+M["@logicalLines"] = function(yes)
+    if not yes then return "" end
+    return require("config.common.llines").setup()
+end
+
 return M

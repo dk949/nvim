@@ -7,6 +7,12 @@ local M = {
         textwidth = 110,
         ["@indentBlankline"] = true,
         ["@trailingWS"] = true,
+    },
+    text = {
+        formatoptions = format.text,
+        textwidth = 80,
+        ["@trailingWS"] = true,
+        ["@logicalLines"] = true,
     }
 }
 

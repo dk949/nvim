@@ -73,6 +73,7 @@ local log = require("utils.log")
 ---If `bufnr` is not `nil`, for each mapping which does not supply its own `buffer` in its `opts`, the
 ---`bufferr` will be set to `bufnr`.
 ---@field defaultApplyOn fun(self, event:string|string[], pattern:(string|string[])?, with: With?, bufnr:integer?):nil
+---@field cloneUnmapped fun(self):MappingGroup
 
 
 ---@param mode string|string[]
@@ -167,7 +168,7 @@ function M.newMapGroup()
             if with then rhs = utils.fnOrTable(with, name, rhs) or rhs end
             if rhs then
                 vim.keymap.set(p.mode, p.lhs, rhs, p.opts)
-            elseif  p.opts.__unmap then
+            elseif p.opts.__unmap then
                 vim.keymap.del(p.mode, p.lhs)
             end
         end
@@ -177,12 +178,21 @@ function M.newMapGroup()
         local event_name = event
         if type(event) == "table" then event_name = vim.iter(event):join("_") end
         utils.withAugroup("keymap_apply_on_" .. event_name, function(grp)
-            vim.api.nvim_create_autocmd(event, {
+            return vim.api.nvim_create_autocmd(event, {
                 pattern = pattern,
                 callback = function() self:defaultApply(with, bufnr) end,
                 group = grp,
             })
         end)
+    end
+
+    function map_group:cloneUnmapped()
+        local new = vim.deepcopy(self)
+        new:apply(function(_, m)
+            m.opts = { __unmap = true }
+            m.rhs = nil
+        end)
+        return new
     end
 
     return map_group
