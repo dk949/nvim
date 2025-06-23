@@ -1,5 +1,7 @@
 require "utils".ftplugin(
-    require "config.common".prog,
+    vim.tbl_deep_extend("error", require "config.common".prog, {
+        formatexpr = [[v:lua.require("config.common.formatting").python()]],
+    }),
     function()
         require "utils.lsp".enableLsp({
             config = "basedpyright",
