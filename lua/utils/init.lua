@@ -96,7 +96,11 @@ function M.ftplugin(setlocal, fn)
     end
     if fn then fn() end
     vim.b[ftp_name] = true
-    vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | unlet b:" .. ftp_name
+    -- TODO(dk949): Figure out why this is getting added to undo_ftplugin twice
+    local unlet = " | unlet b:" .. ftp_name
+    if not vim.b.undo_ftplugin:find(unlet, 1, true) then
+        vim.b.undo_ftplugin = vim.b.undo_ftplugin .. unlet
+    end
 end
 
 local shell_chars = '[|&;<>%(%)%$%`\\%*%?%[%]%{%}%~ \t\n"\']'
