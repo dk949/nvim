@@ -50,5 +50,9 @@ return {
         name = "mlir-vim",
         ft = "mlir"
     },
+    {
+        "bullets-vim/bullets.vim",
+        ft = "markdown"
+    },
     { import = "plugins.lsp" },
 }
