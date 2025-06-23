@@ -1,6 +1,13 @@
 return {
-    { "neovim/nvim-lspconfig", lazy = true },
-    { "mason-org/mason.nvim",  lazy = true, opts = {} },
+    {
+        "neovim/nvim-lspconfig",
+        lazy = true
+    },
+    {
+        "mason-org/mason.nvim",
+        lazy = true,
+        opts = {}
+    },
     {
         "L3MON4D3/LuaSnip",
         lazy = true,
@@ -18,5 +25,10 @@ return {
             "saadparwaiz1/cmp_luasnip",
         }
     },
-    { "folke/lazydev.nvim", ft = "lua", opts = require("config.plugins.lazydev").opts, cond = require("config.plugins.lazydev").cond }
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = require("config.plugins.lazydev").opts,
+        cond = require("config.plugins.lazydev").cond
+    }
 }
