@@ -1,10 +1,9 @@
 local M = {}
 local utils = require("utils")
-local log = require("utils.log")
 
 
 function M.setup()
-    if vim.b.no_trailing_ws then return "" end
+    if vim.b.no_trailing_ws then return end
     _, vim.b.no_trailing_ws = utils.withAugroup("whitespace",
         function(grp)
             return vim.api.nvim_create_autocmd("BufWritePre", {

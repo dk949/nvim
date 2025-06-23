@@ -6,16 +6,12 @@ function M.setAll(settings)
     local out = ""
     for k, v in pairs(feat) do
         if settings[k] ~= nil then
-            out = out .. " " .. v(settings[k])
+            local undo = v(settings[k])
+            if undo then out = out .. " | " .. undo end
             settings[k] = nil
         end
     end
     return settings, out
 end
-
-
-
-
-
 
 return M

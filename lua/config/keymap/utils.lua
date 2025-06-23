@@ -169,7 +169,7 @@ function M.newMapGroup()
             if rhs then
                 vim.keymap.set(p.mode, p.lhs, rhs, p.opts)
             elseif p.opts.__unmap then
-                vim.keymap.del(p.mode, p.lhs)
+                vim.keymap.del(p.mode, p.lhs, { buffer = p.opts.buffer })
             end
         end
     end
@@ -189,7 +189,7 @@ function M.newMapGroup()
     function map_group:cloneUnmapped()
         local new = vim.deepcopy(self)
         new:apply(function(_, m)
-            m.opts = { __unmap = true }
+            m.opts = { __unmap = true, buffer = m.opts.buffer }
             m.rhs = nil
         end)
         return new

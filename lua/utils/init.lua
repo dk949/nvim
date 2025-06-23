@@ -89,7 +89,7 @@ function M.ftplugin(setlocal, fn)
     local ftp_name = "ftp_" .. vim.bo.filetype
     if vim.b[ftp_name] then return end
     local settings, undo = comm_ut.setAll(vim.deepcopy(setlocal))
-    vim.b.undo_ftplugin = vim.b.undo_ftplugin .. ' | ' .. undo
+    vim.b.undo_ftplugin = vim.b.undo_ftplugin .. undo
     for option, value in pairs(settings) do
         vim.opt_local[option] = value
         vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | setlocal " .. option .. '<'
