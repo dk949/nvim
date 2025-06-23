@@ -1,11 +1,11 @@
-local utils = require("utils")
 local lazy = require("lazy")
 local M = {}
 local lsp = vim.lsp
 
+local enabled_lsps = {}
 
 ---ensure an LSP server is installed with mason
----@param name string|boolean
+---@param name string|false
 local function ensureInstalled(name)
     if not name then return end
     local reg = require("mason-registry")
@@ -16,43 +16,45 @@ end
 
 
 ---Load all required plugins and ensure the LSP is installed
----@param name string|boolean
+---@param name {config:string, mason:(string|boolean)?}
 local function setupLSP(name)
-    return function()
-        lazy.load({
-            plugins = {
-                "nvim-lspconfig",
-                "mason.nvim",
-                "LuaSnip",
-                "nvim-cmp",
-                "cmp_luasnip",
-                "cmp-nvim-lsp",
-            }
-        })
-        vim.cmd [[doautocmd FileType]]
-        ensureInstalled(name)
-        vim.lsp.config("*", {
-            capabilities = require('cmp_nvim_lsp').default_capabilities()
-        })
-    end
+    lazy.load({
+        plugins = {
+            "nvim-lspconfig",
+            "mason.nvim",
+            "LuaSnip",
+            "nvim-cmp",
+            "cmp_luasnip",
+            "cmp-nvim-lsp",
+        }
+    })
+    vim.cmd [[doautocmd FileType]]
+    ensureInstalled(name.mason)
+    vim.lsp.config("*", {
+        capabilities = require('cmp_nvim_lsp').default_capabilities()
+    })
 end
 
 
 ---@param name {config:string, mason:(string|boolean)?}
 function M.enableLsp(name)
+    -- XXX: will result in infinite recursion without this due to `doautocmd FileType`
+    if enabled_lsps[name.config] then return end
+    enabled_lsps[name.config] = true
     if type(name) == "string" then name = { config = name, mason = name } end
     if name.mason == nil then name.mason = name.config end
     vim.lsp.enable(name.config)
-    utils.withAugroup("lsp_enable",
-        -- TODO(dk949): This will break for multiple files with different LSPs
-        function(grp) vim.api.nvim_create_autocmd("VimEnter", { callback = setupLSP(name.mason), group = grp }) end,
-        { clear = false })
+    setupLSP(name)
 end
 
 function M.toggleInlay()
     return function()
         lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled())
     end
+end
+
+function M.getEnabledLSPs()
+    return vim.tbl_keys(enabled_lsps)
 end
 
 return M
