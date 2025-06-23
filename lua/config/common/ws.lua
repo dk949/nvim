@@ -19,7 +19,8 @@ end
 
 function M.undo()
     if not vim.b.no_trailing_ws then return end
-    vim.api.nvim_del_autocmd(vim.b.no_trailing_ws)
+    local ok, err = xpcall(vim.api.nvim_del_autocmd, debug.traceback, vim.b.no_trailing_ws)
+    if not ok then log.warn(err) end
     vim.b.no_trailing_ws = nil
 end
 
