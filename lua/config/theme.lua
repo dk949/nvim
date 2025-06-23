@@ -39,7 +39,7 @@ local function tweaks()
 end
 
 utils.withAugroup("color", function(grp)
-    vim.api.nvim_create_autocmd("ColorScheme", {
+    return vim.api.nvim_create_autocmd("ColorScheme", {
         callback = tweaks,
         group = grp,
     })

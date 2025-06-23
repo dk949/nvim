@@ -12,15 +12,14 @@ function M.b(s) return tonumber(s, 2) end
 function M.o(s) return tonumber(s, 8) end
 
 ---@param name string
----@param fn fun(grp: integer): nil
+---@param fn fun(grp: integer): integer
 ---@param opts {clear:boolean}?
----@return integer
+---@return integer, integer
 function M.withAugroup(name, fn, opts)
     local clear = true
     if opts ~= nil and opts.clear ~= nil then clear = opts.clear end
     local grp = vim.api.nvim_create_augroup(name, { clear = clear })
-    fn(grp)
-    return grp
+    return grp, fn(grp)
 end
 
 ---Restores cursor position after any movement
