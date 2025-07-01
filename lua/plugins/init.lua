@@ -51,6 +51,10 @@ return {
         ft = "mlir"
     },
     {
+        dir = "~/src/mlir-vim/llvm/utils/vim",
+        name = "tablegen-vim",
+    },
+    {
         "bullets-vim/bullets.vim",
         ft = "markdown"
     },
