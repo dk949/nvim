@@ -1,3 +1,4 @@
+local lsp_ut = require("utils.lsp")
 return function()
     local cmp = require("cmp")
     local ls = require("luasnip")
@@ -5,7 +6,8 @@ return function()
         snippet = { expand = function(args) ls.lsp_expand(args.body) end, },
         -- TODO(dk949): Put this with the other key maps
         mapping = {
-            ["<C-n>"] = function()
+            ["<C-n>"] = function(fallback)
+                if not lsp_ut.bufHasLSP() then fallback() end
                 if cmp.visible() then
                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
                 else
@@ -13,6 +15,7 @@ return function()
                 end
             end,
             ["<C-p>"] = cmp.mapping(function(fallback)
+                if not lsp_ut.bufHasLSP() then fallback() end
                 if cmp.visible() then
                     cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
                 else

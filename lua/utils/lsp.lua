@@ -57,4 +57,12 @@ function M.getEnabledLSPs()
     return vim.tbl_keys(enabled_lsps)
 end
 
+---comment
+---@param bufnr integer?
+---@return boolean
+function M.bufHasLSP(bufnr)
+    if not bufnr then bufnr = vim.fn.bufnr() end
+    return not vim.tbl_isempty(vim.lsp.get_clients { bufnr = bufnr })
+end
+
 return M
