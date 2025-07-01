@@ -36,12 +36,12 @@ local function setupLSP(name)
 end
 
 
----@param name {config:string, mason:(string|boolean)?}
+---@param name {config:string, mason:(string|boolean)?}|string
 function M.enableLsp(name)
     -- XXX: will result in infinite recursion without this due to `doautocmd FileType`
+    if type(name) == "string" then name = { config = name, mason = name } end
     if enabled_lsps[name.config] then return end
     enabled_lsps[name.config] = true
-    if type(name) == "string" then name = { config = name, mason = name } end
     if name.mason == nil then name.mason = name.config end
     vim.lsp.enable(name.config)
     setupLSP(name)

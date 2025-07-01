@@ -3,9 +3,6 @@ require "utils".ftplugin(
         formatexpr = [[v:lua.require("config.common.formatting").python()]],
     }),
     function()
-        require "utils.lsp".enableLsp({
-            config = "basedpyright",
-            mason = "basedpyright",
-        })
+        require "utils.lsp".enableLsp "basedpyright"
     end
 )
