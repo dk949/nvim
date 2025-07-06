@@ -16,9 +16,10 @@ local function ensureInstalled(name)
     if type(name) == "string" then name_list = { name } else name_list = name end
     local reg = require("mason-registry")
     for _, n in ipairs(name_list) do
-        if reg.is_installed(n) then return end
-        local pkg = reg.get_package(n)
-        pkg:install()
+        if not reg.is_installed(n) then
+            local pkg = reg.get_package(n)
+            pkg:install()
+        end
     end
 end
 
