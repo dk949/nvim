@@ -28,4 +28,6 @@ function M.pythonExpr()
     return 0
 end
 
+M.cmakePrg = "cmake-format - -o -"
+
 return M
