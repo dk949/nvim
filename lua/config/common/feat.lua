@@ -4,6 +4,7 @@ local M = {}
 M["@indentBlankline"] = function(yes)
     if not yes then return end
     lazy.load({ plugins = { "indent-blankline.nvim" } })
+    require "ibl".setup_buffer(vim.fn.bufnr(), {enabled = true})
 end
 
 M["@trailingWS"] = function(yes)
