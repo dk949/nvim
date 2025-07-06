@@ -58,5 +58,10 @@ return {
         "bullets-vim/bullets.vim",
         ft = "markdown"
     },
+    {
+        "dk949/remember-where",
+        lazy = false,
+        config = require("config.plugins.remember-where"),
+    },
     { import = "plugins.lsp" },
 }
