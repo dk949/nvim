@@ -1,7 +1,7 @@
 local log = require("utils.log")
 local M = {}
 
-function M.python()
+function M.pythonExpr()
     local mode = vim.fn.mode():sub(1, 1)
     -- don't format if invoked by reaching 'textwidth'
     if mode == 'R' or mode == 'i' then return 0 end
