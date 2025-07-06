@@ -5,31 +5,36 @@ local lsp = vim.lsp
 local enabled_lsps = {}
 
 ---@alias Override vim.lsp.Config|fun(_:vim.lsp.Config?):vim.lsp.Config
+---@alias MasonSpec string|string[]|false
+---@alias LspSpec {config:string, mason:MasonSpec?}
 
 ---ensure an LSP server is installed with mason
----@param name string|false
+---@param name MasonSpec
 local function ensureInstalled(name)
     if not name then return end
+    local name_list
+    if type(name) == "string" then name_list = { name } else name_list = name end
     local reg = require("mason-registry")
-    if reg.is_installed(name) then return end
-    local pkg = reg.get_package(name)
-    pkg:install()
+    for _, n in ipairs(name_list) do
+        if reg.is_installed(n) then return end
+        local pkg = reg.get_package(n)
+        pkg:install()
+    end
 end
 
 
 ---Load all required plugins and ensure the LSP is installed
----@param name {config:string, mason:(string|boolean)?}
+---@param spec LspSpec
 ---@param override Override?
-local function setupLSP(name, override)
-    print("here")
+local function setupLSP(spec, override)
     if override then
         if type(override) == "table" then
-            vim.lsp.config(name.config, override)
+            vim.lsp.config(spec.config, override)
         else
-            vim.lsp.config[name.config] = override(vim.lsp.config[name.config])
+            vim.lsp.config[spec.config] = override(vim.lsp.config[spec.config])
         end
     end
-    vim.lsp.config(name.config, {
+    vim.lsp.config(spec.config, {
         capabilities = require('cmp_nvim_lsp').default_capabilities()
     })
     lazy.load({
@@ -43,11 +48,11 @@ local function setupLSP(name, override)
         }
     })
     vim.cmd [[doautocmd FileType]]
-    ensureInstalled(name.mason)
+    ensureInstalled(spec.mason)
 end
 
 
----@param name {config:string, mason:(string|boolean)?}|string
+---@param name LspSpec|string
 ---@param override Override?
 function M.enableLsp(name, override)
     -- XXX: will result in infinite recursion without this due to `doautocmd FileType`
