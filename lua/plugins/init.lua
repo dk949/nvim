@@ -63,5 +63,11 @@ return {
         lazy = false,
         config = require("config.plugins.remember-where"),
     },
+    {
+        "catgoose/nvim-colorizer.lua",
+        ft = { "css", "html" },
+        cmd = { "ColorizerAttachToBuffer", "ColorizerToggle" },
+        opts = require("config.plugins.colorizer"),
+    },
     { import = "plugins.lsp" },
 }
