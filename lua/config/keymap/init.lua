@@ -102,7 +102,7 @@ M.logical_lines = kut.newMapGroup()
     :map({ 'n', 'o' }, "$", "g$")
     :map({ 'n', 'o' }, "g$", "$")
     :map({ 'n', 'o' }, "D", "dg$")
-    :map({ 'n', 'o' }, "C", "dg$")
+    :map({ 'n', 'o' }, "C", "cg$")
     :map({ 'n', 'o' }, "A", "g$a")
     :map({ 'n', 'o' }, "I", "g^i")
 
