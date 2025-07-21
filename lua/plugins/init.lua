@@ -16,6 +16,14 @@ return {
         opts = require("config.plugins.oil")
     },
     {
+        "dk949/telescope-oil-columns",
+        lazy = true
+    },
+    {
+        "refractalize/oil-git-status.nvim",
+        opts = require("config.plugins.oil_git_status")
+    },
+    {
         "lewis6991/gitsigns.nvim",
         lazy = true,
         opts = require("config.plugins.gitsigns")
@@ -40,10 +48,6 @@ return {
         lazy = true,
         opts = require("config.plugins.telescope"),
         cmd = "Telescope"
-    },
-    {
-        "dk949/telescope-oil-columns",
-        lazy = true
     },
     {
         dir = "~/src/mlir-vim/mlir/utils/vim",
