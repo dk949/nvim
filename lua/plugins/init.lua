@@ -21,7 +21,7 @@ return {
     },
     {
         "refractalize/oil-git-status.nvim",
-        opts = require("config.plugins.oil_git_status")
+        config = require("config.plugins.oil_git_status")
     },
     {
         "lewis6991/gitsigns.nvim",
