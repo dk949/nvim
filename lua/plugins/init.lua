@@ -73,5 +73,10 @@ return {
         cmd = { "ColorizerAttachToBuffer", "ColorizerToggle" },
         opts = require("config.plugins.colorizer"),
     },
+    {
+        "RaafatTurki/hex.nvim",
+        cmd = { "HexDump", "HexAssemble", "HexToggle" },
+        opts = require("config.plugins.hex"),
+    },
     { import = "plugins.lsp" },
 }
