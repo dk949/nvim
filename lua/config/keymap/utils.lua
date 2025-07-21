@@ -214,26 +214,42 @@ function M.formatFile()
     end)
 end
 
-local function teleTheme(mode)
+---@param mode string
+---@param opts (table|fun():table)?
+---@return table
+local function teleTheme(mode, opts)
+    local real_opts
+    if opts == nil then
+        real_opts = {}
+    elseif type(opts) == "function" then
+        real_opts = opts()
+    else
+        real_opts = opts
+    end
     return require('telescope.themes')
-        .get_ivy({
-            initial_mode = mode,
-            sections = { "1", "2", "3" }
-        })
+        .get_ivy(
+            vim.tbl_extend("force", {
+                    initial_mode = mode,
+                    sections = { "1", "2", "3" }
+                },
+                real_opts
+            )
+        )
 end
 
 ---Spawn telescope `module` with initial `mode`
 ---@param module string
 ---@param mode string
+---@param opts (table|fun():table)?
 ---@return fun()
-function M.teleConfig(module, mode)
+function M.teleConfig(module, mode, opts)
     if mode == 'n' then
         mode = "normal"
     else
         mode = "insert"
     end
     return function()
-        return require("telescope.builtin")[module](teleTheme(mode))
+        return require("telescope.builtin")[module](teleTheme(mode, opts))
     end
 end
 
