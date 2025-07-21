@@ -1,6 +1,7 @@
 local kut = require "config.keymap.utils"
 local lsput = require "utils.lsp"
 local winsize = require "config.keymap.winsize" (5)
+local qfix = require "config.keymap.qfix"
 local M = {}
 
 M.global = kut.newMapGroup()
@@ -41,6 +42,8 @@ M.global = kut.newMapGroup()
     :map('n', "<leader>mc", "<CMD>set cursorline!<CR>", "Highlight current line")
     :map('n', "<leader>nn", "<CMD>Oil --float<CR>", "Open Oil window")
     :map('n', "gqg", kut.formatFile, "format the whole file with standard formatting")
+    :map('n', ']q', qfix.cnext, "next quickfix")
+    :map('n', '[q', qfix.cprev, "previous quickfix")
 
 
 M.lsp = kut.newMapGroup()
@@ -105,5 +108,10 @@ M.logical_lines = kut.newMapGroup()
     :map({ 'n', 'o' }, "C", "cg$")
     :map({ 'n', 'o' }, "A", "g$a")
     :map({ 'n', 'o' }, "I", "g^i")
+
+M.quickfix = kut.newMapGroup()
+    :map('n', ']q', qfix.inQfix(qfix.cnext), "next quickfix")
+    :map('n', '[q', qfix.inQfix(qfix.cprev), "previous quickfix")
+
 
 return M
