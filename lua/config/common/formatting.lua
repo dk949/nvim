@@ -29,5 +29,6 @@ function M.pythonExpr()
 end
 
 M.cmakePrg = "cmake-format - -o -"
+M.fortranProg = "fprettify --silent"
 
 return M

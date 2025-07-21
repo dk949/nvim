@@ -1,7 +1,12 @@
 require "utils".ftplugin(
-    require "config.common".prog,
+    vim.tbl_deep_extend("error", require "config.common".prog, {
+        formatprg = require("config.common.formatting").fortranProg,
+    }),
     function()
-        require "utils.lsp".enableLsp("fortls", function(config)
+        require "utils.lsp".enableLsp({
+            config = "fortls",
+            mason = { "fortls", "fprettify" },
+        }, function(config)
             if not config then
                 config = {
                     cmd = {
