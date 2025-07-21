@@ -9,6 +9,11 @@ local maps = keymap.oil:transform(function(_, m)
     end
 end)
 return {
+    win_options = {
+        signcolumn = "yes:2",
+        number = false,
+        relativenumber = false,
+    },
     -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
     skip_confirm_for_simple_edits = true,
     keymaps = maps,
