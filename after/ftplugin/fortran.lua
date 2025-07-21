@@ -1,7 +1,7 @@
 require "utils".ftplugin(
-    vim.tbl_deep_extend("error", require "config.common".prog, {
+    require "config.common".prog:with {
         formatprg = require("config.common.formatting").fortranProg,
-    }),
+    },
     function()
         require "utils.lsp".enableLsp({
             config = "fortls",

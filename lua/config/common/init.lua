@@ -1,6 +1,8 @@
 local format = require("config.common.format")
+local utils = require("utils")
+
 local M = {
-    prog = {
+    prog = utils.newWithTable {
         signcolumn = "yes",
         formatoptions = format.prog,
         colorcolumn = "+1",
@@ -9,7 +11,7 @@ local M = {
         ["@indentBlankline"] = true,
         ["@trailingWS"] = true,
     },
-    text = {
+    text = utils.newWithTable {
         formatoptions = format.text,
         textwidth = 80,
         ["@trailingWS"] = true,

@@ -138,4 +138,28 @@ function M.shellConcat(cmd, opts)
         :join(' ')
 end
 
+local withMT
+withMT = {
+    __index = {
+        with = function(self, overrides)
+            -- deep_extend returns a brand‑new table merging self + overrides
+            local merged = vim.tbl_deep_extend("force", self, overrides)
+            -- tag it so you can do :with again, without polluting pairs()
+            return setmetatable(merged, withMT)
+        end
+    }
+}
+
+---Attach a `with` metamethod to `t`
+---@param t table
+---@return  table
+function M.newWithTable(t)
+    return setmetatable(t, withMT)
+end
+
+---@type table<string,integer>
+local x = {}
+
+local y = M.newWithTable(x):with{}
+
 return M
