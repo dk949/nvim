@@ -1,3 +1,4 @@
+---@class Logger
 local M = {}
 
 
@@ -116,6 +117,7 @@ for name, fn in pairs(M) do
     sched[name] = vim.schedule_wrap(fn)
 end
 
+---@type Logger
 M.sched = sched
 
 return M
