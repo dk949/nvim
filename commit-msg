@@ -64,13 +64,15 @@ TYPES = {
     lang   = true,
     plugin = true,
 }
+TYPES_LIST = vim.tbl_keys(TYPES)
 local error_str = [[Expected commit format:
 
     <type><optional-scope>: <description>
     <empty-line-or-eof>
     <optional-body>
 
-]]
+Valid types are: ]] .. vim.iter(TYPES_LIST):take(#TYPES_LIST-1):join(", ") .. " and " .. TYPES_LIST[#TYPES_LIST] .. '\n'
+
 
 ---@param line string
 ---@return (string[])?
