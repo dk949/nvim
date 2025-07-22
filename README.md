@@ -12,8 +12,9 @@
 
 ## Dev
 
-
 Commit convention (based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/))
+
+Use `./commit-msg -- install-self` to install the hook to check commit format
 
 **Types**
 
