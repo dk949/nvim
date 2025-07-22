@@ -35,7 +35,7 @@ function M.openfloat(enter, dims, win_opts, buf_opts)
     win_opts.relative = "editor"
 
     local buf = vim.api.nvim_create_buf(false, true)
-    local win vim.api.nvim_open_win(buf, enter, win_opts)
+    local win = vim.api.nvim_open_win(buf, enter, win_opts)
     return win, buf
 end
 
