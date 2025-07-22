@@ -22,12 +22,10 @@ local function runNonInteractive(cmd, opts)
         else
             return
         end
-        vim.schedule(function()
-            log.error({
-                { "Command ", utils.shellPrintFmt(cmd), " failed with " .. kind .. " ", val, ":" },
-                { out.stderr }
-            })
-        end)
+        log.sched.error({
+            { "Command ", utils.shellPrintFmt(cmd), " failed with " .. kind .. " ", val, ":" },
+            { out.stderr }
+        })
     end)
 end
 
