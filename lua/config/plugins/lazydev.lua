@@ -1,5 +1,9 @@
 return {
-    opts = {},
+    opts = {
+        library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        }
+    },
     cond = function()
         -- Enable lazydev with nvim --cmd 'let g:enable_lazydev=1'
         if vim.g.enable_lazydev then return true end
