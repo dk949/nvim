@@ -1,4 +1,5 @@
 local lazy = require("lazy")
+local log = require("utils.log")
 local M = {}
 local lsp = vim.lsp
 
@@ -17,8 +18,16 @@ local function ensureInstalled(name)
     local reg = require("mason-registry")
     for _, n in ipairs(name_list) do
         if not reg.is_installed(n) then
-            local pkg = reg.get_package(n)
-            pkg:install()
+            log.sched.warn("Package ", n, " is not installed")
+            log.sched.info("Updating Mason registry")
+            reg.update(function()
+                local pkg = reg.get_package(n)
+                pkg:install(nil, function(success, receipt)
+                    if success then
+                        log.sched.infof("Successfully installed %s (%s)", n, receipt.name)
+                    end
+                end)
+            end)
         end
     end
 end
