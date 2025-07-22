@@ -147,19 +147,18 @@ end
 
 
 ---@param file string
----@param count number
 ---@return number
-local function runCheck(file, count)
+local function runCheck(file)
     local fp = io.open(file, "r")
     if not fp then
         print(("No such file %s\n"):format(file))
-        return 1 + count
+        return 1
     end
     local line, err = readLine(fp)
     local next_line = readLine(fp)
     if not err then
         if not line or line:match("^%s*$") then
-            return 2 + count
+            return 2
         end
 
         err = parseCommit(line)
@@ -174,13 +173,13 @@ local function runCheck(file, count)
         fp = io.open(file, "r+")
         if not fp then
             print(("Could not re-open file %s for update"):format(file))
-            return 3 + count
+            return 3
         end
         local editor = getGitEditor()
         printErroToFile(fp, err, editor ~= nil)
         fp:close()
-        if not reEdit(file, editor) then return 4 + count end
-        return runCheck(file, count + 1)
+        if not reEdit(file, editor) then return 4 end
+        return runCheck(file)
     end
     return 0
 end
@@ -188,6 +187,6 @@ end
 ---@return integer
 local function main()
     local file = parseArgs()
-    return runCheck(file, 10)
+    return runCheck(file)
 end
 os.exit(main(), true)
