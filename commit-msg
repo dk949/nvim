@@ -1,35 +1,49 @@
 #!/usr/bin/env -S nvim -l
 
+---@param fp file*
+---@return string?
+local function readLine(fp)
+    while true do
+        ---@type string?
+        local line = fp:read("*l")
+        if not line or not line:match("^%s*#") then return line end
+    end
+end
+
+---@param res vim.SystemCompleted
+---@param msg string
+---@return boolean
+local function handleSystemRes(res, msg)
+    if res.code ~= 0 or res.signal ~= 0 then
+        print(msg, "\n")
+        return false
+    end
+    return true
+end
+
 ---@return integer
 local function installSelf()
+    local hooks_dir, err, this_file_abs, success
     local res = vim.system({ "git", "rev-parse", "--is-inside-work-tree" }, { stderr = false }):wait()
-    if res.code ~= 0 or res.signal ~= 0 then
-        print("Error: not a git repository\n")
-        return 1
-    end
-
-
+    if not handleSystemRes(res, "Error: not a git repository") then return 1 end
 
     res = vim.system({ "git", "rev-parse", "--git-path", "hooks" }, { text = true, stderr = false }):wait()
-    if res.code ~= 0 or res.signal ~= 0 then
-        print("Error: could not find hooks directory\n")
-        return 1
-    end
-    local hooks_dir = res.stdout:gsub("%s+$", "")
-    local hooks_dir, err, _ = vim.uv.fs_realpath(hooks_dir)
+    if not handleSystemRes(res, "Error: could not find hooks directory") then return 1 end
+    hooks_dir = res.stdout:gsub("%s+$", "")
+    hooks_dir, err, _ = vim.uv.fs_realpath(hooks_dir)
     if err then
         print(("Error: could not get path to hooks directory (%s): %s\n"):format(res.stdout, err))
         return 1
     end
     local this_file = vim.fs.normalize(vim.fs.abspath(debug.getinfo(1, "S").short_src))
-    local this_file_abs, err, _ = vim.uv.fs_realpath(vim.fs.abspath(this_file))
+    this_file_abs, err, _ = vim.uv.fs_realpath(vim.fs.abspath(this_file))
     if not this_file_abs or err then
         print(("Error: could not get path to self: %s\n"):format(err))
         return 1
     end
     local this_file_name = vim.fs.basename(this_file_abs)
 
-    local success, err = vim.uv.fs_copyfile(this_file_abs, vim.fs.joinpath(hooks_dir, this_file_name))
+    success, err = vim.uv.fs_copyfile(this_file_abs, vim.fs.joinpath(hooks_dir, this_file_name))
     if not success then
         print(("Error: could not copy self: %s\n"):format(err))
         return 1
@@ -71,13 +85,36 @@ local error_str = [[Expected commit format:
     <empty-line-or-eof>
     <optional-body>
 
-Valid types are: ]] .. vim.iter(TYPES_LIST):take(#TYPES_LIST-1):join(", ") .. " and " .. TYPES_LIST[#TYPES_LIST] .. '\n'
+Valid types are: ]] .. vim.iter(TYPES_LIST):take(#TYPES_LIST - 1):join(", ") ..
+    " and " .. TYPES_LIST[#TYPES_LIST] .. '\n'
 
+---@param file string
+---@return boolean
+local function reEdit(file)
+    local res = vim.system({ "git", "var", "GIT_EDITOR" }, { text = true, stderr = false }):wait()
+    if not handleSystemRes(res, "Error: could not determine GIT_EDITOR") then return false end
+    local editor = res.stdout:gsub("%s+$", "")
+    if editor == ":" then return false end
+    local succ = os.execute(editor .. " " .. file)
+    return succ == true
+end
 
----@param line string
+---@param fp file*
+---@param err string[]
+local function printErroToFile(fp, err)
+    ---@type string
+    local contents = fp:read("*a")
+    local new_contents = '#' ..
+        vim.iter(err):join("") .. "\nOriginal message is below, delete this and resubmit\n\n\n" .. contents
+    new_contents = vim.iter(vim.fn.split(new_contents, "\n", true))
+        :map(function(line) return ((line ~= "") and '#' .. line) or "" end)
+        :join('\n')
+    fp:write(new_contents)
+end
+---@param line string?
 ---@return (string[])?
 local function parseCommit(line)
-    if not line then return { "Missing commit message\n", error_str } end
+    if not line or line == "" then return { "Missing commit message\n", error_str } end
     local type, rest = line:match("^(%a+)([^%a].+)$")
     if not (type and rest) then return { "Commit message doesn't have a type\n", error_str } end
     if not TYPES[type] then return { ("Commit type `%s` not allowed. See README.\n"):format(type), error_str } end
@@ -86,16 +123,17 @@ local function parseCommit(line)
     if not desc then return { "Commit message is malformed\n", error_str } end
 end
 
----@return integer
-local function main()
-    local file = parseArgs()
+
+---@param file string
+---@return number
+local function runCheck(file)
     local fp = io.open(file, "r")
     if not fp then
         print(("No such file %s\n"):format(file))
         return 1
     end
-    local line = fp:read("*l")
-    local next_line = fp:read("*l")
+    local line = readLine(fp)
+    local next_line = readLine(fp)
 
     local err = parseCommit(line)
     if next_line and next_line ~= "" then
@@ -105,9 +143,22 @@ local function main()
     end
     fp:close()
     if err then
-        print(vim.iter(err):join(""))
-        return 1
+        fp = io.open(file, "r+")
+        if not fp then
+            print(("Could not re-open file %s for update"):format(file))
+            return 1
+        end
+        printErroToFile(fp, err)
+        fp:close()
+        if not reEdit(file) then return 1 end
+        return runCheck(file)
     end
     return 0
+end
+
+---@return integer
+local function main()
+    local file = parseArgs()
+    return runCheck(file)
 end
 os.exit(main(), true)
