@@ -1,0 +1,111 @@
+#!/usr/bin/env -S nvim -l
+
+---@return integer
+local function installSelf()
+    local res = vim.system({ "git", "rev-parse", "--is-inside-work-tree" }, { stderr = false }):wait()
+    if res.code ~= 0 or res.signal ~= 0 then
+        print("Error: not a git repository\n")
+        return 1
+    end
+
+
+
+    res = vim.system({ "git", "rev-parse", "--git-path", "hooks" }, { text = true, stderr = false }):wait()
+    if res.code ~= 0 or res.signal ~= 0 then
+        print("Error: could not find hooks directory\n")
+        return 1
+    end
+    local hooks_dir = res.stdout:gsub("%s+$", "")
+    local hooks_dir, err, _ = vim.uv.fs_realpath(hooks_dir)
+    if err then
+        print(("Error: could not get path to hooks directory (%s): %s\n"):format(res.stdout, err))
+        return 1
+    end
+    local this_file = vim.fs.normalize(vim.fs.abspath(debug.getinfo(1, "S").short_src))
+    local this_file_abs, err, _ = vim.uv.fs_realpath(vim.fs.abspath(this_file))
+    if not this_file_abs or err then
+        print(("Error: could not get path to self: %s\n"):format(err))
+        return 1
+    end
+    local this_file_name = vim.fs.basename(this_file_abs)
+
+    local success, err = vim.uv.fs_copyfile(this_file_abs, vim.fs.joinpath(hooks_dir, this_file_name))
+    if not success then
+        print(("Error: could not copy self: %s\n"):format(err))
+        return 1
+    end
+    print(("Successfully installed %s into %s\n"):format(this_file, hooks_dir))
+
+    return 0
+end
+
+local function parseArgs()
+    if not arg[1] or arg[1] == "--help" then
+        print(([[Usage: %s FILE | -- install-self
+        FILE                file containing commit message
+
+        -- install-self     install this file into the git hooks directory
+                            (Note the space between arguments!)
+]]):format(arg[0]))
+        os.exit(0, true)
+    end
+    if arg[1] == "--" and arg[2] == "install-self" then
+        os.exit(installSelf(), true)
+    end
+    return arg[1]
+end
+
+
+TYPES = {
+    chore  = true,
+    config = true,
+    core   = true,
+    docs   = true,
+    lang   = true,
+    plugin = true,
+}
+local error_str = [[Expected commit format:
+
+    <type><optional-scope>: <description>
+    <empty-line-or-eof>
+    <optional-body>
+
+]]
+
+---@param line string
+---@return (string[])?
+local function parseCommit(line)
+    if not line then return { "Missing commit message\n", error_str } end
+    local type, rest = line:match("^(%a+)([^%a].+)$")
+    if not (type and rest) then return { "Commit message doesn't have a type\n", error_str } end
+    if not TYPES[type] then return { ("Commit type `%s` not allowed. See README.\n"):format(type), error_str } end
+    local scope, desc = rest:match("^(%([%w,_-]+%)): (.+)$")
+    if not scope then desc = rest:match("^: (.+)$") end
+    if not desc then return { "Commit message is malformed\n", error_str } end
+end
+
+---@return integer
+local function main()
+    local file = parseArgs()
+    local fp = io.open(file, "r")
+    if not fp then
+        print(("No such file %s\n"):format(file))
+        return 1
+    end
+    local line = fp:read("*l")
+    local next_line = fp:read("*l")
+
+    local err = parseCommit(line)
+    if next_line and next_line ~= "" then
+        err = err or { "" }
+        table.insert(err, 2, "Commit message has a non-empty second line\n")
+        if #err == 2 then table.insert(err, error_str) end
+    end
+    fp:close()
+    if err then
+        print(vim.iter(err):join(""))
+        return 1
+    end
+    return 0
+end
+os.exit(main(), true)
