@@ -73,7 +73,7 @@ end
 function M.runInTerm(cmd, opts)
     if not opts then opts = {} end
     if not opts.resize then opts.resize = 0.75 end
-    M.openfloat(true, { resize_factor = opts.resize })
+    M.openFloat(M.ENTER, { resize_factor = opts.resize })
     local real_cmd = nil
     if type(cmd) == "string" then
         real_cmd = cmd
