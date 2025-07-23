@@ -67,6 +67,24 @@ function M.openFloat(enter, opt_dims, win_opts, buf_opts)
     return win, buf
 end
 
+---Make existing window into a floating window
+---MUST NOT BE THE LAST WINDOW IN TABPAGE
+---@param win integer
+---@param relative_to RelativeTo?
+---@param opt_dims OptDims?
+function M.floatWin(win, relative_to, opt_dims)
+    local dims = defaultOptDims(opt_dims)
+    local config = {
+        relative = relative_to or "editor",
+        width = dims.width,
+        height = dims.height,
+        col = dims.col,
+        row = dims.row,
+    }
+
+    vim.api.nvim_win_set_config(win, config)
+end
+
 ---Open a floating terminal and run a command in it
 ---@param cmd string|string[]
 ---@param opts {resize: number?}?
