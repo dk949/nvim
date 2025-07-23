@@ -34,6 +34,17 @@ local function defaultOptDims(dims)
     return dims
 end
 
+--- Create or return buffer
+---@param buf_opts ({listed: boolean?, scratch: boolean?}|integer)?
+---@return integer
+local function makeBuf(buf_opts)
+    if type(buf_opts) == "number" then return buf_opts end
+    if not buf_opts then buf_opts = {} end
+    if not buf_opts.listed then buf_opts.listed = false end
+    if not buf_opts.scratch then buf_opts.scratch = true end
+    return vim.api.nvim_create_buf(buf_opts.listed, buf_opts.scratch)
+end
+
 ---@class WinShouldEnter: boolean
 
 ---@type WinShouldEnter
@@ -47,14 +58,11 @@ M.NO_ENTER = true
 ---@param enter WinShouldEnter -- should window be entered immediately
 ---@param opt_dims OptDims? -- dimensions of the window
 ---@param win_opts vim.api.keyset.win_config? -- do not set dimension here, use `dims`
----@param buf_opts {listed: boolean?, scratch: boolean?}? -- buffer options, default: false, true
+---@param buf_opts ({listed: boolean?, scratch: boolean?}|integer)? -- buffer options, default: {false, true}
 ---@return integer, integer -- Window ID, Buffer ID
 function M.openFloat(enter, opt_dims, win_opts, buf_opts)
     local dims = defaultOptDims(opt_dims)
     if not win_opts then win_opts = {} end
-    if not buf_opts then buf_opts = {} end
-    if not buf_opts.listed then buf_opts.listed = false end
-    if not buf_opts.scratch then buf_opts.scratch = true end
 
     win_opts.width = dims.width
     win_opts.height = dims.height
@@ -62,7 +70,7 @@ function M.openFloat(enter, opt_dims, win_opts, buf_opts)
     win_opts.row = dims.row
     win_opts.relative = "editor"
 
-    local buf = vim.api.nvim_create_buf(false, true)
+    local buf = makeBuf(buf_opts)
     local win = vim.api.nvim_open_win(buf, enter, win_opts)
     return win, buf
 end
