@@ -128,7 +128,7 @@ end
 ---Not very pretty, but functional
 ---Use `shellPrintFmt` for "pretty"
 ---@param cmd string[]
----@param opts {special: boolean}
+---@param opts {special: boolean}?
 ---@return string
 function M.shellConcat(cmd, opts)
     local special = nil

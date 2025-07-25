@@ -3,10 +3,21 @@ local ui = require("utils.ui")
 local log = require("utils.log")
 local M = {}
 
+---@param cmd string[]
+---@param opts any
 local function runInteractive(cmd, opts)
     if not opts then opts = {} end
     if opts.clear_env then log.warn("clear_env option does nothing when running git interactively") end
-    ui.runInTerm(cmd)
+
+    -- REALLY IMPORTANT:
+    -- `pty` is the magic flag that makes this work
+    -- It creates a pseudo-terminal *without* creating an actual terminal buffer!
+    -- (This is why this can't use vim.system or vim.cmd.term)
+
+    -- NOTE: Handling the nested nvim instance (and spawning the floating window) is handled by flatten.nvim
+    --       See config/plugins/flatten.lua
+
+    vim.fn.jobstart(cmd, { pty = true })
 end
 
 local function runNonInteractive(cmd, opts)
