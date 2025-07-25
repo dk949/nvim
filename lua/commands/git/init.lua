@@ -6,40 +6,43 @@ local gs = require("gitsigns")
 
 command("GitAddPatch",
     function(opts)
-        gs.preview_hunk_inline(function()
-            vim.defer_fn(function()
-                    ui.prompt("Stage this hunk?", function()
-                        local range = nil
-                        if opts.range ~= 0 then
-                            range = { opts.line1, opts.line2 }
-                        end
-                        gs.stage_hunk(range)
-                    end)
-                end,
-                0.01)
-        end)
+        local do_stage = function()
+            local range = nil
+            if opts.range ~= 0 then
+                range = { opts.line1, opts.line2 }
+            end
+            gs.stage_hunk(range)
+        end
+        if opts.bang then
+            do_stage()
+        else
+            gs.preview_hunk_inline():await(function()
+                vim.defer_fn(function() ui.prompt("Stage this hunk?", do_stage) end, 0.01)
+            end)
+        end
     end,
-    { nargs = 0, range = true }
+    { nargs = 0, range = true, bang = true }
 )
 
 
 command("GitCommit", function(opts)
     if opts.args == "" then
-        git.git({"commit", "-v"}, {interactive = true})
+        git.git({ "commit", "-v" }, { interactive = true })
     else
-        git.git({"commit", "-m", opts.args}, {interactive = false})
+        git.git({ "commit", "-m", opts.args }, { interactive = false })
     end
 end, { nargs = '*' })
 
-command("GitCommitAmmend", function ()
-    git.git({"commit", "--amend", "-v"}, {interactive = true})
-end, {nargs = 0})
+command("GitCommitAmmend", function()
+    git.git({ "commit", "--amend", "-v" }, { interactive = true })
+end, { nargs = 0 })
 
-command("GitCommitAmmendNoEdit", function ()
-    git.git({"commit", "--amend", "--no-edit"}, {interactive = false})
-end, {nargs = 0})
+command("GitCommitAmmendNoEdit", function()
+    git.git({ "commit", "--amend", "--no-edit" }, { interactive = false })
+end, { nargs = 0 })
 
 cut.addAbrev("gap", "GitAddPatch", { range2 = true })
+cut.addAbrev("gap1", "GitAddPatch!", { range2 = true })
 cut.addAbrev("gcm", "GitCommit")
 cut.addAbrev("gca", "GitCommitAmmend")
 cut.addAbrev("gcan", "GitCommitAmmendNoEdit")
