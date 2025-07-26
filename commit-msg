@@ -76,11 +76,13 @@ end
 
 
 TYPES = {
-    chore  = true,
+    chore = true,
+    command = true,
     config = true,
-    core   = true,
-    docs   = true,
-    lang   = true,
+    core = true,
+    docs = true,
+    keybind = true,
+    lang = true,
     plugin = true,
 }
 TYPES_LIST = vim.tbl_keys(TYPES)

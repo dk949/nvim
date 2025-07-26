@@ -19,9 +19,11 @@ Use `./commit-msg -- install-self` to install the hook to check commit format
 **Types**
 
 * `chore`:  mostly reserved for updating `lazy-lock.json`
+* `command`: user commands
 * `config`: configuration settings
 * `core`: core functionality (LSP, keymap loading, etc.)
 * `docs`: documentation
+* `keybind`: user commands
 * `lang`: language specific configurations
 * `plugin`: plugin config/adding plugins
 
