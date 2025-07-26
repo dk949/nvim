@@ -2,6 +2,7 @@ local kut = require "config.keymap.utils"
 local lsput = require "utils.lsp"
 local winsize = require "config.keymap.winsize" (5)
 local qfix = require "config.keymap.qfix"
+local althelp = require "config.keymap.althelp".althelp
 local M = {}
 
 M.global = kut.newMapGroup()
@@ -44,6 +45,7 @@ M.global = kut.newMapGroup()
     :map('n', "gqg", kut.formatFile, "format the whole file with standard formatting")
     :map('n', ']q', qfix.cnext, "next quickfix")
     :map('n', '[q', qfix.cprev, "previous quickfix")
+    :map('n', "<leader><S-K>", althelp, "Man/help page for symbol under cursor")
 
 
 M.lsp = kut.newMapGroup()
