@@ -85,7 +85,8 @@ M.telescope_builtin = kut.newMapGroup()
     :map('n', "<leader>ffb", kut.teleConfig("buffers", 'n'), "Telescope list buffers")
     :map('n', "<leader>fff", kut.teleConfig("find_files", 'i'), "Telescope find file")
     :map('n', "<leader>fgv", kut.teleConfig("git_status", 'n'), "Telescope find file")
-
+    :map('n', "<leader>fqq", kut.teleConfig("quickfixhistory", 'n'), "Telescope quickfix")
+    :map('n', "<leader>fqf", kut.teleConfig("quickfix", 'n'), "Telescope quickfix")
 
 M.telescope = kut.newMapGroup()
     :gmap({ "i", "n" }, "<c-b>", "preview_scrolling_down")
