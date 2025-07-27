@@ -23,7 +23,7 @@ Use `./commit-msg -- install-self` to install the hook to check commit format
 * `config`: configuration settings
 * `core`: core functionality (LSP, keymap loading, etc.)
 * `docs`: documentation
-* `keybind`: user commands
+* `keymap`: key bindings
 * `lang`: language specific configurations
 * `plugin`: plugin config/adding plugins
 

@@ -81,7 +81,7 @@ TYPES = {
     config = true,
     core = true,
     docs = true,
-    keybind = true,
+    keymap = true,
     lang = true,
     plugin = true,
 }
