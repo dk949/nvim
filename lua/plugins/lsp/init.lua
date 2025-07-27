@@ -6,7 +6,7 @@ return {
     {
         "mason-org/mason.nvim",
         lazy = true,
-        opts = {}
+        config = require("config.plugins.mason"),
     },
     {
         "L3MON4D3/LuaSnip",
