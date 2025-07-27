@@ -22,9 +22,10 @@ local function ensureInstalled(name)
             log.sched.info("Updating Mason registry")
             reg.update(function()
                 local pkg = reg.get_package(n)
+                log.sched.infof("Installing %s", n)
                 pkg:install(nil, function(success, receipt)
                     if success then
-                        log.sched.infof("Successfully installed %s (%s)", n, receipt.name)
+                        log.sched.infof("Successfully installed %s", n)
                     end
                 end)
             end)
