@@ -16,11 +16,10 @@ local function ensureInstalled(name)
     local name_list
     if type(name) == "string" then name_list = { name } else name_list = name end
     local reg = require("mason-registry")
-    for _, n in ipairs(name_list) do
-        if not reg.is_installed(n) then
-            log.sched.warn("Package ", n, " is not installed")
-            log.sched.info("Updating Mason registry")
-            reg.update(function()
+    reg.refresh(function()
+        for _, n in ipairs(name_list) do
+            if not reg.is_installed(n) then
+                log.sched.warnf("Package %s is not installed", n)
                 local pkg = reg.get_package(n)
                 log.sched.infof("Installing %s", n)
                 pkg:install(nil, function(success, receipt)
@@ -28,9 +27,9 @@ local function ensureInstalled(name)
                         log.sched.infof("Successfully installed %s", n)
                     end
                 end)
-            end)
+            end
         end
-    end
+    end)
 end
 
 
