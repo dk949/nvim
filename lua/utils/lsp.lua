@@ -1,37 +1,12 @@
 local lazy = require("lazy")
-local log = require("utils.log")
+local pkg = require("utils.pkg")
 local M = {}
 local lsp = vim.lsp
 
 local enabled_lsps = {}
 
 ---@alias Override vim.lsp.Config|fun(_:vim.lsp.Config?):vim.lsp.Config
----@alias MasonSpec string|string[]|false
 ---@alias LspSpec {config:string, mason:MasonSpec?}
-
----ensure an LSP server is installed with mason
----@param name MasonSpec
-local function ensureInstalled(name)
-    if not name then return end
-    local name_list
-    if type(name) == "string" then name_list = { name } else name_list = name end
-    local reg = require("mason-registry")
-    reg.refresh(function()
-        for _, n in ipairs(name_list) do
-            if not reg.is_installed(n) then
-                log.sched.warnf("Package %s is not installed", n)
-                local pkg = reg.get_package(n)
-                log.sched.infof("Installing %s", n)
-                pkg:install(nil, function(success, receipt)
-                    if success then
-                        log.sched.infof("Successfully installed %s", n)
-                    end
-                end)
-            end
-        end
-    end)
-end
-
 
 ---Load all required plugins and ensure the LSP is installed
 ---@param spec LspSpec
@@ -58,7 +33,7 @@ local function setupLSP(spec, override)
         }
     })
     vim.cmd [[doautocmd FileType]]
-    ensureInstalled(spec.mason)
+    pkg.ensureInstalled(spec.mason)
 end
 
 
