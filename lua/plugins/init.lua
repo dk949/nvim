@@ -78,5 +78,10 @@ return {
         cmd = { "HexDump", "HexAssemble", "HexToggle" },
         opts = require("config.plugins.hex"),
     },
+    {
+        "dk949/ast-search.nvim",
+        opts = {},
+        cmd = "Sg",
+    },
     { import = "plugins.lsp" },
 }
