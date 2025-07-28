@@ -128,12 +128,13 @@ end
 
 ---comment
 ---@param rule string|table<string, any>
+---@param lang string
 ---@return string
-local function makeInlineRule(rule)
+local function makeInlineRule(rule, lang)
     if type(rule) == "string" then
-        return makeInlineRule({ pattern = rule })
+        return makeInlineRule({ pattern = rule }, lang)
     end
-    return vim.fn.json_encode({ id = "inline-rule", language = "lua", rule = rule })
+    return vim.fn.json_encode({ id = "inline-rule", language = lang, rule = rule })
 end
 
 ---@param buf ast_grep.BufSpec?
@@ -161,6 +162,7 @@ local function runAstGrep(subcmd, buf, args, cb, open_qf_list)
     local cmd_args = { "ast-grep" }
     table.insert(cmd_args, subcmd)
     table.insert(cmd_args, "--json=compact")
+    vim.list_extend(cmd_args, buf)
     vim.list_extend(cmd_args, args)
     return vim.system(cmd_args, { text = true }, vim.schedule_wrap(function(out)
         if populateQflist(out, cb) and open_qf_list then vim.cmd.cfirst() end
@@ -177,17 +179,44 @@ end
 function M.run(pattern, selector, buf, cb, open_qf_list)
     local args = { "--pattern", pattern }
     if selector then args = vim.list_extend(args, { "--selector", selector }) end
+
     return runAstGrep("run", buf, args, cb, open_qf_list)
 end
 
 ---Run ast-grep scan in a given buffer
 ---@param rule string|table<string,any>
 ---@param buf ast_grep.BufSpec?
+---@param lang string?
 ---@param cb (fun(matches:ast_grep.Match[]):boolean)?
 ---@param open_qf_list boolean?
 ---@return vim.SystemObj
-function M.scan(rule, buf, cb, open_qf_list)
-    return runAstGrep("run", buf, { "--inline-rules", makeInlineRule(rule) }, cb, open_qf_list)
+function M.scan(rule, buf, lang, cb, open_qf_list)
+    if not lang then
+        lang = vim.bo.filetype
+    end
+    return runAstGrep("scan", buf, { "--inline-rules", makeInlineRule(rule, lang) }, cb, open_qf_list)
+end
+
+local backslash_backslash = [[&&ast_grep_backslash_backslash&&]]
+local backslash_at = [[&&ast_grep_backslash_at&&]]
+
+---comment
+---@param input string
+---@return string[]
+function M.splitInput(input)
+    local components =
+        vim.split(
+            input
+            :gsub([[\\]], backslash_backslash)
+            :gsub([[\@]], backslash_at)
+            , "@", { plain = true }
+        )
+    for i, comp in ipairs(components) do
+        ---@type string
+        local trimmed = comp:match("^%s*(.-)%s*$")
+        components[i], _ = trimmed:gsub(backslash_backslash, "\\"):gsub(backslash_at, "@")
+    end
+    return components
 end
 
 return M
