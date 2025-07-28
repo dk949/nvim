@@ -1,10 +1,10 @@
 local command = vim.api.nvim_create_user_command
-local ast_grep = require("commands.ast_grep.utils").ast_grep
+local run = require("commands.ast_grep.utils").run
 command("Sg",
     function(opts)
         local buf = nil
-        if opts.bang then buf = {'.'} end
-        ast_grep(opts.args, buf)
+        if opts.bang then buf = { '.' } end
+        run(opts.args, nil, buf, nil, true)
     end,
     { nargs = '*', bang = true }
 )

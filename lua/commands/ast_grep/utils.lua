@@ -1,5 +1,5 @@
 local log = require("utils.log")
----@alias BufSpec (integer|string)[]
+---@alias ast_grep.BufSpec (integer|string)[]
 
 
 ---@class ast_grep.Position
@@ -96,6 +96,7 @@ end
 
 ---@param out vim.SystemCompleted
 ---@param cb (fun(matches:ast_grep.Match[]):boolean)?
+---@return boolean
 local function populateQflist(out, cb)
     handleError(out)
     ---@type ast_grep.Match[]
@@ -118,9 +119,11 @@ local function populateQflist(out, cb)
     end
     if #qflist == 0 then
         log.warn("ast-grep did not find anything!")
-        return
+        return false
+    else
+        vim.fn.setqflist(qflist)
+        return true
     end
-    vim.fn.setqflist(qflist)
 end
 
 ---comment
@@ -133,26 +136,58 @@ local function makeInlineRule(rule)
     return vim.fn.json_encode({ id = "inline-rule", language = "lua", rule = rule })
 end
 
-
----Run ast grep in a given buffer
----@param rule string|table<string,any>
----@param buf BufSpec?
----@param cb (fun(matches:ast_grep.Match[]):boolean)?
-function M.ast_grep(rule, buf, cb)
+---@param buf ast_grep.BufSpec?
+---@return string[]
+local function getBufNames(buf)
     if not buf then buf = { vim.fn.bufname('%') } end
-    ---@type string[]
-    buf = vim.iter(buf):map(function(b)
+    return vim.iter(buf):map(function(b)
         if type(b) == "number" then
             return vim.fn.bufname(b)
         end
         return b
     end):totable()
-    local args = { "ast-grep", "scan", "--json=compact" }
-    args = vim.list_extend(args, buf)
+end
 
-    args = vim.list_extend(args, { "--inline-rules", makeInlineRule(rule) })
 
-    vim.system(args, { text = true }, vim.schedule_wrap(function(out) populateQflist(out, cb) end))
+---comment
+---@param subcmd string
+---@param buf ast_grep.BufSpec?
+---@param args string[]
+---@param cb (fun(matches:ast_grep.Match[]):boolean)?
+---@param open_qf_list boolean?
+---@return vim.SystemObj
+local function runAstGrep(subcmd, buf, args, cb, open_qf_list)
+    buf = getBufNames(buf)
+    local cmd_args = { "ast-grep" }
+    table.insert(cmd_args, subcmd)
+    table.insert(cmd_args, "--json=compact")
+    vim.list_extend(cmd_args, args)
+    return vim.system(cmd_args, { text = true }, vim.schedule_wrap(function(out)
+        if populateQflist(out, cb) and open_qf_list then vim.cmd.cfirst() end
+    end))
+end
+
+---Run ast-grep scan in a given buffer
+---@param pattern string
+---@param selector string?
+---@param buf ast_grep.BufSpec?
+---@param cb (fun(matches:ast_grep.Match[]):boolean)?
+---@param open_qf_list boolean?
+---@return vim.SystemObj
+function M.run(pattern, selector, buf, cb, open_qf_list)
+    local args = { "--pattern", pattern }
+    if selector then args = vim.list_extend(args, { "--selector", selector }) end
+    return runAstGrep("run", buf, args, cb, open_qf_list)
+end
+
+---Run ast-grep scan in a given buffer
+---@param rule string|table<string,any>
+---@param buf ast_grep.BufSpec?
+---@param cb (fun(matches:ast_grep.Match[]):boolean)?
+---@param open_qf_list boolean?
+---@return vim.SystemObj
+function M.scan(rule, buf, cb, open_qf_list)
+    return runAstGrep("run", buf, { "--inline-rules", makeInlineRule(rule) }, cb, open_qf_list)
 end
 
 return M
