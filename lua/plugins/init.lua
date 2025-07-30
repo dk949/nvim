@@ -83,5 +83,10 @@ return {
         opts = {},
         cmd = "Sg",
     },
+    {
+        "puremourning/vimspector",
+        ft = { "c", "cpp", "python" },
+        init = require ("config.plugins.vimspector"),
+    },
     { import = "plugins.lsp" },
 }

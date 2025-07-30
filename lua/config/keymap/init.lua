@@ -51,6 +51,7 @@ M.global = kut.newMapGroup()
 M.lsp = kut.newMapGroup()
     :map('n', "<leader>ch", lsput.toggleInlay(), "Toggle inlay hints")
     :map('n', "grd", kut.teleConfig("diagnostics", 'n'), "Telescope diagnostics")
+    :map({ 'n', 'v' }, "<leader>md", "<Plug>VimspectorBalloonEval", "Evaluate statement in debugger")
 
 M.color = kut.newMapGroup()
     :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")

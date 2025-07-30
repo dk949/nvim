@@ -4,5 +4,6 @@ require("commands.git")
 
 command("W", "w", {})
 command("E", "e <args>", { complete = "file", nargs = 1 })
+command("DebugStart", vim.fn["vimspector#Continue"], {})
 cut.addAbrev("tb", "Tabularize /")
 cut.addAbrev("bw", [[call v:lua.require("utils.log").error("Use bd instead!")]])
