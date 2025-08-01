@@ -10,6 +10,7 @@ vim.opt.spell        = true
 vim.opt.diffopt:append("vertical")
 -- When reading in file with :r, don't set read file as alt
 vim.opt.cpoptions:remove('a')
+vim.opt.exrc = true
 
 require("config.options.line_numbers")
 require("config.options.tabs")
