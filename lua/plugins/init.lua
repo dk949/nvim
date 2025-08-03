@@ -86,7 +86,13 @@ return {
     {
         "puremourning/vimspector",
         ft = { "c", "cpp", "python" },
-        init = require ("config.plugins.vimspector"),
+        init = require("config.plugins.vimspector"),
+    },
+    {
+        "dk949/file_line.nvim",
+        main = "file_line",
+        opts = require("config.plugins.file_line"),
+        lazy = false,
     },
     { import = "plugins.lsp" },
 }
