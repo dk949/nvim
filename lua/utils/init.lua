@@ -1,4 +1,5 @@
 local comm_ut = require("config.common.utils")
+local lsp_ut = require("utils.lsp")
 local M = {}
 
 ---Binary string
@@ -84,9 +85,9 @@ end
 
 ---Helper function for use in after/ftplugin files
 ---@param setlocal table<string, any>
----@param fn (fun():nil)|nil
+---@param fn (fun():nil)?
 function M.ftplugin(setlocal, fn)
-    local ftp_name = "ftp_" .. vim.bo.filetype
+    local ftp_name = "ftp_" .. (fn and lsp_ut.getFtpluginId(fn) or vim.bo.filetype)
     if vim.b[ftp_name] then return end
     local settings, undo = comm_ut.setAll(vim.deepcopy(setlocal))
     if not vim.b.undo_ftplugin then vim.b.undo_ftplugin = "" end
@@ -156,10 +157,5 @@ withMT = {
 function M.newWithTable(t)
     return setmetatable(t, withMT)
 end
-
----@type table<string,integer>
-local x = {}
-
-local y = M.newWithTable(x):with{}
 
 return M

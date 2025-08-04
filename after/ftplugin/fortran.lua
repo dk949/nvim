@@ -6,18 +6,20 @@ require "utils".ftplugin(
         require "utils.lsp".enableLsp({
             config = "fortls",
             mason = { "fortls", "fprettify" },
-        }, function(config)
-            if not config then
-                config = {
-                    cmd = {
-                        'fortls',
-                        '--hover_signature',
-                        '--hover_language=fortran',
-                        '--use_signature_help',
-                    },
-                }
+        }, {
+            override = function(config)
+                if not config then
+                    config = {
+                        cmd = {
+                            'fortls',
+                            '--hover_signature',
+                            '--hover_language=fortran',
+                            '--use_signature_help',
+                        },
+                    }
+                end
+                return config
             end
-            return config
-        end)
+        })
     end
 )
