@@ -85,7 +85,10 @@ return {
     },
     {
         "puremourning/vimspector",
-        ft = { "c", "cpp", "python" },
+        keys = {
+            { "<F5>", ft = { "cpp", "c", "python" } },
+            { "<F9>", ft = { "cpp", "c", "python" } }
+        },
         init = require("config.plugins.vimspector"),
     },
     {
