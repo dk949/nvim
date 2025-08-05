@@ -5,6 +5,7 @@ local lsp = vim.lsp
 
 local enabled_lsps = {}
 local enabled_snippets = {}
+local NONE_LSP = "@none"
 
 ---@alias Override vim.lsp.Config|fun(_:vim.lsp.Config?):vim.lsp.Config
 ---@alias SnippetFn fun():nil
@@ -18,20 +19,21 @@ local enabled_snippets = {}
 ---@param spec LspSpec
 ---@param override Override?
 local function setupLSP(spec, override)
-    if override then
-        if type(override) == "table" then
-            vim.lsp.config(spec.config, override)
-        else
-            vim.lsp.config[spec.config] = override(vim.lsp.config[spec.config])
+    if spec.config ~= NONE_LSP then
+        if override then
+            if type(override) == "table" then
+                vim.lsp.config(spec.config, override)
+            else
+                vim.lsp.config[spec.config] = override(vim.lsp.config[spec.config])
+            end
         end
+        vim.lsp.config(spec.config, {
+            capabilities = require('cmp_nvim_lsp').default_capabilities()
+        })
+        lazy.load({ plugins = { "nvim-lspconfig", "mason.nvim" } })
     end
-    vim.lsp.config(spec.config, {
-        capabilities = require('cmp_nvim_lsp').default_capabilities()
-    })
     lazy.load({
         plugins = {
-            "nvim-lspconfig",
-            "mason.nvim",
             "LuaSnip",
             "nvim-cmp",
             "cmp_luasnip",
@@ -39,21 +41,22 @@ local function setupLSP(spec, override)
         }
     })
     vim.cmd [[doautocmd FileType]]
-    pkg.ensureInstalled(spec.mason)
+    if spec.config ~= NONE_LSP then pkg.ensureInstalled(spec.mason) end
 end
 
 
----@param name LspSpec|string
+---@param lsp_name (LspSpec|string)?
 ---@param conf Config?
-function M.enableLsp(name, conf)
-    -- XXX: will result in infinite recursion without this due to `doautocmd FileType`
-    if type(name) == "string" then name = { config = name, mason = name } end
+function M.enableLspTools(lsp_name, conf)
+    if not lsp_name then lsp_name = NONE_LSP end
+    if type(lsp_name) == "string" then lsp_name = { config = lsp_name, mason = lsp_name } end
     if not conf then conf = {} end
-    if not enabled_lsps[name.config] then
-        enabled_lsps[name.config] = true
-        if name.mason == nil then name.mason = name.config end
-        vim.lsp.enable(name.config)
-        setupLSP(name, conf.override)
+    -- XXX: will result in infinite recursion without this due to `doautocmd FileType`
+    if not enabled_lsps[lsp_name.config] then
+        enabled_lsps[lsp_name.config] = true
+        if lsp_name.mason == nil then lsp_name.mason = lsp_name.config end
+        if lsp_name ~= NONE_LSP then vim.lsp.enable(lsp_name.config) end
+        setupLSP(lsp_name, conf.override)
     end
     if conf.snippets then
         local id = M.getFtpluginId(conf.snippets)

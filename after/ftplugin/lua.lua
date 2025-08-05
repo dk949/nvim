@@ -23,7 +23,7 @@ end
 require "utils".ftplugin(
     require "config.common".prog,
     function()
-        require "utils.lsp".enableLsp({
+        require "utils.lsp".enableLspTools({
             config = "lua_ls",
             mason = "lua-language-server",
         }, { snippets = snippets })

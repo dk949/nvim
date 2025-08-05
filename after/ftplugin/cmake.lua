@@ -3,7 +3,7 @@ require "utils".ftplugin(
         formatprg = require("config.common.formatting").cmakePrg,
     },
     function()
-        require "utils.lsp".enableLsp {
+        require "utils.lsp".enableLspTools {
             config = "cmake",
             mason = {
                 "cmake-language-server",

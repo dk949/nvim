@@ -3,7 +3,7 @@ require "utils".ftplugin(
         formatprg = require("config.common.formatting").fortranProg,
     },
     function()
-        require "utils.lsp".enableLsp({
+        require "utils.lsp".enableLspTools({
             config = "fortls",
             mason = { "fortls", "fprettify" },
         }, {

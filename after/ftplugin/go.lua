@@ -21,6 +21,6 @@ end
 require "utils".ftplugin(
     require "config.common".prog,
     function()
-        require "utils.lsp".enableLsp("gopls", { snippets = snippets })
+        require "utils.lsp".enableLspTools("gopls", { snippets = snippets })
     end
 )

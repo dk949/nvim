@@ -49,6 +49,6 @@ end
 require "utils".ftplugin(
     require "config.common".prog,
     function()
-        require "utils.lsp".enableLsp("clangd", { snippets = snippets })
+        require "utils.lsp".enableLspTools("clangd", { snippets = snippets })
     end
 )

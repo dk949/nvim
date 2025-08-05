@@ -27,6 +27,6 @@ require "utils".ftplugin(
         formatexpr = [[v:lua.require("config.common.formatting").pythonExpr()]],
     },
     function()
-        require "utils.lsp".enableLsp("basedpyright", { snippets = snippets })
+        require "utils.lsp".enableLspTools("basedpyright", { snippets = snippets })
     end
 )

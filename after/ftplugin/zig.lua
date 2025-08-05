@@ -99,7 +99,7 @@ require "utils".ftplugin(
             vim.g.zig_std_dir = std_dir
         end)
 
-        require "utils.lsp".enableLsp({ config = "zls", mason = false }, {
+        require "utils.lsp".enableLspTools({ config = "zls", mason = false }, {
             snippets = snippets
         })
     end
