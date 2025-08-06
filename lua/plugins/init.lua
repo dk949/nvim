@@ -105,5 +105,12 @@ return {
         build = ":TSUpdate",
         config = require("config.plugins.treesitter"),
     },
+    {
+        "nvim-neorg/neorg",
+        event = { "BufRead *.norg", "BufNewFile *.norg", "User Dk949Args0" },
+        cmd = "Neorg",
+        version = "*",
+        opts = require("config.plugins.neorg"),
+    },
     { import = "plugins.lsp" },
 }

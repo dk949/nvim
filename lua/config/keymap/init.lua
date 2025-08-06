@@ -119,5 +119,7 @@ M.quickfix = kut.newMapGroup()
     :map('n', ']q', qfix.inQfix(qfix.cnext), "next quickfix")
     :map('n', '[q', qfix.inQfix(qfix.cprev), "previous quickfix")
 
+M.neorg = kut.newMapGroup()
+    :map('n', "gO", "<cmd>Neorg toc<CR>", "Neorg TOC")
 
 return M
