@@ -9,6 +9,7 @@
   "flatten.nvim": { "branch": "main", "commit": "0fd34e45490ed7f97c9ed28d0a1598591e9de8e7" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gitsigns.nvim": { "branch": "main", "commit": "736f51d2bb684c06f39a2032f064d7244f549981" },
+  "hererocks": { "branch": "master", "commit": "f4cc0b16619b9d9d59c92636c5b5e7c06dc7c082" },
   "hex.nvim": { "branch": "master", "commit": "b46e63356a69e8d6f046c38a9708d55d17f15038" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },

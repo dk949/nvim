@@ -1,5 +1,6 @@
 -- Setup lazy.nvim
 require("lazy").setup({
+    rocks = { hererocks = true },
     spec = {
         -- import your plugins
         { import = "plugins" },
