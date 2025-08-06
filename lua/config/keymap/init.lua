@@ -48,6 +48,7 @@ M.global = kut.newMapGroup()
     :map('n', ']q', qfix.cnext, "next quickfix")
     :map('n', '[q', qfix.cprev, "previous quickfix")
     :map('n', "<leader><S-K>", althelp, "Man/help page for symbol under cursor")
+    :map('i', "<C-space>", "<nop>", "disable ctrl-space in insert mode")
 
 
 M.lsp = kut.newMapGroup()
