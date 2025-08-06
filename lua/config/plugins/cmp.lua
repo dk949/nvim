@@ -39,9 +39,12 @@ return function()
             end, { "i" }),
 
         },
-        sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
-            { name = 'luasnip' },
-        })
+        sources = cmp.config.sources(
+            {
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+                { name = 'buffer' },
+            }
+        )
     }
 end
