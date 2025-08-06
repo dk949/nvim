@@ -83,25 +83,38 @@ function M.switch(on)
     end
 end
 
+---@param cmd string
+local function undoFtPlugin(cmd)
+    --- XXX: We set this to empty string whether we need it or not
+    ---      I don't really know why, but neorg freaks out if this value is nil
+    ---      (but only if we run M.ftplugin, otherwise it's ok??)
+    if not vim.b.undo_ftplugin then vim.b.undo_ftplugin = "" end
+    if cmd == nil or cmd == "" then return end
+    if vim.b.undo_ftplugin == "" then
+        vim.b.undo_ftplugin = cmd
+    else
+        vim.b.undo_ftplugin = vim.b.undo_ftplugin .. ' | ' .. cmd
+    end
+end
+
 ---Helper function for use in after/ftplugin files
 ---@param setlocal table<string, any>
 ---@param fn (fun():nil)?
 function M.ftplugin(setlocal, fn)
-    local ftp_name = "ftp_" .. (fn and lsp_ut.getFtpluginId(fn) or vim.bo.filetype)
+    local ftp_name = "dk949_ftp_" .. (fn and lsp_ut.getFtpluginId(fn) or vim.bo.filetype)
     if vim.b[ftp_name] then return end
     local settings, undo = comm_ut.setAll(vim.deepcopy(setlocal))
-    if not vim.b.undo_ftplugin then vim.b.undo_ftplugin = "" end
-    vim.b.undo_ftplugin = vim.b.undo_ftplugin .. undo
+    undoFtPlugin(undo)
     for option, value in pairs(settings) do
         vim.opt_local[option] = value
-        vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | setlocal " .. option .. '<'
+        undoFtPlugin("setlocal " .. option .. '<')
     end
     if fn then fn() end
     vim.b[ftp_name] = true
     -- TODO(dk949): Figure out why this is getting added to undo_ftplugin twice
-    local unlet = " | unlet b:" .. ftp_name
+    local unlet = "unlet b:" .. ftp_name
     if not vim.b.undo_ftplugin:find(unlet, 1, true) then
-        vim.b.undo_ftplugin = vim.b.undo_ftplugin .. unlet
+        undoFtPlugin(unlet)
     end
 end
 
@@ -139,13 +152,34 @@ function M.shellConcat(cmd, opts)
         :join(' ')
 end
 
+---This is like tbl_deep_extend("force", `target`, `source`), but it allows values to be removed from target
+---using vim.NIL
+---@param targt table
+---@param source table
+---@return table
+local function extend(targt, source)
+    local out = vim.deepcopy(targt)
+    for key, value in pairs(source) do
+        if value == vim.NIL then
+            out[key] = nil
+        elseif type(value) == "table" then
+            if type(out[key]) == "table" then
+                out[key] = extend(out[key], value)
+            else
+                out[key] = vim.deepcopy(value)
+            end
+        else
+            out[key] = value
+        end
+    end
+    return out
+end
+
 local withMT
 withMT = {
     __index = {
         with = function(self, overrides)
-            -- deep_extend returns a brand‑new table merging self + overrides
-            local merged = vim.tbl_deep_extend("force", self, overrides)
-            -- tag it so you can do :with again, without polluting pairs()
+            local merged = extend(self, overrides)
             return setmetatable(merged, withMT)
         end
     }
