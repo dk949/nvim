@@ -47,7 +47,7 @@ local function snippets()
 end
 
 require "utils".ftplugin(
-    require "config.common".prog,
+    require "config.common".prog:with({ ["@treesitter"] = { "highlight" } }),
     function()
         require "utils.lsp".enableLspTools("clangd", { snippets = snippets })
     end

@@ -97,5 +97,12 @@ return {
         opts = require("config.plugins.file_line"),
         lazy = false,
     },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        branch = 'master',
+        cmd = { "TSBufEnable" },
+        build = ":TSUpdate",
+        config = require("config.plugins.treesitter"),
+    },
     { import = "plugins.lsp" },
 }

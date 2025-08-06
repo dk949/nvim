@@ -21,7 +21,7 @@ local function snippets()
         }) })
 end
 require "utils".ftplugin(
-    require "config.common".prog,
+    require "config.common".prog:with({ ["@treesitter"] = true }),
     function()
         require "utils.lsp".enableLspTools({
             config = "lua_ls",
