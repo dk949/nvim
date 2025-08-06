@@ -100,7 +100,8 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         branch = 'master',
-        cmd = { "TSBufEnable" },
+        lazy = false,
+        cmd = { "TSBufEnable", "TSEnable" },
         build = ":TSUpdate",
         config = require("config.plugins.treesitter"),
     },
