@@ -12,6 +12,7 @@ vim.opt.diffopt:append("vertical")
 vim.opt.cpoptions:remove('a')
 vim.opt.exrc = true
 
+require("config.options.stdin")
 require("config.options.line_numbers")
 require("config.options.tabs")
 require("config.options.search")
