@@ -112,5 +112,11 @@ return {
         version = "*",
         opts = require("config.plugins.neorg"),
     },
+    {
+        "3rd/image.nvim",
+        ft = { "norg", "markdown" },
+        event = {"BufRead *.jpg,*.png", "BufNewFile *.jpg,*.png", },
+        opts = require("config.plugins.image"),
+    },
     { import = "plugins.lsp" },
 }
