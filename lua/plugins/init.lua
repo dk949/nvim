@@ -118,5 +118,6 @@ return {
         event = {"BufRead *.jpg,*.png", "BufNewFile *.jpg,*.png", },
         opts = require("config.plugins.image"),
     },
+    { "dk949/pegged.vim", },
     { import = "plugins.lsp" },
 }
