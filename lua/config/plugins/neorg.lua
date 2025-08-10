@@ -1,7 +1,11 @@
 return {
     load = {
         ["core.defaults"] = {},
-        ["core.concealer"] = {},
+        ["core.concealer"] = {
+            config = {
+                icons = { todo = { uncertain = { icon = "" } } },
+            },
+        },
         ["core.dirman"] = {
             config = {
                 workspaces = { notes = "~/Uni/notes", },
