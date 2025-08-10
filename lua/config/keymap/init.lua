@@ -121,5 +121,6 @@ M.quickfix = kut.newMapGroup()
 
 M.neorg = kut.newMapGroup()
     :map('n', "gO", "<cmd>Neorg toc<CR>", "Neorg TOC")
+    :map('i', "<C-CR>", "<Plug>(neorg.itero.next-iteration)")
 
 return M
