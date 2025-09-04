@@ -7,7 +7,7 @@ local command = vim.api.nvim_create_user_command
 ---@param bufnr number
 ---@param winnr number
 ---@return number job_id
-local function run_cmd_to_buf(cmd, bufnr, winnr)
+local function runCmdToBuf(cmd, bufnr, winnr)
     if type(cmd) ~= "table" then error("cmd must be a table") end
     if not vim.api.nvim_buf_is_valid(bufnr) then error("invalid buffer id: " .. tostring(bufnr)) end
     vim.api.nvim_set_option_value("modifiable", true, { buf = bufnr })
@@ -99,9 +99,9 @@ local function watch(args)
     end
 
     vim.api.nvim_set_option_value("modifiable", false, { buf = target_buf })
-    run_cmd_to_buf(parsed_args, target_buf, target_win)
+    runCmdToBuf(parsed_args, target_buf, target_win)
     vim.api.nvim_create_autocmd("BufWritePost", {
-        callback = function() run_cmd_to_buf(parsed_args, target_buf, target_win) end,
+        callback = function() runCmdToBuf(parsed_args, target_buf, target_win) end,
         buffer = current_buf,
         group = grp,
     })
