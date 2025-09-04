@@ -2,6 +2,7 @@ local cut = require("commands.utils")
 local command = vim.api.nvim_create_user_command
 require("commands.git")
 require("commands.make")
+require("commands.watch")
 
 command("W", "w", {})
 command("E", "e <args>", { complete = "file", nargs = 1 })
