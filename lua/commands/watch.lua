@@ -81,11 +81,18 @@ local function watch(args)
     local current_buf = vim.api.nvim_get_current_buf()
     local parsed_args, opts = parseArgs(args.fargs)
     local target_buf = vim.api.nvim_create_buf(false, true);
+    local target_win = vim.api.nvim_open_win(target_buf, false, { vertical = true });
     for key, value in pairs(opts) do
-        vim.api.nvim_set_option_value(key, value, { buf = target_buf })
+        if value == "true" then
+            value = true
+        elseif value == "false" then
+            value = false
+        end
+        if not pcall(vim.api.nvim_set_option_value, key, value, { buf = target_buf }) then
+            vim.api.nvim_set_option_value(key, value, { win = target_win })
+        end
     end
 
-    vim.api.nvim_open_win(target_buf, false, { vertical = true });
     vim.api.nvim_set_option_value("modifiable", false, { buf = target_buf })
     run_cmd_to_buf(parsed_args, target_buf)
     vim.api.nvim_create_autocmd("BufWritePost", {
