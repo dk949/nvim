@@ -7,9 +7,20 @@ local function invert(col) if col == "dark" then return "light" else return "dar
 
 local tweakTable = {
     light = function()
+        local dfact = 0x170f07
         local normal = vim.api.nvim_get_hl(0, { name = "Normal", create = false, link = false })
-        normal.bg = 0xe8f0f8
+        -- local pmenu = vim.api.nvim_get_hl(0, { name = "Pmenu", create = false, link = false })
+        local linenr = vim.api.nvim_get_hl(0, { name = "LineNr", create = false, link = false })
+        local comment = vim.api.nvim_get_hl(0, { name = "Comment", create = false, link = false })
+        normal.bg = normal.bg - dfact
+        -- pmenu.bg = pmenu.bg - dfact
+        linenr.fg = linenr.fg - dfact
+        -- need to make sure comment fg is not the same as pmenu bg, or hidden files become invisible in popups
+        comment.fg = comment.fg - (dfact * 4)
         vim.api.nvim_set_hl(0, "Normal", normal)
+        -- vim.api.nvim_set_hl(0, "Pmenu", pmenu)
+        vim.api.nvim_set_hl(0, "LineNr", linenr)
+        vim.api.nvim_set_hl(0, "Comment", comment)
     end,
     dark = function()
         local lfact = 0x0c141c
@@ -38,20 +49,29 @@ local function tweaks()
     vim.api.nvim_set_hl(0, "NonText", comment)
 end
 
-utils.withAugroup("color", function(grp)
-    return vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = tweaks,
-        group = grp,
-    })
-end)
+local M = {}
 
-vim.cmd.colorscheme(colorschemes[current])
 
-keymap.color:defaultApply { colortoggle = function()
+function M.toggle()
     current = invert(current)
     vim.cmd.colorscheme(colorschemes[current])
-end }
+end
 
-vim.opt.fillchars:append({ eob = " " })
-vim.opt.guicursor =
-"n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,t:block-blinkon500-blinkoff500-TermCursor"
+function M.setup()
+    utils.withAugroup("color", function(grp)
+        return vim.api.nvim_create_autocmd("ColorScheme", {
+            callback = tweaks,
+            group = grp,
+        })
+    end)
+
+    vim.cmd.colorscheme(colorschemes[current])
+
+    keymap.color:defaultApply { colortoggle = M.toggle }
+
+    vim.opt.fillchars:append({ eob = " " })
+    vim.opt.guicursor =
+    "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,t:block-blinkon500-blinkoff500-TermCursor"
+end
+
+return M
