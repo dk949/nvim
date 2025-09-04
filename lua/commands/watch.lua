@@ -5,11 +5,13 @@ local command = vim.api.nvim_create_user_command
 --- Run a command (as a table) asynchronously and pipe output into a buffer.
 ---@param cmd table
 ---@param bufnr number
+---@param winnr number
 ---@return number job_id
-local function run_cmd_to_buf(cmd, bufnr)
+local function run_cmd_to_buf(cmd, bufnr, winnr)
     if type(cmd) ~= "table" then error("cmd must be a table") end
     if not vim.api.nvim_buf_is_valid(bufnr) then error("invalid buffer id: " .. tostring(bufnr)) end
     vim.api.nvim_set_option_value("modifiable", true, { buf = bufnr })
+    local view = vim.api.nvim_win_call(winnr, vim.fn.winsaveview)
 
     local ok, _ = pcall(vim.api.nvim_buf_set_lines, bufnr, 0, -1, false, {})
     if not ok then log.fatal("failed to clear buffer ", bufnr) end
@@ -42,7 +44,10 @@ local function run_cmd_to_buf(cmd, bufnr)
         stderr_buffered = true,
         on_stdout = write_lines,
         on_stderr = write_lines,
-        on_exit = function() vim.api.nvim_set_option_value("modifiable", false, { buf = bufnr }) end
+        on_exit = function()
+            vim.api.nvim_set_option_value("modifiable", false, { buf = bufnr })
+            vim.api.nvim_win_call(winnr, function() vim.fn.winrestview(view) end)
+        end
     })
     if not job_id or job_id <= 0 then log.fatalf("failed to start job (jobstart returned %d)", job_id) end
     return job_id
@@ -94,9 +99,9 @@ local function watch(args)
     end
 
     vim.api.nvim_set_option_value("modifiable", false, { buf = target_buf })
-    run_cmd_to_buf(parsed_args, target_buf)
+    run_cmd_to_buf(parsed_args, target_buf, target_win)
     vim.api.nvim_create_autocmd("BufWritePost", {
-        callback = function() run_cmd_to_buf(parsed_args, target_buf) end,
+        callback = function() run_cmd_to_buf(parsed_args, target_buf, target_win) end,
         buffer = current_buf,
         group = grp,
     })
