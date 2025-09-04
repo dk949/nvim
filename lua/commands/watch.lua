@@ -48,17 +48,48 @@ local function run_cmd_to_buf(cmd, bufnr)
     return job_id
 end
 
+---@param args string[]
+---@return string[]
+---@return table<string, any>
+local function parseArgs(args)
+    local opts = {}
+
+    local found_start = false
+    local new_args = vim.iter(ipairs(args))
+        :filter(function(_, arg)
+            if found_start then
+                return true
+            else
+                local key, value = arg:match("^([^%s=]+)=([^%s=]+)$")
+                if key == nil then
+                    found_start = true
+                    return true
+                else
+                    opts[key] = value
+                    return false
+                end
+            end
+        end)
+        :map(function(_, arg) return vim.fn.expandcmd(arg) end)
+        :totable()
+    return new_args, opts
+end
 
 ---@param args vim.api.keyset.create_user_command.command_args
 local function watch(args)
     local grp = vim.api.nvim_create_augroup("dk949-watch", { clear = true })
     local current_buf = vim.api.nvim_get_current_buf()
-    local new_buf = vim.api.nvim_create_buf(false, true);
-    local new_win = vim.api.nvim_open_win(new_buf, false, { vertical = true });
-    local expanded_args = vim.iter(ipairs(args.fargs)):map(function(_, a) return vim.fn.expandcmd(a) end):totable()
-    run_cmd_to_buf(expanded_args, new_buf)
+    local parsed_args, opts = parseArgs(args.fargs)
+    local target_buf = vim.api.nvim_create_buf(false, true);
+    for key, value in pairs(opts) do
+        vim.api.nvim_set_option_value(key, value, { buf = target_buf })
+    end
+
+    vim.api.nvim_open_win(target_buf, false, { vertical = true });
+    vim.api.nvim_set_option_value("modifiable", false, { buf = target_buf })
+    run_cmd_to_buf(parsed_args, target_buf)
     vim.api.nvim_create_autocmd("BufWritePost", {
-        callback = function() run_cmd_to_buf(expanded_args, new_buf) end,
+        callback = function() run_cmd_to_buf(parsed_args, target_buf) end,
         buffer = current_buf,
         group = grp,
     })
