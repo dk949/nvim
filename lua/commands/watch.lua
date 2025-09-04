@@ -17,7 +17,7 @@ local function runCmdToBuf(cmd, bufnr, winnr)
     if not ok then log.fatal("failed to clear buffer ", bufnr) end
 
     local cur_line = 0
-    local function write_lines(_, lines, stream)
+    local function write_lines(_, lines)
         if not lines or #lines == 0 then return end
         local found_end = false
         local real_lines = vim.iter(lines)
