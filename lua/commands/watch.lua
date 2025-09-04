@@ -9,6 +9,7 @@ local command = vim.api.nvim_create_user_command
 local function run_cmd_to_buf(cmd, bufnr)
     if type(cmd) ~= "table" then error("cmd must be a table") end
     if not vim.api.nvim_buf_is_valid(bufnr) then error("invalid buffer id: " .. tostring(bufnr)) end
+    vim.api.nvim_set_option_value("modifiable", true, { buf = bufnr })
 
     local ok, _ = pcall(vim.api.nvim_buf_set_lines, bufnr, 0, -1, false, {})
     if not ok then log.fatal("failed to clear buffer ", bufnr) end
@@ -41,6 +42,7 @@ local function run_cmd_to_buf(cmd, bufnr)
         stderr_buffered = true,
         on_stdout = write_lines,
         on_stderr = write_lines,
+        on_exit = function() vim.api.nvim_set_option_value("modifiable", false, { buf = bufnr }) end
     })
     if not job_id or job_id <= 0 then log.fatalf("failed to start job (jobstart returned %d)", job_id) end
     return job_id
