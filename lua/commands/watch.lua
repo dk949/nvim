@@ -100,9 +100,17 @@ local function watch(args)
 
     vim.api.nvim_set_option_value("modifiable", false, { buf = target_buf })
     runCmdToBuf(parsed_args, target_buf, target_win)
-    vim.api.nvim_create_autocmd("BufWritePost", {
+    local write_post = vim.api.nvim_create_autocmd("BufWritePost", {
         callback = function() runCmdToBuf(parsed_args, target_buf, target_win) end,
         buffer = current_buf,
+        group = grp,
+    })
+    vim.api.nvim_create_autocmd("BufHidden", {
+        callback = function()
+            pcall(vim.api.nvim_del_autocmd, write_post)
+            vim.schedule(function() vim.api.nvim_buf_delete(target_buf, {}) end)
+        end,
+        buffer = target_buf,
         group = grp,
     })
 end
