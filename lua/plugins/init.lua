@@ -20,7 +20,7 @@ return {
         lazy = true
     },
     {
-        "refractalize/oil-git-status.nvim",
+        "dk949/oil-git-status.nvim",
         config = require("config.plugins.oil_git_status")
     },
     {
