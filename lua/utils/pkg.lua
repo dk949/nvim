@@ -5,7 +5,8 @@ local M = {}
 
 ---ensure an LSP server is installed with mason
 ---@param name MasonSpec
-function M.ensureInstalled(name)
+---@param version string?
+function M.ensureInstalled(name, version)
     if not name then return end
     local name_list
     if type(name) == "string" then name_list = { name } else name_list = name end
@@ -16,7 +17,7 @@ function M.ensureInstalled(name)
                 log.sched.warnf("Package %s is not installed", n)
                 local pkg = reg.get_package(n)
                 log.sched.infof("Installing %s", n)
-                pkg:install(nil, function(success, receipt)
+                pkg:install(version and { version = version }, function(success, receipt)
                     if success then
                         log.sched.infof("Successfully installed %s", n)
                     end

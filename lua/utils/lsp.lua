@@ -14,17 +14,18 @@ local NONE_LSP = "@none"
 ---@class Config
 ---@field override Override?
 ---@field snippets SnippetFn?
+---@field version string?
 
 ---Load all required plugins and ensure the LSP is installed
 ---@param spec LspSpec
----@param override Override?
-local function setupLSP(spec, override)
+---@param conf Config
+local function setupLSP(spec, conf)
     if spec.config ~= NONE_LSP then
-        if override then
-            if type(override) == "table" then
-                vim.lsp.config(spec.config, override)
+        if conf.override then
+            if type(conf.override) == "table" then
+                vim.lsp.config(spec.config, conf.override)
             else
-                vim.lsp.config[spec.config] = override(vim.lsp.config[spec.config])
+                vim.lsp.config[spec.config] = conf.override(vim.lsp.config[spec.config])
             end
         end
         vim.lsp.config(spec.config, {
@@ -41,7 +42,7 @@ local function setupLSP(spec, override)
         }
     })
     vim.cmd [[doautocmd FileType]]
-    if spec.config ~= NONE_LSP then pkg.ensureInstalled(spec.mason) end
+    if spec.config ~= NONE_LSP then pkg.ensureInstalled(spec.mason, conf.version) end
 end
 
 
@@ -56,7 +57,7 @@ function M.enableLspTools(lsp_name, conf)
         enabled_lsps[lsp_name.config] = true
         if lsp_name.mason == nil then lsp_name.mason = lsp_name.config end
         if lsp_name ~= NONE_LSP then vim.lsp.enable(lsp_name.config) end
-        setupLSP(lsp_name, conf.override)
+        setupLSP(lsp_name, conf)
     end
     if conf.snippets then
         local id = M.getFtpluginId(conf.snippets)
