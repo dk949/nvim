@@ -3,4 +3,5 @@ if did_filetype()	" filetype already set..
 endif
 if getline(1) =~ '^#!.*\<nvim\>\s*-l'
   setfiletype lua
+  let g:enable_lazydev = v:TRUE
 endif
