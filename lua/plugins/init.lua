@@ -115,9 +115,14 @@ return {
     {
         "3rd/image.nvim",
         ft = { "norg", "markdown" },
-        event = {"BufRead *.jpg,*.png", "BufNewFile *.jpg,*.png", },
+        event = { "BufRead *.jpg,*.png", "BufNewFile *.jpg,*.png", },
         opts = require("config.plugins.image"),
     },
     { "dk949/pegged.vim", },
+    {
+        "mattn/emmet-vim",
+        ft = { "html", "xml", "svg", "css", "javascriptreact", "typescriptreact", "mail", "templ" },
+        init = require("config.plugins.emmet"),
+    },
     { import = "plugins.lsp" },
 }
