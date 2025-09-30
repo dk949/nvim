@@ -124,5 +124,10 @@ return {
         ft = { "html", "xml", "svg", "css", "javascriptreact", "typescriptreact", "mail", "templ" },
         init = require("config.plugins.emmet"),
     },
+    {
+        "dense-analysis/ale",
+        ft = "sh",
+        init = require("config.plugins.ale"),
+    },
     { import = "plugins.lsp" },
 }
