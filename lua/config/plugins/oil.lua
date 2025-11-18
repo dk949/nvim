@@ -29,4 +29,13 @@ return {
         max_height = 0.5,
         border = "rounded",
     },
+    confirmation = {
+        border = "rounded",
+    },
+    progress = {
+        border = "rounded",
+    },
+    ssh = {
+        border = "rounded",
+    },
 }

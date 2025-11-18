@@ -25,7 +25,7 @@ local ui = require("utils.ui")
 ---@param ctx OpenData
 local function openFloat(ctx)
     local buf = ctx.files[1].bufnr
-    local win = ui.openFloat(true, nil, nil, buf)
+    local win = ui.openFloat(true, nil, { border = "rounded" }, buf)
     return buf, win
 end
 

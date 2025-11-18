@@ -1,6 +1,7 @@
 return {
     signcolumn = false,
     numhl = true,
+    preview_config = { border = "rounded" },
     current_line_blame_opts = {
         delay = 0,
         virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'

@@ -10,4 +10,5 @@ require("lazy").setup({
     install = { missing = true },
     -- automatically check for plugin updates
     checker = { enabled = true },
+    ui = { border = "rounded" },
 })
