@@ -3,6 +3,7 @@ local lsput = require "utils.lsp"
 local winsize = require "config.keymap.winsize" (5)
 local qfix = require "config.keymap.qfix"
 local althelp = require "config.keymap.althelp".althelp
+local cmp = require "config.keymap.cmp"
 local M = {}
 
 M.global = kut.newMapGroup()
@@ -124,5 +125,12 @@ M.quickfix = kut.newMapGroup()
 M.neorg = kut.newMapGroup()
     :map('n', "gO", "<cmd>Neorg toc<CR>", "Neorg TOC")
     :map('i', "<C-CR>", "<Plug>(neorg.itero.next-iteration)")
+
+M.cmp = kut:newMapGroup()
+    :gmap("i", "<C-n>", cmp.complete_next)
+    :gmap("i", "<C-p>", cmp.complete_prev)
+    :gmap("i", "<CR>", cmp.confirm)
+    :gmap("i", "<C-i>", cmp.jump_fwd)
+    :gmap("i", "<C-S-i>", cmp.jump_back)
 
 return M
