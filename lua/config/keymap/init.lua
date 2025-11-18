@@ -61,7 +61,7 @@ M.color = kut.newMapGroup()
     :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")
 
 M.oil = kut.newMapGroup()
-    :gmap("n", "g?", "actions.open_external")
+    :gmap("n", "g?", "actions.show_help")
     :gmap("", "<CR>", "actions.select")
     :gmap("", "<leader>v", "actions.select", { vertical = true }, "vselect")
     :gmap("", "<leader>s", "actions.select", { horizontal = true }, "hselect")
