@@ -60,7 +60,8 @@ return {
     },
     {
         "bullets-vim/bullets.vim",
-        ft = "markdown"
+        ft = "markdown",
+        init = require("config.plugins.bullets"),
     },
     {
         "dk949/remember-where",
