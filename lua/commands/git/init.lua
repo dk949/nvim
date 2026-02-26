@@ -16,8 +16,8 @@ command("GitAddPatch",
         if opts.bang then
             do_stage()
         else
-            gs.preview_hunk_inline():await(function()
-                vim.defer_fn(function() ui.prompt("Stage this hunk?", do_stage) end, 0.01)
+            gs.preview_hunk_inline(function()
+                vim.defer_fn(function() ui.prompt("Stage this hunk?", do_stage) end, 1)
             end)
         end
     end,
