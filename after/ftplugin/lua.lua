@@ -26,6 +26,18 @@ require "utils".ftplugin(
         require "utils.lsp".enableLspTools({
             config = "lua_ls",
             mason = "lua-language-server",
-        }, { snippets = snippets })
+        }, {
+            snippets = snippets,
+            override = {
+                settings = {
+                    Lua = {
+                        workspace = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                        },
+                        telemetry = { enable = false },
+                    },
+                }
+            }
+        })
     end
 )
