@@ -19,8 +19,13 @@ local function snippets()
     })
 end
 require "utils".ftplugin(
-    require "config.common".prog,
+    require "config.common".prog:with{
+        formatprg = require("config.common.formatting").goPrg,
+    },
     function()
-        require "utils.lsp".enableLspTools("gopls", { snippets = snippets })
+        require "utils.lsp".enableLspTools({
+            config = "gopls",
+            mason = { "gopls", "goimports" }
+        }, { snippets = snippets })
     end
 )
