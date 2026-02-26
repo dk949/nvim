@@ -24,8 +24,8 @@ end
 
 require "utils".ftplugin(
     require "config.common".prog:with {
-        -- formatexpr = [[v:lua.require("config.common.formatting").pythonExpr()]],
         formatprg = require("config.common.formatting").pythonPrg,
+        ["@treesitter"] = { "highlight", "indent" },
     },
     function()
         require "utils.lsp".enableLspTools("basedpyright", { snippets = snippets })
