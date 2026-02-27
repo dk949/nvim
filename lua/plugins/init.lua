@@ -50,7 +50,7 @@ return {
         cmd = "Telescope"
     },
     {
-        dir = "~/src/mlir-vim/mlir/utils/vim",
+        dir = "~/src/mlir-vim/mlir/utils/vim/",
         name = "mlir-vim",
         ft = "mlir"
     },
