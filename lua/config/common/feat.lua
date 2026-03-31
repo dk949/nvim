@@ -1,3 +1,4 @@
+---@module "config.common.notes_comment"
 local lazy = require("lazy")
 local M = {}
 
@@ -21,6 +22,14 @@ end
 M["@treesitter"] = function(conf)
     if not conf then return end
     return require("config.common.treesitter").setup(conf)
+end
+
+---@param opts boolean|NotesComment.Opts?
+---@return string?
+M["@notesComment"] = function (opts)
+    if not opts then return end
+    if opts == true then opts = nil end
+    return require("config.common.notes_comment").setup(vim.fn.bufnr(), opts)
 end
 
 return M
