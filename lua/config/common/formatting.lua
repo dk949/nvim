@@ -7,5 +7,7 @@ M.zigPrg = "zig fmt --stdin"
 M.lspExpr = "v:lua.vim.lsp.buf.format()"
 M.goPrg = "goimports"
 M.jsonPrg = "jq --indent 2"
+M.shExpr =[[execute("norm! " .. v:lnum .. "G=" .. v:count .. "j")]]
+
 
 return M
