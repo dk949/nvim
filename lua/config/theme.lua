@@ -36,17 +36,47 @@ local tweakTable = {
     end
 }
 
+---@return vim.api.keyset.get_hl_info[]
+local function getAllHeadings()
+    ---@type vim.api.keyset.get_hl_info[]
+    local out = {}
+    for level = 1, 6 do
+        table.insert(out,
+            vim.api.nvim_get_hl(0, { name = "@markup.heading." .. tostring(level), create = false, link = false }))
+    end
+    return out
+end
+
+---@param headings vim.api.keyset.get_hl_info[]
+local function setAllHeadings(headings)
+    for level, heading in ipairs(headings) do
+        vim.api.nvim_set_hl(0, "@markup.heading." .. tostring(level), heading)
+    end
+end
 
 local function tweaks()
     tweakTable[current]()
     local comment = vim.api.nvim_get_hl(0, { name = "Comment", create = false, link = false })
     local normal_float = vim.api.nvim_get_hl(0, { name = "NormalFloat", create = false, link = false })
+    local constant = vim.api.nvim_get_hl(0, { name = "Constant", create = false, link = false })
+    local character = vim.api.nvim_get_hl(0, { name = "Character", create = false, link = false })
+    local type = vim.api.nvim_get_hl(0, { name = "Type", create = false, link = false })
+    local statement = vim.api.nvim_get_hl(0, { name = "Statement", create = false, link = false })
+    local macro = vim.api.nvim_get_hl(0, { name = "Macro", create = false, link = false })
     local function_ = vim.api.nvim_get_hl(0, { name = "Function", create = false, link = false })
+    local headings = getAllHeadings()
     vim.api.nvim_set_hl(0, "FloatBorder", normal_float)
     normal_float.bold = true
     vim.api.nvim_set_hl(0, "FloatTitle", normal_float)
     vim.api.nvim_set_hl(0, "ColorColumn", { bg = function_.fg })
     vim.api.nvim_set_hl(0, "NonText", comment)
+    headings[1].fg = constant.fg
+    headings[2].fg = character.fg
+    headings[3].fg = type.fg
+    headings[4].fg = statement.fg
+    headings[5].fg = macro.fg
+    headings[6].fg = function_.fg
+    setAllHeadings(headings)
 end
 
 local M = {}
