@@ -22,6 +22,7 @@ function M.setup(conf)
                 log.warn("Failed to start treesitter: ", err)
                 return
             end
+            if not vim.api.nvim_buf_is_valid(buf) then return end
             ts_data[buf] = {}
             for _, c in ipairs(conf) do
                 if c == "indent" then
@@ -52,7 +53,7 @@ function M.undo()
 
     if not ts_data[buf] then return end
     if ts_data[buf].highlight then
-        vim.treesitter.stop()
+        vim.treesitter.stop(buf)
         vim.bo.syntax = ts_data[buf].highlight
     end
     if ts_data[buf].fold then
