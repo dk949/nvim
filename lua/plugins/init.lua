@@ -1,5 +1,11 @@
 return {
     {
+        "navarasu/onedark.nvim",
+        laze = false,
+        priority = 1000,
+        config = { style = require("config.theme").style },
+    },
+    {
         "dk949/flatten.nvim",
         lazy = false,
         opts = require("config.plugins.flatten"),
