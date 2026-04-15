@@ -29,13 +29,15 @@ function M.setup(conf)
                     ts_data[buf].indent = vim.bo[buf].indentexpr
                     vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 elseif c == "fold" then
-                    -- TODO(dk949): This likely breaks if buffer is reopened in another window
-                    ts_data[buf].fold = {
-                        foldexpr = vim.wo[win].foldexpr,
-                        foldmethod = vim.wo[win].foldmethod
-                    }
-                    vim.wo[win].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                    vim.wo[win].foldmethod = 'expr'
+                    if vim.api.nvim_win_is_valid(win) then
+                        -- TODO(dk949): This likely breaks if buffer is reopened in another window
+                        ts_data[buf].fold = {
+                            foldexpr = vim.wo[win].foldexpr,
+                            foldmethod = vim.wo[win].foldmethod
+                        }
+                        vim.wo[win].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                        vim.wo[win].foldmethod = 'expr'
+                    end
                 elseif c == "highlight" then
                     ts_data[buf].highlight = vim.bo[buf].syntax
                     vim.treesitter.start(buf)
