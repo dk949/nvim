@@ -107,11 +107,9 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = 'master',
+        branch = 'main',
         lazy = false,
-        cmd = { "TSBufEnable", "TSEnable" },
         build = ":TSUpdate",
-        config = require("config.plugins.treesitter"),
     },
     {
         "3rd/image.nvim",

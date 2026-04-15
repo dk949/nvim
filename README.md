@@ -3,7 +3,7 @@
 
 ## Requirements
 
-* nvim >= 0.11.0
+* nvim >= 0.12.0
 * git
 * curl
 * gzip
