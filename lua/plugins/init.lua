@@ -1,3 +1,4 @@
+local plugutils = require "utils.plugins"
 return {
     {
         "navarasu/onedark.nvim",
@@ -56,16 +57,16 @@ return {
         opts = require("config.plugins.telescope"),
         cmd = "Telescope"
     },
-    {
+    plugutils.dirPlug {
         dir = "~/src/mlir-vim/mlir/utils/vim/",
         name = "mlir-vim",
-        ft = "mlir"
+        ft = "mlir",
     },
-    {
+    plugutils.dirPlug {
         dir = "~/src/mlir-vim/llvm/utils/vim",
         name = "tablegen-vim",
     },
-    {
+    plugutils.dirPlug {
         dir = "~/code/vim/lwn.nvim",
         opts = {},
         ft = { "markdown" },
