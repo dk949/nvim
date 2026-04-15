@@ -4,7 +4,7 @@ return function()
     local ls = require("luasnip")
     cmp.setup {
         window = {
-            completion = cmp.config.window.bordered({ border = "none", winhighlight = "" }),
+            completion = cmp.config.window.bordered({ border = "none", winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None" }),
             documentation = cmp.config.window.bordered({ border = "none", winhighlight = "" }),
         },
         snippet = { expand = function(args) ls.lsp_expand(args.body) end, },
