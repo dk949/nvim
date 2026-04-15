@@ -17,7 +17,8 @@ return {
     },
     {
         "dk949/telescope-oil-columns",
-        lazy = true
+        lazy = true,
+        dependencies = {"nvim-lua/plenary.nvim"},
     },
     {
         "dk949/oil-git-status.nvim",
@@ -57,6 +58,12 @@ return {
     {
         dir = "~/src/mlir-vim/llvm/utils/vim",
         name = "tablegen-vim",
+    },
+    {
+        dir = "~/code/vim/lwn.nvim",
+        opts = {},
+        ft = { "markdown" },
+        name = "lwn.nvim",
     },
     {
         "bullets-vim/bullets.vim",
@@ -105,13 +112,6 @@ return {
         cmd = { "TSBufEnable", "TSEnable" },
         build = ":TSUpdate",
         config = require("config.plugins.treesitter"),
-    },
-    {
-        "nvim-neorg/neorg",
-        event = { "BufRead *.norg", "BufNewFile *.norg", "User Dk949Args0" },
-        cmd = "Neorg",
-        version = "*",
-        opts = require("config.plugins.neorg"),
     },
     {
         "3rd/image.nvim",
