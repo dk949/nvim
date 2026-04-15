@@ -24,7 +24,7 @@ return {
     {
         "dk949/telescope-oil-columns",
         lazy = true,
-        dependencies = {"nvim-lua/plenary.nvim"},
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
     {
         "dk949/oil-git-status.nvim",
