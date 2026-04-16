@@ -1,7 +1,7 @@
 local plugutils = require "utils.plugins"
 return {
     {
-        "navarasu/onedark.nvim",
+        "folke/tokyonight.nvim",
         laze = false,
         priority = 1000,
         config = { style = require("config.theme").style },
