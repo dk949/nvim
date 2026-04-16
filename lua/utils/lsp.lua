@@ -74,6 +74,14 @@ function M.toggleInlay()
     end
 end
 
+function M.hover()
+    return function()
+        lsp.buf.hover({
+            border = "rounded",
+        })
+    end
+end
+
 function M.getEnabledLSPs()
     return vim.tbl_keys(enabled_lsps)
 end

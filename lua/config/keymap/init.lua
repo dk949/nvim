@@ -58,6 +58,7 @@ M.lsp = kut.newMapGroup()
     :map({ 'n', 'v' }, "<leader>md", "<Plug>VimspectorBalloonEval",
         { buffer = 0, desc = "Evaluate statement in debugger" })
     :map('n', '<leader>mv', ":VimspectorEval ", { buffer = 0, desc = "Start Eval prompt" })
+    :map('n', "K", lsput.hover(), { buffer = 0, desc = "Hover with a border" })
 
 M.color = kut.newMapGroup()
     :partial("n", "<leader>o", "colortoggle", "Toggle colorscheme")
