@@ -7,15 +7,50 @@ local log = require("utils.log")
 ---@type ({highlight:string?,fold:{foldexpr:string,foldmethod:string}?,indent:string?})[]
 local ts_data = {}
 
+---@alias TsHighlightConf boolean|{lang:string}
+---@alias TsModuleConf {[number]:"indent"|"fold"|"highlight", indent:boolean?,fold:boolean?,highlight:TsHighlightConf?}
+---@alias TsConf TsModuleConf|{[1]:TsModuleConf,install:string}|true
+---@alias TsConfNorm {modules:{indent:boolean?,fold:boolean?,highlight:TsHighlightConf?},install:string?}
 
----@param conf (true|("indent"|"fold"|"highlight")[])
+
+---@param conf TsConf
+---@return TsConfNorm
+local function normaliseConf(conf)
+    if conf == true then return { modules = { highlight = true, indent = true, fold = true } } end
+    ---@type TsModuleConf
+    local mod_conf
+    ---@type string?
+    local install
+    if conf.install then
+        install = conf.install
+        mod_conf = conf[1] --[[@as TsModuleConf]]
+    else
+        mod_conf = conf --[[@as TsModuleConf]]
+    end
+    ---@type TsConfNorm
+    local out = { modules = {}, install = install }
+    for key, value in pairs(mod_conf) do
+        if type(key) == "number" then
+            assert(value == "indent" or value == "fold" or value == "highlight")
+            out.modules[value] = true
+        else
+            assert(key == "indent" or key == "fold" or key == "highlight")
+            assert(type(value) == "boolean" or (key == "highlight" and type(value) == "table" and value.lang))
+            out.modules[key] = value
+        end
+    end
+    return out
+end
+
+---@param conf TsConf
 function M.setup(conf)
-    if conf == true then conf = { "highlight", "indent", "fold" } end
+    local norm_conf = normaliseConf(conf)
+    local mod_conf = norm_conf.modules
     local buf = vim.api.nvim_get_current_buf()
     local win = vim.api.nvim_get_current_win()
 
     local ts = require("nvim-treesitter")
-    ts.install(vim.bo.filetype)
+    ts.install(norm_conf.install or vim.bo.filetype)
         :await(function(err)
             if err then
                 ts_data[buf] = nil
@@ -24,11 +59,11 @@ function M.setup(conf)
             end
             if not vim.api.nvim_buf_is_valid(buf) then return end
             ts_data[buf] = {}
-            for _, c in ipairs(conf) do
-                if c == "indent" then
+            for c, v in pairs(mod_conf) do
+                if c == "indent" and v then
                     ts_data[buf].indent = vim.bo[buf].indentexpr
                     vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                elseif c == "fold" then
+                elseif c == "fold" and v then
                     if vim.api.nvim_win_is_valid(win) then
                         -- TODO(dk949): This likely breaks if buffer is reopened in another window
                         ts_data[buf].fold = {
@@ -38,9 +73,11 @@ function M.setup(conf)
                         vim.wo[win].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
                         vim.wo[win].foldmethod = 'expr'
                     end
-                elseif c == "highlight" then
+                elseif c == "highlight" and v then
                     ts_data[buf].highlight = vim.bo[buf].syntax
-                    vim.treesitter.start(buf)
+                    local lang
+                    if type(v) == "table" then lang = v.lang end
+                    vim.treesitter.start(buf, lang)
                     vim.bo[buf].syntax = "NO"
                 else
                     log.warn("Unknown config '", c, "'")
