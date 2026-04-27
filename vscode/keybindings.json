@@ -1,0 +1,17 @@
+[
+  { "key": "ctrl+alt+h", "command": "workbench.action.decreaseViewWidth",  "when": "editorFocus" },
+  { "key": "ctrl+alt+l", "command": "workbench.action.increaseViewWidth",  "when": "editorFocus" },
+  { "key": "ctrl+alt+j", "command": "workbench.action.increaseViewHeight", "when": "editorFocus" },
+  { "key": "ctrl+alt+k", "command": "workbench.action.decreaseViewHeight", "when": "editorFocus" },
+
+  { "key": "alt+l", "command": "workbench.action.nextEditor",     "when": "!editorFocus && !terminalFocus" },
+  { "key": "alt+h", "command": "workbench.action.previousEditor", "when": "!editorFocus && !terminalFocus" },
+
+  { "key": "ctrl+l", "command": "workbench.action.terminal.clear", "when": "terminalFocus" },
+  { "key": "ctrl+shift+v", "command": "workbench.action.terminal.paste",      "when": "terminalFocus" },
+  { "key": "ctrl+shift+v", "command": "editor.action.clipboardPasteAction",   "when": "editorTextFocus" },
+
+  { "key": "f5", "command": "workbench.action.debug.start",              "when": "editorFocus && !inDebugMode" },
+  { "key": "f5", "command": "workbench.action.debug.continue",           "when": "editorFocus && inDebugMode" },
+  { "key": "f9", "command": "editor.debug.action.toggleBreakpoint",      "when": "editorFocus" }
+]
