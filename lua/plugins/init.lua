@@ -122,7 +122,8 @@ return {
         "3rd/image.nvim",
         ft = { "norg", "markdown" },
         event = { "BufRead *.jpg,*.png", "BufNewFile *.jpg,*.png", },
-        opts = require("config.plugins.image"),
+        opts = require("config.plugins.image").opts,
+        cond = require("config.plugins.image").cond,
     },
     { "dk949/pegged.vim", },
     {
