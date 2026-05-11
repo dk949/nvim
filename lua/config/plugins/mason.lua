@@ -6,5 +6,5 @@ return function()
         },
     }
     local pkg = require("utils.pkg")
-    vim.iter(ENSURE_INSTALLED):each(pkg.ensureInstalled)
+    pkg.ensureInstalled(ENSURE_INSTALLED)
 end

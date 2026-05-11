@@ -15,6 +15,7 @@ local NONE_LSP = "@none"
 ---@field override Override?
 ---@field snippets SnippetFn?
 ---@field version string?
+---@field force_mason boolean?
 
 ---Load all required plugins and ensure the LSP is installed
 ---@param spec LspSpec
@@ -42,7 +43,20 @@ local function setupLSP(spec, conf)
         }
     })
     vim.cmd [[doautocmd FileType]]
-    if spec.config ~= NONE_LSP then pkg.ensureInstalled(spec.mason, conf.version) end
+    if spec.config ~= NONE_LSP and spec.mason ~= false then
+        local name_list
+        if type(spec.mason) == "string" then
+            name_list = { spec.mason --[[@as string]] }
+        else
+            name_list = spec.mason --[[@as (string[])]]
+        end
+        if not conf.force_mason then
+            name_list = vim.iter(name_list):filter(function(name)
+                return vim.fn.executable(name) == 0
+            end):totable() --[[@as (string[])]]
+        end
+        if #name_list ~= 0 then pkg.ensureInstalled(name_list, conf.version) end
+    end
 end
 
 
