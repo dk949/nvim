@@ -184,27 +184,23 @@
 
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnSave": true,
     "editor.rulers": [111],
     "editor.tabSize": 4,
     "editor.insertSpaces": true
   },
   "[c]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
-    "editor.formatOnSave": true,
     "editor.rulers": [111],
     "editor.tabSize": 4,
     "editor.insertSpaces": true
   },
   "[cpp]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
-    "editor.formatOnSave": true,
     "editor.rulers": [111],
     "editor.tabSize": 4,
     "editor.insertSpaces": true
   },
   "[go]": {
-    "editor.formatOnSave": true,
     "editor.rulers": [111],
     "editor.tabSize": 4,
     "editor.insertSpaces": false
@@ -230,7 +226,6 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-    "editor.formatOnSave": false,
     "files.trimTrailingWhitespace": false
   },
   "[yaml]": {
