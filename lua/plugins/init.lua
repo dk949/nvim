@@ -140,5 +140,9 @@ return {
         "direnv/direnv.vim",
         init = require("config.plugins.direnv"),
     },
+    {
+        "dk949/pdf.vim",
+        ft = "pdf",
+    },
     { import = "plugins.lsp" },
 }
