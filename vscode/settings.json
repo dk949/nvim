@@ -275,8 +275,11 @@
   "workbench.preferredLightColorTheme": "Tokyo Night Light",
   "C_Cpp.intelliSenseEngine": "disabled",
   "workbench.editor.enablePreviewFromCodeNavigation": true,
-  "workbench.editor.useModal": "off"
+  "workbench.editor.useModal": "off",
+  "claudeCode.preferredLocation": "panel",
   "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": false,
   "terminal.integrated.defaultProfile.osx": "",
   "terminal.integrated.defaultProfile.linux": "tmux",
   "terminal.integrated.profiles.linux": {
