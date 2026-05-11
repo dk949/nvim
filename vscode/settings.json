@@ -276,4 +276,14 @@
   "C_Cpp.intelliSenseEngine": "disabled",
   "workbench.editor.enablePreviewFromCodeNavigation": true,
   "workbench.editor.useModal": "off"
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.defaultProfile.osx": "",
+  "terminal.integrated.defaultProfile.linux": "tmux",
+  "terminal.integrated.profiles.linux": {
+    "tmux": {
+      "path": "vscode-tmux.sh",
+      "args": ["${workspaceFolderBasename}"]
+    }
+  },
+  "terminal.integrated.allowChords": false
 }
