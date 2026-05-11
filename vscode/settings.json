@@ -94,7 +94,8 @@
     { "before": ["<C-S-v>"],                     "commands": ["editor.action.clipboardPasteAction"] },
     { "before": ["G"],                          "after": ["G", "z", "z"] },
     { "before": ["v", "v"],                     "after": ["V"] },
-    { "before": ["V"],                          "after": ["v", "$"] },
+    { "before": ["V"],                          "after": ["v", "g", "_"] },
+    { "before": ["Y"],                          "after": ["y", "$"] },
 
     { "before": ["<C-h>"],                      "commands": ["workbench.action.focusLeftGroup"] },
     { "before": ["<C-j>"],                      "commands": ["workbench.action.focusBelowGroup"] },
@@ -155,6 +156,7 @@
   ],
 
   "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["$"],       "after": ["g", "_"] },
     { "before": ["<C-S-v>"], "commands": ["editor.action.clipboardPasteAction"] },
     { "before": ["<A-j>"],   "commands": ["editor.action.moveLinesDownAction"] },
     { "before": ["<A-k>"],   "commands": ["editor.action.moveLinesUpAction"] },
