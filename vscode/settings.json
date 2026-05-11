@@ -144,10 +144,10 @@
     { "before": ["<C-]>"],                      "commands": ["editor.action.revealDefinition"] },
     { "before": ["<leader>", "c", "h"],         "commands": ["editor.action.toggleInlineHints"] },
 
-    { "before": ["<leader>", "j"],              "commands": ["workbench.action.editor.nextChange"] },
-    { "before": ["<leader>", "k"],              "commands": ["workbench.action.editor.previousChange"] },
-    { "before": ["<leader>", "g", "j"],         "commands": ["workbench.action.editor.nextChange"] },
-    { "before": ["<leader>", "g", "k"],         "commands": ["workbench.action.editor.previousChange"] },
+    { "before": ["<leader>", "j"],              "commands": ["workbench.action.editor.nextChange", "workbench.action.compareEditor.nextChange"] },
+    { "before": ["<leader>", "k"],              "commands": ["workbench.action.editor.previousChange", "workbench.action.compareEditor.previousChange"] },
+    { "before": ["<leader>", "g", "j"],         "commands": ["workbench.action.editor.nextChange", "workbench.action.compareEditor.nextChange"] },
+    { "before": ["<leader>", "g", "k"],         "commands": ["workbench.action.editor.previousChange", "workbench.action.compareEditor.previousChange"] },
     { "before": ["<leader>", "g", "b"],         "commands": ["gitlens.toggleLineBlame"] },
     { "before": ["<leader>", "g", "u"],         "commands": ["git.unstageSelectedRanges"] },
 
