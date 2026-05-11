@@ -97,8 +97,6 @@
     { "before": ["<C-w>", "t"],                 "commands": ["workbench.action.moveEditorToNewWindow"] },
     { "before": ["<C-w>", "d"],                 "commands": ["editor.action.showHover"] },
 
-    { "before": ["<A-l>"],                      "commands": ["workbench.action.nextEditor"] },
-    { "before": ["<A-h>"],                      "commands": ["workbench.action.previousEditor"] },
 
     { "before": ["<A-j>"],                      "commands": ["editor.action.moveLinesDownAction"] },
     { "before": ["<A-k>"],                      "commands": ["editor.action.moveLinesUpAction"] },
@@ -171,8 +169,6 @@
     { "before": ["<C-j>"], "commands": ["workbench.action.focusBelowGroup"] },
     { "before": ["<C-k>"], "commands": ["workbench.action.focusAboveGroup"] },
     { "before": ["<C-l>"], "commands": ["workbench.action.focusRightGroup"] },
-    { "before": ["<A-l>"], "commands": ["workbench.action.nextEditor"] },
-    { "before": ["<A-h>"], "commands": ["workbench.action.previousEditor"] },
     { "before": ["<up>"],    "after": [] },
     { "before": ["<down>"],  "after": [] },
     { "before": ["<left>"],  "after": [] },
