@@ -28,6 +28,10 @@
   "editor.parameterHints.enabled": true,
   "editor.suggest.showInlineDetails": true,
   "editor.linkedEditing": true,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.autoSurround": "never",
+  "editor.autoClosingOvertype": "never",
 
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
