@@ -136,5 +136,9 @@ return {
         ft = "sh",
         init = require("config.plugins.ale"),
     },
+    {
+        "direnv/direnv.vim",
+        init = require("config.plugins.direnv"),
+    },
     { import = "plugins.lsp" },
 }
