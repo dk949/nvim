@@ -72,6 +72,9 @@ return {
         ft = { "markdown" },
         name = "lwn.nvim",
     },
+    plugutils.dirPlug {
+        dir = "~/code/cxx/atteva/tooling/editors/vim/",
+    },
     {
         "bullets-vim/bullets.vim",
         ft = "markdown",
