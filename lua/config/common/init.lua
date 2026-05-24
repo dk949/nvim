@@ -14,6 +14,8 @@ local M = {
     text = utils.newWithTable {
         formatoptions = format.text,
         textwidth = 80,
+        wrap = true,
+        linebreak = true,
         ["@trailingWS"] = true,
         ["@logicalLines"] = true,
     }
