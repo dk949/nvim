@@ -145,6 +145,12 @@ return {
         req = { exe = "direnv" },
     },
     {
+        "coder/claudecode.nvim",
+        dependencies = { "folke/snacks.nvim" },
+        opts = require("config.plugins.claude"),
+        cmd = { "ClaudeCode" },
+    },
+    {
         "dk949/pdf.vim",
         ft = "pdf",
     },
