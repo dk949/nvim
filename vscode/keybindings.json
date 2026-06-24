@@ -14,7 +14,14 @@
   { "key": "ctrl+shift+v", "command": "workbench.action.terminal.paste",      "when": "terminalFocus" },
   { "key": "ctrl+shift+v", "command": "editor.action.clipboardPasteAction",   "when": "editorTextFocus" },
 
-  { "key": "f5", "command": "workbench.action.debug.start",              "when": "editorFocus && !inDebugMode" },
-  { "key": "f5", "command": "workbench.action.debug.continue",           "when": "editorFocus && inDebugMode" },
-  { "key": "f9", "command": "editor.debug.action.toggleBreakpoint",      "when": "editorFocus" }
+  { "key": "f5",  "command": "workbench.action.debug.start",             "when": "editorFocus && !inDebugMode" },
+  { "key": "f5",  "command": "workbench.action.debug.continue",          "when": "editorFocus && inDebugMode" },
+  { "key": "f3",  "command": "workbench.action.debug.stop",              "when": "inDebugMode" },
+  { "key": "f4",  "command": "workbench.action.debug.restart",           "when": "inDebugMode" },
+  { "key": "f6",  "command": "workbench.action.debug.pause",             "when": "inDebugMode" },
+  { "key": "f9",  "command": "editor.debug.action.toggleBreakpoint",     "when": "editorFocus" },
+  { "key": "f8",  "command": "workbench.debug.viewlet.action.addFunctionBreakpointAction" },
+  { "key": "f10", "command": "workbench.action.debug.stepOver",          "when": "inDebugMode" },
+  { "key": "f11", "command": "workbench.action.debug.stepInto",          "when": "inDebugMode" },
+  { "key": "f12", "command": "workbench.action.debug.stepOut",           "when": "inDebugMode" }
 ]
