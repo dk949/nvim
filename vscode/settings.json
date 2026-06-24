@@ -52,7 +52,6 @@
 
   "vim.leader": " ",
   "vim.localleader": ",",
-  "vim.useSystemClipboard": true,
   "vim.surround": true,
   "vim.hlsearch": false,
   "vim.incsearch": true,
@@ -151,8 +150,11 @@
     { "before": ["<leader>", "g", "b"],         "commands": ["gitlens.toggleLineBlame"] },
     { "before": ["<leader>", "g", "u"],         "commands": ["git.unstageSelectedRanges"] },
 
-    { "before": ["<leader>", "m", "d"],         "commands": ["editor.debug.action.selectionToRepl"] },
-    { "before": ["<leader>", "m", "v"],         "commands": ["editor.debug.action.showDebugHover"] }
+    { "before": ["<leader>", "m", "d"],         "commands": ["editor.debug.action.showDebugHover"] },
+    { "before": ["<leader>", "m", "v"],         "commands": ["editor.debug.action.selectionToRepl"] },
+
+    { "before": ["<leader>", "<F8>"],           "commands": ["editor.debug.action.runToCursor"] },
+    { "before": ["<leader>", "<F9>"],           "commands": ["editor.debug.action.conditionalBreakpoint"] }
   ],
 
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -266,7 +268,8 @@
   "[mlir]": {
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
-    "editor.rulers": [111]
+    "editor.rulers": [111],
+    "editor.defaultFormatter": null
   },
   "python.analysis.typeCheckingMode": "standard",
   "workbench.startupEditor": "none",
@@ -274,7 +277,6 @@
   "workbench.preferredDarkColorTheme": "Tokyo Night Storm",
   "workbench.preferredLightColorTheme": "Tokyo Night Light",
   "C_Cpp.intelliSenseEngine": "disabled",
-  "workbench.editor.enablePreviewFromCodeNavigation": true,
   "workbench.editor.useModal": "off",
   "claudeCode.preferredLocation": "panel",
   "terminal.integrated.enableMultiLinePasteWarning": "never",
@@ -288,5 +290,10 @@
       "args": ["${workspaceFolderBasename}"]
     }
   },
-  "terminal.integrated.allowChords": false
+  "terminal.integrated.allowChords": false,
+  "git.openRepositoryInParentFolders": "always",
+  "workbench.editor.enablePreview": false,
+  "cmake.configureOnOpen": false,
+  "cmake.configureOnEdit": false,
+  "cmake.automaticReconfigure": false
 }
