@@ -139,9 +139,10 @@ return {
         ft = "sh",
         init = require("config.plugins.ale"),
     },
-    {
+    plugutils.optPlug {
         "direnv/direnv.vim",
         init = require("config.plugins.direnv"),
+        req = { exe = "direnv" },
     },
     {
         "dk949/pdf.vim",
