@@ -296,4 +296,6 @@
   "cmake.configureOnOpen": false,
   "cmake.configureOnEdit": false,
   "cmake.automaticReconfigure": false
+  "diffEditor.maxComputationTime": 0,
+  "explorer.confirmDragAndDrop": false
 }
