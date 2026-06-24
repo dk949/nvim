@@ -5,6 +5,7 @@ vim.opt.showmode     = false
 vim.opt.splitbelow   = true
 vim.opt.splitright   = true
 vim.opt.foldenable   = false
+vim.opt.scrolloff    = 4
 vim.opt.spelllang    = 'en_gb'
 vim.opt.spell        = true
 vim.opt.diffopt:append("vertical")
