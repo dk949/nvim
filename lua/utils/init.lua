@@ -192,4 +192,12 @@ function M.newWithTable(t)
     return setmetatable(t, withMT)
 end
 
+---@generic T
+---@param val T
+---@return T
+function M.dbg(val)
+    print("DBG: " .. vim.inspect(val))
+    return val
+end
+
 return M
