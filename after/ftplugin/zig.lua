@@ -85,14 +85,13 @@ require "utils".ftplugin(
                 return
             end
             ---@type string?
-            local std_dir = out.stdout:match([[%s*%.std_dir%s*=%s*"(.-)"]])
+            local std_dir = out.stdout:match([[%s*%.?std_dir%s*=?:?%s*"(.-)"]])
             if not std_dir then
-                log.warn("Failed to read std_dir from ", out.stdout)
+                log.sched.warn("Failed to read std_dir from ", out.stdout)
                 return
             end
             vim.g.zig_std_dir = std_dir
         end)
-
         require "utils.lsp".enableLspTools({ config = "zls", mason = false }, {
             snippets = snippets
         })
