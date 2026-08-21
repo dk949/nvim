@@ -20,7 +20,7 @@ function M.optPlug(spec)
     local req = assert(spec.req)
     spec.req = nil
     return vim.tbl_extend("error", vim.deepcopy(spec), {
-        cond = vim.fn.executable(req.exe)
+        cond = vim.fn.executable(req.exe) == 1
     })
 end
 
