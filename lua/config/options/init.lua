@@ -1,6 +1,7 @@
 vim.g.mapleader      = " "
 vim.g.maplocalleader = ","
 
+vim.opt.updatetime   = 2000
 vim.opt.showmode     = false
 vim.opt.splitbelow   = true
 vim.opt.splitright   = true
