@@ -33,6 +33,7 @@ local function setupLSP(spec, conf)
             capabilities = require('cmp_nvim_lsp').default_capabilities()
         })
         lazy.load({ plugins = { "nvim-lspconfig", "mason.nvim" } })
+        vim.lsp.enable(spec.config)
     end
     lazy.load({
         plugins = {
@@ -70,7 +71,6 @@ function M.enableLspTools(lsp_name, conf)
     if not enabled_lsps[lsp_name.config] then
         enabled_lsps[lsp_name.config] = true
         if lsp_name.mason == nil then lsp_name.mason = lsp_name.config end
-        if lsp_name ~= NONE_LSP then vim.lsp.enable(lsp_name.config) end
         setupLSP(lsp_name, conf)
     end
     if conf.snippets then
