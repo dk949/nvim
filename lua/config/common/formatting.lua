@@ -1,6 +1,6 @@
 local M = {}
 
-M.pythonPrg = "black --no-color -q -"
+M.pythonPrg = "uv tool run ruff format --color never  -"
 M.cmakePrg = "cmake-format - -o -"
 M.fortranProg = "fprettify --silent"
 M.zigPrg = "zig fmt --stdin"
