@@ -9,6 +9,7 @@
 * gzip
 * unzip
 * tar
+* tree-sitter-cli
 
 ## Dev
 
