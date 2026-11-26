@@ -4,6 +4,11 @@ return {
         lazy = true
     },
     {
+        "SmiteshP/nvim-navic",
+        lazy = true,
+        opts = require("config.plugins.navic"),
+    },
+    {
         "mason-org/mason.nvim",
         lazy = true,
         config = require("config.plugins.mason"),

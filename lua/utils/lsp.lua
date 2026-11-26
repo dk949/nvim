@@ -32,7 +32,7 @@ local function setupLSP(spec, conf)
         vim.lsp.config(spec.config, {
             capabilities = require('cmp_nvim_lsp').default_capabilities()
         })
-        lazy.load({ plugins = { "nvim-lspconfig", "mason.nvim" } })
+        lazy.load({ plugins = { "nvim-lspconfig", "mason.nvim", "nvim-navic" } })
         vim.lsp.enable(spec.config)
     end
     lazy.load({

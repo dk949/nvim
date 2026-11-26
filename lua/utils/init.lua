@@ -13,9 +13,9 @@ function M.b(s) return tonumber(s, 2) end
 function M.o(s) return tonumber(s, 8) end
 
 ---@param name string
----@param fn fun(grp: integer): integer
+---@param fn fun(grp: integer): integer, ...
 ---@param opts {clear:boolean}?
----@return integer, integer
+---@return integer, integer, ...
 function M.withAugroup(name, fn, opts)
     local clear = true
     if opts ~= nil and opts.clear ~= nil then clear = opts.clear end
