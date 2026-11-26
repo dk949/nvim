@@ -206,7 +206,7 @@ function M.setup()
     require("utils").withAugroup("statusline", function(grp)
         local modech = vim.api.nvim_create_autocmd("ModeChanged", {
             group = grp,
-            callback = vim.schedule_wrap(vim.cmd.redrawstatus)
+            callback = function() vim.schedule(vim.cmd.redrawstatus) end
         })
         -- The tabline is not redrawn on cursor movement by itself. navic updates its context in its own
         -- CursorMoved handler, so redraw after it (scheduled) to pick up the new location.
